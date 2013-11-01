@@ -30,6 +30,7 @@ and keep a clean, organized directory structure.
   - revisionJS
   - revisionCSS
 - [JSHint](http://www.jshint.com/) and [RECESS](http://twitter.github.io/recess/) are both configured to be relatively strict, and they both run via the Grunt watch task
+- Mocha and Chai are used for testing both the client and the server
 
 ## Browser Support
 This application is built with modern web technologies at its core. Targeted browsers and versions are:
