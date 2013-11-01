@@ -1,9 +1,9 @@
 ## The Holy Grail
-This repository contains a fully-functioning boilerplate single-page web application. It serves a single file no matter the requested path, and routing is handled entirely by Backbone.js.
+This repository contains a fully-functioning boilerplate single-page web application.
 
 On the server side, it's using [Express](http://expressjs.com/), a popular and very easy to use [Node.js](http://nodejs.org/) application framework.
 
-On the client, it's using [Backbone](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Grunt](http://gruntjs.com/) as a build and deploy utility.
+On the client, it's using [Backbone](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Grunt](http://gruntjs.com/) as a build and deploy utility. It also takes advantage of the [Grunt watcher's live reload capability](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload), which automatically reloads updated CSS files without needing a manual refresh.
 
 Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/).
 
@@ -14,9 +14,9 @@ Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.
 - Install dependencies: `npm install; bower install`
 - Install Mocha: `npm install -g mocha`
 - Install PhantomJS and Mocha-Phantom: `npm install -g mocha-phantomjs phantomjs`
-- Run `grunt` for good measure
+- Move into this project's root directory
 - Start the local server: `node server/server.js`
-- In another terminal window, run `grunt watch`
+- In another terminal window (from the project's root directory), run `grunt watch`
 - Visit <http://localhost:8743>
 
 ### Managing dependencies

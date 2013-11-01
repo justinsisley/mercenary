@@ -1,6 +1,6 @@
 {
-    "name": "requirejs-backbone-less-bower",
-    "description": "requirejs, Backbone, Marionette, LESS, Bower",
+    "name": "The Holy Grail",
+    "description": "Boilerplate for a Backbone application using Marionette, requirejs, Dust.js, LESS, Bower, Express and Grunt",
     "version": "0.0.1",
     "dependencies": {
         "jquery": "2.0.3",
