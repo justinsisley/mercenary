@@ -29,6 +29,7 @@ and keep a clean, organized directory structure.
 - `package.json` contains two properties that are managed via a custom Grunt task and should not be edited manually. These properties are:
   - revisionJS
   - revisionCSS
+- JSHint (JavaScript linting) and RECESS (LESS linting) are both configured to be relatively strict, and they both run via the Grunt watch task
 
 # Browser Support
 This application is built with modern web technologies at its core. Targeted browsers and versions are:
