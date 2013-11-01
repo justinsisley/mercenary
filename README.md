@@ -10,7 +10,7 @@
 - Install Mocha: `npm install -g mocha`
 - Install PhantomJS and Mocha-Phantom: `npm install -g mocha-phantomjs phantomjs`
 - Run `grunt` for good measure
-- Start the local server: `grunt server`
+- Start the local server: `node server/server.js`
 - In another terminal window, run `grunt watch`
 - Visit <http://localhost:8743>
 
