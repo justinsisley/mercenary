@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width">
 
         {?development}
-            <link rel="stylesheet" href="/css/fonts.css">
+            <link rel="stylesheet" href="/css/icomoon/style.css">
             <link rel="stylesheet" href="/css/style.css">
         {:else}
             <link rel="stylesheet" href="http://cdn.domain.com/css/fonts.{ASSETS.CSS_FONT.REVISION}.css">

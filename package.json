@@ -2,8 +2,8 @@
   "name": "requirejs-backbone-less-bower",
   "title": "requirejs, Backbone, Marionette, LESS, Bower",
   "version": "0.0.1",
-  "revisionJS": "55",
-  "revisionCSS": "8",
+  "revisionJS": "1",
+  "revisionCSS": "1",
   "revisionCSSfont": "1",
   "homepage": "http://domain.com",
   "author": {
