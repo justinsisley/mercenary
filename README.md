@@ -1,7 +1,10 @@
-### The Holy Grail
+## The Holy Grail
 This repository contains fully-functioning client and server applications out of the box.
+
 On the server side, it's using [Express](http://expressjs.com/), a popular and very easy to use Node.js application framework.
+
 On the client, it's using Backbone with Marionette, requirejs for dependency injection, LESS for CSS preprocessing, Bower for dependency management, and Grunt as a build and deploy utility.
+
 Both the client and server utilize LinkedIn's fork of Dust.js.
 
 ### Setting up your development environment on OS X
