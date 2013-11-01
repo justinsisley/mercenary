@@ -1,4 +1,4 @@
-## Setting up your development environment on OS X (10.8.3+)
+## Setting up your development environment on OS X
 - [Install Homebrew](http://mxcl.github.io/homebrew/)
 - Install Node.js and NPM: `brew install node`
 - Install Grunt, Bower, Nodemon and Forever: `npm install -g grunt-cli; npm install -g bower; npm install -g nodemon; npm install -g forever`
