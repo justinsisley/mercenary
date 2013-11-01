@@ -1,0 +1,23 @@
+.arrowUp(@borderSize, @borderType, @borderColor) {
+    border-right: @borderSize @borderType transparent;
+    border-bottom: @borderSize @borderType @borderColor;
+    border-left: @borderSize @borderType transparent;
+}
+
+.arrowRight(@borderSize, @borderType, @borderColor) {
+    border-top: @borderSize @borderType transparent;
+    border-bottom: @borderSize @borderType transparent;
+    border-left: @borderSize @borderType @borderColor;
+}
+
+.arrowDown(@borderSize, @borderType, @borderColor) {
+    border-top: @borderSize @borderType @borderColor;
+    border-right: @borderSize @borderType transparent;
+    border-left: @borderSize @borderType transparent;
+}
+
+.arrowLeft(@borderSize, @borderType, @borderColor) {
+    border-top: @borderSize @borderType transparent;
+    border-right:@borderSize @borderType @borderColor; 
+    border-bottom: @borderSize @borderType transparent; 
+}

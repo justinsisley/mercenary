@@ -1,0 +1,9 @@
+// http://matthewlein.com/ceaser/
+@easeOutExpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+
+.transition (@rule: color, @duration: .1s, @easing: @easeOutExpo, @delay: 0s) {
+    -webkit-transition: @rule @duration @easing @delay;
+    -moz-transition: @rule @duration @easing @delay;
+    -o-transition: @rule @duration @easing @delay;
+    transition: @rule @duration @easing @delay;
+}

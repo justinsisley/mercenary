@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Test Runner</title>
+        
+        <link rel="stylesheet" href="../client/js/vendor/mocha/mocha.css" />
+
+        <style>
+            .main-content {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="mocha"></div>
+        
+        <script src="../client/js/vendor/mocha/mocha.js"></script>
+        <script>mocha.setup('bdd');</script>
+        
+        <script src="../client/js/vendor/chai/chai.js"></script>
+        <script>var assert = chai.assert, should = chai.should(), expect = chai.expect;</script>
+
+        <script src="../client/js/vendor/requirejs/require.js"></script>
+        <!-- Shared configuration -->
+        <script src="../client/js/config.js"></script>
+        <!-- Overwrite the base URL for tests -->
+        <script>requirejs.s.contexts._.config.baseUrl = '../client/js/';</script>
+        <!-- Fetch a fresh test config on every page load -->
+        <script>
+        (function(){ 
+            var d = document.createElement('script');
+            d.src = 'test.config.js?v=' + (new Date()).getTime();
+            document.body.appendChild(d);
+         })();
+        </script>
+    </body>
+</html>
