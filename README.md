@@ -1,4 +1,4 @@
-# Setting up your development environment on OS X 10.8.3
+# Setting up your development environment on OS X (10.8.3+)
 - [Install Homebrew](http://mxcl.github.io/homebrew/)
 - Install Node.js and NPM: `brew install node`
 - Install Grunt, Bower, Nodemon and Forever: `npm install -g grunt-cli; npm install -g bower; npm install -g nodemon; npm install -g forever`
@@ -25,7 +25,7 @@
 and keep a clean, organized directory structure.
 - When doing "house cleaning", delete all vendor sub-directories except `_nonBower`, then re-install Bower dependencies.
 
-# Things to know before you start making changes
+# Things worth knowing
 - `package.json` contains two properties that are managed via a custom Grunt task and should not be edited manually. These properties are:
   - revisionJS
   - revisionCSS
