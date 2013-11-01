@@ -1,20 +1,16 @@
 ## The Holy Grail
-This repository contains fully-functioning client and server applications out of the box.
+This repository contains a fully-functioning boilerplate single-page web application. It serves a single file no matter the requested path, and routing is handled entirely by Backbone.js.
 
-On the server side, it's using [Express](http://expressjs.com/), a popular and very easy to use Node.js application framework.
+On the server side, it's using [Express](http://expressjs.com/), a popular and very easy to use [Node.js](http://nodejs.org/) application framework.
 
-On the client, it's using Backbone with Marionette, requirejs for dependency injection, LESS for CSS preprocessing, Bower for dependency management, and Grunt as a build and deploy utility.
+On the client, it's using [Backbone](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Grunt](http://gruntjs.com/) as a build and deploy utility.
 
-Both the client and server utilize LinkedIn's fork of Dust.js.
+Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/).
 
 ### Setting up your development environment on OS X
 - [Install Homebrew](http://mxcl.github.io/homebrew/)
 - Install Node.js and NPM: `brew install node`
-- Install Grunt, Bower, Nodemon and Forever: `npm install -g grunt-cli; npm install -g bower; npm install -g nodemon; npm install -g forever`
-  - [Learn about Grunt](http://gruntjs.com/)
-  - [Learn about Bower](http://bower.io/)
-  - [Learn about Nodemon](http://remy.github.io/nodemon/)
-  - [Learn about Forever](https://github.com/nodejitsu/forever)
+- Install Grunt, Bower and [Nodemon](http://remy.github.io/nodemon/): `npm install -g grunt-cli; npm install -g bower; npm install -g nodemon`
 - Install dependencies: `npm install; bower install`
 - Install Mocha: `npm install -g mocha`
 - Install PhantomJS and Mocha-Phantom: `npm install -g mocha-phantomjs phantomjs`
