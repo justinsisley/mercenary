@@ -1,4 +1,4 @@
-# Setting up your development environment on OS X (10.8.3+)
+## Setting up your development environment on OS X (10.8.3+)
 - [Install Homebrew](http://mxcl.github.io/homebrew/)
 - Install Node.js and NPM: `brew install node`
 - Install Grunt, Bower, Nodemon and Forever: `npm install -g grunt-cli; npm install -g bower; npm install -g nodemon; npm install -g forever`
@@ -14,7 +14,7 @@
 - In another terminal window, run `grunt watch`
 - Visit <http://localhost:8743>
 
-# Managing dependencies
+## Managing dependencies
 - Use bower.json to edit, update and declare new client-side dependencies.
 - Use package.json to edit, update and declare new server-side dependencies.
   - Put development dependencies under "devDependencies".
@@ -25,13 +25,13 @@
 and keep a clean, organized directory structure.
 - When doing "house cleaning", delete all vendor sub-directories except `_nonBower`, then re-install Bower dependencies.
 
-# Things worth knowing
+## Things worth knowing
 - `package.json` contains two properties that are managed via a custom Grunt task and should not be edited manually. These properties are:
   - revisionJS
   - revisionCSS
 - [JSHint](http://www.jshint.com/) and [RECESS](http://twitter.github.io/recess/) are both configured to be relatively strict, and they both run via the Grunt watch task
 
-# Browser Support
+## Browser Support
 This application is built with modern web technologies at its core. Targeted browsers and versions are:
 - Chrome 27+
 - Firefox 20+
