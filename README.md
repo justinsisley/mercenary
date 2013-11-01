@@ -1,5 +1,5 @@
 ## The Holy Grail
-This repository contains a fully-functioning boilerplate single-page web application.
+This is a fully-functioning single-page web application.
 
 On the server side, it's using [Express](http://expressjs.com/), a popular and very easy to use [Node.js](http://nodejs.org/) application framework.
 
@@ -10,11 +10,10 @@ Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.
 ### Setting up your development environment on OS X
 - [Install Homebrew](http://mxcl.github.io/homebrew/)
 - Install Node.js and NPM: `brew install node`
-- Install Grunt, Bower and [Nodemon](http://remy.github.io/nodemon/): `npm install -g grunt-cli; npm install -g bower; npm install -g nodemon`
+- Install Grunt and Bower: `npm install -g grunt-cli bower`
+- Install Mocha, PhantomJS and Mocha-Phantom: `npm install -g mocha mocha-phantomjs phantomjs`
+- Clone this repository and move into its root directory
 - Install dependencies: `npm install; bower install`
-- Install Mocha: `npm install -g mocha`
-- Install PhantomJS and Mocha-Phantom: `npm install -g mocha-phantomjs phantomjs`
-- Move into this project's root directory
 - Start the local server: `node server/server.js`
 - In another terminal window (from the project's root directory), run `grunt watch`
 - Visit <http://localhost:8743>
