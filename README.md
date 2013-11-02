@@ -7,7 +7,9 @@ On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js
 
 Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/) for template rendering.
 
-The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) with [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
+The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
+
+This project uses a directory structure that is meant to keep the application organized and manageable. Starting from the root directory, the four primary directories are `client`, `server`, `test`, and `utils`. `client`, `server`, and `test` should be fairly self-explanatory, but `utils` may need some explaining. The `utils` directory is where you can keep things such as custom Grunt tasks and deploy scripts. Another way to look at the `utils` directory is this: if it doesn't make sense to put something into the `client`, `server`, or `test` directory, but your application needs it, it probably belongs in `utils`.
 
 ### Setting up your development environment on OS X
 - [Install Homebrew](http://mxcl.github.io/homebrew/)
@@ -36,7 +38,6 @@ and keep a clean, organized directory structure.
   - revisionJS
   - revisionCSS
 - [JSHint](http://www.jshint.com/) and [RECESS](http://twitter.github.io/recess/) are both configured to be relatively strict, and they both run via the Grunt watch task
-- Mocha and Chai are used for testing both the client and the server
 
 ### Browser Support
 This application is built with modern web technologies at its core. Targeted browsers and versions are:
