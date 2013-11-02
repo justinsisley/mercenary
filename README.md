@@ -5,6 +5,8 @@ On the client, this application uses [Backbone.js](http://backbonejs.org/) with 
 
 On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js](http://nodejs.org/) application framework.
 
+The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) with [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
+
 Both client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/).
 
 ### Setting up your development environment on OS X
