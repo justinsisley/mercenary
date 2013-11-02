@@ -3,7 +3,7 @@ This is a fully-functioning single-page web application.
 
 On the client, this application uses [Backbone.js](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Grunt](http://gruntjs.com/) as a build and deploy utility. It also takes advantage of the [Grunt watcher's live reload capability](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload), which automatically reloads updated CSS files without needing a manual refresh.
 
-On the server side, it uses [Express](http://expressjs.com/), a popular and very easy to use [Node.js](http://nodejs.org/) application framework.
+On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js](http://nodejs.org/) application framework.
 
 Both client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/).
 
