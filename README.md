@@ -9,7 +9,7 @@ Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.
 
 The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
 
-For more information, check out the [Wiki](https://github.com/justinsisley/The-Holy-Grail/wiki/_pages).
+For more information, check out the [Wiki](https://github.com/justinsisley/The-Holy-Grail/wiki).
 
 ### Browser Support
 This application is built with modern web technologies at its core. While it may work in older browsers, the targeted browsers and versions are:
