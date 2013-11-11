@@ -62,7 +62,7 @@ and keep a clean, organized directory structure.
 - [JSHint](http://www.jshint.com/) and [RECESS](http://twitter.github.io/recess/) are both configured to be relatively strict, and they both run via the Grunt watch task
 
 ### Browser Support
-This application is built with modern web technologies at its core. Targeted browsers and versions are:
+This application is built with modern web technologies at its core. While it may work in older browsers, the targeted browsers and versions are:
 - Chrome 27+
 - Firefox 20+
 - Safari 6+
