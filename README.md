@@ -10,7 +10,7 @@ Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.
 The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
 
 ### Setting up your development environment on OS X
-This process assumes you are using [Homebrew](http://mxcl.github.io/homebrew/). If you don't want to use it, you'll just need to install Node.js and NPM via some other means. From there, NPM has you covered.
+This process assumes you are using [Homebrew](http://mxcl.github.io/homebrew/). If you don't want to use it, you'll just need to install Node.js and NPM manually. From there, NPM has you covered.
 - Install Node.js and NPM: `brew install node`
 - Install Grunt and Bower: `npm install -g grunt-cli bower`
 - Install Mocha, PhantomJS and Mocha-Phantom: `npm install -g mocha mocha-phantomjs phantomjs`
