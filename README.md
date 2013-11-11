@@ -9,7 +9,7 @@ Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.
 
 The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
 
-### Setting up your development environment on OS X
+### Setting up your Development Environment on OS X
 This process assumes you are using [Homebrew](http://mxcl.github.io/homebrew/). If you don't want to use it, you'll just need to install Node.js and NPM manually. From there, NPM has you covered.
 - Install Node.js and NPM: `brew install node`
 - Install Grunt and Bower: `npm install -g grunt-cli bower`
@@ -27,7 +27,7 @@ This process assumes you are using [Homebrew](http://mxcl.github.io/homebrew/). 
 4. The concept of client side "widgets"
 5. The `/client/vendor` directory
 
-### Directory structure
+### Directory Structure
 This project uses a directory structure that is meant to keep the application organized and manageable. Starting from the root directory, the four primary directories are `/client`, `/server`, `/test`, and `/utils`. `/client`, `/server`, and `/test` should be fairly self-explanatory, but `/utils` may need some explaining. The `/utils` directory is where you can keep things such as custom Grunt tasks and deploy scripts. Another way to look at the `/utils` directory is this: if it doesn't make sense to put something into the `/client`, `/server`, or `/test` directories, but some part of your application or development work flow depends on it, it probably belongs in `/utils`.
 
 Inside the `/client` directory, we have the following directories: `css`, `dust`, `img`, `js` and `less`. `/client/css` contains the main compiled CSS stylesheet (`style.css`) and icon font files. You'll never need to edit `style.css`, since it's automatically built from your LESS files.
@@ -44,13 +44,13 @@ The `/client/js` directory is where your application's JavaScript lives. This di
 
 Starting with the simplest-to-explain subdirectories, The `/client/js/helpers` directory contains your JavaScript helper files, and the `/client/js/widgets` directory contains your standalone JavaScript widgets. These are explained in detail in the section [Understanding the Architecture](#understanding-the-architecture).
 
-The `/client/js/vendor` directory is where your client side dependencies are stored. These dependencies are either installed via Bower, or are manually imported into the `/client/js/vendor/_nonBower` directory.
+The `/client/js/vendor` directory is where your client side dependencies are stored. These dependencies are either installed via Bower, or are manually imported into the `/client/js/vendor/_nonBower` directory. This is covered in more detail in [Managing Dependencies](#managing-dependencies).
 
 The `/client/js/modules` directory, covered in [Understanding the Architecture](#understanding-the-architecture), is where your application's specific functionality lives. Each "module" is a directory that contains module-specific models, collections, controllers, routers and views.
 
 The `/client/less` directory...
 
-### Managing dependencies
+### Managing Dependencies
 - Use bower.json to edit, update and declare new client-side dependencies.
 - Use package.json to edit, update and declare new server-side dependencies.
   - Put development dependencies under "devDependencies".
@@ -61,7 +61,7 @@ The `/client/less` directory...
 and keep a clean, organized directory structure.
 - When doing "house cleaning", delete all vendor sub-directories except `_nonBower`, then re-install Bower dependencies.
 
-### Things worth knowing
+### Things Worth Knowing
 - `package.json` contains two properties that are managed via a custom Grunt task and should not be edited manually. These properties are:
   - revisionJS
   - revisionCSS
