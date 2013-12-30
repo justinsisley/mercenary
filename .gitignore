@@ -24,6 +24,7 @@ node_modules
 
 # Bower
 client/vendor/*
+!client/vendor/readme.md
 !client/vendor/_nonBower
 
 # Built files
