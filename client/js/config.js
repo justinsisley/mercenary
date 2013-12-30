@@ -7,7 +7,7 @@ require.config({
         underscore              : '../vendor/lodash/dist/lodash.underscore',
         backbone                : '../vendor/backbone/backbone',
         marionette              : '../vendor/backbone.marionette/lib/backbone.marionette',
-        dust                    : '../vendor/dustjs-linkedin/dist/dust-full-1.2.2',
+        dust                    : '../vendor/dustjs-linkedin/dist/dust-full-2.2.3',
         'dust.helpers'          : '../vendor/dustjs-linkedin-helpers/dist/dust-helpers-1.1.1',
         'marionette.dust'       : 'helpers/backbone.marionette.dust'
     },

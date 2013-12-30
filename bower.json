@@ -1,18 +1,18 @@
 {
-    "name": "The Holy Grail",
-    "description": "Boilerplate for a Backbone application using Marionette, requirejs, Dust.js, LESS, Bower, Express and Grunt",
-    "version": "0.0.1",
-    "dependencies": {
-        "jquery": "2.0.3",
-        "backbone": "1.0.0",
-        "backbone.marionette": "1.1.0",
-        "dustjs-linkedin": "2.0.3",
-        "dustjs-linkedin-helpers": "1.1.1",
-        "json2": "*",
-        "lodash": "2.1.0",
-        "requirejs": "2.1.8",
-        "store.js": "1.3.8",
-        "mocha": "1.13.0",
-        "chai": "1.8.0"
-    }
+  "name": "Mercenary",
+  "description": "Boilerplate for a Backbone application using Marionette, requirejs, Dust.js, LESS, Bower, Express and Grunt",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "2.0.3",
+    "backbone": "1.1.0",
+    "backbone.marionette": "1.4.1",
+    "dustjs-linkedin": "2.2.3",
+    "dustjs-linkedin-helpers": "1.1.1",
+    "json2": "*",
+    "lodash": "2.4.1",
+    "requirejs": "2.1.9",
+    "store.js": "1.3.14",
+    "mocha": "1.16.2",
+    "chai": "1.8.1"
+  }
 }

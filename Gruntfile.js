@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 			},
 			prd: {
 				options: {
-					yuicompress: true
+					cleancss: true
 				},
 				files: {
 					'client/css/style.css': 'tmp/dist.less'

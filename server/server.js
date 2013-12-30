@@ -3,6 +3,7 @@ var	express = require('express'),
 	cons = require('consolidate'),
 	config = require('./config'),
 	server = express(),
+	hostname = require('os').hostname(),
 	memwatch;
 
 // Log memory leaks and garbage collection
@@ -72,10 +73,9 @@ server.use(server.router);
 // Instantiate the router by passing it a reference to the Express application
 require('./routers/appRouter').router(server);
 
-
 // Create the HTTP server and listen on the defined Port
 http.createServer(server).listen(config.PORT, function() {
 	'use strict';
 
-	console.log('Application running in ' + config.ENV + ' mode on port ' + config.PORT);
+	console.log('Application running in ' + config.ENV + ' mode at ' + hostname + ':' + config.PORT);
 });

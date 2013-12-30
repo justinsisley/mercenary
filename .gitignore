@@ -4,13 +4,12 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore all logfiles and tempfiles.
+# Logs and temporary files
 *.log
-/log/*.log
-/tmp
+logs
+tmp
 
-# OS generated files #
-######################
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -20,5 +19,12 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-# Node.js / NPM #
-/node_modules
+# Node and NPM
+node_modules
+
+# Bower
+client/vendor/*
+!client/vendor/_nonBower
+
+# Built files
+client/css/style.css
