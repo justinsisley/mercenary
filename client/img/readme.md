@@ -1,0 +1,3 @@
+# The IMG Directory
+
+The `/client/img` directory should really only be used to serve images during development, since it's best not to burden Express by having it serve lots of static image files. For many reasons, it would be best to have your production assets served from either a CDN, or from something like [Nginx](http://wiki.nginx.org/Main), which is great at serving static files. The `/client/img` directory can be convenient when working from places like planes, trains, and automobiles, where being productive offline requires you to work in a purely local development environment. By default, this directory contains a sample "for placement only" image.
