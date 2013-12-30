@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         
-        <title>Application</title>
+        <title>Mercenary</title>
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
         {?development}
-            <link rel="stylesheet" href="/css/icomoon/style.css">
+            <link rel="stylesheet" href="/css/fontello/css/fontello.css">
             <link rel="stylesheet" href="/css/style.css">
         {:else}
             <link rel="stylesheet" href="http://cdn.domain.com/css/fonts.{ASSETS.CSS_FONT.REVISION}.css">
@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <noscript>This application requires JavaScript. Please enable JavaScript in your browser and refresh to continue.</noscript>
+        <noscript>Mercenary requires JavaScript. Please enable JavaScript in your browser and refresh to continue.</noscript>
 
         {?development}
             <script src="http://localhost:35729/livereload.js"></script>

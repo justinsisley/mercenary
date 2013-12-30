@@ -1,8 +1,6 @@
 define([
     'backbone',
-    
     'modules/home/templates/layout',
-    
     'marionette.dust'
 ], function(Backbone) {
     'use strict';

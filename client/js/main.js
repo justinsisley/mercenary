@@ -3,11 +3,9 @@
  */
 define([
     'app',
-
     'modules/base/routers/baseRouter'
 ], function(
     App,
-
     BaseRouter
 ) {
     'use strict';

@@ -1,10 +1,8 @@
 define([
     'app',
-    
     'modules/home/controllers/homeController'
 ],function(
     App,
-
     homeController
 ) {
     'use strict';

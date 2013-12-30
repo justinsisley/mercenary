@@ -1,3 +1,6 @@
+/**
+ * Shared configuration (between application and tests)
+ */
 require.config({
     baseUrl: '/js/',
     urlArgs: 'v=' + (new Date()).getTime(),
