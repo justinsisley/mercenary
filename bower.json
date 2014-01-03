@@ -1,7 +1,8 @@
 {
   "name": "Mercenary",
-  "description": "Boilerplate for a Backbone application using Marionette, requirejs, Dust.js, LESS, Bower, Express and Grunt",
+  "description": "The Force Multiplier Web Application Stack",
   "version": "0.0.1",
+  "private": true,
   "dependencies": {
     "jquery": "2.0.3",
     "backbone": "1.1.0",

@@ -2,9 +2,9 @@
   "name": "mercenary",
   "title": "Mercenary",
   "version": "0.0.1",
-  "revisionJS": "17",
-  "revisionCSS": "3",
-  "revisionCSSfont": "1",
+  "revisionJS": "0",
+  "revisionCSS": "0",
+  "revisionCSSfont": "0",
   "homepage": "https://github.com/justinsisley/Mercenary",
   "author": {
     "name": "Justin Sisley"
