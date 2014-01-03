@@ -1,7 +1,10 @@
 {
   "name": "Mercenary",
-  "description": "The Force Multiplier Web Application Stack",
   "version": "0.0.1",
+  "authors": [
+    "Justin Sisley"
+  ],
+  "description": "The Force Multiplier Web Application Stack",
   "private": true,
   "dependencies": {
     "jquery": "2.0.3",

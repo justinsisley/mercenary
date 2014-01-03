@@ -1,17 +1,17 @@
 {
   "name": "mercenary",
-  "title": "Mercenary",
   "version": "0.0.1",
+  "description": "The Force Multiplier Web Application Stack",
+  "homepage": "https://github.com/justinsisley/Mercenary",
   "revisionJS": "0",
   "revisionCSS": "0",
   "revisionCSSfont": "0",
-  "homepage": "https://github.com/justinsisley/Mercenary",
-  "author": {
-    "name": "Justin Sisley"
-  },
   "private": true,
   "scripts": {
     "start": "node server/server"
+  },
+  "author": {
+    "name": "Justin Sisley"
   },
   "dependencies": {
     "consolidate": "0.10.0",
