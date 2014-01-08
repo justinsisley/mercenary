@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-recess');
 	grunt.loadNpmTasks('grunt-bump');
 	grunt.loadNpmTasks('grunt-s3');
+	grunt.loadNpmTasks('grunt-plato');
 	
 	grunt.loadTasks('utils/grunt-tasks');
 
@@ -184,6 +185,16 @@ module.exports = function(grunt) {
 			test: {
 				options: {
 					port: 9001
+				}
+			}
+		},
+		plato: {
+			report: {
+				options: {
+					jshint: grunt.file.readJSON('.jshintrc')
+				},
+				files: {
+					'reports': ['<%= jshint.client %>']
 				}
 			}
 		}

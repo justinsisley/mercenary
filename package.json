@@ -34,7 +34,8 @@
     "grunt-shell": "0.6.1",
     "grunt-s3": "~0.2.0",
     "dustjs-linkedin": "2.2.2",
-    "connect": "2.12.0"
+    "connect": "2.12.0",
+    "grunt-plato": "~0.2.1"
   },
   "engines": {
     "node": ">=0.10.24"

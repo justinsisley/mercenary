@@ -29,3 +29,6 @@ client/vendor/*
 
 # Built files
 client/css/style.css
+
+# Plato report files
+reports
