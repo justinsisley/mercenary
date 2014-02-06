@@ -1,0 +1,35 @@
+<h2 class="cover-heading">Features</h2>
+
+<div class="row marketing">
+    <div class="col-lg-6">
+        <h4 class="text-primary">Backbone + Marionette</h4>
+        <p>Backbone gives Mercenary its structure, while Marionette makes it more modularized and maintainable, with built-in event-aggregation, layouts, regions, and much more.</p>
+
+        <h4 class="text-primary">requirejs + Bower</h4>
+        <p>requirejs makes dependency injection, concatenation and minification a breeze. Bower manages dependencies like a boss.</p>
+
+        <h4 class="text-primary">Mocha + Chai</h4>
+        <p>Get your test on with runners in both the browser and on the command line. Write tests your way with <em>should</em>, <em>assert</em> and <em>expect</em>.</p>
+
+        <h4 class="text-primary">LESS</h4>
+        <p>LESS is beautiful. From modularized stylesheets to variables and mixins, LESS is supercharged CSS.</p>
+    </div>
+
+    <div class="col-lg-6">
+        <h4 class="text-primary">Node.js + Express</h4>
+        <p>Quick boot, no build, and blazing fast, Node.js and Express provide an awesome server-side web application architecture.</p>
+
+        <h4 class="text-primary">Passport</h4>
+        <p>Authentication is already taken care of, so you can focus on getting users, not writing login logic. Users can sign up via email, or log in using Facebook, Twitter and Google.</p>
+
+        <h4 class="text-primary">Grunt</h4>
+        <p>Somebody has to do the dirty work. With pre-configured tasks ranging from concatenation to deployment to running tests, Grunt's got you covered.</p>
+
+        <h4 class="text-primary">MongoDB</h4>
+        <p>Support for MongoDB is baked in, but Mercenary can configured to work with virtually any data store.</p>
+    </div>
+</div>
+
+<p class="lead">
+    <a href="https://github.com/justinsisley/Mercenary" class="btn btn-lg btn-default">Learn more on Github</a>
+</p>

@@ -5,14 +5,14 @@
         
         <title>Mercenary</title>
         
-        <meta name="description" content="">
+        <meta name="description" content="The Force Multiplier Web Application Stack">
         <meta name="viewport" content="width=device-width">
 
         {?development}
-            <link rel="stylesheet" href="/css/fontello/css/fontello.css">
+            <link rel="stylesheet" href="/fonts/fontello/css/fontello.css">
             <link rel="stylesheet" href="/css/style.css">
         {:else}
-            <link rel="stylesheet" href="http://cdn.domain.com/css/fonts.{ASSETS.CSS_FONT.REVISION}.css">
+            <link rel="stylesheet" href="http://cdn.domain.com/fonts/fonts.{ASSETS.CSS_FONT.REVISION}.css">
             <link rel="stylesheet" href="http://cdn.domain.com/css/style.{ASSETS.CSS.REVISION}.css">
         {/development}
     </head>

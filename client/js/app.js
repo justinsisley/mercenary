@@ -30,7 +30,7 @@ define([
 
     // Set up the application regions
     App.addRegions({
-        mainContentRegion : '#main-content'
+        mainContentRegion: '#main-content'
     });
 
     // If this is a test environment, add the test region

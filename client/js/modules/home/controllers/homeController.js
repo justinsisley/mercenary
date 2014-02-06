@@ -1,24 +1,21 @@
 define([
     'app',
-    'modules/home/views/layout',
-    'modules/home/views/exampleItemView'
-], function(
+
+    'modules/home/views/homeView'
+],function(
     App,
-    Layout,
-    ExampleItemView
+
+    HomeView
 ) {
     'use strict';
 
     return {
         show: function() {
+            var homeView = new HomeView();
+            
+            App.publicLayout.mainRegion.show(homeView);
+
             App.vent.trigger('homeController:show');
-
-            var layout = new Layout();
-            App.mainContentRegion.show(layout);
-
-            var exampleItemView = new ExampleItemView();
-
-            layout.mainRegion.show(exampleItemView);
         }
     };
 });

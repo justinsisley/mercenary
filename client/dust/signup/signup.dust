@@ -1,0 +1,19 @@
+<p class="lead">You're already using Mercenary.</p>
+<p class="sub-lead">Authentication is baked-in. Create an account and give it a test drive.</p>
+
+<form class="form-signin" role="form">
+    <h3 class="form-signin-heading">Create an account</h3>
+
+    <input type="email" class="form-control" placeholder="Email address" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" required>
+        
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+
+    <p class="lead form-signup-social">Or, sign in via...</p>
+
+    <div class="row">
+        <div class="col-md-4"><button class="btn btn-primary btn-block btn-facebook">Facebook</button></div>
+        <div class="col-md-4"><button class="btn btn-primary btn-block btn-google">Google</button></div>
+        <div class="col-md-4"><button class="btn btn-primary btn-block btn-twitter">Twitter</button></div>
+    </div>
+</form>

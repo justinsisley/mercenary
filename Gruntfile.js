@@ -22,23 +22,31 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		concat: {
 			less: {
-				src: ['client/less/utils/reset.less', 'client/less/**/!(reset).less'],
+				src: [
+					// Reset disabled. Using Bootstrap 3.
+					// 'client/less/utils/reset.less',
+					'client/less/**/!(reset).less'
+				],
 				dest: 'tmp/dist.less'
 			}
 		},
 		less: {
 			dev: {
-				files: {
-					'client/css/style.css': 'tmp/dist.less'
-				}
+				src: [
+					'client/vendor/bootstrap/dist/css/bootstrap.css',
+					'tmp/dist.less'
+				],
+				dest: 'client/css/style.css'
 			},
 			prd: {
 				options: {
 					cleancss: true
 				},
-				files: {
-					'client/css/style.css': 'tmp/dist.less'
-				}
+				src: [
+					'client/vendor/bootstrap/dist/css/bootstrap.css',
+					'tmp/dist.less'
+				],
+				dest: 'client/css/style.css'
 			}
 		},
 		recess: {

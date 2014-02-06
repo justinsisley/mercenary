@@ -1,3 +1,8 @@
+/**
+ * The base router defines all of the available routes.
+ * This router should be the source of truth for what
+ * paths exists across your application.
+ */
 define([
     'backbone',
     'modules/base/controllers/baseController'
@@ -8,7 +13,14 @@ define([
         controller: BaseController,
 
         appRoutes: {
-            '' : 'home'
+            // Unauthenticated routes
+            ''          : 'home',
+            'features'  : 'features',
+            'signup'    : 'signup',
+            'login'     : 'login',
+
+            // Authenticated routes
+            'dashboard' : 'dashboard'
         }
     });
 });

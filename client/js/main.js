@@ -15,14 +15,12 @@ define([
         // A place to store things
         App.vars = {};
 
-        // Instantiate routers and start Backbone.history
-        // last, otherwise it won't pick up an event
-        // triggered by the baseController, which helps
-        // set the appropriate sub-menu state upon page load.
+        // Instantiate router(s)
         App.routers = {
             baseRouter : new BaseRouter()
         };
 
+        // Start Backbone.history
         Backbone.history.start({
             root: '/',
             pushState: true

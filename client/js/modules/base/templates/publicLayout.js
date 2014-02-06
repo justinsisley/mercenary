@@ -1,0 +1,3 @@
+define(['dust'], function() {
+    (function(){dust.register("base/publicLayout",body_0);function body_0(chk,ctx){return chk.write("<div class=\"cover-container\"><header id=\"header-region\" class=\"masthead clearfix\"></header><div id=\"main-region\"></div><footer id=\"footer-region\"></footer></div><a href=\"https://github.com/justinsisley/Mercenary\"><img style=\"position: absolute; top: 0; right: 0; border: 0;\" src=\"https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png\" alt=\"Fork me on GitHub\"></a>");}return body_0;})();
+});
