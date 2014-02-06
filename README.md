@@ -11,6 +11,8 @@ The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha
 
 For detailed information, explore the directories and read the [Wiki](https://github.com/justinsisley/Mercenary/wiki).
 
+If you prefer to just dive right in, just follow the [installation instructions](https://github.com/justinsisley/Mercenary/wiki/Setting-up-your-Development-Environment-on-OS-X).
+
 ### Browser Support
 This application is built with modern web technologies at its core. While it may work in older browsers, the targeted browsers and versions are:
 - Chrome 27+
