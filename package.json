@@ -8,7 +8,8 @@
   "revisionCSSfont": "0",
   "private": true,
   "scripts": {
-    "start": "node server/server"
+    "start": "node server/server",
+    "postinstall": "bower install; grunt"
   },
   "author": {
     "name": "Justin Sisley"
