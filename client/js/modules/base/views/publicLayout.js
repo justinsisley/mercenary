@@ -8,7 +8,7 @@ define([
     return Backbone.Marionette.Layout.extend({
         template: 'base/publicLayout',
 
-        className: 'public-layout site-wrapper-inner',
+        className: 'site-wrapper-inner',
 
         regions: {
             headerRegion    : '#header-region',

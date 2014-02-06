@@ -1,0 +1,57 @@
+.masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+    display: inline-block;
+}
+
+.masthead-nav > li + li {
+    margin-left: 20px;
+}
+
+.masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: @white;
+    color: fade(@white, 75%);
+    border-bottom: 2px solid transparent;
+}
+
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: fade(@white, 25%);
+}
+
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+    color: @white;
+    border-bottom-color: @white;
+}
+
+@media (min-width: 768px) {
+    .masthead {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .masthead-brand {
+        float: left;
+    }
+  
+    .masthead-nav {
+        float: right;
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead {
+        width: 700px;
+    }
+}

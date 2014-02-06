@@ -15,8 +15,6 @@ define([
         className: 'inner',
 
         initialize: function() {
-            console.debug('initialize');
-
             var self = this;
 
             App.vent.on('baseController:home', function() {

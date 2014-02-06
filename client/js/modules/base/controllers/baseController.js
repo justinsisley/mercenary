@@ -58,6 +58,7 @@ define([
 
             homeController.show();
 
+            App.vent.trigger('domchange:title');
             App.vent.trigger('baseController:home');
         },
 
@@ -66,6 +67,7 @@ define([
 
             featuresController.show();
 
+            App.vent.trigger('domchange:title', 'Features');
             App.vent.trigger('baseController:features');
         },
 
@@ -74,6 +76,7 @@ define([
 
             signupController.show();
 
+            App.vent.trigger('domchange:title', 'Sign Up');
             App.vent.trigger('baseController:signup');
         },
 
@@ -82,6 +85,7 @@ define([
 
             loginController.show();
 
+            App.vent.trigger('domchange:title', 'Log In');
             App.vent.trigger('baseController:login');
         },
 
@@ -107,6 +111,11 @@ define([
             // on App to make it accessible across
             // the application's modules.
             App.publicLayout = new PublicLayout();
+
+            // Add a unique class to the body to allow
+            // for fully-independent styling between
+            // the public layout and the app layout
+            $('body').removeClass('app-layout').addClass('public-layout');
 
             // Show the public layout in the
             // application's main content region.
@@ -147,6 +156,11 @@ define([
             // to make it accessible across the 
             // application's modules.
             App.appLayout = new AppLayout();
+
+            // Add a unique class to the body to allow
+            // for fully-independent styling between
+            // the public layout and the app layout
+            $('body').removeClass('public-layout').addClass('app-layout');
 
             // Show the app layout in the
             // application's main content region.

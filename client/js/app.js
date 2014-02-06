@@ -33,6 +33,11 @@ define([
         mainContentRegion: '#main-content'
     });
 
+    // Allow page title changes from anywhere in the application
+    App.vent.on('domchange:title', function(title) {
+        document.title = 'Mercenary' + ((title) ? (' | ' + title) : '');
+    });
+
     // If this is a test environment, add the test region
     if (window.mocha || window.mochaPhantomJS) {
         $('body').append($('<div>').attr({'id': 'test-region', 'class': 'test-region'}));
