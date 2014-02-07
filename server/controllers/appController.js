@@ -1,7 +1,7 @@
 var _ = require('underscore'),
     config = require('../config');
 
-exports.publicIndex = function(req, res) {
+module.exports = function(req, res) {
     'use strict';
 
     if ('development' === config.ENV) {

@@ -3,5 +3,5 @@ exports.router = function(server) {
     
     var appController = require('../controllers/appController');
 
-    server.get('*', appController.publicIndex);
+    server.get('*', appController);
 };
