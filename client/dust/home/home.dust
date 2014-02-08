@@ -5,7 +5,3 @@
 <p class="lead">
     <a href="https://github.com/justinsisley/Mercenary" class="btn btn-lg btn-default">Learn more on Github</a>
 </p>
-
-<iframe src="http://ghbtns.com/github-btn.html?user=justinsisley&repo=Mercenary&type=watch&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="30"></iframe>
-
-<iframe src="http://ghbtns.com/github-btn.html?user=justinsisley&repo=Mercenary&type=fork&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="30"></iframe>

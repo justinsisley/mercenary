@@ -3,8 +3,6 @@ define([
     'modules/base/templates/publicLayout',
     'marionette.dust'
 ], function(Backbone) {
-    'use strict';
-
     return Backbone.Marionette.Layout.extend({
         template: 'base/publicLayout',
 

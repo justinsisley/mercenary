@@ -13,18 +13,16 @@ module.exports = {
     PORT: process.env.PORT || 8743,
     ENV: process.env.ENV || 'development',
 
-    // If we're in a development environment, construct
-    // the application's web address at run time based
-    // on the system's host name and the port setting.
-    // If we're not in development, use the home page
-    // property in the package.json file.
     WWW_ADDRESS: (function() {
-        'use strict';
-
+        // If we're in a development environment, construct
+        // the application's web address at run time based
+        // on the system's host name and the port setting.
         if (!process.env.ENV || process.env.ENV === 'development') {
             return 'http://' + hostname + ':' + module.exports.PORT;
         }
 
+        // If we're not in development, use the home page
+        // property in the package.json file.
         return packageJSON.homepage;
     })(),
 
@@ -43,30 +41,7 @@ module.exports = {
     LOG_GARBAGE: true,
     LOG_LEAKS: true,
 
-    // Defines the version numbers for static assets such as
-    // JavaScripts, CSS stylesheets, and web fonts.
-    // The revision properties shouldn't be edited, as they'll
-    // just do their thing and keep your app running the latest
-    // versions of your static assets.
-    // The "OPTIMIZED" property in the "JS" object controls can
-    // be toggled if you would like to test the concatenated and
-    // minified JavaScript file in your development environment.
-    ASSETS: {
-        JS: {
-            // If true, will serve the single optimized file built by r.js.
-            // If false, will use un-optimized, individual modules.
-            OPTIMIZED: process.env.APPLICATION_JS_OPT || false,
-
-            // Don't edit this directly.
-            REVISION: packageJSON.revisionJS
-        },
-        CSS: {
-            // Don't edit this directly.
-            REVISION: packageJSON.revisionCSS
-        },
-        CSS_FONT: {
-            // Don't edit this directly.
-            REVISION: packageJSON.revisionCSSfont
-        }
-    }
+    // If set to true, forces client-side JavaScript to
+    // load the built JavaScript file. Useful for deployment testing.
+    FORCE_PRD_JAVASCRIPT: false
 };

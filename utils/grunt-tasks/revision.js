@@ -1,7 +1,6 @@
 /*
 * Increase revision number
 */
-
 module.exports = function(grunt) {
     var fs = require('fs');
 
@@ -42,15 +41,15 @@ module.exports = function(grunt) {
         }
 
         if (type === 'js') {
-            bump('revisionJS');
+            bump('javascriptVersion');
             
             grunt.log.ok('JavaScript revision bumped to ' + revision);
         } else if (type === 'css') {
-            bump('revisionCSS');
+            bump('cssVersion');
             
             grunt.log.ok('CSS revision bumped to ' + revision);
         } else if (type === 'font') {
-            bump('revisionCSSfont');
+            bump('fontVersion');
             
             fontFolders();
             

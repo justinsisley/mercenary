@@ -8,8 +8,6 @@ define([
     App,
     BaseRouter
 ) {
-    'use strict';
-
     // Bootstrap the application
     App.addInitializer(function() {
         // A place to store things

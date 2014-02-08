@@ -7,8 +7,6 @@ define([
     App,
     Marionette
 ) {
-    'use strict';
-
     return Marionette.ItemView.extend({
         template: 'header/publicHeader',
 

@@ -5,8 +5,6 @@ define([
 ], function(
     Marionette
 ) {
-    'use strict';
-
     return Marionette.ItemView.extend({
         template: 'features/features',
 

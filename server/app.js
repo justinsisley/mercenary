@@ -9,7 +9,7 @@ var packageJSON = require('../package.json'),
     memwatch;
 
 module.exports = function() {
-    'use strict';
+    // 'use strict';
 
     // Log memory leaks and garbage collection
     // events to the console using Memwatch
@@ -19,14 +19,14 @@ module.exports = function() {
         // Log memory leaks
         if (config.LOG_LEAKS) {
             memwatch.on('leak', function(info) {
-                console.log('Memwatch:leak', info);
+                console.log('memwatch:leak', info);
             });
         }
 
         // Log garbage collection events
         if (config.LOG_GARBAGE) {
             memwatch.on('stats', function(stats) {
-                console.log('Memwatch:garbage', stats);
+                console.log('memwatch:garbage', stats);
             });
         }
     }
@@ -50,18 +50,17 @@ module.exports = function() {
         app.use(passport.initialize());
         app.use(passport.session());
 
-        // Set the directory where the server will
-        // look for Dust.js templates
-        app.set('views', __dirname + '/dust');
+        // Use consolidate to make Dust work
+        // seamlessly with Express.
+        app.engine('dust', cons.dust);
 
-        // Use Consolidate to shim Dust for use
-        // with Express
-        app.engine('.dust', cons.dust);
-
-        // Tell Express which templating engine
-        // we're going to be using
+        // Tell Express that we're using Dust.
         app.set('view engine', 'dust');
 
+        // Tell Express where to find Dust templates
+        app.set('views', __dirname + '/dust');
+
+        // Establish some development-only settings.
         if ('development' === config.ENV) {
             app.use(express.errorHandler());
 
@@ -72,7 +71,8 @@ module.exports = function() {
             app.use(express.static(__dirname + '/../client'));
         }
 
-        if ('production' === config.ENV) {}
+        // Establish production-only settings.
+        // if ('production' === config.ENV) {}
 
         // Handle requests using routers.
         app.use(app.router);
@@ -82,7 +82,7 @@ module.exports = function() {
         require('./routers/baseRouter').router(app);
     });
 
-    // Create the HTTP server and listen on the configured port.
+    // Create the HTTP server and listen on the configured   port.
     http.createServer(app).listen(config.PORT, function() {
         console.log(packageJSON.name + ' running in ' + config.ENV + ' mode at ' + hostname + ':' + config.PORT);
     });

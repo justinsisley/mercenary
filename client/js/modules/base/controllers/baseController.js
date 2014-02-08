@@ -50,8 +50,6 @@ define([
 
     // dashboardController
 ) {
-    'use strict';
-
     return {
         home: function() {
             this.showPublicLayout();

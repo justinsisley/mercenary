@@ -7,8 +7,6 @@ define([
 
     FeaturesView
 ) {
-    'use strict';
-
     return {
         show: function() {
             var featuresView = new FeaturesView();

@@ -12,8 +12,6 @@ define([
     Backbone,
     Marionette
 ) {
-    'use strict';
-
     // Create the initial markup we need and immediately insert
     // the elements into the DOM. By using Underscore's `map` method,
     // we're effectively just passing an array to `append`, and since

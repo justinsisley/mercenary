@@ -7,8 +7,6 @@ define([
 
     SignupView
 ) {
-    'use strict';
-
     return {
         show: function() {
             var signupView = new SignupView();

@@ -7,8 +7,6 @@ define([
 
     PublicHeaderView
 ) {
-    'use strict';
-
     return {
         show: function() {
             var publicHeaderView = new PublicHeaderView();

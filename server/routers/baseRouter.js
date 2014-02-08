@@ -1,7 +1,5 @@
 exports.router = function(server) {
-    'use strict';
-    
-    var appController = require('../controllers/appController');
+    var appController = require('../controllers/baseController');
 
     server.get('*', appController);
 };

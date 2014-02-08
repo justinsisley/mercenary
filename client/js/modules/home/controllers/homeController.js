@@ -7,8 +7,6 @@ define([
 
     HomeView
 ) {
-    'use strict';
-
     return {
         show: function() {
             var homeView = new HomeView();

@@ -7,8 +7,6 @@ define([
 
     PublicFooterView
 ) {
-    'use strict';
-
     return {
         show: function() {
             var publicFooterView = new PublicFooterView();

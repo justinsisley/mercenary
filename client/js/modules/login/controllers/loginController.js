@@ -7,8 +7,6 @@ define([
 
     LoginView
 ) {
-    'use strict';
-
     return {
         show: function() {
             var loginView = new LoginView();
