@@ -1,5 +1,9 @@
+var passportController  = require('../controllers/passportController'),
+    sessionController   = require('../controllers/users/sessionController'),
+    appController       = require('../controllers/baseController');
+
 exports.router = function(server) {
-    var appController = require('../controllers/baseController');
+    server.get('/session', passportController.isAuthenticated, sessionController);
 
     server.get('*', appController);
 };

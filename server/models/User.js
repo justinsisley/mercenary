@@ -13,6 +13,10 @@ var userSchema = mongoose.Schema({
     activationKey       : String,
     passwordResetKey    : String,
 
+    // An array to store tokens for third-party
+    // authentication
+    tokens              : Array,
+
     profile: {
         name: {type: String, default: ''},
         gender: {type: String, default: ''},
@@ -21,6 +25,7 @@ var userSchema = mongoose.Schema({
     }
 });
 
+// Before saving a new user, hash their password
 userSchema.pre('save', function(next) {
     var user = this,
         SALT_FACTOR = 5;
@@ -40,6 +45,7 @@ userSchema.pre('save', function(next) {
     });
 });
 
+// Password verification
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
