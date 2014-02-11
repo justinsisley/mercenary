@@ -2,7 +2,7 @@
   "name": "mercenary",
   "description": "The Force Multiplier Web Application Stack",
   "homepage": "https://github.com/justinsisley/Mercenary",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "javascriptVersion": "40",
   "cssVersion": "8",
   "fontVersion": "0",

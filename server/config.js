@@ -32,6 +32,11 @@ module.exports = {
 
     // By default, this is configured to work out of the
     // box with Heroku and the MongoLab addon.
+    // It's not recommended to put your MongoDB URI here
+    // as a string, since it contains the username and password.
+    // Instead, you should set up an environment variable for 
+    // MONGOLAB_URI. Both ways work, but the environment
+    // variables keeps your DB credentials out of the repository.
     DB_URI: process.env.MONGOLAB_URI || '',
 
     // Toggle the logging of leaks and garbage collection activity.
@@ -52,33 +57,34 @@ module.exports = {
     // Service-based authentication.
     // Delete what you don't need. For each of the services
     // that you utilize, you'll need to create a developer
-    // account and get the necessary information to fill
-    // in the values below.
+    // account and get the necessary information and either 
+    // set the appropriate environment variables or fill in
+    // the values as strings below.
     AUTH_FACEBOOK: {
-        clientID: 'Your App ID',
-        clientSecret: 'Your App Secret',
-        callbackURL: '/auth/facebook/callback',
-        passReqToCallback: true
+        clientID            : process.env.FACEBOOK_CLIENT_ID || 'Your App ID',
+        clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || 'Your App Secret',
+        callbackURL         : '/auth/facebook/callback',
+        passReqToCallback   : true
     },
 
     AUTH_TWITTER: {
-        consumerKey: 'Your Consumer Key',
-        consumerSecret: 'Your Consumer Secret',
-        callbackURL: '/auth/twitter/callback',
-        passReqToCallback: true
+        consumerKey         : process.env.TWITTER_CONSUMER_KEY || 'Your Consumer Key',
+        consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'Your Consumer Secret',
+        callbackURL         : '/auth/twitter/callback',
+        passReqToCallback   : true
     },
     
     AUTH_GOOGLE: {
-        clientID: 'Your Client ID',
-        clientSecret: 'Your Client Secret',
-        callbackURL: '/auth/google/callback',
-        passReqToCallback: true
+        clientID            : process.env.GOOGLE_CLIENT_ID || 'Your Client ID',
+        clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'Your Client Secret',
+        callbackURL         : '/auth/google/callback',
+        passReqToCallback   : true
     },
     
     AUTH_GITHUB: {
-        clientID: 'Your Client ID',
-        clientSecret: 'Your Client Secret',
-        callbackURL: '/auth/github/callback',
-        passReqToCallback: true
+        clientID            : process.env.GITHUB_CLIENT_ID || 'Your Client ID',
+        clientSecret        : process.env.GITHUB_CLIENT_SECRET || 'Your Client Secret',
+        callbackURL         : '/auth/github/callback',
+        passReqToCallback   : true
     }
 };
