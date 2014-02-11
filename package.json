@@ -3,8 +3,8 @@
   "description": "The Force Multiplier Web Application Stack",
   "homepage": "https://github.com/justinsisley/Mercenary",
   "version": "0.0.2",
-  "javascriptVersion": "0",
-  "cssVersion": "0",
+  "javascriptVersion": "40",
+  "cssVersion": "8",
   "fontVersion": "0",
   "private": true,
   "scripts": {
@@ -22,7 +22,11 @@
     "mongoose": "3.8.6",
     "node-mandrill": "1.0.1",
     "passport": "0.2.0",
+    "passport-facebook": "~1.0.2",
+    "passport-github": "~0.1.5",
+    "passport-google-oauth": "~0.1.5",
     "passport-local": "0.1.6",
+    "passport-twitter": "~1.0.2",
     "underscore": "1.5.2"
   },
   "devDependencies": {

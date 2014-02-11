@@ -12,8 +12,9 @@
     <p class="lead form-signup-social">Or, sign in via...</p>
 
     <div class="row">
-        <div class="col-md-4"><button class="btn btn-primary btn-block btn-facebook">Facebook</button></div>
-        <div class="col-md-4"><button class="btn btn-primary btn-block btn-google">Google</button></div>
-        <div class="col-md-4"><button class="btn btn-primary btn-block btn-twitter">Twitter</button></div>
+        <button class="btn btn-primary btn-facebook">Facebook</button>
+        <button class="btn btn-primary btn-google">Google</button>
+        <button class="btn btn-primary btn-twitter">Twitter</button>
+        <button class="btn btn-primary btn-github">GitHub</button>
     </div>
 </form>

@@ -55,30 +55,30 @@ module.exports = {
     // account and get the necessary information to fill
     // in the values below.
     AUTH_FACEBOOK: {
-        CLIENT_ID: 'Your App ID',
-        CLIENT_SECRET: 'Your App Secret',
-        CALLBACK_URL: '/auth/facebook/callback',
-        PASS_REQUEST_TO_CALLBACK: true
+        clientID: 'Your App ID',
+        clientSecret: 'Your App Secret',
+        callbackURL: '/auth/facebook/callback',
+        passReqToCallback: true
     },
 
     AUTH_TWITTER: {
-        CONSUMER_KEY: 'Your Consumer Key',
-        CONSUMER_SECRET: 'Your Consumer Secret',
-        CALLBACK_URL: '/auth/twitter/callback',
-        PASS_REQUEST_TO_CALLBACK: true
+        consumerKey: 'Your Consumer Key',
+        consumerSecret: 'Your Consumer Secret',
+        callbackURL: '/auth/twitter/callback',
+        passReqToCallback: true
     },
     
     AUTH_GOOGLE: {
-        CLIENT_ID: 'Your Client ID',
-        CLIENT_SECRET: 'Your Client Secret',
-        CALLBACK_URL: '/auth/google/callback',
-        PASS_REQUEST_TO_CALLBACK: true
+        clientID: 'Your Client ID',
+        clientSecret: 'Your Client Secret',
+        callbackURL: '/auth/google/callback',
+        passReqToCallback: true
     },
     
     AUTH_GITHUB: {
-        CLIENT_ID: 'Your Client ID',
-        CLIENT_SECRET: 'Your Client Secret',
-        CALLBACK_URL: '/auth/github/callback',
-        PASS_REQUEST_TO_CALLBACK: true
+        clientID: 'Your Client ID',
+        clientSecret: 'Your Client Secret',
+        callbackURL: '/auth/github/callback',
+        passReqToCallback: true
     }
 };
