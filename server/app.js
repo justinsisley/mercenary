@@ -9,8 +9,6 @@ var packageJSON = require('../package.json'),
     memwatch;
 
 module.exports = function() {
-    // 'use strict';
-
     // Log memory leaks and garbage collection
     // events to the console using Memwatch
     if (config.LOG_LEAKS || config.LOG_GARBAGE) {
@@ -36,7 +34,7 @@ module.exports = function() {
         // req.cookies with an object keyed by the cookie names
         app.use(express.cookieParser());
 
-        // Establish a session secret token
+        // Establish a session secret token.
         app.use(express.session({secret: 'you need to change this value'}));
 
         // Request body parsing middleware supporting JSON,

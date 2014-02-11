@@ -43,10 +43,10 @@ module.exports = {
     // load the built JavaScript file. Useful for deployment testing.
     FORCE_PRD_JAVASCRIPT: false,
 
-    // Set up a Google Analytics and add your tracker ID
+    // Set up a Google Analytics and add your tracker ID.
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'UA-########-#',
 
-    // Set up a free Mandrill account and add your API key
+    // Set up a free Mandrill account and add your API key.
     MANDRILL_API_KEY: process.env.MANDRILL_APIKEY || '',
 
     // Service-based authentication.

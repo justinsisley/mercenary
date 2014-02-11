@@ -9,19 +9,23 @@ var userSchema = mongoose.Schema({
     // Account status
     active              : {type: Boolean, default: false},
 
-    // Keys for activation and password 
+    // Keys for activation and password
     activationKey       : String,
     passwordResetKey    : String,
 
-    // An array to store tokens for third-party
-    // authentication
+    // Authentication data from third party services
     tokens              : Array,
+    facebook            : {type: String, unique: true, sparse: true},
+    twitter             : {type: String, unique: true, sparse: true},
+    google              : {type: String, unique: true, sparse: true},
+    github              : {type: String, unique: true, sparse: true},
 
     profile: {
-        name: {type: String, default: ''},
-        gender: {type: String, default: ''},
-        location: {type: String, default: ''},
-        inmage: {type: String, default: ''}
+        name        : {type: String, default: ''},
+        gender      : {type: String, default: ''},
+        location    : {type: String, default: ''},
+        website     : {type: String, default: ''},
+        picture     : {type: String, default: ''}
     }
 });
 
@@ -30,13 +34,19 @@ userSchema.pre('save', function(next) {
     var user = this,
         SALT_FACTOR = 5;
 
-    if (!user.isModified('password')) return next();
+    if (!user.isModified('password')) {
+        return next();
+    }
 
     bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
-        if (err) return next(err);
+        if (err) {
+            return next(err);
+        }
 
         bcrypt.hash(user.password, salt, null, function(err, hash) {
-            if (err) return next(err);
+            if (err) {
+                return next(err);
+            }
             
             user.password = hash;
             
@@ -48,7 +58,9 @@ userSchema.pre('save', function(next) {
 // Password verification
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
+        if (err) {
+            return cb(err);
+        }
     
         cb(null, isMatch);
     });

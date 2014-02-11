@@ -1,26 +1,28 @@
 var _                   = require('underscore'),
-    config              = require('../config'),
     passport            = require('passport'),
-    User                = require('../models/User'),
     LocalStrategy       = require('passport-local').Strategy,
     FacebookStrategy    = require('passport-facebook').Strategy,
     TwitterStrategy     = require('passport-twitter').Strategy,
     GitHubStrategy      = require('passport-github').Strategy,
-    GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
+    GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy,
+    config              = require('../config'),
+    User                = require('../models/User');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
+    User.findById(id, function(err, user) {
         done(err, user);
     });
 });
 
 passport.use(new LocalStrategy({usernameField: 'email'}, function(email, password, done) {
     User.findOne({email: email}, function(err, user) {
-        if (!user) return done(null, false, {message: 'Email ' + email + ' not found'});
+        if (!user) {
+            return done(null, false, {message: 'Email ' + email + ' not found'});
+        }
         
         user.comparePassword(password, function(err, isMatch) {
             if (isMatch) {
@@ -52,7 +54,9 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
         });
     } else {
         User.findOne({facebook: profile.id}, function(err, existingUser) {
-            if (existingUser) return done(null, existingUser);
+            if (existingUser) {
+                return done(null, existingUser);
+            }
             
             var user = new User();
             
@@ -96,7 +100,9 @@ passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, r
         });
     } else {
         User.findOne({github: profile.id}, function(err, existingUser) {
-            if (existingUser) return done(null, existingUser);
+            if (existingUser) {
+                return done(null, existingUser);
+            }
             
             var user = new User();
             
@@ -141,7 +147,9 @@ passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken,
         });
     } else {
         User.findOne({twitter: profile.id}, function(err, existingUser) {
-            if (existingUser) return done(null, existingUser);
+            if (existingUser) {
+                return done(null, existingUser);
+            }
             
             var user = new User();
             
@@ -185,7 +193,9 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
         });
     } else {
         User.findOne({google: profile.id}, function(err, existingUser) {
-            if (existingUser) return done(null, existingUser);
+            if (existingUser) {
+                return done(null, existingUser);
+            }
             
             var user = new User();
             
@@ -209,7 +219,9 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
 }));
 
 exports.isAuthenticated = function(req, res, next) {
-    if (req.isAuthenticated()) return next();
+    if (req.isAuthenticated()) {
+        return next();
+    }
   
     res.redirect('/login');
 };
@@ -217,7 +229,7 @@ exports.isAuthenticated = function(req, res, next) {
 exports.isAuthorized = function(req, res, next) {
     var provider = req.path.split('/').slice(-1)[0];
 
-    if (_.findWhere(req.user.tokens, { kind: provider })) {
+    if (_.findWhere(req.user.tokens, {kind: provider})) {
         next();
     } else {
         res.redirect('/auth/' + provider);

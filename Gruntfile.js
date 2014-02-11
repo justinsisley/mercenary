@@ -60,17 +60,15 @@ module.exports = function(grunt) {
             },
             client: [
                 'Gruntfile.js',
+                'client/js/helpers/*.js',
                 'client/js/modules/**/collections/*.js',
                 'client/js/modules/**/controllers/*.js',
                 'client/js/modules/**/models/*.js',
                 'client/js/modules/**/routers/*.js',
                 'client/js/modules/**/views/*.js',
                 'client/js/widgets/*.js',
-                'client/js/test/**/*.js',
-                'client/js/_data/**/*.js',
                 'client/js/*.js',
-                'server/controllers/**/*.js',
-                'server/routers/**/*.js',
+                'server/**/*.js',
                 'server/*.js'
             ]
         },
