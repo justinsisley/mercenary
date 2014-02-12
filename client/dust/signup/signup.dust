@@ -4,8 +4,8 @@
 <form id="js-signup-form" class="form-signin" role="form">
     <h3 class="form-signin-heading">Create an account</h3>
 
-    <input value="sisley.justin@gmail.com" id="js-signup-email" type="email" class="form-control" placeholder="Email address" required autofocus>
-    <input value="skater4" id="js-signup-password" type="password" class="form-control" placeholder="Password" required>
+    <input value="test@test.com" id="js-signup-email" type="email" class="form-control" placeholder="Email address" required autofocus>
+    <input value="test" id="js-signup-password" type="password" class="form-control" placeholder="Password" required>
         
     <button id="js-signup-btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
 

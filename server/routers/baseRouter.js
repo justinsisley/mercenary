@@ -14,6 +14,26 @@ exports.router = function(server) {
         });
     });
 
+    server.post('/login', function(req, res, next) {
+        passport.authenticate('local', function(err, user, info) {
+            if (err) {
+                return next(err);
+            }
+
+            if (!user) {
+                return res.json(info);
+            }
+
+            req.logIn(user, function(err) {
+                if (err) {
+                    return next(err);
+                }
+
+                return res.json(user);
+            });
+        })(req, res, next);
+    });
+
     // Determine if there is an active session.
     // This may not be needed.
     server.get('/session', passportController.isAuthenticated, sessionController);

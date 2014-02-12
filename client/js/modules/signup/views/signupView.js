@@ -31,10 +31,6 @@ define([
                 }
             }).done(function(response) {
                 console.debug(response);
-
-                $.ajax({
-                    url: '/session'
-                });
             }).fail(function(response) {
                 console.debug('failed');
                 console.debug(response);
