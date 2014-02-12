@@ -12,7 +12,8 @@ require.config({
         marionette              : '../vendor/backbone.marionette/lib/backbone.marionette',
         dust                    : '../vendor/dustjs-linkedin/dist/dust-full',
         'dust.helpers'          : '../vendor/dustjs-linkedin-helpers/dist/dust-helpers-1.1.2',
-        'marionette.dust'       : '../vendor/_nonBower/backbone.marionette.dust'
+        'marionette.dust'       : '../vendor/_nonBower/backbone.marionette.dust',
+        holder                  : '../vendor/holderjs/holder'
     },
     shim: {
         backbone: {

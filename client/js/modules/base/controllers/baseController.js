@@ -23,15 +23,15 @@ define([
 
     'modules/header/controllers/publicHeaderController',
     'modules/footer/controllers/publicFooterController',
-
-    'modules/header/controllers/appHeaderController',
     
     'modules/home/controllers/homeController',
     'modules/features/controllers/featuresController',
     'modules/signup/controllers/signupController',
-    'modules/login/controllers/loginController'
+    'modules/login/controllers/loginController',
 
-    // 'modules/dashboard/controllers/dashboardController'
+    'modules/header/controllers/appHeaderController',
+    'modules/sidebar/controllers/sidebarController',
+    'modules/dashboard/controllers/dashboardController'
 ],function(
     App,
 
@@ -40,15 +40,15 @@ define([
     
     publicHeaderController,
     publicFooterController,
-
-    appHeaderController,
     
     homeController,
     featuresController,
     signupController,
-    loginController
-
-    // dashboardController
+    loginController,
+    
+    appHeaderController,
+    sidebarController,
+    dashboardController
 ) {
     return {
         home: function() {
@@ -88,10 +88,15 @@ define([
         },
 
         dashboard: function() {
+            // if (!App.vars.user) {
+                // return Backbone.history.navigate('/login', true);
+            // }
+
             this.showAppLayout();
 
-            // dashboardController.show();
+            dashboardController.show();
 
+            App.vent.trigger('domchange:title', 'Dashboard');
             App.vent.trigger('baseController:dashboard');
         },
 
@@ -168,7 +173,7 @@ define([
             appHeaderController.show();
 
             // Show the authenticated app sidebar
-            // sidebarController.show();
+            sidebarController.show();
 
             // Since we're showing the app layout,
             // we'll attempt to close the public layout

@@ -16,6 +16,7 @@
     "requirejs": "~2.1.10",
     "mocha": "~1.17.1",
     "chai": "~1.9.0",
-    "bootstrap": "~3.1.0"
+    "bootstrap": "~3.1.0",
+    "holderjs": "~2.3.1"
   }
 }

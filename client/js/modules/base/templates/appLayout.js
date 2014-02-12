@@ -1,0 +1,3 @@
+define(['dust'], function() {
+    (function(){dust.register("base/appLayout",body_0);function body_0(chk,ctx){return chk.write("<div id=\"header-region\" class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\"></div><div class=\"container-fluid\"><div class=\"row\"><div id=\"sidebar-region\" class=\"col-sm-3 col-md-2 sidebar\"></div><div id=\"main-region\" class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\"></div></div></div>");}return body_0;})();
+});

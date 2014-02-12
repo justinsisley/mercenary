@@ -1,10 +1,18 @@
 define([
-    'app'
+    'app',
+
+    'modules/dashboard/views/dashboardView'
 ], function(
-    App
+    App,
+
+    DasboardView
 ) {
     return {
-        showDashboard: function() {
+        show: function() {
+            var dashboardView = new DasboardView();
+            
+            App.appLayout.mainRegion.show(dashboardView);
+
             App.vent.trigger('dashboardController:showDashboard');
         }
     };
