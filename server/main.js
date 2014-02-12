@@ -19,6 +19,8 @@ if (config.DB_URI) {
     // Once the connection to the DB is
     // successful, start the application.
     db.once('open', app);
+    
+    console.log('connected to ' + config.DB_URI);
 } else {
     // Start the application without a
     // remote database, and no sign-up

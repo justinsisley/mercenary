@@ -1,9 +1,23 @@
 var passport            = require('passport'),
     passportController  = require('../controllers/passportController'),
     sessionController   = require('../controllers/users/sessionController'),
-    baseController      = require('../controllers/baseController');
+    baseController      = require('../controllers/baseController'),
+    signupController    = require('../controllers/users/signupController');
 
 exports.router = function(server) {
+    // Create a local user account
+    server.post('/signup', signupController);
+
+    server.get('/login', function(req, res) {
+        res.json({
+            status: 'login shit'
+        });
+    });
+
+    // Determine if there is an active session.
+    // This may not be needed.
+    server.get('/session', passportController.isAuthenticated, sessionController);
+
     // Third-party authentication
     server.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
     server.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -28,10 +42,6 @@ exports.router = function(server) {
         successRedirect: '/',
         failureRedirect: '/login'
     }));
-
-    // Determine if there is an active session.
-    // This may not be needed.
-    server.get('/session', passportController.isAuthenticated, sessionController);
 
     // Route all other requests to the base controller.
     server.get('*', baseController);

@@ -43,14 +43,27 @@ userSchema.pre('save', function(next) {
             return next(err);
         }
 
-        bcrypt.hash(user.password, salt, null, function(err, hash) {
+        // Hash the user's password
+        bcrypt.hash(user.password, salt, function(err, hash) {
             if (err) {
                 return next(err);
             }
-            
+
             user.password = hash;
-            
-            next();
+
+            // Create an activation key based on the current time
+            // and the user's email address.
+            bcrypt.hash(user.email + Date.now(), 8, function(err, hash) {
+                if (err) {
+                    return next(err);
+                }
+
+                // Replace any characters that could cause problems
+                // when using the activation key in a URL.
+                user.activationKey = hash.replace(/[\$]|[\/]|[\.]/g, '');
+
+                next();
+            });
         });
     });
 });
