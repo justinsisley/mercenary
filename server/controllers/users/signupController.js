@@ -9,7 +9,8 @@ module.exports = function(req, res) {
     user.save(function(err, newUser) {
         if (err) {
             return res.json({
-                status: 'fail'
+                status: 'fail',
+                message: 'account already exists'
             });
         }
 

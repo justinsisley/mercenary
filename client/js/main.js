@@ -23,6 +23,16 @@ define([
             root: '/',
             pushState: true
         });
+
+        // Check for an existing session
+        $.ajax({
+            url: '/session',
+        }).done(function(response) {
+            // if (response && response.status === 'success') {
+                // Backbone.navigate('/dashboard', true);
+            // }
+            console.debug(response);
+        });
     });
 
     App.start();

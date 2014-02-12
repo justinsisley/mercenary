@@ -1,41 +1,22 @@
 var passport            = require('passport'),
     passportController  = require('../controllers/passportController'),
-    sessionController   = require('../controllers/users/sessionController'),
     baseController      = require('../controllers/baseController'),
-    signupController    = require('../controllers/users/signupController');
+    sessionController   = require('../controllers/users/sessionController'),
+    signupController    = require('../controllers/users/signupController'),
+    loginController     = require('../controllers/users/loginController'),
+    logoutController    = require('../controllers/users/logoutController');
 
 exports.router = function(server) {
     // Create a local user account
     server.post('/signup', signupController);
 
-    server.get('/login', function(req, res) {
-        res.json({
-            status: 'login shit'
-        });
-    });
+    // Log in to a local user account
+    server.post('/login', loginController);
 
-    server.post('/login', function(req, res, next) {
-        passport.authenticate('local', function(err, user, info) {
-            if (err) {
-                return next(err);
-            }
+    // End the current session
+    server.post('/logout', logoutController);
 
-            if (!user) {
-                return res.json(info);
-            }
-
-            req.logIn(user, function(err) {
-                if (err) {
-                    return next(err);
-                }
-
-                return res.json(user);
-            });
-        })(req, res, next);
-    });
-
-    // Determine if there is an active session.
-    // This may not be needed.
+    // Determine if there is an active session
     server.get('/session', passportController.isAuthenticated, sessionController);
 
     // Third-party authentication
