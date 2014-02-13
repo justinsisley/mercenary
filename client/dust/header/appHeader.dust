@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="#">Mercenary</a>
+        <a class="navbar-brand" href="/dashboard">Mercenary</a>
     </div>
 
     <div class="navbar-collapse collapse">
