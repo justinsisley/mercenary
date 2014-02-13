@@ -1,9 +1,9 @@
 define([
-    'backbone',
+    'marionette',
     'modules/base/templates/publicLayout',
     'marionette.dust'
-], function(Backbone) {
-    return Backbone.Marionette.Layout.extend({
+], function(Marionette) {
+    return Marionette.Layout.extend({
         template: 'base/publicLayout',
 
         className: 'site-wrapper-inner',

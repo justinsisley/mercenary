@@ -1,16 +1,19 @@
 define([
     'marionette',
-    '../vendor/holderjs/holder'
+    'holder',
+
+    'modules/dashboard/templates/dashboard'
 ], function(
     Marionette,
-
-    Holder
+    holder
 ) {
     return Marionette.ItemView.extend({
         template: 'dashboard/dashboard',
 
         onRender: function() {
-            Holder.run();
+            setTimeout(function() {
+                holder.run();
+            }, 0);
         }
     });
 });

@@ -4,10 +4,10 @@
  * paths exists across your application.
  */
 define([
-    'backbone',
+    'marionette',
     'modules/base/controllers/baseController'
-], function(Backbone, BaseController) {
-    return Backbone.Marionette.AppRouter.extend({
+], function(Marionette, BaseController) {
+    return Marionette.AppRouter.extend({
         controller: BaseController,
 
         appRoutes: {
