@@ -23,19 +23,22 @@ define([
             root: '/',
             pushState: true
         });
-
-        // Check for an existing session
-        $.ajax({
-            url: '/session',
-        }).done(function(response) {
-            // if (response && response.status === 'success') {
-                // Backbone.navigate('/dashboard', true);
-            // }
-            console.debug(response);
-        });
     });
 
-    App.start();
+    // Check for an existing session,
+    // then start the application in the
+    // appropriate state.
+    $.ajax({
+        url: '/session',
+    }).always(function(response) {
+        App.start();
+
+        if (response && response.status === 'success') {
+            App.vars.user = response.user;
+            
+            Backbone.history.navigate('/dashboard', true);
+        }
+    });
 
     return App;
 });

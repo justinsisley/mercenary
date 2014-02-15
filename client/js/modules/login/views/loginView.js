@@ -1,9 +1,12 @@
 define([
     'marionette',
 
+    'app',
     'modules/login/templates/login'
 ], function(
-    Marionette
+    Marionette,
+
+    App
 ) {
     return Marionette.ItemView.extend({
         template: 'login/login',
@@ -30,9 +33,11 @@ define([
                     password: this.ui.loginPassword.val()
                 }
             }).done(function(response) {
-                console.debug(response);
+                if (response && response.status === 'success') {
+                    App.vars.user = response.user;
 
-                // Backbone.history.navigate('/dashboard');
+                    Backbone.history.navigate('/dashboard', true);
+                }
             }).fail(function(response) {
                 console.debug('failed');
                 console.debug(response);

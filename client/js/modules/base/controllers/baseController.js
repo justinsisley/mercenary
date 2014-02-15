@@ -88,9 +88,9 @@ define([
         },
 
         dashboard: function() {
-            // if (!App.vars.user) {
-                // return Backbone.history.navigate('/login', true);
-            // }
+            if (!App.vars.user) {
+                return Backbone.history.navigate('/login', true);
+            }
 
             this.showAppLayout();
 

@@ -15,7 +15,10 @@ module.exports = function(req, res, next) {
                 return next(err);
             }
 
-            return res.json(user);
+            return res.json({
+                status: 'success',
+                user: user
+            });
         });
     })(req, res, next);
 };
