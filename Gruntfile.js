@@ -107,6 +107,13 @@ module.exports = function(grunt) {
                     stdout: true,
                     stderr: true
                 }
+            },
+            serve: {
+                command: 'npm start',
+                options: {
+                    stdout: true,
+                    stderr: true
+                }
             }
         },
         watch: {
@@ -214,6 +221,9 @@ module.exports = function(grunt) {
         'less:prd',
         'clean:tmp'
     ]);
+
+    grunt.registerTask('dev', ['default', 'watch']);
+    grunt.registerTask('serve', ['shell:serve']);
 
     grunt.registerTask('test', ['connect:test', 'shell:test']);
 
