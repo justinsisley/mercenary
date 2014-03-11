@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     var dust = require('dustjs-linkedin'),
         timeStart = Date.now();
 
+    // Create the task
     grunt.registerMultiTask('dustpile', 'Compile dustjs templates in a particular way.', function() {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
@@ -61,5 +62,17 @@ module.exports = function(grunt) {
             // Print a success message.
             grunt.log.writeln('Completed in .' + (Date.now() - timeStart) + 's');
         });
+    });
+
+    // Run the task
+    grunt.config('dustpile', {
+        client: {
+            src: ['client/dust/**/*.dust'],
+            dest: 'client/js/modules/**/templates/',
+            ext: '.js'
+        },
+        options: {
+            strip: ['client/dust/']
+        }
     });
 };
