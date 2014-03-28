@@ -7,6 +7,9 @@ var passport            = require('passport'),
     logoutController    = require('../controllers/users/logoutController');
 
 exports.router = function(server) {
+    // Determine if there is an active session
+    server.get('/session', passportController.isAuthenticated, sessionController);
+    
     // Create a local user account
     server.post('/signup', signupController);
 
@@ -15,9 +18,6 @@ exports.router = function(server) {
 
     // End the current session
     server.post('/logout', logoutController);
-
-    // Determine if there is an active session
-    server.get('/session', passportController.isAuthenticated, sessionController);
 
     // Third-party authentication
     server.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));

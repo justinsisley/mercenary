@@ -82,6 +82,6 @@ module.exports = function() {
 
     // Create the HTTP server and listen on the configured   port.
     http.createServer(app).listen(config.PORT, function() {
-        console.log(packageJSON.name + ' running in ' + config.ENV + ' mode at ' + hostname + ':' + config.PORT);
+        console.log('\n' + packageJSON.name + ' is running in ' + config.ENV + ' mode at ' + hostname + ':' + config.PORT + '\n');
     });
 };

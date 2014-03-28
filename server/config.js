@@ -27,6 +27,7 @@ module.exports = {
 
         // If we're not in development, use the home page
         // property in the package.json file.
+        // You could also hard-code this to suit your needs.
         return packageJSON.homepage;
     })(),
 

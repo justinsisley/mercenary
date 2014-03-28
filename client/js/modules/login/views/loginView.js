@@ -14,7 +14,7 @@ define([
         className: 'inner cover',
 
         events: {
-            'submit #js-login-form' : 'formSubmitHandler'
+            'click #js-login-submit' : 'formSubmitHandler'
         },
 
         ui: {
