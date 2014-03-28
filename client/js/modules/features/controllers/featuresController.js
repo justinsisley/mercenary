@@ -2,7 +2,7 @@ define([
     'app',
 
     'modules/features/views/featuresView'
-],function(
+], function(
     App,
 
     FeaturesView
