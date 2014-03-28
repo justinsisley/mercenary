@@ -9,6 +9,8 @@ Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.
 
 The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
 
+To make things even easier, a custom Grunt task called `merc-module` will generate new client-side modules for you, including dust templates, LESS stylesheets, and JavaScript views and controllers. After installation, run `grunt merc-module` to learn about the module generator.
+
 For detailed information, explore the directories and read the [Wiki](https://github.com/justinsisley/Mercenary/wiki).
 
 If you prefer to just dive right in, just follow the [installation instructions](https://github.com/justinsisley/Mercenary/wiki/Setting-up-your-Development-Environment-on-OS-X).
