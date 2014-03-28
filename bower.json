@@ -1,22 +1,25 @@
 {
   "name": "Mercenary",
-  "version": "0.1.0",
+  "version": "0.0.4",
   "authors": [
     "Justin Sisley"
   ],
   "description": "The Force Multiplier Web Application Stack",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.0",
-    "backbone": "~1.1.0",
-    "backbone.marionette": "~1.6.2",
-    "dustjs-linkedin": "~2.3.3",
-    "dustjs-linkedin-helpers": "~1.1.2",
-    "lodash": "~2.4.1",
-    "requirejs": "~2.1.10",
-    "mocha": "~1.17.1",
-    "chai": "~1.9.0",
-    "bootstrap": "~3.1.0",
-    "holderjs": "~2.3.1"
+    "chai": "1.9.0",
+    "lodash": "2.4.1",
+    "mocha": "1.18.2",
+    "jquery": "2.1.0",
+    "holderjs": "2.3.1",
+    "backbone": "1.1.2",
+    "bootstrap": "3.1.1",
+    "requirejs": "2.1.11",
+    "dustjs-linkedin": "2.3.3",
+    "backbone.marionette": "1.6.4",
+    "dustjs-linkedin-helpers": "1.1.2"
+  },
+  "resolutions": {
+    "jquery": ">= 1.9.0"
   }
 }

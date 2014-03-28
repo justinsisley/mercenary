@@ -6,7 +6,7 @@ require.config({
     urlArgs: 'v=' + (new Date()).getTime(),
     paths: {
         requireLib              : '../vendor/requirejs/require',
-        jquery                  : '../vendor/jquery/jquery.min',
+        jquery                  : '../vendor/jquery/dist/jquery.min',
         underscore              : '../vendor/lodash/dist/lodash.underscore',
         backbone                : '../vendor/backbone/backbone',
         marionette              : '../vendor/backbone.marionette/lib/backbone.marionette',
