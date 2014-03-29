@@ -1,6 +1,0 @@
-{"k":"0000000078","o":"0000000312","v":"001"}
-{"_id":2,"_uid":2,"_dt":1396062871436,"_s":"442892bfa7394553f11649586d4b4090"}
-{"activationKey":"2a08WugfdFdfNQpMU5NArAOXuda1xhWhLa4c6NgYayprqamB98jn7pPO","email":"test@test.com","password":"$2a$05$DCfvDThjC7s0hEcUZ6AL2.wx.NO7vvLnfYnJfeThIo9fMmD5DNiTW","_id":{"$wrap":"$oid","v":2},"profile":{"picture":"","website":"","location":"","gender":"","name":""},"tokens":[],"active":false,"__v":0}
-{"k":"0000000078","o":"0000000421","v":"001"}
-{"_id":3,"_uid":3,"_dt":1396062890211,"_s":"40cff14ac6f0f792af03fa0c04adef1f"}
-{"facebook":"57205767","email":"sisley.justin@gmail.com","_id":{"$wrap":"$oid","v":3},"profile":{"website":"","location":"","gender":"male","name":"Justin Sisley"},"tokens":[{"accessToken":"CAAEItDJZCSsQBABBRvcyxb6HHpDMS9TbesJZBRoUb5a709mXOOTTgCg0PktDHVydAZC1G7ZBI561AW7un6ZCbxfyyfzIBSWIearPAfDe5lQI1nlY6iheZAVZAQgCZB8Ti8H6SfGTxYuf93b2mzzJRyBtpccjNF9Na81NqZAWGfas6BUkULq2r2Cet","kind":"facebook"}],"active":false,"__v":0}

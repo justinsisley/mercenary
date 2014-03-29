@@ -15,9 +15,9 @@
     <p class="lead form-signup-social">Or, sign in via...</p>
 
     <div class="row">
-        <button class="btn btn-primary btn-facebook">Facebook</button>
-        <button class="btn btn-primary btn-google">Google</button>
-        <button class="btn btn-primary btn-twitter">Twitter</button>
-        <button class="btn btn-primary btn-github">GitHub</button>
+        <a class="btn btn-primary btn-facebook" href="/auth/facebook">Facebook</a>
+        <a class="btn btn-primary btn-google" href="/auth/google">Google</a>
+        <a class="btn btn-primary btn-twitter" href="/auth/twitter">Twitter</a>
+        <a class="btn btn-primary btn-github" href="/auth/github">GitHub</a>
     </div>
 </form>

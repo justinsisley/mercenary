@@ -68,17 +68,17 @@ module.exports = {
         passReqToCallback   : true
     },
 
+    AUTH_GOOGLE: {
+        clientID            : process.env.GOOGLE_CLIENT_ID || '276213738037-s0h6k69henethg2u34fbuiu5hrh0lv9b.apps.googleusercontent.com' || 'Your Client ID',
+        clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'qKK52IdUuuN35tZPXG8ON23_' || 'Your Client Secret',
+        callbackURL         : '/auth/google/callback',
+        passReqToCallback   : true
+    },
+
     AUTH_TWITTER: {
         consumerKey         : process.env.TWITTER_CONSUMER_KEY || 'Your Consumer Key',
         consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'Your Consumer Secret',
         callbackURL         : '/auth/twitter/callback',
-        passReqToCallback   : true
-    },
-    
-    AUTH_GOOGLE: {
-        clientID            : process.env.GOOGLE_CLIENT_ID || 'Your Client ID',
-        clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'Your Client Secret',
-        callbackURL         : '/auth/google/callback',
         passReqToCallback   : true
     },
     

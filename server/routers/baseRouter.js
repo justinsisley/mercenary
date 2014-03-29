@@ -25,21 +25,21 @@ exports.router = function(server) {
         successRedirect: '/',
         failureRedirect: '/login'
     }));
-    
-    server.get('/auth/github', passport.authenticate('github'));
-    server.get('/auth/github/callback', passport.authenticate('github', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
-    
+
     server.get('/auth/google', passport.authenticate('google', {scope: 'profile email'}));
     server.get('/auth/google/callback', passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/login'
     }));
-    
+
     server.get('/auth/twitter', passport.authenticate('twitter'));
     server.get('/auth/twitter/callback', passport.authenticate('twitter', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
+    
+    server.get('/auth/github', passport.authenticate('github'));
+    server.get('/auth/github/callback', passport.authenticate('github', {
         successRedirect: '/',
         failureRedirect: '/login'
     }));
