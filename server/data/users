@@ -1,3 +1,0 @@
-{"k":"0000000078","o":"0000000435","v":"001"}
-{"_id":2,"_uid":2,"_dt":1396064200809,"_s":"4e05969abc5838a18c6ebe7fad017816"}
-{"twitter":"142491885","email":"Justin Sisley","_id":{"$wrap":"$oid","v":2},"profile":{"picture":"http://pbs.twimg.com/profile_images/1557040825/profile_normal.jpg","website":"","location":"Mountain View, California","gender":"","name":"Justin Sisley"},"tokens":[{"tokenSecret":"eAaV5ErjQLXUUmMnFhrEZZOg4CWX3Mz7Jk4fgWMDtZ52Z","accessToken":"142491885-sGbFoB7rmdxbc7qSzSAK18ACscsZVaoO2RqlyDYM","kind":"twitter"}],"active":false,"__v":0}
