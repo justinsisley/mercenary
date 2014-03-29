@@ -35,6 +35,7 @@ reports
 
 # Local DB data
 server/data
+server/data/*
 
 # App ID information
 server/secrets.txt
