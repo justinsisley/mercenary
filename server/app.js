@@ -35,7 +35,7 @@ module.exports = function() {
         app.use(express.cookieParser());
 
         // Establish a session secret token.
-        app.use(express.session({secret: 'you need to change this value'}));
+        app.use(express.session({secret: 'You need to change this value.'}));
 
         // Request body parsing middleware supporting JSON,
         // urlencoded, and multipart requests
@@ -82,6 +82,6 @@ module.exports = function() {
 
     // Create the HTTP server and listen on the configured   port.
     http.createServer(app).listen(config.PORT, function() {
-        console.log('\n' + packageJSON.name + ' is running in ' + config.ENV + ' mode at ' + hostname + ':' + config.PORT + '\n');
+        console.log('\n%s is running in %s mode at %s:%d\n', packageJSON.name, config.ENV, hostname, config.PORT);
     });
 };

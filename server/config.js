@@ -62,8 +62,8 @@ module.exports = {
     // set the appropriate environment variables or fill in
     // the values as strings below.
     AUTH_FACEBOOK: {
-        clientID            : process.env.FACEBOOK_CLIENT_ID || 'Your App ID',
-        clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || 'Your App Secret',
+        clientID            : process.env.FACEBOOK_CLIENT_ID || '291045011049156' || 'Your App ID',
+        clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || '95b66d94c379003eddec1b80f193ac07' || 'Your App Secret',
         callbackURL         : '/auth/facebook/callback',
         passReqToCallback   : true
     },

@@ -6,7 +6,7 @@ cluster.setupMaster({exec: 'app.js'});
 
 // Listen for dying workers
 cluster.on('exit', function(worker) {
-    console.log('Worker ' + worker.id + ' died');
+    console.log('Worker %s died', worker.id);
     
     // Replace the dead worker
     cluster.fork();

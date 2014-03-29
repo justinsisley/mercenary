@@ -79,27 +79,26 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
     }
 }));
 
-passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, refreshToken, profile, done) {
+passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, refreshToken, profile, done) {
     if (req.user) {
         User.findById(req.user.id, function(err, user) {
-            user.github = profile.id;
+            user.google = profile.id;
             
             user.tokens.push({
-                kind: 'github',
+                kind: 'google',
                 accessToken: accessToken
             });
             
             user.profile.name = user.profile.name || profile.displayName;
-            user.profile.picture = user.profile.picture || profile._json.avatar_url;
-            user.profile.location = user.profile.location || profile._json.location;
-            user.profile.website = user.profile.website || profile._json.blog;
+            user.profile.gender = user.profile.gender || profile._json.gender;
+            user.profile.picture = user.profile.picture || profile._json.picture;
             
             user.save(function(err) {
                 done(err, user);
             });
         });
     } else {
-        User.findOne({github: profile.id}, function(err, existingUser) {
+        User.findOne({google: profile.id}, function(err, existingUser) {
             if (existingUser) {
                 return done(null, existingUser);
             }
@@ -107,17 +106,16 @@ passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, r
             var user = new User();
             
             user.email = profile._json.email;
-            user.github = profile.id;
+            user.google = profile.id;
             
             user.tokens.push({
-                kind: 'github',
+                kind: 'google',
                 accessToken: accessToken
             });
             
             user.profile.name = profile.displayName;
-            user.profile.picture = profile._json.avatar_url;
-            user.profile.location = profile._json.location;
-            user.profile.website = profile._json.blog;
+            user.profile.gender = profile._json.gender;
+            user.profile.picture = profile._json.picture;
             
             user.save(function(err) {
                 done(err, user);
@@ -173,26 +171,27 @@ passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken,
     }
 }));
 
-passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, refreshToken, profile, done) {
+passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, refreshToken, profile, done) {
     if (req.user) {
         User.findById(req.user.id, function(err, user) {
-            user.google = profile.id;
+            user.github = profile.id;
             
             user.tokens.push({
-                kind: 'google',
+                kind: 'github',
                 accessToken: accessToken
             });
             
             user.profile.name = user.profile.name || profile.displayName;
-            user.profile.gender = user.profile.gender || profile._json.gender;
-            user.profile.picture = user.profile.picture || profile._json.picture;
+            user.profile.picture = user.profile.picture || profile._json.avatar_url;
+            user.profile.location = user.profile.location || profile._json.location;
+            user.profile.website = user.profile.website || profile._json.blog;
             
             user.save(function(err) {
                 done(err, user);
             });
         });
     } else {
-        User.findOne({google: profile.id}, function(err, existingUser) {
+        User.findOne({github: profile.id}, function(err, existingUser) {
             if (existingUser) {
                 return done(null, existingUser);
             }
@@ -200,16 +199,17 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
             var user = new User();
             
             user.email = profile._json.email;
-            user.google = profile.id;
+            user.github = profile.id;
             
             user.tokens.push({
-                kind: 'google',
+                kind: 'github',
                 accessToken: accessToken
             });
             
             user.profile.name = profile.displayName;
-            user.profile.gender = profile._json.gender;
-            user.profile.picture = profile._json.picture;
+            user.profile.picture = profile._json.avatar_url;
+            user.profile.location = profile._json.location;
+            user.profile.website = profile._json.blog;
             
             user.save(function(err) {
                 done(err, user);
