@@ -20,7 +20,7 @@
         <p>Quick boot, no build, and blazing fast, Node.js and Express provide an awesome server-side web application architecture.</p>
 
         <h4 class="text-primary">Passport</h4>
-        <p>Authentication is already taken care of, so you can focus on getting users, not writing login logic. Users can sign up via email, or log in using Facebook, Twitter and Google.</p>
+        <p>Authentication is already taken care of, so you can focus on getting users, not writing login logic. Users can sign up via email, or log in using Facebook, Twitter, Google, or Github.</p>
 
         <h4 class="text-primary">Grunt</h4>
         <p>Somebody has to do the dirty work. With pre-configured tasks ranging from concatenation to deployment to running tests, Grunt's got you covered.</p>
