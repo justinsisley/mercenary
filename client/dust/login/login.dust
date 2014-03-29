@@ -4,8 +4,8 @@
 <form class="form-signin" role="form">
     <h3 class="form-signin-heading">Log in to your account</h3>
     
-    <input value="test@test.com" id="js-login-email" type="email" class="form-control" placeholder="Email address" required autofocus>    
-    <input value="test" id="js-login-password" type="password" class="form-control" placeholder="Password" required>
+    <input id="js-login-email" type="email" class="form-control" placeholder="Email address" required autofocus>    
+    <input id="js-login-password" type="password" class="form-control" placeholder="Password" required>
 
     <button class="btn btn-lg btn-primary btn-block" id="js-login-submit" type="submit">Log in</button>
 

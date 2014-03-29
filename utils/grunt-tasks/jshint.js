@@ -6,6 +6,7 @@ module.exports = function(grunt) {
         client: [
             'Gruntfile.js',
             'client/js/helpers/*.js',
+            '!client/js/modules/**/templates/*.js',
             'client/js/modules/**/collections/*.js',
             'client/js/modules/**/controllers/*.js',
             'client/js/modules/**/models/*.js',

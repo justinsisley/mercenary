@@ -2,8 +2,7 @@ module.exports = function(grunt) {
     grunt.config('watch', {
         clientJS: {
             files: [
-                '!client/js/modules/**/templates/**',
-                'client/js/**/*.js',
+                'client/js/modules/**/!(templates)/*.js',
                 'client/js/*.js'
             ],
             tasks: ['jshint', 'revision:js']
