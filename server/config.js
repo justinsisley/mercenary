@@ -61,29 +61,29 @@ module.exports = {
     // set the appropriate environment variables or fill in
     // the values as strings below.
     AUTH_FACEBOOK: {
-        clientID            : process.env.FACEBOOK_CLIENT_ID || '291045011049156' || 'Your App ID',
-        clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || '95b66d94c379003eddec1b80f193ac07' || 'Your App Secret',
+        clientID            : process.env.FACEBOOK_CLIENT_ID || 'Your App ID',
+        clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || 'Your App Secret',
         callbackURL         : '/auth/facebook/callback',
         passReqToCallback   : true
     },
 
     AUTH_GOOGLE: {
-        clientID            : process.env.GOOGLE_CLIENT_ID || '276213738037-s0h6k69henethg2u34fbuiu5hrh0lv9b.apps.googleusercontent.com' || 'Your Client ID',
-        clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'qKK52IdUuuN35tZPXG8ON23_' || 'Your Client Secret',
+        clientID            : process.env.GOOGLE_CLIENT_ID || 'Your Client ID',
+        clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'Your Client Secret',
         callbackURL         : '/auth/google/callback',
         passReqToCallback   : true
     },
 
     AUTH_TWITTER: {
-        consumerKey         : process.env.TWITTER_CONSUMER_KEY || '35Dt7C6J3fZABNQD4sg9Rg' || 'Your Consumer Key',
-        consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'RGGvF9wz9iEFFepHbAMREPVN2IdfzgikSQqImUe1ps' || 'Your Consumer Secret',
+        consumerKey         : process.env.TWITTER_CONSUMER_KEY || 'Your Consumer Key',
+        consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'Your Consumer Secret',
         callbackURL         : '/auth/twitter/callback',
         passReqToCallback   : true
     },
     
     AUTH_GITHUB: {
-        clientID            : process.env.GITHUB_CLIENT_ID || '68c201e5cd70eb44b094' || 'Your Client ID',
-        clientSecret        : process.env.GITHUB_CLIENT_SECRET || '8f5aeffb9f1512fc5237c9067fd80a4c903b321e' || 'Your Client Secret',
+        clientID            : process.env.GITHUB_CLIENT_ID || 'Your Client ID',
+        clientSecret        : process.env.GITHUB_CLIENT_SECRET || 'Your Client Secret',
         callbackURL         : '/auth/github/callback',
         passReqToCallback   : true
     }
