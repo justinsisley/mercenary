@@ -1,13 +1,16 @@
 <p class="lead">You're already using Mercenary.</p>
 <p class="sub-lead">Authentication is baked-in. Create an account and give it a test drive.</p>
 
-<form id="js-signup-form" class="form-signin" role="form">
+<form class="form-signin" role="form">
     <h3 class="form-signin-heading">Create an account</h3>
 
     <input value="test@test.com" id="js-signup-email" type="email" class="form-control" placeholder="Email address" required autofocus>
     <input value="test" id="js-signup-password" type="password" class="form-control" placeholder="Password" required>
         
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <button class="btn btn-lg btn-primary btn-block" id="js-signup-submit" type="submit">Sign up</button>
+
+    <div class="alert alert-danger hidden" id="js-form-error-message"></div>
+    <div class="alert alert-success hidden" id="js-form-success-message"></div>
 
     <p class="lead form-signup-social">Or, sign in via...</p>
 

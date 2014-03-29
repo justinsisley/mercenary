@@ -17,6 +17,7 @@
             <li><a href="/settings">Settings</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/help">Help</a></li>
+            <li><a href="/logout" id="js-logout-link">Log Out</a></li>
         </ul>
 
         <form class="navbar-form navbar-right">

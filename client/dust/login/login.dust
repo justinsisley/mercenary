@@ -9,6 +9,8 @@
 
     <button class="btn btn-lg btn-primary btn-block" id="js-login-submit" type="submit">Log in</button>
 
+    <div class="alert alert-danger hidden" id="js-form-message"></div>
+
     <p class="lead form-signup-social">Or, sign in via...</p>
 
     <div class="row">

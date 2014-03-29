@@ -32,3 +32,6 @@ client/css/style.css
 
 # Plato report files
 reports
+
+# Local DB data
+server/data

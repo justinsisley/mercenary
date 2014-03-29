@@ -7,7 +7,12 @@ module.exports = function(req, res, next) {
         }
 
         if (!user) {
-            return res.json(info);
+            console.log(info);
+
+            return res.json({
+                status: 'fail',
+                message: 'Incorrect username/password combination.'
+            });
         }
 
         req.logIn(user, function(err) {

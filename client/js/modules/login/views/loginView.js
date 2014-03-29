@@ -19,11 +19,14 @@ define([
 
         ui: {
             loginEmail      : '#js-login-email',
-            loginPassword   : '#js-login-password'
+            loginPassword   : '#js-login-password',
+            formMessage     : '#js-form-message'
         },
 
         formSubmitHandler: function(e) {
             e.preventDefault();
+
+            var self = this;
 
             $.ajax({
                 type: 'POST',
@@ -33,15 +36,27 @@ define([
                     password: this.ui.loginPassword.val()
                 }
             }).done(function(response) {
-                if (response && response.status === 'success') {
-                    App.vars.user = response.user;
+                if (response) {
+                    if (response.status === 'success') {
+                        App.vars.user = response.user;
 
-                    Backbone.history.navigate('/dashboard', true);
+                        Backbone.history.navigate('/dashboard', true);
+                    } else {
+                        self.showMessage(response.message);
+                    }
+                } else {
+                    self.showMessage('Something went wrong. Please try again.');
                 }
             }).fail(function(response) {
-                console.debug('failed');
-                console.debug(response);
+                // You probably don't want to display this.
+                self.showMessage('Fail: ' + response);
             });
+        },
+
+        showMessage: function(message) {
+            this.ui.formMessage.removeClass('hidden');
+
+            this.ui.formMessage.text(message);
         }
     });
 });
