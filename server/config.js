@@ -10,8 +10,7 @@
  * and the "os" module are used to help figure some
  * things out.
  */
-var packageJSON = require('../package.json'),
-    hostname    = require('os').hostname();
+var packageJSON = require('../package.json');
 
 module.exports = {
     PORT: process.env.PORT || 8743,
@@ -22,7 +21,7 @@ module.exports = {
         // the application's web address at run time based
         // on the system's host name and the port setting.
         if (!process.env.ENV || process.env.ENV === 'development') {
-            return 'http://' + hostname + ':' + module.exports.PORT;
+            return 'http://127.0.0.1:' + module.exports.PORT;
         }
 
         // If we're not in development, use the home page
@@ -76,8 +75,8 @@ module.exports = {
     },
 
     AUTH_TWITTER: {
-        consumerKey         : process.env.TWITTER_CONSUMER_KEY || 'Your Consumer Key',
-        consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'Your Consumer Secret',
+        consumerKey         : process.env.TWITTER_CONSUMER_KEY || '35Dt7C6J3fZABNQD4sg9Rg' || 'Your Consumer Key',
+        consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'RGGvF9wz9iEFFepHbAMREPVN2IdfzgikSQqImUe1ps' || 'Your Consumer Secret',
         callbackURL         : '/auth/twitter/callback',
         passReqToCallback   : true
     },

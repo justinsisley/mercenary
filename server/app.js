@@ -5,7 +5,6 @@ var packageJSON = require('../package.json'),
     config      = require('./config'),
     app         = express(),
     passport    = require('passport'),
-    hostname    = require('os').hostname(),
     memwatch;
 
 module.exports = function() {
@@ -82,6 +81,6 @@ module.exports = function() {
 
     // Create the HTTP server and listen on the configured   port.
     http.createServer(app).listen(config.PORT, function() {
-        console.log('\n%s is running in %s mode at %s:%d\n', packageJSON.name, config.ENV, hostname, config.PORT);
+        console.log('\n%s is running in %s mode at http://127.0.0.1:%d\n', packageJSON.name, config.ENV, config.PORT);
     });
 };
