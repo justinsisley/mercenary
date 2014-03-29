@@ -1,10 +1,12 @@
 define([
     'marionette',
+    'validator',
 
     'app',
     'modules/login/templates/login'
 ], function(
     Marionette,
+    validator,
 
     App
 ) {
@@ -18,9 +20,16 @@ define([
         },
 
         ui: {
-            loginEmail      : '#js-login-email',
-            loginPassword   : '#js-login-password',
-            formMessage     : '#js-form-message'
+            loginEmail          : '#js-login-email',
+            loginPassword       : '#js-login-password',
+            formSuccessMessage  : '#js-form-success-message',
+            formErrorMessage    : '#js-form-error-message'
+        },
+
+        onRender: function() {
+            if (window.location.search.indexOf('active=true') > 0) {
+                this.showSuccessMessage('Your account is now active.');
+            }
         },
 
         formSubmitHandler: function(e) {
@@ -31,11 +40,15 @@ define([
                 password = this.ui.loginPassword.val();
 
             if (!email) {
-                return this.showMessage('You must provide an email address.');
+                return this.showErrorMessage('You must provide an email address.');
+            }
+
+            if (!validator.isEmail(email)) {
+                return this.showErrorMessage('Please provide a valid email address.');
             }
 
             if (!password) {
-                return this.showMessage('You must provide a password.');
+                return this.showErrorMessage('You must provide a password.');
             }
 
             $.ajax({
@@ -52,21 +65,29 @@ define([
 
                         Backbone.history.navigate('/dashboard', true);
                     } else {
-                        self.showMessage(response.message);
+                        self.showErrorMessage(response.message);
                     }
                 } else {
-                    self.showMessage('Something went wrong. Please try again.');
+                    self.showErrorMessage('Something went wrong. Please try again.');
                 }
             }).fail(function(response) {
                 // You probably don't want to display this.
-                self.showMessage('Fail: ' + response);
+                self.showErrorMessage('Fail: ' + response);
             });
         },
 
-        showMessage: function(message) {
-            this.ui.formMessage.removeClass('hidden');
+        showSuccessMessage: function(message) {
+            this.ui.formErrorMessage.addClass('hidden');
+            this.ui.formSuccessMessage.removeClass('hidden');
 
-            this.ui.formMessage.text(message);
+            this.ui.formSuccessMessage.text(message);
+        },
+
+        showErrorMessage: function(message) {
+            this.ui.formSuccessMessage.addClass('hidden');
+            this.ui.formErrorMessage.removeClass('hidden');
+
+            this.ui.formErrorMessage.text(message);
         }
     });
 });

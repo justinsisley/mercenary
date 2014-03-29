@@ -1,9 +1,11 @@
 define([
     'marionette',
+    'validator',
 
     'modules/signup/templates/signup'
 ], function(
-    Marionette
+    Marionette,
+    validator
 ) {
     return Marionette.ItemView.extend({
         template: 'signup/signup',
@@ -31,6 +33,10 @@ define([
 
             if (!email) {
                 return this.showErrorMessage('You must provide an email address.');
+            }
+
+            if (!validator.isEmail(email)) {
+                return this.showErrorMessage('Please provide a valid email address.');
             }
 
             if (!password) {

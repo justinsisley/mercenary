@@ -13,7 +13,8 @@ require.config({
         dust                    : '../vendor/dustjs-linkedin/dist/dust-full',
         'dust.helpers'          : '../vendor/dustjs-linkedin-helpers/dist/dust-helpers-1.1.2',
         'marionette.dust'       : '../vendor/_nonBower/backbone.marionette.dust',
-        holder                  : '../vendor/holderjs/holder'
+        holder                  : '../vendor/holderjs/holder',
+        validator               : '../vendor/validator-js/validator'
     },
     shim: {
         backbone: {

@@ -1,6 +1,6 @@
 {
   "name": "Mercenary",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "authors": [
     "Justin Sisley"
   ],
@@ -15,6 +15,7 @@
     "backbone": "1.1.2",
     "bootstrap": "3.1.1",
     "requirejs": "2.1.11",
+    "validator-js": "~3.5.1",
     "dustjs-linkedin": "2.3.3",
     "backbone.marionette": "1.6.4",
     "dustjs-linkedin-helpers": "1.1.2"

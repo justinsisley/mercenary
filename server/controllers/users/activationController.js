@@ -13,7 +13,7 @@ module.exports = {
                 return res.redirect('/');
             }
 
-            return res.redirect('/login?active=1');
+            return res.redirect('/login?active=true');
         });
     }
 };
