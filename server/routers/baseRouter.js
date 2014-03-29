@@ -1,10 +1,11 @@
-var passport            = require('passport'),
-    passportController  = require('../controllers/passportController'),
-    baseController      = require('../controllers/baseController'),
-    sessionController   = require('../controllers/users/sessionController'),
-    signupController    = require('../controllers/users/signupController'),
-    loginController     = require('../controllers/users/loginController'),
-    logoutController    = require('../controllers/users/logoutController');
+var passport                = require('passport'),
+    passportController      = require('../controllers/passportController'),
+    baseController          = require('../controllers/baseController'),
+    sessionController       = require('../controllers/users/sessionController'),
+    signupController        = require('../controllers/users/signupController'),
+    loginController         = require('../controllers/users/loginController'),
+    activationController    = require('../controllers/users/activationController'),
+    logoutController        = require('../controllers/users/logoutController');
 
 exports.router = function(server) {
     // Determine if there is an active session
@@ -12,6 +13,9 @@ exports.router = function(server) {
     
     // Create a local user account
     server.post('/signup', signupController);
+
+    // Activate a local user's account
+    server.get('/activate/*', activationController.activateUser);
 
     // Log in to a local user account
     server.post('/login', loginController);

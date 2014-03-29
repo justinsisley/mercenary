@@ -1,5 +1,7 @@
-var mongoose = require('mongoose'),
-    bcrypt = require('bcrypt');
+var config          = require('../config'),
+    mongoose        = require('mongoose'),
+    bcrypt          = require('bcrypt'),
+    emailController = require('../controllers/email/emailController');
 
 // Create a basic user schema
 var userSchema = mongoose.Schema({
@@ -20,6 +22,7 @@ var userSchema = mongoose.Schema({
     google              : {type: String, unique: true, sparse: true},
     github              : {type: String, unique: true, sparse: true},
 
+    // Profile information
     profile: {
         name        : {type: String, default: ''},
         gender      : {type: String, default: ''},
@@ -62,20 +65,89 @@ userSchema.pre('save', function(next) {
                 // when using the activation key in a URL.
                 user.activationKey = hash.replace(/[\$]|[\/]|[\.]/g, '');
 
+                user.sendActivationEmail();
+
                 next();
             });
         });
     });
 });
 
+/*
+Instance methods
+ */
+
 // Password verification
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) {
-            return cb(err);
+            return callback(err);
         }
     
-        cb(null, isMatch);
+        callback(null, isMatch);
+    });
+};
+
+// Sending activation email
+userSchema.methods.sendActivationEmail = function() {
+    var self = this,
+        activationUrl = config.WWW_ADDRESS;
+
+    if (config.ENV === 'development') {
+        activationUrl += ':' + config.PORT;
+    }
+
+    activationUrl += '/activate/' + this.activationKey;
+
+    emailController.renderTemplate('emails/activation', {
+        activationUrl: activationUrl
+    }, function(err, html) {
+        if (err) {
+            console.log(err);
+            
+            return err;
+        }
+
+        emailController.sendEmail({
+            to      : self.email,
+            subject : 'Activate your Mercenary account',
+            text    : 'Paste the following link into your browser to activate your Mercenary account: ' + activationUrl,
+            html    : html
+        }, function(err, res) {
+            if (err) {
+                console.log(err);
+            }
+
+            console.log(res);
+        });
+    });
+};
+
+/*
+Static methods
+ */
+userSchema.statics.activate = function(activationKey, callback) {
+    var User = this || mongoose.model('User');
+
+    User.findOne({activationKey: activationKey}, function(err, user) {
+        if (err) {
+            return callback(err);
+        }
+
+        if (!user) {
+            return callback('No user found with that activation key.');
+        }
+
+        user.active = true;
+        user.activationKey = undefined;
+
+        user.save(function(err) {
+            if (err) {
+                callback(err);
+            }
+
+            return callback(err);
+        });
     });
 };
 

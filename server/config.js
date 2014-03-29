@@ -16,12 +16,14 @@ module.exports = {
     PORT: process.env.PORT || 8743,
     ENV: process.env.ENV || 'development',
 
+    SESSION_SECRET: process.env.SESSION_SECRET || 'Your session secret',
+
     WWW_ADDRESS: (function() {
         // If we're in a development environment, construct
         // the application's web address at run time based
-        // on the system's host name and the port setting.
+        // on the system's host name.
         if (!process.env.ENV || process.env.ENV === 'development') {
-            return 'http://127.0.0.1:' + module.exports.PORT;
+            return 'http://127.0.0.1';
         }
 
         // If we're not in development, use the home page
@@ -51,8 +53,18 @@ module.exports = {
     // Set up a Google Analytics and add your tracker ID.
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'UA-########-#',
 
+    FROM_ADDRESS: process.env.FROM_ADDRESS || 'Mercenary App Framework <mercenaryapp@gmail.com>',
+    FROM_NAME: process.env.FROM_NAME || 'Mercenary App Framework',
+
     // Set up a free Mandrill account and add your API key.
+    // If you don't use Mandrill, or implement some other
+    // service, email sending will fall back to NodeMailer.
     MANDRILL_API_KEY: process.env.MANDRILL_APIKEY || '',
+
+    // SMTP settings used when sending mail via NodeMailer.
+    SMTP_SERVICE: process.env.SMTP_SERVICE || 'Gmail',
+    SMTP_USERNAME: process.env.SMTP_USERNAME || 'mercenaryapp@gmail.com',
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD || 'mercenaryappframework123',
 
     // Service-based authentication.
     // Delete what you don't need. For each of the services

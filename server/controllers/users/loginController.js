@@ -15,6 +15,13 @@ module.exports = function(req, res, next) {
             });
         }
 
+        if (user.active === false) {
+            return res.json({
+                status: 'fail',
+                message: 'Account not activated. Check your email.'
+            });
+        }
+
         req.logIn(user, function(err) {
             if (err) {
                 return next(err);

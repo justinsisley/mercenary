@@ -47,6 +47,8 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
             user.profile.name = user.profile.name || profile.displayName;
             user.profile.gender = user.profile.gender || profile._json.gender;
             user.profile.picture = user.profile.picture || profile._json.profile_image_url;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -71,6 +73,8 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
             user.profile.name = profile.displayName;
             user.profile.gender = profile._json.gender;
             user.profile.picture = profile._json.profile_image_url;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -92,6 +96,8 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
             user.profile.name = user.profile.name || profile.displayName;
             user.profile.gender = user.profile.gender || profile._json.gender;
             user.profile.picture = user.profile.picture || profile._json.picture;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -116,6 +122,8 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
             user.profile.name = profile.displayName;
             user.profile.gender = profile._json.gender;
             user.profile.picture = profile._json.picture;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -138,6 +146,8 @@ passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken,
             user.profile.name = user.profile.name || profile.displayName;
             user.profile.location = user.profile.location || profile._json.location;
             user.profile.picture = user.profile.picture || profile._json.profile_image_url;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -163,6 +173,8 @@ passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken,
             user.profile.name = profile.displayName;
             user.profile.location = profile._json.location;
             user.profile.picture = profile._json.profile_image_url;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -185,6 +197,8 @@ passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, r
             user.profile.picture = user.profile.picture || profile._json.avatar_url;
             user.profile.location = user.profile.location || profile._json.location;
             user.profile.website = user.profile.website || profile._json.blog;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);
@@ -210,6 +224,8 @@ passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, r
             user.profile.picture = profile._json.avatar_url;
             user.profile.location = profile._json.location;
             user.profile.website = profile._json.blog;
+
+            user.active = true;
             
             user.save(function(err) {
                 done(err, user);

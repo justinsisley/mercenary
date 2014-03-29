@@ -26,14 +26,24 @@ define([
         formSubmitHandler: function(e) {
             e.preventDefault();
 
-            var self = this;
+            var self = this,
+                email = this.ui.loginEmail.val(),
+                password = this.ui.loginPassword.val();
+
+            if (!email) {
+                return this.showMessage('You must provide an email address.');
+            }
+
+            if (!password) {
+                return this.showMessage('You must provide a password.');
+            }
 
             $.ajax({
                 type: 'POST',
                 url: '/login',
                 data: {
-                    email: this.ui.loginEmail.val(),
-                    password: this.ui.loginPassword.val()
+                    email: email,
+                    password: password
                 }
             }).done(function(response) {
                 if (response) {
