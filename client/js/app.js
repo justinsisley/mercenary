@@ -15,9 +15,8 @@ define([
 ) {
     // Create the initial markup we need and immediately insert
     // the elements into the DOM. By using Underscore's `map` method,
-    // we're effectively just passing an array to `append`, and since
-    // jQuery inserts an array of nodes as DocumentFragments, we only
-    // cause a single reflow when creating the base layout.
+    // we're effectively just passing an array of DIVs to `append`,
+    // which jQuery inserts as DocumentFragments.
     $('body').append(_.map([
         'main-content'
     ], function(name) {
