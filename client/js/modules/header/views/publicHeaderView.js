@@ -1,11 +1,12 @@
 define([
-    'app',
     'marionette',
 
+    'app',
     'modules/header/templates/publicHeader'
 ], function(
-    App,
-    Marionette
+    Marionette,
+    
+    App
 ) {
     return Marionette.ItemView.extend({
         template: 'header/publicHeader',

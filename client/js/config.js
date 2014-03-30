@@ -12,7 +12,7 @@ require.config({
         marionette              : '../vendor/backbone.marionette/lib/backbone.marionette',
         dust                    : '../vendor/dustjs-linkedin/dist/dust-full',
         'dust.helpers'          : '../vendor/dustjs-linkedin-helpers/dist/dust-helpers-1.1.2',
-        'marionette.dust'       : '../vendor/_nonBower/backbone.marionette.dust',
+        dustMarionette          : '../vendor/marionette-dust/src/amd/backbone.marionette.dust',
         holder                  : '../vendor/holderjs/holder',
         validator               : '../vendor/validator-js/validator'
     },

@@ -1,7 +1,7 @@
 define([
     'marionette',
-    'modules/base/templates/appLayout',
-    'marionette.dust'
+    
+    'modules/base/templates/appLayout'
 ], function(Marionette) {
     return Marionette.Layout.extend({
         template: 'base/appLayout',
