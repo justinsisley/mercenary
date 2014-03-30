@@ -62,9 +62,11 @@ module.exports = {
     MANDRILL_API_KEY: process.env.MANDRILL_APIKEY || '',
 
     // SMTP settings used when sending mail via NodeMailer.
+    // See https://github.com/andris9/Nodemailer for information
+    // on what values belong here.
     SMTP_SERVICE: process.env.SMTP_SERVICE || 'Gmail',
-    SMTP_USERNAME: process.env.SMTP_USERNAME || 'mercenaryapp@gmail.com',
-    SMTP_PASSWORD: process.env.SMTP_PASSWORD || 'mercenaryappframework123',
+    SMTP_USERNAME: process.env.SMTP_USERNAME || 'Your SMTP username',
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD || 'Your SMTP password',
 
     // Service-based authentication.
     // Delete what you don't need. For each of the services
