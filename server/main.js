@@ -1,4 +1,5 @@
 var config = require('./config');
+require('colors');
 
 // If there's no MongoDB database defined,
 // we fall back to a local implementation.
@@ -7,7 +8,7 @@ if (!config.DB_URI) {
     require('tungus');
 
     config.DB_URI = 'tingodb://' + __dirname + '/data';
-    console.log('\n✗ No MongoDB database defined. Using TingoDB.');
+    console.log('\n✗'.red + '  No MongoDB database defined. Using TingoDB.');
 }
 
 var app = require('./app'),
@@ -24,4 +25,4 @@ db.on('error', console.error.bind(console, 'connection error:'));
 // successful, start the application.
 db.once('open', app);
 
-console.log('✔ connected to %s\n', config.DB_URI);
+console.log('✔'.green + '  Connected to %s', config.DB_URI);

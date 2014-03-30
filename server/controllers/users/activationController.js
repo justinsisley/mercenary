@@ -2,11 +2,11 @@ var User = require('../../models/User');
 
 module.exports = {
     activateUser: function(req, res) {
-        if (!req.route || !req.route.params || !req.route.params[0]) {
+        if (!req.params || !req.params[0]) {
             res.redirect('/');
         }
 
-        var activationKey = req.route.params[0];
+        var activationKey = req.params[0];
 
         User.activate(activationKey, function(err) {
             if (err) {
