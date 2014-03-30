@@ -1,4 +1,5 @@
-var passport                = require('passport'),
+var config                  = require('../config'),
+    passport                = require('passport'),
     passportController      = require('../controllers/passportController'),
     baseController          = require('../controllers/baseController'),
     sessionController       = require('../controllers/users/sessionController'),
@@ -24,29 +25,37 @@ exports.router = function(server) {
     server.post('/logout', logoutController);
 
     // Third-party authentication
-    server.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-    server.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
+    if (config.AUTH_FACEBOOK_ENABLED) {
+        server.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+        server.get('/auth/facebook/callback', passport.authenticate('facebook', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        }));
+    }
 
-    server.get('/auth/google', passport.authenticate('google', {scope: 'profile email'}));
-    server.get('/auth/google/callback', passport.authenticate('google', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
+    if (config.AUTH_GOOGLE_ENABLED) {
+        server.get('/auth/google', passport.authenticate('google', {scope: 'profile email'}));
+        server.get('/auth/google/callback', passport.authenticate('google', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        }));
+    }
 
-    server.get('/auth/twitter', passport.authenticate('twitter'));
-    server.get('/auth/twitter/callback', passport.authenticate('twitter', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
+    if (config.AUTH_TWITTER_ENABLED) {
+        server.get('/auth/twitter', passport.authenticate('twitter'));
+        server.get('/auth/twitter/callback', passport.authenticate('twitter', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        }));
+    }
     
-    server.get('/auth/github', passport.authenticate('github'));
-    server.get('/auth/github/callback', passport.authenticate('github', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
+    if (config.AUTH_GITHUB_ENABLED) {
+        server.get('/auth/github', passport.authenticate('github'));
+        server.get('/auth/github/callback', passport.authenticate('github', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        }));
+    }
 
     // Route all other requests to the base controller.
     server.get('*', baseController);

@@ -74,6 +74,7 @@ module.exports = {
     // account and get the necessary information and either 
     // set the appropriate environment variables or fill in
     // the values as strings below.
+    AUTH_FACEBOOK_ENABLED: true,
     AUTH_FACEBOOK: {
         clientID            : process.env.FACEBOOK_CLIENT_ID || 'Your App ID',
         clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || 'Your App Secret',
@@ -81,6 +82,7 @@ module.exports = {
         passReqToCallback   : true
     },
 
+    AUTH_GOOGLE_ENABLED: true,
     AUTH_GOOGLE: {
         clientID            : process.env.GOOGLE_CLIENT_ID || 'Your Client ID',
         clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'Your Client Secret',
@@ -88,6 +90,7 @@ module.exports = {
         passReqToCallback   : true
     },
 
+    AUTH_TWITTER_ENABLED: true,
     AUTH_TWITTER: {
         consumerKey         : process.env.TWITTER_CONSUMER_KEY || 'Your Consumer Key',
         consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'Your Consumer Secret',
@@ -95,6 +98,7 @@ module.exports = {
         passReqToCallback   : true
     },
     
+    AUTH_GITHUB_ENABLED: true,
     AUTH_GITHUB: {
         clientID            : process.env.GITHUB_CLIENT_ID || 'Your Client ID',
         clientSecret        : process.env.GITHUB_CLIENT_SECRET || 'Your Client Secret',

@@ -15,7 +15,7 @@ define([
 
         // Instantiate router(s)
         App.routers = {
-            baseRouter : new BaseRouter()
+            baseRouter: new BaseRouter()
         };
 
         // Start Backbone.history
