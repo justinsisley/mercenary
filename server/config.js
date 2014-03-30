@@ -18,6 +18,14 @@ module.exports = {
 
     SESSION_SECRET: process.env.SESSION_SECRET || 'Your session secret',
 
+    // Log all request information to the console.
+    LOG_REQUESTS: false,
+
+    // Toggle the logging of leaks and garbage collection activity.
+    // By default, these simply log to the console.
+    LOG_GARBAGE: false,
+    LOG_LEAKS: false,
+
     WWW_ADDRESS: (function() {
         // If we're in a development environment, construct
         // the application's web address at run time based
@@ -40,11 +48,6 @@ module.exports = {
     // MONGOLAB_URI. Both ways work, but the environment
     // variables keeps your DB credentials out of the repository.
     DB_URI: process.env.MONGOLAB_URI || '',
-
-    // Toggle the logging of leaks and garbage collection activity.
-    // By default, these simply log to the console.
-    LOG_GARBAGE: true,
-    LOG_LEAKS: true,
 
     // If set to true, forces client-side JavaScript to
     // load the built JavaScript file. Useful for deployment testing.

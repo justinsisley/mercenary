@@ -43,7 +43,7 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
                 kind: 'facebook',
                 accessToken: accessToken
             });
-            
+
             user.profile.name = user.profile.name || profile.displayName;
             user.profile.gender = user.profile.gender || profile._json.gender;
             user.profile.picture = user.profile.picture || profile._json.profile_image_url;
@@ -59,25 +59,29 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
             if (existingUser) {
                 return done(null, existingUser);
             }
-            
-            var user = new User();
-            
-            user.email = profile._json.email;
-            user.facebook = profile.id;
-            
-            user.tokens.push({
-                kind: 'facebook',
-                accessToken: accessToken
-            });
-            
-            user.profile.name = profile.displayName;
-            user.profile.gender = profile._json.gender;
-            user.profile.picture = profile._json.profile_image_url;
 
-            user.active = true;
-            
-            user.save(function(err) {
-                done(err, user);
+            User.findOne({email: profile._json.email}, function(err, user) {
+                if (!user) {
+                    user = new User();
+                }
+
+                user.email = profile._json.email;
+                user.facebook = profile.id;
+                
+                user.tokens.push({
+                    kind: 'facebook',
+                    accessToken: accessToken
+                });
+                
+                user.profile.name = profile.displayName;
+                user.profile.gender = profile._json.gender;
+                user.profile.picture = profile._json.profile_image_url;
+
+                user.active = true;
+                
+                user.save(function(err) {
+                    done(err, user);
+                });
             });
         });
     }
@@ -108,25 +112,29 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
             if (existingUser) {
                 return done(null, existingUser);
             }
-            
-            var user = new User();
-            
-            user.email = profile._json.email;
-            user.google = profile.id;
-            
-            user.tokens.push({
-                kind: 'google',
-                accessToken: accessToken
-            });
-            
-            user.profile.name = profile.displayName;
-            user.profile.gender = profile._json.gender;
-            user.profile.picture = profile._json.picture;
 
-            user.active = true;
-            
-            user.save(function(err) {
-                done(err, user);
+            User.findOne({email: profile._json.email}, function(err, user) {
+                if (!user) {
+                    user = new User();
+                }
+
+                user.email = profile._json.email;
+                user.google = profile.id;
+                
+                user.tokens.push({
+                    kind: 'google',
+                    accessToken: accessToken
+                });
+                
+                user.profile.name = profile.displayName;
+                user.profile.gender = profile._json.gender;
+                user.profile.picture = profile._json.picture;
+
+                user.active = true;
+
+                user.save(function(err) {
+                    done(err, user);
+                });
             });
         });
     }
@@ -161,7 +169,6 @@ passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken,
             
             var user = new User();
             
-            user.email = profile.displayName;
             user.twitter = profile.id;
             
             user.tokens.push({
@@ -209,26 +216,30 @@ passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, r
             if (existingUser) {
                 return done(null, existingUser);
             }
-            
-            var user = new User();
-            
-            user.email = profile._json.email;
-            user.github = profile.id;
-            
-            user.tokens.push({
-                kind: 'github',
-                accessToken: accessToken
-            });
-            
-            user.profile.name = profile.displayName;
-            user.profile.picture = profile._json.avatar_url;
-            user.profile.location = profile._json.location;
-            user.profile.website = profile._json.blog;
 
-            user.active = true;
-            
-            user.save(function(err) {
-                done(err, user);
+            User.findOne({email: profile._json.email}, function(err, user) {
+                if (!user) {
+                    user = new User();
+                }
+
+                user.email = profile._json.email;
+                user.github = profile.id;
+                
+                user.tokens.push({
+                    kind: 'github',
+                    accessToken: accessToken
+                });
+                
+                user.profile.name = profile.displayName;
+                user.profile.picture = profile._json.avatar_url;
+                user.profile.location = profile._json.location;
+                user.profile.website = profile._json.blog;
+
+                user.active = true;
+                
+                user.save(function(err) {
+                    done(err, user);
+                });
             });
         });
     }

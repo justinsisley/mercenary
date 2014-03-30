@@ -69,11 +69,14 @@ module.exports = function() {
     // Establish development-only settings.
     if ('development' === config.ENV) {
         app.use(errorHandler());
-        app.use(logger());
 
         // When in development mode, serve static
         // content, such as JS, CSS and images.
         app.use(express.static(__dirname + '/../client'));
+    }
+
+    if (config.LOG_REQUESTS) {
+        app.use(logger());
     }
 
     // Establish production-only settings.

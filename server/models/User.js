@@ -1,7 +1,7 @@
 var config          = require('../config'),
+    emailController = require('../controllers/email/emailController'),
     mongoose        = require('mongoose'),
-    bcrypt          = require('bcrypt'),
-    emailController = require('../controllers/email/emailController');
+    bcrypt          = require('bcrypt');
 
 // Create a basic user schema
 var userSchema = mongoose.Schema({
