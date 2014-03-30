@@ -84,7 +84,7 @@ module.exports = function() {
 
     // Instantiate the base router by passing it a
     // reference to the Express application.
-    require('./routers/baseRouter').router(app);
+    require('./routers/baseRouter')(app);
 
     // Start listening on the specified port.
     app.listen(config.PORT);
