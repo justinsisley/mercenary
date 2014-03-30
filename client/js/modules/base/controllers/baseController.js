@@ -188,6 +188,10 @@ define([
             App.publicLayout = null;
 
             App.vent.trigger('baseController:showAppLayout');
+        },
+
+        notFound: function() {
+            return Backbone.history.navigate('/dashboard', true);
         }
     };
 });

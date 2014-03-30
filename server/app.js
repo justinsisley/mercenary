@@ -5,6 +5,8 @@ var packageJSON     = require('../package.json'),
     express         = require('express'),
     session         = require('express-session'),
     passport        = require('passport'),
+    apiRouter       = require('./routers/apiRouter'),
+    baseRouter      = require('./routers/baseRouter'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
     errorHandler    = require('errorhandler'),
@@ -82,12 +84,21 @@ module.exports = function() {
     // Establish production-only settings.
     // if ('production' === config.ENV) {}
 
-    // Instantiate the base router by passing it a
-    // reference to the Express application.
-    require('./routers/baseRouter')(app);
+    // Instantiate the API router.
+    // The user must be authenticated
+    // before they can access API routes.
+    // All routes in the API router will
+    // be prefixed with the '/api' path.
+    app.use('/api', apiRouter);
+
+    // Instantiate the base router after
+    // the API router, as the base router
+    // has a final catchall route.
+    app.use(baseRouter);
 
     // Start listening on the specified port.
     app.listen(config.PORT);
+
     console.log('✔'.green + '  %s is running in %s mode at ' + '%s:%d'.underline.green + '\n',
         packageJSON.title,
         config.ENV,

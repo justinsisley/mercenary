@@ -18,7 +18,10 @@ define([
             'login'     : 'login',
 
             // Authenticated routes
-            'dashboard' : 'dashboard'
+            'dashboard' : 'dashboard',
+
+            // 404
+            '*notfound' : 'notFound'
         }
     });
 });

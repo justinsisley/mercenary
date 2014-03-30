@@ -1,5 +1,4 @@
-var config = require('./config'),
-    app = require('./app');
+var config = require('./config');
     
 require('colors');
 
@@ -13,7 +12,8 @@ if (!config.DB_URI) {
     console.log('\n✗'.red + '  No MongoDB database defined. Using TingoDB.');
 }
 
-var mongoose = require('mongoose'),
+var app = require('./app'),
+    mongoose = require('mongoose'),
     db = mongoose.connection;
 
 // Initiate the DB connection
