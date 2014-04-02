@@ -1,17 +1,27 @@
 var packageJSON     = require('../package.json'),
     config          = require('./config'),
-    cons            = require('consolidate'),
+
+    // Middleware
     logger          = require('morgan'),
-    express         = require('express'),
     session         = require('express-session'),
     passport        = require('passport'),
-    apiRouter       = require('./routers/apiRouter'),
-    baseRouter      = require('./routers/baseRouter'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
     errorHandler    = require('errorhandler'),
     methodOverride  = require('method-override'),
+    
+    // Routers
+    apiRouter       = require('./routers/apiRouter'),
+    userRouter      = require('./routers/userRouter'),
+    authRouter      = require('./routers/authRouter'),
+    catchallRouter  = require('./routers/catchallRouter'),
+
+    // Express
+    express         = require('express'),
     app             = express(),
+
+    // Utils
+    cons            = require('consolidate'),
     memwatch;
 
 require('colors');
@@ -91,10 +101,24 @@ module.exports = function() {
     // be prefixed with the '/api' path.
     app.use('/api', apiRouter);
 
-    // Instantiate the base router after
-    // the API router, as the base router
-    // has a final catchall route.
-    app.use(baseRouter);
+    // Instantiate the users router.
+    // All routes in the user router will
+    // be prefixed with the '/users' path.
+    app.use('/users', userRouter);
+
+    // Instantiate the auth router.
+    // ALl routes in the auth router will
+    // be prefixed with the '/auth' path.
+    app.use('/auth', authRouter);
+
+    // Instantiate the "catchall" router
+    // after all other routes. If no previous
+    // route is matched, this router will
+    // serve up the application HTML file,
+    // which in turn will start the
+    // client-side application. The client's
+    // router will take over from there.
+    app.use(catchallRouter);
 
     // Start listening on the specified port.
     app.listen(config.PORT);

@@ -35,7 +35,7 @@ define([
     App.logout = function() {
         $.ajax({
             method: 'POST',
-            url: '/logout'
+            url: '/users/sign-out'
         }).done(function() {
             window.location = window.location.origin;
         });

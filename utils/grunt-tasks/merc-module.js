@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('merc-module', 'Creates a new client-side module.', function(name, layout, region) {
         if (!name) {
-            return showDocumentation();
+            return showDocumentation(grunt);
         }
 
         // Set default layout and region
@@ -31,46 +31,6 @@ module.exports = function(grunt) {
 
         grunt.log.ok(name + ' module created. Renders to ' + region + ' of ' + layout + '.');
     });
-
-    function showDocumentation() {
-        grunt.log.write('-----------------');
-        grunt.log.subhead('About merc-module');
-        grunt.log.writeln('-----------------');
-        grunt.log.writeln('merc-module automatically creates a new client-side module and all of its dependencies.');
-        grunt.log.writeln('');
-        grunt.log.writeln('After running merc-module, the following files will exist:');
-        grunt.log.writeln('- client/dust/[myNewModule]/[myNewModule].dust');
-        grunt.log.writeln('- client/js/modules/[myNewModule]/controllers/[myNewModule]Controller.js');
-        grunt.log.writeln('- client/js/modules/[myNewModule]/views/[myNewModule]View.js');
-        grunt.log.writeln('- client/less/modules/[myNewModule]/main.less');
-        grunt.log.writeln('');
-        grunt.log.writeln('The above files contain all of the basic functionality needed to render a new view.');
-        grunt.log.writeln('All you\'ll need to do is call the `show` method on [myNewModule]Controller.');
-        grunt.log.writeln('This is typically done from within the base controller, in response to navigation.');
-        grunt.log.writeln('');
-        grunt.log.writeln('--------------');
-        grunt.log.writeln('The Grunt Task');
-        grunt.log.writeln('--------------');
-        grunt.log.writeln('Syntax: grunt merc-module:[moduleName]:[layoutName]:[regionName]');
-        grunt.log.writeln('[moduleName] Required');
-        grunt.log.writeln('[layoutName] Optional (defaults to publicLayout)');
-        grunt.log.writeln('[regionName] Optional (defaults to mainRegion)');
-        grunt.log.writeln('__________________________________________________________________________________________________________');
-        grunt.log.writeln('');
-        grunt.log.writeln('1) grunt merc-module:myNewModule                          Creates a new module called "myNewModule".');
-        grunt.log.writeln('                                                          Will render in "mainRegion" of "publicLayout".');
-        grunt.log.writeln('__________________________________________________________________________________________________________');
-        grunt.log.writeln('');
-        grunt.log.writeln('2) grunt merc-module:myNewModule:myLayout                 Creates a new module called "myNewModule".');
-        grunt.log.writeln('                                                          Will render in "mainRegion" of "myLayout".');
-        grunt.log.writeln('__________________________________________________________________________________________________________');
-        grunt.log.writeln('');
-        grunt.log.writeln('3) grunt merc-module:myNewModule:myLayout:myRegion        Creates a new module called "myNewModule".');
-        grunt.log.writeln('                                                          Will render in "myRegion" of "myLayout".');
-        grunt.log.writeln('__________________________________________________________________________________________________________');
-        grunt.log.writeln('');
-        grunt.fail.fatal('Please provide a module name.');
-    }
 };
 
 /*
@@ -114,4 +74,44 @@ function controllerTemplate(name, layout, region) {
 
 function lessTemplate(name) {
     return "." + name + " {\n" + tab + "\n}";
+}
+
+function showDocumentation(grunt) {
+    grunt.log.write('-----------------');
+    grunt.log.subhead('About merc-module');
+    grunt.log.writeln('-----------------');
+    grunt.log.writeln('merc-module automatically creates a new client-side module and all of its dependencies.');
+    grunt.log.writeln('');
+    grunt.log.writeln('After running merc-module, the following files will exist:');
+    grunt.log.writeln('- client/dust/[myNewModule]/[myNewModule].dust');
+    grunt.log.writeln('- client/js/modules/[myNewModule]/controllers/[myNewModule]Controller.js');
+    grunt.log.writeln('- client/js/modules/[myNewModule]/views/[myNewModule]View.js');
+    grunt.log.writeln('- client/less/modules/[myNewModule]/main.less');
+    grunt.log.writeln('');
+    grunt.log.writeln('The above files contain all of the basic functionality needed to render a new view.');
+    grunt.log.writeln('All you\'ll need to do is call the `show` method on [myNewModule]Controller.');
+    grunt.log.writeln('This is typically done from within the base controller, in response to navigation.');
+    grunt.log.writeln('');
+    grunt.log.writeln('--------------');
+    grunt.log.writeln('The Grunt Task');
+    grunt.log.writeln('--------------');
+    grunt.log.writeln('Syntax: grunt merc-module:[moduleName]:[layoutName]:[regionName]');
+    grunt.log.writeln('[moduleName] Required');
+    grunt.log.writeln('[layoutName] Optional (defaults to publicLayout)');
+    grunt.log.writeln('[regionName] Optional (defaults to mainRegion)');
+    grunt.log.writeln('__________________________________________________________________________________________________________');
+    grunt.log.writeln('');
+    grunt.log.writeln('1) grunt merc-module:myNewModule                          Creates a new module called "myNewModule".');
+    grunt.log.writeln('                                                          Will render in "mainRegion" of "publicLayout".');
+    grunt.log.writeln('__________________________________________________________________________________________________________');
+    grunt.log.writeln('');
+    grunt.log.writeln('2) grunt merc-module:myNewModule:myLayout                 Creates a new module called "myNewModule".');
+    grunt.log.writeln('                                                          Will render in "mainRegion" of "myLayout".');
+    grunt.log.writeln('__________________________________________________________________________________________________________');
+    grunt.log.writeln('');
+    grunt.log.writeln('3) grunt merc-module:myNewModule:myLayout:myRegion        Creates a new module called "myNewModule".');
+    grunt.log.writeln('                                                          Will render in "myRegion" of "myLayout".');
+    grunt.log.writeln('__________________________________________________________________________________________________________');
+    grunt.log.writeln('');
+    grunt.fail.fatal('Please provide a module name.');
 }

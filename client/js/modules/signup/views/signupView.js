@@ -45,7 +45,7 @@ define([
 
             $.ajax({
                 type: 'POST',
-                url: '/signup',
+                url: '/users/sign-up',
                 data: {
                     email: email,
                     password: password

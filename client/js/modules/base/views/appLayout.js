@@ -1,3 +1,7 @@
+/**
+ * The logged-in, authenticated layout.
+ */
+
 define([
     'marionette',
     

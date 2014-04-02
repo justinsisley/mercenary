@@ -13,8 +13,9 @@
  * you to switch between two different layouts.
  * Mercenary has two layouts by default: the public
  * layout, shown to unauthenticated users, and the
- * app layout, which is for logged in users only.
+ * app layout, which is for logged-in users only.
  */
+
 define([
     'app',
 
@@ -51,6 +52,7 @@ define([
     dashboardController
 ) {
     return {
+        // Show the public home page.
         home: function() {
             this.showPublicLayout();
 
@@ -60,6 +62,7 @@ define([
             App.vent.trigger('baseController:home');
         },
 
+        // Show the public features page.
         features: function() {
             this.showPublicLayout();
 
@@ -69,6 +72,7 @@ define([
             App.vent.trigger('baseController:features');
         },
 
+        // Show the signup page.
         signup: function() {
             this.showPublicLayout();
 
@@ -78,6 +82,7 @@ define([
             App.vent.trigger('baseController:signup');
         },
 
+        // Show the login page.
         login: function() {
             this.showPublicLayout();
 
@@ -87,6 +92,7 @@ define([
             App.vent.trigger('baseController:login');
         },
 
+        // Show the logged-in dashboard.
         dashboard: function() {
             if (!App.vars.user) {
                 return Backbone.history.navigate('/login', true);
@@ -100,6 +106,9 @@ define([
             App.vent.trigger('baseController:dashboard');
         },
 
+        // Configures the app for the "public",
+        // unauthenticated "mode". Each "mode"
+        // has a distinct layout.
         showPublicLayout: function() {
             // Prevent re-rendering of the
             // public layout if it is
@@ -108,7 +117,7 @@ define([
                 return false;
             }
 
-            // If we've gotten past the above
+            // If we've made it past the above
             // check, we create a new public
             // layout, then set it as a property
             // on App to make it accessible across
@@ -117,21 +126,21 @@ define([
 
             // Add a unique class to the body to allow
             // for fully-independent styling between
-            // the public layout and the app layout
+            // the public layout and the app layout.
             $('body').removeClass('app-layout').addClass('public-layout');
 
             // Show the public layout in the
             // application's main content region.
             App.mainContentRegion.show(App.publicLayout);
 
-            // Show the public header
+            // Show the public header.
             publicHeaderController.show();
 
-            // Show the public footer
+            // Show the public footer.
             publicFooterController.show();
 
             // Since we're showing the public layout,
-            // we'll attempt to close the app layout
+            // we'll attempt to close the app layout,
             // if it exists.
             if (App.appLayout && App.appLayout.close) {
                 App.appLayout.close();
@@ -145,6 +154,11 @@ define([
             App.vent.trigger('baseController:showPublicLayout');
         },
 
+        // Configures the app for the logged-in,
+        // or authenticated "mode".
+        // This mode has a different layout
+        // than the "public mode", with a sidebar
+        // and no footer.
         showAppLayout: function() {
             // Prevent re-rendering of the
             // app layout if it is
@@ -153,7 +167,7 @@ define([
                 return false;
             }
 
-            // If we've gotten past the above
+            // If we've made it past the above
             // check, we create a new app layout,
             // then set it as a property on App 
             // to make it accessible across the 
@@ -162,17 +176,17 @@ define([
 
             // Add a unique class to the body to allow
             // for fully-independent styling between
-            // the public layout and the app layout
+            // the public layout and the app layout.
             $('body').removeClass('public-layout').addClass('app-layout');
 
             // Show the app layout in the
             // application's main content region.
             App.mainContentRegion.show(App.appLayout);
 
-            // Show the authenticated app header
+            // Show the authenticated app header.
             appHeaderController.show();
 
-            // Show the authenticated app sidebar
+            // Show the authenticated app sidebar.
             sidebarController.show();
 
             // Since we're showing the app layout,
@@ -190,6 +204,16 @@ define([
             App.vent.trigger('baseController:showAppLayout');
         },
 
+        // The requested page wasn't found.
+        // This usually happens when a user
+        // tries to navigate directly to a page
+        // that doesn't have a route.
+        // In this case, we're sending them
+        // to the dashboard. If they're logged
+        // in, the dashboard view will render,
+        // otherwise, they'll be redirected
+        // to the login page.
+        // This could also render a 404 page.
         notFound: function() {
             return Backbone.history.navigate('/dashboard', true);
         }

@@ -31,8 +31,12 @@ define([
     $.ajax({
         url: '/session',
     }).always(function(response) {
+        // We always start the app.
         App.start();
 
+        // If the session fetch was successful,
+        // put the returned user data in our local
+        // object and navigate to the dashboard.
         if (response && response.status === 'success') {
             App.vars.user = response.user;
             

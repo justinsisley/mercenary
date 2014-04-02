@@ -53,7 +53,7 @@ define([
 
             $.ajax({
                 type: 'POST',
-                url: '/login',
+                url: '/users/sign-in',
                 data: {
                     email: email,
                     password: password

@@ -1,3 +1,7 @@
+/**
+ * The public layout.
+ */
+
 define([
     'marionette',
     
