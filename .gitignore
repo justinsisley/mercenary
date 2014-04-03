@@ -27,9 +27,6 @@ client/vendor/*
 !client/vendor/readme.md
 !client/vendor/_nonBower
 
-# Built files
-client/css/style.css
-
 # Plato report files
 reports
 
