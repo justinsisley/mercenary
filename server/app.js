@@ -79,7 +79,7 @@ module.exports = function() {
     app.set('views', __dirname + '/dust');
 
     // Establish development-only settings.
-    if ('development' === config.ENV) {
+    if ('development' === config.ENV || true === config.FORCE_DEV_ASSETS) {
         app.use(errorHandler());
 
         // When in development mode, serve static

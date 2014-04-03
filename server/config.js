@@ -50,9 +50,17 @@ module.exports = {
     // variables keeps your DB credentials out of the repository.
     DB_URI: process.env.MONGOLAB_URI || '',
 
-    // If set to true, forces client-side JavaScript to
-    // load the built JavaScript file. Useful for deployment testing.
-    FORCE_PRD_JAVASCRIPT: false,
+    // If set to true, forces client-side JavaScript and
+    // CSS to load in their unbuilt, unminified states.
+    // This also means JavaScript is loaded via AMD.
+    FORCE_DEV_ASSETS: true,
+
+    // If set to true, forces client-side JavaScript and
+    // CSS to load in their compiled and minified states.
+    // Useful for testing built files locally.
+    // This will override FORCE_DEV_ASSETS, so if both
+    // are set to true, FORCE_PRD_ASSETS will win.
+    FORCE_PRD_ASSETS: false,
 
     // Amazon S3 settings for pushing compiled and minified
     // static assets to CDN. Used by grunt-s3 task.

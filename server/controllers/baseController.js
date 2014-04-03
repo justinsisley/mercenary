@@ -3,26 +3,39 @@ var _           = require('underscore'),
     packageJSON = require('../../package.json');
 
 module.exports = function(req, res) {
-    if ('development' === config.ENV) {
-        res.render('app', _.extend(config, {
-            // This lets you use the production JavaScript
-            // while in development mode. If you're trying
-            // to test this, change the "FORCE_PRD_JAVASCRIPT"
-            // setting in server/config.js.
-            development: config.FORCE_PRD_JAVASCRIPT ? false : true
-        }));
-    } else {
+    _.extend(config, {
+        domain              : config.DOMAIN,
+        cdnDomain           : config.CDN_DOMAIN,
+        javascriptVersion   : packageJSON.javascriptVersion,
+        cssVersion          : packageJSON.cssVersion,
+        fontVersion         : packageJSON.fontVersion
+    });
+
+    // If this is a non-development environment,
+    // we provide a Google Analytics tracker ID.
+    if ('development' !== config.ENV) {
         _.extend(config, {
-            cdnDomain           : config.CDN_DOMAIN,
-            googleAnalytics     : config.GOOGLE_ANALYTICS,
-            domain              : config.DOMAIN,
-
-            // Static asset versions
-            javascriptVersion   : packageJSON.javascriptVersion,
-            cssVersion          : packageJSON.cssVersion,
-            fontVersion         : packageJSON.fontVersion
+            googleAnalytics: config.GOOGLE_ANALYTICS
         });
-
-        res.render('app', config);
     }
+
+    // If this is a development environment, or
+    // we want to force development "mode", we
+    // we tell the template to use the unbuilt,
+    // unminified JavaScript and CSS assets.
+    if ('development' === config.ENV || true === config.FORCE_DEV_ASSETS) {
+        _.extend(config, {
+            development: true
+        });
+    }
+
+    // If we want to force production "mode" and
+    // serve compiled and minified assets, we
+    // tell the template that we're not in
+    // development mode.
+    if (true === config.FORCE_PRD_ASSETS) {
+        config.development = false;
+    }
+
+    res.render('app', config);
 };
