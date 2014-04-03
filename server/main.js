@@ -26,4 +26,4 @@ db.on('error', console.error.bind(console, 'connection error:'));
 // successful, start the application.
 db.once('open', app);
 
-console.log('✔'.green + '  Connected to %s', config.DB_URI);
+console.log('✔'.green + '  Connected to "%s"', config.DB_URI);

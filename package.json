@@ -19,6 +19,7 @@
     "tungus": "0.0.2",
     "bcrypt": "0.7.7",
     "morgan": "^1.0.0",
+    "colors": "^0.6.2",
     "mongoose": "3.8.8",
     "underscore": "1.6.0",
     "nodemailer": "^0.6.1",
@@ -39,7 +40,6 @@
     "passport-google-oauth": "0.1.5"
   },
   "devDependencies": {
-    "colors": "^0.6.2",
     "memwatch": "0.2.2",
     "connect": "2.14.3",
     "grunt": "0.4.4",
@@ -58,6 +58,6 @@
     "grunt-contrib-requirejs": "0.4.3"
   },
   "engines": {
-    "node": ">=0.10.26"
+    "node": "0.10.26"
   }
 }

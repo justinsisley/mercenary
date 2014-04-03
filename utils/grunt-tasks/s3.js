@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
-    var packageJSON = require('../../package.json');
+    var packageJSON = require('../../package.json'),
+        config = require('../../server/config');
     
     grunt.config('s3', {
         options: {

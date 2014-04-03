@@ -12,8 +12,8 @@
             <link rel="stylesheet" href="/fonts/fontello/css/fontello.css">
             <link rel="stylesheet" href="/css/style.css">
         {:else}
-            <link rel="stylesheet" href="http://cdn.domain.com/fonts/fonts.{fontVersion}.css">
-            <link rel="stylesheet" href="http://cdn.domain.com/css/style.{cssVersion}.css">
+            <link rel="stylesheet" href="http://{cdnDomain}/fonts/fonts.{fontVersion}.css">
+            <link rel="stylesheet" href="http://{cdnDomain}/css/style.{cssVersion}.css">
         {/development}
     </head>
 
@@ -27,7 +27,7 @@
             <script src="/js/config.js"></script>
             <script>require(['main'])</script>
         {:else}
-            <script src="http://cdn.domain.com/js/app.{javascriptVersion}.js"></script>
+            <script src="http://{cdnDomain}/js/app.{javascriptVersion}.js"></script>
         {/development}
 
         {?google_analytics}
@@ -36,7 +36,7 @@
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create', '{googleAnalytics}', 'domain.com');
+            ga('create', '{googleAnalytics}', '{domain}');
             ga('send', 'pageview');
             </script>
         {/google_analytics}

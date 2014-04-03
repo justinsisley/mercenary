@@ -126,7 +126,7 @@ module.exports = function() {
     console.log('✔'.green + '  %s is running in %s mode at ' + '%s:%d'.underline.green + '\n',
         packageJSON.title,
         config.ENV,
-        config.WWW_ADDRESS,
+        'http://' + config.DOMAIN,
         config.PORT
     );
 };

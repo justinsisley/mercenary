@@ -20,9 +20,14 @@ module.exports = {
                     console.log(err);
                 }
 
-                console.log(newUser);
-
-                return res.json({status: 'success'});
+                return res.json({
+                    status: 'success',
+                    user: {
+                        email: newUser.email,
+                        profile: newUser.profile,
+                        active: newUser.active
+                    }
+                });
             });
         });
     },

@@ -10,11 +10,10 @@
  * and the "os" module are used to help figure some
  * things out.
  */
-var packageJSON = require('../package.json');
 
 module.exports = {
     PORT: process.env.PORT || 8743,
-    ENV: process.env.ENV || 'development',
+    ENV: process.env.NODE_ENV || 'development',
 
     SESSION_SECRET: process.env.SESSION_SECRET || 'Your session secret',
 
@@ -26,18 +25,20 @@ module.exports = {
     LOG_GARBAGE: false,
     LOG_LEAKS: false,
 
-    WWW_ADDRESS: (function() {
+    DOMAIN: (function() {
         // If we're in a development environment, construct
         // the application's web address at run time based
         // on the system's host name.
-        if (!process.env.ENV || process.env.ENV === 'development') {
-            return 'http://127.0.0.1';
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            return '127.0.0.1';
         }
 
         // If we're not in development, use the home page
         // property in the package.json file.
         // You could also hard-code this to suit your needs.
-        return packageJSON.homepage;
+        // If you're using Heroku, this should be your 
+        // Heroku domain.
+        return 'mercenary-app.herokuapp.com';
     })(),
 
     // By default, this is configured to work out of the
@@ -52,6 +53,15 @@ module.exports = {
     // If set to true, forces client-side JavaScript to
     // load the built JavaScript file. Useful for deployment testing.
     FORCE_PRD_JAVASCRIPT: false,
+
+    // Amazon S3 settings for pushing compiled and minified
+    // static assets to CDN. Used by grunt-s3 task.
+    AMAZON_S3_KEY: 'Your S3 key',
+    AMAZON_S3_SECRET: 'Your S3 secret',
+    AMAZON_S3_BUCKET: 'Your S3 bucket',
+
+    // CDN domain where your static assets are hosted.
+    CDN_DOMAIN: 'Your CDN domain',
 
     // Set up a Google Analytics and add your tracker ID.
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'UA-########-#',

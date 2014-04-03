@@ -13,7 +13,9 @@ module.exports = function(req, res) {
         }));
     } else {
         _.extend(config, {
+            cdnDomain           : config.CDN_DOMAIN,
             googleAnalytics     : config.GOOGLE_ANALYTICS,
+            domain              : config.DOMAIN,
 
             // Static asset versions
             javascriptVersion   : packageJSON.javascriptVersion,

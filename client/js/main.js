@@ -29,7 +29,7 @@ define([
     // then start the application in the
     // appropriate state.
     $.ajax({
-        url: '/session',
+        url: '/users/session',
     }).always(function(response) {
         // We always start the app.
         App.start();
