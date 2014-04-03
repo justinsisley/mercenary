@@ -53,6 +53,9 @@ module.exports = {
     // If set to true, forces client-side JavaScript and
     // CSS to load in their unbuilt, unminified states.
     // This also means JavaScript is loaded via AMD.
+    // When set to true, the application can be deployed
+    // straight to Heroku without making any changes or
+    // setting up any additional accounts.
     FORCE_DEV_ASSETS: true,
 
     // If set to true, forces client-side JavaScript and
@@ -64,6 +67,7 @@ module.exports = {
 
     // Amazon S3 settings for pushing compiled and minified
     // static assets to CDN. Used by grunt-s3 task.
+    // Using a CDN for your compiled assets is highly recommended.
     AMAZON_S3_KEY: 'Your S3 key',
     AMAZON_S3_SECRET: 'Your S3 secret',
     AMAZON_S3_BUCKET: 'Your S3 bucket',

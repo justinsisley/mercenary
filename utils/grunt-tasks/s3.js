@@ -4,9 +4,9 @@ module.exports = function(grunt) {
     
     grunt.config('s3', {
         options: {
-            key: '',
-            secret: '',
-            bucket: '',
+            key: config.AMAZON_S3_KEY,
+            secret:  config.AMAZON_S3_SECRET,
+            bucket:  config.AMAZON_S3_BUCKET,
             access: 'public-read',
             gzip: true,
             headers: {
