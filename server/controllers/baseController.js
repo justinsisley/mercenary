@@ -6,9 +6,9 @@ module.exports = function(req, res) {
     _.extend(config, {
         domain              : config.DOMAIN,
         cdnDomain           : config.CDN_DOMAIN,
-        javascriptVersion   : packageJSON.javascriptVersion,
         cssVersion          : packageJSON.cssVersion,
-        fontVersion         : packageJSON.fontVersion
+        fontVersion         : packageJSON.fontVersion,
+        javascriptVersion   : packageJSON.javascriptVersion
     });
 
     // If this is a non-development environment,
@@ -19,19 +19,19 @@ module.exports = function(req, res) {
         });
     }
 
-    // If this is a development environment, or
-    // we want to force development "mode", we
-    // we tell the template to use the unbuilt,
-    // unminified JavaScript and CSS assets.
+    // If this is a development environment or
+    // we want to force development assets, we
+    // we tell the app template that we're in
+    // development mode.
     if ('development' === config.ENV || true === config.FORCE_DEV_ASSETS) {
         _.extend(config, {
             development: true
         });
     }
 
-    // If we want to force production "mode" and
+    // If we want to force production mode and
     // serve compiled and minified assets, we
-    // tell the template that we're not in
+    // tell the app template that we're not in
     // development mode.
     if (true === config.FORCE_PRD_ASSETS) {
         config.development = false;
