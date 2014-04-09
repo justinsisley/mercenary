@@ -26,6 +26,9 @@ define([
     // Create a new Marionette application
     var App = new Marionette.Application();
 
+    // A place to store things
+    App.vars = {};
+
     // Set up the application regions
     App.addRegions({
         mainContentRegion: '#main-content'

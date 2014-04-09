@@ -78,6 +78,7 @@ module.exports = {
     // Set up a Google Analytics and add your tracker ID.
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'UA-########-#',
 
+    // The email address and name to send emails from.
     FROM_ADDRESS: process.env.FROM_ADDRESS || 'Mercenary App Framework <mercenaryapp@gmail.com>',
     FROM_NAME: process.env.FROM_NAME || 'Mercenary App Framework',
 
@@ -89,6 +90,8 @@ module.exports = {
     // SMTP settings used when sending mail via NodeMailer.
     // See https://github.com/andris9/Nodemailer for information
     // on what values belong here.
+    // If you're using Mandrill, you'll probably only need
+    // these for your development environment.
     SMTP_SERVICE: process.env.SMTP_SERVICE || 'Gmail',
     SMTP_USERNAME: process.env.SMTP_USERNAME || 'Your SMTP username',
     SMTP_PASSWORD: process.env.SMTP_PASSWORD || 'Your SMTP password',

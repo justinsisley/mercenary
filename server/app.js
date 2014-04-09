@@ -107,7 +107,7 @@ module.exports = function() {
     app.use('/users', userRouter);
 
     // Instantiate the auth router.
-    // ALl routes in the auth router will
+    // All routes in the auth router will
     // be prefixed with the '/auth' path.
     app.use('/auth', authRouter);
 
