@@ -63,7 +63,7 @@ module.exports = {
     // Useful for testing built files locally.
     // This will override FORCE_DEV_ASSETS, so if both
     // are set to true, FORCE_PRD_ASSETS will win.
-    FORCE_PRD_ASSETS: true,
+    FORCE_PRD_ASSETS: false,
 
     // Static asset versions. Don't edit these directly.
     // They'll automatically update when corresponding
