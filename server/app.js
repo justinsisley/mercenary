@@ -1,5 +1,4 @@
-var packageJSON     = require('../package.json'),
-    config          = require('./config'),
+var config          = require('./config'),
 
     // Middleware
     logger          = require('morgan'),
@@ -123,8 +122,7 @@ module.exports = function() {
     // Start listening on the specified port.
     app.listen(config.PORT);
 
-    console.log('✔'.green + '  %s is running in %s mode at ' + '%s:%d'.underline.green + '\n',
-        packageJSON.title,
+    console.log('✔'.green + '  Server is running in %s mode at ' + '%s:%d'.underline.green + '\n',
         config.ENV,
         'http://' + config.DOMAIN,
         config.PORT

@@ -1,14 +1,13 @@
-var _           = require('underscore'),
-    config      = require('../config'),
-    packageJSON = require('../../package.json');
+var _       = require('underscore'),
+    config  = require('../config');
 
 module.exports = function(req, res) {
     _.extend(config, {
         domain              : config.DOMAIN,
         cdnDomain           : config.CDN_DOMAIN,
-        cssVersion          : packageJSON.cssVersion,
-        fontVersion         : packageJSON.fontVersion,
-        javascriptVersion   : packageJSON.javascriptVersion
+        cssVersion          : config.CSS_VERSION,
+        fontVersion         : config.FONT_VERSION,
+        javascriptVersion   : config.JAVASCRIPT_VERSION
     });
 
     // If this is a non-development environment,

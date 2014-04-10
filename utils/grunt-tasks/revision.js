@@ -5,29 +5,30 @@ module.exports = function(grunt) {
     var fs = require('fs');
 
     grunt.registerTask('revision', 'Increment the revision number.', function(type) {
-        var PACKAGE_FILE = 'package.json',
+        var CONFIG_FILE = 'server/config.js',
             FONT_CSS_FILE = 'client/css/fonts.css',
-            packageFile = grunt.file.read(PACKAGE_FILE),
+            packageFile = grunt.file.read(CONFIG_FILE),
             revision;
 
         function bump(pattern) {
-            var regex = new RegExp("([\\\'|\\\"]" + pattern + "[\\\'|\\\"][ ]*:[ ]*[\\\'|\\\"])([\\\d|.|,]*)([\\\'|\\\"])", 'i');
+            var regex = new RegExp("(" + pattern + "[ ]*:[ ]*)([0-9|A-a|.|-]*)", 'i');
 
-            var packageFileContents = packageFile.replace(regex, function(match, left, center, right) {
+            var packageFileContents = packageFile.replace(regex, function(match, left, center) {
                 center = center.replace('.', '');
                 center = center.replace(',', '');
 
                 revision = ++center;
 
-                return left + revision + right;
+                return left + revision;
             });
 
-            grunt.file.write(PACKAGE_FILE, packageFileContents);
+            grunt.file.write(CONFIG_FILE, packageFileContents);
         }
 
+        // FIXME
         function fontFolders() {
             // Need to get the most up to date version of package.json
-            var packageFile = grunt.file.read(PACKAGE_FILE),
+            var packageFile = grunt.file.read(CONFIG_FILE),
                 regex = new RegExp("([\\\'|\\\"]revisionCSSfont[\\\'|\\\"][ ]*:[ ]*[\\\'|\\\"])([\\\d|.|,]*)([\\\'|\\\"])", 'i'),
                 version = packageFile.match(regex)[2],
                 fontCSSfile = grunt.file.read(FONT_CSS_FILE),
@@ -41,15 +42,15 @@ module.exports = function(grunt) {
         }
 
         if (type === 'js') {
-            bump('javascriptVersion');
+            bump('JAVASCRIPT_VERSION');
             
             grunt.log.ok('JavaScript revision bumped to ' + revision);
         } else if (type === 'css') {
-            bump('cssVersion');
+            bump('CSS_VERSION');
             
             grunt.log.ok('CSS revision bumped to ' + revision);
         } else if (type === 'font') {
-            bump('fontVersion');
+            bump('FONT_VERSION');
             
             fontFolders();
             

@@ -63,7 +63,14 @@ module.exports = {
     // Useful for testing built files locally.
     // This will override FORCE_DEV_ASSETS, so if both
     // are set to true, FORCE_PRD_ASSETS will win.
-    FORCE_PRD_ASSETS: false,
+    FORCE_PRD_ASSETS: true,
+
+    // Static asset versions. Don't edit these directly.
+    // They'll automatically update when corresponding
+    // files change.
+    JAVASCRIPT_VERSION: 0,
+    CSS_VERSION: 0,
+    FONT_VERSION: 0,
 
     // Amazon S3 settings for pushing compiled and minified
     // static assets to CDN. Used by grunt-s3 task.
