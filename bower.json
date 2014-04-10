@@ -1,6 +1,6 @@
 {
   "name": "Mercenary",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "authors": [
     "Justin Sisley"
   ],
@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "chai": "1.9.0",
+    "sinon": "~1.9.1",
     "lodash": "2.4.1",
     "mocha": "1.18.2",
     "jquery": "2.1.0",

@@ -30,6 +30,7 @@ module.exports = function(grunt) {
         'concat:less',
         'recess',
         'less:prd',
+        'dustpile',
         'requirejs',
         's3',
         'clean:tmp'
