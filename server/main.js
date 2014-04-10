@@ -1,5 +1,4 @@
 var config = require('./config');
-    
 require('colors');
 
 // If there's no MongoDB database defined,
