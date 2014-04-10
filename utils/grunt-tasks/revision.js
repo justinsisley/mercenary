@@ -7,13 +7,13 @@ module.exports = function(grunt) {
     grunt.registerTask('revision', 'Increment the revision number.', function(type) {
         var CONFIG_FILE = 'server/config.js',
             FONT_CSS_FILE = 'client/css/fonts.css',
-            packageFile = grunt.file.read(CONFIG_FILE),
+            configFile = grunt.file.read(CONFIG_FILE),
             revision;
 
         function bump(pattern) {
             var regex = new RegExp("(" + pattern + "[ ]*:[ ]*)([0-9|A-a|.|-]*)", 'i');
 
-            var packageFileContents = packageFile.replace(regex, function(match, left, center) {
+            var configFileContents = configFile.replace(regex, function(match, left, center) {
                 center = center.replace('.', '');
                 center = center.replace(',', '');
 
@@ -22,15 +22,15 @@ module.exports = function(grunt) {
                 return left + revision;
             });
 
-            grunt.file.write(CONFIG_FILE, packageFileContents);
+            grunt.file.write(CONFIG_FILE, configFileContents);
         }
 
         // FIXME
         function fontFolders() {
             // Need to get the most up to date version of package.json
-            var packageFile = grunt.file.read(CONFIG_FILE),
+            var configFile = grunt.file.read(CONFIG_FILE),
                 regex = new RegExp("([\\\'|\\\"]revisionCSSfont[\\\'|\\\"][ ]*:[ ]*[\\\'|\\\"])([\\\d|.|,]*)([\\\'|\\\"])", 'i'),
-                version = packageFile.match(regex)[2],
+                version = configFile.match(regex)[2],
                 fontCSSfile = grunt.file.read(FONT_CSS_FILE),
                 fontCSSfileFind = new RegExp('fonts/icomoon', 'g'),
                 fontCSSfileReplace = 'fonts-' + version + '/icomoon',

@@ -34,4 +34,6 @@ module.exports = function(grunt) {
         's3',
         'clean:tmp'
     ]);
+
+    grunt.registerTask('deploy', ['cdn', 'gitcommit', 'gitpush']);
 };
