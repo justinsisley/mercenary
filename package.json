@@ -41,18 +41,19 @@
     "connect": "2.14.4",
     "grunt": "0.4.4",
     "grunt-bump": "0.0.13",
-    "grunt-shell": "0.6.4",
-    "grunt-strip": "0.2.1",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-concat": "0.4.0",
+    "grunt-contrib-connect": "0.7.1",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-less": "0.11.0",
+    "grunt-contrib-requirejs": "0.4.3",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-git": "^0.2.6",
     "grunt-plato": "1.0.0",
     "grunt-recess": "0.6.1",
     "grunt-s3": "0.2.0-alpha.3",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-contrib-clean": "0.5.0",
-    "grunt-contrib-less": "0.11.0",
-    "grunt-contrib-concat": "0.4.0",
-    "grunt-contrib-jshint": "0.10.0",
-    "grunt-contrib-connect": "0.7.1",
-    "grunt-contrib-requirejs": "0.4.3"
+    "grunt-shell": "0.6.4",
+    "grunt-strip": "0.2.1"
   },
   "engines": {
     "node": "0.10.26"
