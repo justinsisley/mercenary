@@ -54,67 +54,65 @@ define([
     return {
         // Show the public home page.
         home: function() {
-            this.showPublicLayout();
+            this.showPublicLayout(function() {
+                homeController.show();
 
-            homeController.show();
-
-            App.vent.trigger('domchange:title');
-            App.vent.trigger('baseController:home');
+                App.vent.trigger('domchange:title');
+                App.vent.trigger('baseController:home');
+            });
         },
 
         // Show the public features page.
         features: function() {
-            this.showPublicLayout();
+            this.showPublicLayout(function() {
+                featuresController.show();
 
-            featuresController.show();
-
-            App.vent.trigger('domchange:title', 'Features');
-            App.vent.trigger('baseController:features');
+                App.vent.trigger('domchange:title', 'Features');
+                App.vent.trigger('baseController:features');
+            });
         },
 
         // Show the signup page.
         signup: function() {
-            this.showPublicLayout();
+            this.showPublicLayout(function() {
+                signupController.show();
 
-            signupController.show();
-
-            App.vent.trigger('domchange:title', 'Sign Up');
-            App.vent.trigger('baseController:signup');
+                App.vent.trigger('domchange:title', 'Sign Up');
+                App.vent.trigger('baseController:signup');
+            });
         },
 
         // Show the login page.
         login: function() {
-            this.showPublicLayout();
+            this.showPublicLayout(function() {
+                loginController.show();
 
-            loginController.show();
-
-            App.vent.trigger('domchange:title', 'Log In');
-            App.vent.trigger('baseController:login');
+                App.vent.trigger('domchange:title', 'Log In');
+                App.vent.trigger('baseController:login');
+            });
         },
 
         // Show the logged-in dashboard.
         dashboard: function() {
-            if (!App.vars.user) {
-                return Backbone.history.navigate('/login', true);
-            }
+            this.showAppLayout(function() {
+                dashboardController.show();
 
-            this.showAppLayout();
-
-            dashboardController.show();
-
-            App.vent.trigger('domchange:title', 'Dashboard');
-            App.vent.trigger('baseController:dashboard');
+                App.vent.trigger('domchange:title', 'Dashboard');
+                App.vent.trigger('baseController:dashboard');
+            });
         },
 
         // Configures the app for the "public",
         // unauthenticated "mode". Each "mode"
         // has a distinct layout.
-        showPublicLayout: function() {
+        // Executes a callback once the layout
+        // has rendered.
+        showPublicLayout: function(callback) {
             // Prevent re-rendering of the
             // public layout if it is
             // currently visible.
             if (App.publicLayout) {
-                return false;
+                return callback && callback();
             }
 
             // If we've made it past the above
@@ -152,6 +150,8 @@ define([
             App.appLayout = null;
 
             App.vent.trigger('baseController:showPublicLayout');
+
+            return callback && callback();
         },
 
         // Configures the app for the logged-in,
@@ -159,12 +159,19 @@ define([
         // This mode has a different layout
         // than the "public mode", with a sidebar
         // and no footer.
-        showAppLayout: function() {
+        // Executes a callback once the layout
+        // has rendered.
+        showAppLayout: function(callback) {
+            // The user must be logged in to get here.
+            if (!App.vars.user) {
+                return Backbone.history.navigate('/login', true);
+            }
+
             // Prevent re-rendering of the
             // app layout if it is
             // currently visible.
             if (App.appLayout) {
-                return false;
+                return callback && callback();
             }
 
             // If we've made it past the above
@@ -202,6 +209,8 @@ define([
             App.publicLayout = null;
 
             App.vent.trigger('baseController:showAppLayout');
+
+            return callback && callback();
         },
 
         // The requested page wasn't found.

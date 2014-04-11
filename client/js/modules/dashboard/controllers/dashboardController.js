@@ -11,7 +11,7 @@ define([
 
             App.appLayout.mainRegion.show(dashboardView);
 
-            App.vent.trigger('dashboardController:showDashboard');
+            App.vent.trigger('dashboardController:show');
         }
     };
 });

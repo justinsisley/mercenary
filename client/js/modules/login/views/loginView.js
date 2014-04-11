@@ -2,13 +2,10 @@ define([
     'marionette',
     'validator',
 
-    'app',
     'modules/login/templates/login'
 ], function(
     Marionette,
-    validator,
-
-    App
+    validator
 ) {
     return Marionette.ItemView.extend({
         template: 'login/login',
@@ -30,13 +27,14 @@ define([
             if (window.location.search.indexOf('active=true') > 0) {
                 this.showSuccessMessage('Your account is now active.');
             }
+
+            if (window.location.search.indexOf('fail=true') > 0) {
+                this.showErrorMessage('Incorrect username/password combination.');
+            }
         },
 
-        formSubmitHandler: function(e) {
-            e.preventDefault();
-
-            var self = this,
-                email = this.ui.loginEmail.val(),
+        formSubmitHandler: function() {
+            var email = this.ui.loginEmail.val(),
                 password = this.ui.loginPassword.val();
 
             if (!email) {
@@ -50,30 +48,6 @@ define([
             if (!password) {
                 return this.showErrorMessage('You must provide a password.');
             }
-
-            $.ajax({
-                type: 'POST',
-                url: '/users/sign-in',
-                data: {
-                    email: email,
-                    password: password
-                }
-            }).done(function(response) {
-                if (response) {
-                    if (response.status === 'success') {
-                        App.vars.user = response.user;
-
-                        Backbone.history.navigate('/dashboard', true);
-                    } else {
-                        self.showErrorMessage(response.message);
-                    }
-                } else {
-                    self.showErrorMessage('Something went wrong. Please try again.');
-                }
-            }).fail(function(response) {
-                // You probably don't want to display this.
-                self.showErrorMessage('Fail: ' + response);
-            });
         },
 
         showSuccessMessage: function(message) {

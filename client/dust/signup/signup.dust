@@ -9,8 +9,8 @@
         
     <button class="btn btn-lg btn-primary btn-block" id="js-signup-submit" type="submit">Sign up</button>
 
-    <div class="alert alert-danger hidden" id="js-form-error-message"></div>
-    <div class="alert alert-success hidden" id="js-form-success-message"></div>
+    <div class="alert alert-danger hidden" id="js-form-error-message">&nbsp;</div>
+    <div class="alert alert-success hidden" id="js-form-success-message">&nbsp;</div>
 
     <p class="lead form-signup-social">Or, sign in via...</p>
 

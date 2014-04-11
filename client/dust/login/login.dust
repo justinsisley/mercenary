@@ -1,16 +1,16 @@
 <p class="lead">You're already using Mercenary.</p>
 <p class="sub-lead">Authentication is baked-in. Log in to see the dashboard.</p>
 
-<form class="form-signin" role="form">
+<form class="form-signin" role="form" action="/users/sign-in" method="post">
     <h3 class="form-signin-heading">Log in to your account</h3>
     
-    <input id="js-login-email" type="email" class="form-control" placeholder="Email address" required autofocus>    
-    <input id="js-login-password" type="password" class="form-control" placeholder="Password" required>
+    <input id="js-login-email" type="email" name="email" class="form-control" placeholder="Email address" autofocus>    
+    <input id="js-login-password" type="password" name="password" class="form-control" placeholder="Password">
 
     <button class="btn btn-lg btn-primary btn-block" id="js-login-submit" type="submit">Log in</button>
 
-    <div class="alert alert-danger hidden" id="js-form-error-message"></div>
-    <div class="alert alert-success hidden" id="js-form-success-message"></div>
+    <div class="alert alert-danger hidden" id="js-form-error-message">&nbsp;</div>
+    <div class="alert alert-success hidden" id="js-form-success-message">&nbsp;</div>
 
     <p class="lead form-signup-social">Or, sign in via...</p>
 

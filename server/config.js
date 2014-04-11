@@ -54,8 +54,10 @@ module.exports = {
     // This also means JavaScript is loaded via AMD.
     // When set to true, the application can be deployed
     // straight to Heroku without making any changes or
-    // setting up any additional accounts.
-    FORCE_DEV_ASSETS: true,
+    // setting up any additional accounts. That said,
+    // it's highly recommended that you concatenate,
+    // minify, and push assets to a CDN, like S3.
+    FORCE_DEV_ASSETS: false,
 
     // If set to true, forces client-side JavaScript and
     // CSS to load in their compiled and minified states.

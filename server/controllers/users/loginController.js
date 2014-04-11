@@ -9,10 +9,7 @@ module.exports = function(req, res, next) {
         if (!user) {
             console.log(info);
 
-            return res.json({
-                status: 'fail',
-                message: 'Incorrect username/password combination.'
-            });
+            return res.redirect('/login?fail=true');
         }
 
         if (user.active === false) {
@@ -27,10 +24,7 @@ module.exports = function(req, res, next) {
                 return next(err);
             }
 
-            return res.json({
-                status: 'success',
-                user: user
-            });
+            return res.redirect('/');
         });
     })(req, res, next);
 };
