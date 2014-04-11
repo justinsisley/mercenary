@@ -2,6 +2,15 @@ var packageJSON = require('../../package.json'),
     config = require('../../server/config');
 
 module.exports = function(grunt) {
+    grunt.config('gitcheckout', {
+        task: {
+            options: {
+                branch: 'deploy',
+                create: true
+            }
+        }
+    });
+
     grunt.config('gitcommit', {
         task: {
             options: {
