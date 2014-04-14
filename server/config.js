@@ -65,8 +65,8 @@ module.exports = {
     // Static asset versions. Don't edit these directly.
     // They'll automatically update when corresponding
     // files change.
-    JAVASCRIPT_VERSION: 101,
-    CSS_VERSION: 106,
+    JAVASCRIPT_VERSION: 0,
+    CSS_VERSION: 0,
 
     // Amazon S3 settings for pushing compiled and minified
     // static assets to the cloud. Used by grunt-s3 task.
