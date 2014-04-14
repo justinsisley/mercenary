@@ -2,9 +2,13 @@
  * Bootstraps the application
  */
 define([
+    'backbone',
+
     'app',
     'modules/base/routers/baseRouter'
 ], function(
+    Backbone,
+    
     App,
     BaseRouter
 ) {

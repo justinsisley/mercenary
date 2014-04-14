@@ -6,7 +6,6 @@ module.exports = function(req, res) {
         domain              : config.DOMAIN,
         cdnDomain           : config.CDN_DOMAIN,
         cssVersion          : config.CSS_VERSION,
-        fontVersion         : config.FONT_VERSION,
         javascriptVersion   : config.JAVASCRIPT_VERSION
     });
 

@@ -17,7 +17,6 @@ module.exports = function(grunt) {
 
     // Run the server with Node.
     grunt.registerTask('serve', ['shell:serve']);
-
     // Run the server with nodemon, restarting it when
     // any changes are made.
     grunt.registerTask('serve-dev', ['shell:serveDev']);
@@ -35,6 +34,4 @@ module.exports = function(grunt) {
         's3',
         'clean:tmp'
     ]);
-
-    grunt.registerTask('deploy', ['cdn', 'gitcommit', 'gitpush']);
 };

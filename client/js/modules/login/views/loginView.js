@@ -33,19 +33,17 @@ define([
             }
         },
 
-        formSubmitHandler: function() {
+        formSubmitHandler: function(e) {
             var email = this.ui.loginEmail.val(),
                 password = this.ui.loginPassword.val();
 
-            if (!email) {
-                return this.showErrorMessage('You must provide an email address.');
-            }
-
-            if (!validator.isEmail(email)) {
+            if (!email || !validator.isEmail(email)) {
+                e.preventDefault();
                 return this.showErrorMessage('Please provide a valid email address.');
             }
 
             if (!password) {
+                e.preventDefault();
                 return this.showErrorMessage('You must provide a password.');
             }
         },

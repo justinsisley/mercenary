@@ -4,13 +4,11 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
     'marionette',
     'dustMarionette'
 ], function(
     $,
     _,
-    Backbone,
     Marionette
 ) {
     // Create the initial markup we need and immediately insert

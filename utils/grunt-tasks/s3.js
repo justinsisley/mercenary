@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
-    var packageJSON = require('../../package.json'),
-        config = require('../../server/config');
+    var config = require('../../server/config');
     
     grunt.config('s3', {
         options: {
             key: config.AMAZON_S3_KEY,
             secret:  config.AMAZON_S3_SECRET,
             bucket:  config.AMAZON_S3_BUCKET,
+            region: config.AMAZON_S3_REGION,
             access: 'public-read',
             gzip: true,
             headers: {
@@ -14,26 +14,21 @@ module.exports = function(grunt) {
                 'Cache-Control': 'max-age=87091200000'
             }
         },
-        qa: {
+        cdn: {
             upload: [
                 {
                     src: 'tmp/app.js',
-                    dest: 'js/app.' + packageJSON.javascriptVersion + '.js',
+                    dest: 'js/app.' + config.JAVASCRIPT_VERSION + '.js',
                     gzip: true
                 },
                 {
                     src: 'client/css/style.css',
-                    dest: 'css/style.' + packageJSON.cssVersion + '.css',
+                    dest: 'css/style.' + config.CSS_VERSION + '.css',
                     gzip: true
                 },
                 {
-                    src: 'client/css/fonts.css',
-                    dest: 'css/fonts.' + packageJSON.fontVersion + '.css',
-                    gzip: true
-                },
-                {
-                    src: 'client/css/fonts-' + packageJSON.fontVersion + '/*',
-                    dest: 'css/fonts-' + packageJSON.fontVersion + '/',
+                    src: 'client/font/**',
+                    dest: 'font/',
                     gzip: true
                 }
             ]

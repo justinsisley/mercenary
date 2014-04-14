@@ -5,10 +5,6 @@
  * the server, they can get their values any way
  * you'd like, so you're certainly not tied to
  * any particular hosting provider.
- *
- * Some configurations are dynamic, so package.json
- * and the "os" module are used to help figure some
- * things out.
  */
 module.exports = {
     PORT: process.env.PORT || 8743,
@@ -56,7 +52,7 @@ module.exports = {
     // straight to Heroku without making any changes or
     // setting up any additional accounts. That said,
     // it's highly recommended that you concatenate,
-    // minify, and push assets to a CDN, like S3.
+    // minify, and push assets to a CDN.
     FORCE_DEV_ASSETS: false,
 
     // If set to true, forces client-side JavaScript and
@@ -69,19 +65,21 @@ module.exports = {
     // Static asset versions. Don't edit these directly.
     // They'll automatically update when corresponding
     // files change.
-    JAVASCRIPT_VERSION: 0,
-    CSS_VERSION: 0,
-    FONT_VERSION: 0,
+    JAVASCRIPT_VERSION: 101,
+    CSS_VERSION: 106,
 
     // Amazon S3 settings for pushing compiled and minified
-    // static assets to CDN. Used by grunt-s3 task.
-    // Using a CDN for your compiled assets is highly recommended.
-    AMAZON_S3_KEY: 'Your S3 key',
-    AMAZON_S3_SECRET: 'Your S3 secret',
-    AMAZON_S3_BUCKET: 'Your S3 bucket',
+    // static assets to the cloud. Used by grunt-s3 task.
+    AMAZON_S3_KEY: 'Your S3 Key',
+    AMAZON_S3_SECRET: 'Your S3 Secret',
+    AMAZON_S3_BUCKET: 'Your S3 Bucket',
+    AMAZON_S3_REGION: 'Your S3 Region (e.g. us-east-1)',
 
     // CDN domain where your static assets are hosted.
-    CDN_DOMAIN: 'Your CDN domain',
+    // If you're using S3, you're probably going to
+    // create a CloudFront distribution associated
+    // with your S3 bucket.
+    CDN_DOMAIN: 'Your CDN Domain',
 
     // Set up a Google Analytics and add your tracker ID.
     GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'UA-########-#',

@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width">
 
         {?development}
-            <link rel="stylesheet" href="/fonts/fontello/css/fontello.css">
+            <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css">
+            <link rel="stylesheet" href="/font/fontello/css/fontello.css">
             <link rel="stylesheet" href="/css/style.css">
         {:else}
-            <link rel="stylesheet" href="http://{cdnDomain}/fonts/fonts.{fontVersion}.css">
             <link rel="stylesheet" href="http://{cdnDomain}/css/style.{cssVersion}.css">
         {/development}
     </head>
