@@ -7,20 +7,20 @@
   "description": "The Force Multiplier Web Application Stack",
   "private": true,
   "dependencies": {
-    "chai": "1.9.0",
+    "chai": "1.9.1",
     "sinon": "~1.9.1",
     "lodash": "2.4.1",
     "mocha": "1.18.2",
     "jquery": "2.1.0",
-    "holderjs": "2.3.1",
+    "holderjs": "2.3.2",
     "backbone": "1.1.2",
     "bootstrap": "3.1.1",
     "requirejs": "2.1.11",
-    "validator-js": "~3.5.1",
-    "dustjs-linkedin": "2.3.3",
+    "validator-js": "~3.10.0",
+    "dustjs-linkedin": "2.3.4",
     "marionette-dust": "~0.1.6",
-    "backbone.marionette": "1.6.4",
-    "dustjs-linkedin-helpers": "1.1.2"
+    "backbone.marionette": "1.8.2",
+    "dustjs-linkedin-helpers": "1.2.0"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"
