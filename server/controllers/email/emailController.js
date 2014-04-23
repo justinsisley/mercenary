@@ -1,5 +1,4 @@
 var config          = require('../../../config'),
-    dust            = require('dustjs-linkedin'),
     mandrill        = require('node-mandrill')(process.env.MANDRILL_APIKEY || config.secrets.mandrillApiKey),
     nodemailer      = require('nodemailer'),
     smtpTransport   = nodemailer.createTransport('SMTP', {
@@ -11,15 +10,18 @@ var config          = require('../../../config'),
     });
 
 module.exports = {
-    // Take an object and interpolate
-    // it into the dust template.
+    // Render a Dust template
     renderTemplate: function(templateName, data, callback) {
-        dust.render(templateName, data, function(err, out) {
+        // Load the initialized Express app
+        // so we can use its `render` method.
+        var app = require('../../app').app;
+
+        app.render(templateName, data, function(err, out) {
             if (err) {
                 return callback && callback(err);
             }
 
-            return callback && callback(err, out);
+            return callback && callback(null, out);
         });
     },
 
@@ -48,7 +50,7 @@ module.exports = {
                 return callback && callback(err);
             }
 
-            return callback && callback(err, res);
+            return callback && callback(null, res);
         });
     },
 
@@ -66,7 +68,7 @@ module.exports = {
                 return callback && callback(err);
             }
 
-            return callback && callback(err, res);
+            return callback && callback(null, res);
         });
     }
 };

@@ -23,6 +23,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 // Once the connection to the DB is
 // successful, start the application.
-db.once('open', app);
+db.once('open', app.start);
 
 console.log('✔'.green + '  Connected to "%s"', process.env.MONGOLAB_URI || config.secrets.mongoDbUri);

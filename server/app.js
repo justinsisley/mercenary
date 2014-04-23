@@ -25,107 +25,117 @@ var config          = require('../config'),
 
 require('colors');
 
-module.exports = function() {
-    // Log memory leaks and garbage collection
-    // events to the console using Memwatch
-    if (config.settings.logging.memory || config.settings.logging.garbage) {
-        memwatch = require('memwatch');
+var mercenary = {
+    start: function() {
+        // Log memory leaks and garbage collection
+        // events to the console using Memwatch
+        if (config.settings.logging.memory || config.settings.logging.garbage) {
+            memwatch = require('memwatch');
 
-        // Log memory leaks
-        if (config.settings.logging.memory) {
-            memwatch.on('leak', function(info) {
-                console.log('memwatch:leak', info);
-            });
+            // Log memory leaks
+            if (config.settings.logging.memory) {
+                memwatch.on('leak', function(info) {
+                    console.log('memwatch:leak', info);
+                });
+            }
+
+            // Log garbage collection events
+            if (config.settings.logging.garbage) {
+                memwatch.on('stats', function(stats) {
+                    console.log('memwatch:garbage', stats);
+                });
+            }
         }
 
-        // Log garbage collection events
-        if (config.settings.logging.garbage) {
-            memwatch.on('stats', function(stats) {
-                console.log('memwatch:garbage', stats);
-            });
+        // Parses the Cookie header field and populates
+        // req.cookies with an object keyed by the cookie names
+        app.use(cookieParser());
+
+        // Establish a session secret token.
+        app.use(session({
+            key: 'mercenary.sid',
+            secret: process.env.SESSION_SECRET || config.secrets.sessionSecret
+        }));
+
+        // Request body parsing middleware supporting JSON,
+        // urlencoded, and multipart requests
+        app.use(bodyParser());
+
+        // Simulate DELETE and PUT
+        app.use(methodOverride());
+
+        // Passport authentication
+        app.use(passport.initialize());
+        app.use(passport.session());
+
+        // Use consolidate to make Dust work
+        // seamlessly with Express.
+        app.engine('dust', cons.dust);
+
+        // Tell Express that we're using Dust.
+        app.set('view engine', 'dust');
+
+        // Tell Express where to find Dust templates.
+        app.set('views', __dirname + '/dust');
+
+        // Establish development-only settings.
+        if ('development' === config.settings.env ||
+            'development' === process.env.NODE_ENV || true === config.settings.forceDev) {
+            app.use(errorHandler());
+
+            // When in development mode, serve static
+            // content, such as JS, CSS and images.
+            app.use(express.static(__dirname + '/../client'));
         }
+
+        if (config.settings.logging.requests) {
+            app.use(logger());
+        }
+
+        // Establish production-only settings.
+        // if ('production' === config.settings.env) {}
+
+        // Instantiate the API router.
+        // The user must be authenticated
+        // before they can access API routes.
+        // All routes in the API router will
+        // be prefixed with the '/api' path.
+        app.use('/api', apiRouter);
+
+        // Instantiate the users router.
+        // All routes in the user router will
+        // be prefixed with the '/users' path.
+        app.use('/users', userRouter);
+
+        // Instantiate the auth router.
+        // All routes in the auth router will
+        // be prefixed with the '/auth' path.
+        app.use('/auth', authRouter);
+
+        // Instantiate the "catchall" router
+        // after all other routes. If no previous
+        // route is matched, this router will
+        // serve up the application HTML file,
+        // which in turn will start the
+        // client-side application. The Backbone
+        // router will take over from there.
+        app.use(catchallRouter);
+
+        // Start listening on the specified port.
+        app.listen(process.env.PORT || config.settings.port);
+
+        console.log('✔'.green + '  Server is running in %s mode at ' + '%s:%d'.underline.green + '\n',
+            config.settings.env,
+            'http://' + ('development' === config.settings.env ? '127.0.0.1' : config.settings.domain),
+            process.env.PORT || config.settings.port
+        );
+
+        // Make the configured Express app a
+        // property of our app object. It
+        // has some useful methods that we can
+        // leverage across the application.
+        mercenary.app = app;
     }
-
-    // Parses the Cookie header field and populates
-    // req.cookies with an object keyed by the cookie names
-    app.use(cookieParser());
-
-    // Establish a session secret token.
-    app.use(session({
-        key: 'mercenary.sid',
-        secret: process.env.SESSION_SECRET || config.secrets.sessionSecret
-    }));
-
-    // Request body parsing middleware supporting JSON,
-    // urlencoded, and multipart requests
-    app.use(bodyParser());
-
-    // Simulate DELETE and PUT
-    app.use(methodOverride());
-
-    // Passport authentication
-    app.use(passport.initialize());
-    app.use(passport.session());
-
-    // Use consolidate to make Dust work
-    // seamlessly with Express.
-    app.engine('dust', cons.dust);
-
-    // Tell Express that we're using Dust.
-    app.set('view engine', 'dust');
-
-    // Tell Express where to find Dust templates
-    app.set('views', __dirname + '/dust');
-
-    // Establish development-only settings.
-    if ('development' === config.settings.env ||
-        'development' === process.env.NODE_ENV || true === config.settings.forceDev) {
-        app.use(errorHandler());
-
-        // When in development mode, serve static
-        // content, such as JS, CSS and images.
-        app.use(express.static(__dirname + '/../client'));
-    }
-
-    if (config.settings.logging.requests) {
-        app.use(logger());
-    }
-
-    // Establish production-only settings.
-    // if ('production' === config.settings.env) {}
-
-    // Instantiate the API router.
-    // The user must be authenticated
-    // before they can access API routes.
-    // All routes in the API router will
-    // be prefixed with the '/api' path.
-    app.use('/api', apiRouter);
-
-    // Instantiate the users router.
-    // All routes in the user router will
-    // be prefixed with the '/users' path.
-    app.use('/users', userRouter);
-
-    // Instantiate the auth router.
-    // All routes in the auth router will
-    // be prefixed with the '/auth' path.
-    app.use('/auth', authRouter);
-
-    // Instantiate the "catchall" router
-    // after all other routes. If no previous
-    // route is matched, this router will
-    // serve up the application HTML file,
-    // which in turn will start the
-    // client-side application. The Backbone
-    // router will take over from there.
-    app.use(catchallRouter);
-
-    // Start listening on the specified port.
-    app.listen(process.env.PORT || config.settings.port);
-
-    console.log('✔'.green + '  Server is running in %s mode at ' + '%s:%d'.underline.green + '\n',
-        config.settings.env,
-        'http://' + ('development' === config.settings.env ? '127.0.0.1' : config.settings.domain),
-        process.env.PORT || config.settings.port
-    );
 };
+
+module.exports = mercenary;

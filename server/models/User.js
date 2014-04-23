@@ -91,10 +91,12 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 // Sending activation email
 userSchema.methods.sendActivationEmail = function() {
     var self = this,
-        activationUrl = 'http://' + config.settings.domain;
+        activationUrl = 'http://';
 
     if ('development' === config.settings.env || 'development' === process.env.NODE_ENV) {
-        activationUrl += ':' + config.settings.port;
+        activationUrl += '127.0.0.1:' + config.settings.port;
+    } else {
+        activationUrl += config.settings.domain;
     }
 
     activationUrl += '/activate/' + this.activationKey;
@@ -103,7 +105,7 @@ userSchema.methods.sendActivationEmail = function() {
         activationUrl: activationUrl
     }, function(err, html) {
         if (err) {
-            console.log(err);
+            console.log('error:emailController.renderTemplate', err);
             
             return err;
         }
@@ -115,7 +117,7 @@ userSchema.methods.sendActivationEmail = function() {
             html    : html
         }, function(err, res) {
             if (err) {
-                console.log(err);
+                console.log('error:emailController.sendEmail', err);
             }
 
             console.log(res);
