@@ -6,11 +6,13 @@
  * you'd like, so you're certainly not tied to
  * any particular hosting provider.
  */
+var secrets = require('../secrets.json') || {smtp:{},auth:{facebook:{},google:{},twitter:{},github:{}}};
+
 module.exports = {
     PORT: process.env.PORT || 8743,
     ENV: process.env.NODE_ENV || 'development',
 
-    SESSION_SECRET: process.env.SESSION_SECRET || 'Your session secret',
+    SESSION_SECRET: process.env.SESSION_SECRET || secrets.session_secret || 'Your session secret',
 
     // Log all request information to the console.
     LOG_REQUESTS: false,
@@ -33,7 +35,7 @@ module.exports = {
         // You could also hard-code this to suit your needs.
         // If you're using Heroku, this should be your 
         // Heroku domain.
-        return 'mercenary-app.herokuapp.com';
+        return 'mercenary.electricartwork.com';
     })(),
 
     // By default, this is configured to work out of the
@@ -68,13 +70,6 @@ module.exports = {
     JAVASCRIPT_VERSION: 0,
     CSS_VERSION: 0,
 
-    // Amazon S3 settings for pushing compiled and minified
-    // static assets to the cloud. Used by grunt-s3 task.
-    AMAZON_S3_KEY: 'Your S3 Key',
-    AMAZON_S3_SECRET: 'Your S3 Secret',
-    AMAZON_S3_BUCKET: 'Your S3 Bucket',
-    AMAZON_S3_REGION: 'Your S3 Region (e.g. us-east-1)',
-
     // CDN domain where your static assets are hosted.
     // If you're using S3, you're probably going to
     // create a CloudFront distribution associated
@@ -98,9 +93,9 @@ module.exports = {
     // on what values belong here.
     // If you're using Mandrill, you'll probably only need
     // these for your development environment.
-    SMTP_SERVICE: process.env.SMTP_SERVICE || 'Gmail',
-    SMTP_USERNAME: process.env.SMTP_USERNAME || 'Your SMTP username',
-    SMTP_PASSWORD: process.env.SMTP_PASSWORD || 'Your SMTP password',
+    SMTP_SERVICE: process.env.SMTP_SERVICE || secrets.smtp.service || 'Gmail',
+    SMTP_USERNAME: process.env.SMTP_USERNAME || secrets.smtp.username || 'Your SMTP username',
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD || secrets.smtp.password || 'Your SMTP password',
 
     // Service-based authentication.
     // Delete what you don't need. For each of the services
@@ -110,33 +105,25 @@ module.exports = {
     // the values as strings below.
     AUTH_FACEBOOK_ENABLED: true,
     AUTH_FACEBOOK: {
-        clientID            : process.env.FACEBOOK_CLIENT_ID || 'Your App ID',
-        clientSecret        : process.env.FACEBOOK_CLIENT_SECRET || 'Your App Secret',
-        callbackURL         : '/auth/facebook/callback',
-        passReqToCallback   : true
+        CLIENT_ID: process.env.FACEBOOK_CLIENT_ID || secrets.auth.facebook.clientId || 'Your App ID',
+        CLIENT_SECRET: process.env.FACEBOOK_CLIENT_SECRET || secrets.auth.facebook.clientSecret || 'Your App Secret'
     },
 
     AUTH_GOOGLE_ENABLED: true,
     AUTH_GOOGLE: {
-        clientID            : process.env.GOOGLE_CLIENT_ID || 'Your Client ID',
-        clientSecret        : process.env.GOOGLE_CLIENT_SECRET || 'Your Client Secret',
-        callbackURL         : '/auth/google/callback',
-        passReqToCallback   : true
+        CLIENT_ID: process.env.GOOGLE_CLIENT_ID || secrets.auth.google.clientId || 'Your Client ID',
+        CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || secrets.auth.google.clientSecret || 'Your Client Secret'
     },
 
     AUTH_TWITTER_ENABLED: true,
     AUTH_TWITTER: {
-        consumerKey         : process.env.TWITTER_CONSUMER_KEY || 'Your Consumer Key',
-        consumerSecret      : process.env.TWITTER_CONSUMER_SECRET || 'Your Consumer Secret',
-        callbackURL         : '/auth/twitter/callback',
-        passReqToCallback   : true
+        CONSUMER_KEY: process.env.TWITTER_CONSUMER_KEY || secrets.auth.twitter.consumerKey || 'Your Consumer Key',
+        CONSUMER_SECRET: process.env.TWITTER_CONSUMER_SECRET || secrets.auth.twitter.consumerSecret || 'Your Consumer Secret'
     },
     
     AUTH_GITHUB_ENABLED: true,
     AUTH_GITHUB: {
-        clientID            : process.env.GITHUB_CLIENT_ID || 'Your Client ID',
-        clientSecret        : process.env.GITHUB_CLIENT_SECRET || 'Your Client Secret',
-        callbackURL         : '/auth/github/callback',
-        passReqToCallback   : true
+        CLIENT_ID: process.env.GITHUB_CLIENT_ID || secrets.auth.github.clientId || 'Your Client ID',
+        CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET || secrets.auth.github.clientSecret || 'Your Client Secret'
     }
 };

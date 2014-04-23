@@ -1,4 +1,4 @@
-var config          = require('./config'),
+var config          = require('../config'),
 
     // Middleware
     logger          = require('morgan'),
@@ -28,18 +28,18 @@ require('colors');
 module.exports = function() {
     // Log memory leaks and garbage collection
     // events to the console using Memwatch
-    if (config.LOG_LEAKS || config.LOG_GARBAGE) {
+    if (config.settings.logging.memory || config.settings.logging.garbage) {
         memwatch = require('memwatch');
 
         // Log memory leaks
-        if (config.LOG_LEAKS) {
+        if (config.settings.logging.memory) {
             memwatch.on('leak', function(info) {
                 console.log('memwatch:leak', info);
             });
         }
 
         // Log garbage collection events
-        if (config.LOG_GARBAGE) {
+        if (config.settings.logging.garbage) {
             memwatch.on('stats', function(stats) {
                 console.log('memwatch:garbage', stats);
             });
@@ -53,7 +53,7 @@ module.exports = function() {
     // Establish a session secret token.
     app.use(session({
         key: 'mercenary.sid',
-        secret: config.SESSION_SECRET
+        secret: process.env.SESSION_SECRET || config.secrets.sessionSecret
     }));
 
     // Request body parsing middleware supporting JSON,
@@ -78,7 +78,8 @@ module.exports = function() {
     app.set('views', __dirname + '/dust');
 
     // Establish development-only settings.
-    if ('development' === config.ENV || true === config.FORCE_DEV_ASSETS) {
+    if ('development' === config.settings.env ||
+        'development' === process.env.NODE_ENV || true === config.settings.forceDev) {
         app.use(errorHandler());
 
         // When in development mode, serve static
@@ -86,12 +87,12 @@ module.exports = function() {
         app.use(express.static(__dirname + '/../client'));
     }
 
-    if (config.LOG_REQUESTS) {
+    if (config.settings.logging.requests) {
         app.use(logger());
     }
 
     // Establish production-only settings.
-    // if ('production' === config.ENV) {}
+    // if ('production' === config.settings.env) {}
 
     // Instantiate the API router.
     // The user must be authenticated
@@ -115,16 +116,16 @@ module.exports = function() {
     // route is matched, this router will
     // serve up the application HTML file,
     // which in turn will start the
-    // client-side application. The client's
+    // client-side application. The Backbone
     // router will take over from there.
     app.use(catchallRouter);
 
     // Start listening on the specified port.
-    app.listen(config.PORT);
+    app.listen(process.env.PORT || config.settings.port);
 
     console.log('✔'.green + '  Server is running in %s mode at ' + '%s:%d'.underline.green + '\n',
-        config.ENV,
-        'http://' + config.DOMAIN,
-        config.PORT
+        config.settings.env,
+        'http://' + ('development' === config.settings.env ? '127.0.0.1' : config.settings.domain),
+        process.env.PORT || config.settings.port
     );
 };

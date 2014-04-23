@@ -1,4 +1,4 @@
-var config          = require('../config'),
+var config          = require('../../config'),
     emailController = require('../controllers/email/emailController'),
     mongoose        = require('mongoose'),
     bcrypt          = require('bcrypt');
@@ -91,10 +91,10 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 // Sending activation email
 userSchema.methods.sendActivationEmail = function() {
     var self = this,
-        activationUrl = config.WWW_ADDRESS;
+        activationUrl = 'http://' + config.settings.domain;
 
-    if (config.ENV === 'development') {
-        activationUrl += ':' + config.PORT;
+    if ('development' === config.settings.env || 'development' === process.env.NODE_ENV) {
+        activationUrl += ':' + config.settings.port;
     }
 
     activationUrl += '/activate/' + this.activationKey;

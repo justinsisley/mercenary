@@ -35,4 +35,4 @@ server/data
 server/data/*
 
 # App ID information
-server/secrets.txt
+config/secrets.json

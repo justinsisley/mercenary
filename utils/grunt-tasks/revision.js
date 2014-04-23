@@ -6,7 +6,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('revision', 'Increment the revision number.', function(type) {
         var CONFIG_FILE = 'server/config.js',
-            FONT_CSS_FILE = 'client/css/fonts.css',
             configFile = grunt.file.read(CONFIG_FILE),
             revision;
 
@@ -25,22 +24,6 @@ module.exports = function(grunt) {
             grunt.file.write(CONFIG_FILE, configFileContents);
         }
 
-        // FIXME
-        function fontFolders() {
-            // Need to get the most up to date version of package.json
-            var configFile = grunt.file.read(CONFIG_FILE),
-                regex = new RegExp("([\\\'|\\\"]revisionCSSfont[\\\'|\\\"][ ]*:[ ]*[\\\'|\\\"])([\\\d|.|,]*)([\\\'|\\\"])", 'i'),
-                version = configFile.match(regex)[2],
-                fontCSSfile = grunt.file.read(FONT_CSS_FILE),
-                fontCSSfileFind = new RegExp('fonts/icomoon', 'g'),
-                fontCSSfileReplace = 'fonts-' + version + '/icomoon',
-                fontCSSfileContents = fontCSSfile.replace(fontCSSfileFind, fontCSSfileReplace);
-
-            grunt.file.write(FONT_CSS_FILE, fontCSSfileContents);
-
-            fs.rename('client/css/fonts', 'client/css/fonts-' + version);
-        }
-
         if (type === 'js') {
             bump('JAVASCRIPT_VERSION');
             
@@ -49,12 +32,6 @@ module.exports = function(grunt) {
             bump('CSS_VERSION');
             
             grunt.log.ok('CSS revision bumped to ' + revision);
-        } else if (type === 'font') {
-            bump('FONT_VERSION');
-            
-            fontFolders();
-            
-            grunt.log.ok('Font revision bumped to ' + revision);
         } else {
             grunt.log.error('Nothing changed. Specify a revision type.');
         }

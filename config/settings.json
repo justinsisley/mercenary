@@ -1,0 +1,23 @@
+{
+    "port": "8743",
+    "env": "development",
+    "logging": {
+        "requests": false,
+        "garbage": false,
+        "memory": false
+    },
+    "domain": "mercenary.electricartwork.com",
+    "cdnDomain": "",
+    "forceDev": false,
+    "forcePrd": false,
+    "email": {
+        "fromAddress": "Mercenary App Framework <mercenary@electricartwork.com>",
+        "fromName": "Mercenary App Framework"
+    },
+    "auth": {
+        "facebook": true,
+        "google": true,
+        "twitter": true,
+        "github": true
+    }
+}

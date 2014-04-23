@@ -1,12 +1,12 @@
-var config          = require('../../config'),
+var config          = require('../../../config'),
     dust            = require('dustjs-linkedin'),
-    mandrill        = require('node-mandrill')(config.MANDRILL_API_KEY),
+    mandrill        = require('node-mandrill')(process.env.MANDRILL_APIKEY || config.secrets.mandrillApiKey),
     nodemailer      = require('nodemailer'),
     smtpTransport   = nodemailer.createTransport('SMTP', {
         auth: {
-            service : config.SMTP_SERVICE,
-            user    : config.SMTP_USERNAME,
-            pass    : config.SMTP_PASSWORD
+            service : process.env.SMTP_SERVICE || config.secrets.smtp.service,
+            user    : process.env.SMTP_USERNAME || config.secrets.smtp.username,
+            pass    : process.env.SMTP_PASSWORD || config.secrets.smtp.password
         }
     });
 
@@ -26,7 +26,7 @@ module.exports = {
     // Attempts to use Mandrill, then uses
     // NodeMailer as a fallback.
     sendEmail: function(settings, callback) {
-        if (config.MANDRILL_API_KEY) {
+        if (process.env.MANDRILL_APIKEY || config.secrets.mandrillApiKey) {
             this.sendEmailMandrill(settings, callback);
         } else {
             this.sendEmailNodeMailer(settings, callback);
@@ -36,8 +36,8 @@ module.exports = {
     sendEmailMandrill: function(settings, callback) {
         mandrill('/messages/send', {
             message: {
-                from_email  : config.FROM_ADDRESS,
-                from_name   : config.FROM_NAME,
+                from_email  : process.env.FROM_ADDRESS || config.settings.email.fromAddress,
+                from_name   : process.env.FROM_NAME || config.settings.email.fromName,
                 to          : [{email: settings.to}],
                 subject     : settings.subject,
                 text        : settings.text,
@@ -54,7 +54,7 @@ module.exports = {
 
     sendEmailNodeMailer: function(settings, callback) {
         var options = {
-            from    : config.FROM_ADDRESS,
+            from    : process.env.FROM_ADDRESS || config.settings.email.fromAddress,
             to      : settings.to,
             subject : settings.subject,
             text    : settings.text,

@@ -1,19 +1,19 @@
 var _       = require('underscore'),
-    config  = require('../config');
+    config  = require('../../config');
 
 module.exports = function(req, res) {
     _.extend(config, {
-        domain              : config.DOMAIN,
-        cdnDomain           : config.CDN_DOMAIN,
-        cssVersion          : config.CSS_VERSION,
-        javascriptVersion   : config.JAVASCRIPT_VERSION
+        domain              : config.settings.domain,
+        cdnDomain           : config.settings.cdnDomain,
+        cssVersion          : config.versions.css,
+        javascriptVersion   : config.versions.javascript
     });
 
     // If this is a non-development environment,
     // we provide a Google Analytics tracker ID.
-    if ('development' !== config.ENV) {
+    if ('development' !== config.settings.env) {
         _.extend(config, {
-            googleAnalytics: config.GOOGLE_ANALYTICS
+            googleAnalytics: process.env.GA_TRACKER || config.secrets.gaTracker
         });
     }
 
@@ -21,7 +21,7 @@ module.exports = function(req, res) {
     // we want to force development assets, we
     // we tell the app template that we're in
     // development mode.
-    if ('development' === config.ENV || true === config.FORCE_DEV_ASSETS) {
+    if ('development' === config.settings.env || true === config.settings.forceDev) {
         _.extend(config, {
             development: true
         });
@@ -31,7 +31,7 @@ module.exports = function(req, res) {
     // serve compiled and minified assets, we
     // tell the app template that we're not in
     // development mode.
-    if (true === config.FORCE_PRD_ASSETS) {
+    if (true === config.settings.forcePrd) {
         config.development = false;
     }
 

@@ -5,7 +5,7 @@ var _                   = require('underscore'),
     TwitterStrategy     = require('passport-twitter').Strategy,
     GitHubStrategy      = require('passport-github').Strategy,
     GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy,
-    config              = require('../config'),
+    config              = require('../../config'),
     User                = require('../models/User');
 
 passport.serializeUser(function(user, done) {
@@ -34,7 +34,12 @@ passport.use(new LocalStrategy({usernameField: 'email'}, function(email, passwor
     });
 }));
 
-passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToken, refreshToken, profile, done) {
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_CLIENT_ID || config.secrets.auth.facebook.clientId,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET || config.secrets.auth.facebook.clientSecret,
+    callbackURL: '/auth/facebook/callback',
+    passReqToCallback: true
+}, function(req, accessToken, refreshToken, profile, done) {
     if (req.user) {
         User.findById(req.user.id, function(err, user) {
             user.facebook = profile.id;
@@ -87,7 +92,12 @@ passport.use(new FacebookStrategy(config.AUTH_FACEBOOK, function(req, accessToke
     }
 }));
 
-passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, refreshToken, profile, done) {
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID || config.secrets.auth.google.clientId,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || config.secrets.auth.google.clientSecret,
+    callbackURL: '/auth/google/callback',
+    passReqToCallback: true
+}, function(req, accessToken, refreshToken, profile, done) {
     if (req.user) {
         User.findById(req.user.id, function(err, user) {
             user.google = profile.id;
@@ -140,7 +150,12 @@ passport.use(new GoogleStrategy(config.AUTH_GOOGLE, function(req, accessToken, r
     }
 }));
 
-passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken, tokenSecret, profile, done) {
+passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY || config.secrets.auth.twitter.consumerKey,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET || config.secrets.auth.twitter.consumerSecret,
+    callbackURL: '/auth/twitter/callback',
+    passReqToCallback: true
+}, function(req, accessToken, tokenSecret, profile, done) {
     if (req.user) {
         User.findById(req.user.id, function(err, user) {
             user.twitter = profile.id;
@@ -190,7 +205,12 @@ passport.use(new TwitterStrategy(config.AUTH_TWITTER, function(req, accessToken,
     }
 }));
 
-passport.use(new GitHubStrategy(config.AUTH_GITHUB, function(req, accessToken, refreshToken, profile, done) {
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID || config.secrets.auth.github.clientId,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET || config.secrets.auth.github.clientSecret,
+    callbackURL: '/auth/github/callback',
+    passReqToCallback: true
+}, function(req, accessToken, refreshToken, profile, done) {
     if (req.user) {
         User.findById(req.user.id, function(err, user) {
             user.github = profile.id;

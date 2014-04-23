@@ -12,12 +12,12 @@
  * for more information about this technique.
  */
 
-var config      = require('../config'),
+var config      = require('../../config'),
     express     = require('express'),
     router      = express.Router(),
     passport    = require('passport');
 
-if (config.AUTH_FACEBOOK_ENABLED) {
+if (config.settings.auth.facebook) {
     router.get('/facebook', passport.authenticate('facebook', {scope: 'email'}));
     router.get('/facebook/callback', passport.authenticate('facebook', {
         successRedirect: '/',
@@ -25,7 +25,7 @@ if (config.AUTH_FACEBOOK_ENABLED) {
     }));
 }
 
-if (config.AUTH_GOOGLE_ENABLED) {
+if (config.settings.auth.google) {
     router.get('/google', passport.authenticate('google', {scope: 'profile email'}));
     router.get('/google/callback', passport.authenticate('google', {
         successRedirect: '/',
@@ -33,7 +33,7 @@ if (config.AUTH_GOOGLE_ENABLED) {
     }));
 }
 
-if (config.AUTH_TWITTER_ENABLED) {
+if (config.settings.auth.twitter) {
     router.get('/twitter', passport.authenticate('twitter'));
     router.get('/twitter/callback', passport.authenticate('twitter', {
         successRedirect: '/',
@@ -41,7 +41,7 @@ if (config.AUTH_TWITTER_ENABLED) {
     }));
 }
 
-if (config.AUTH_GITHUB_ENABLED) {
+if (config.settings.auth.github) {
     router.get('/github', passport.authenticate('github'));
     router.get('/github/callback', passport.authenticate('github', {
         successRedirect: '/',

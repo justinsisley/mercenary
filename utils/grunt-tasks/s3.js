@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
-    var config = require('../../server/config');
+    var config = require('../../config');
     
     grunt.config('s3', {
         options: {
-            key: config.AMAZON_S3_KEY,
-            secret:  config.AMAZON_S3_SECRET,
-            bucket:  config.AMAZON_S3_BUCKET,
-            region: config.AMAZON_S3_REGION,
+            key: config.secrets.amazonS3.key,
+            secret: config.secrets.amazonS3.secret,
+            bucket: config.secrets.amazonS3.bucket,
+            region: config.secrets.amazonS3.region,
             access: 'public-read',
             gzip: true,
             headers: {
@@ -18,12 +18,12 @@ module.exports = function(grunt) {
             upload: [
                 {
                     src: 'tmp/app.js',
-                    dest: 'js/app.' + config.JAVASCRIPT_VERSION + '.js',
+                    dest: 'js/app.' + config.versions.javascript + '.js',
                     gzip: true
                 },
                 {
                     src: 'client/css/style.css',
-                    dest: 'css/style.' + config.CSS_VERSION + '.css',
+                    dest: 'css/style.' + config.versions.css + '.css',
                     gzip: true
                 },
                 {
