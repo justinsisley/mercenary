@@ -33,11 +33,11 @@ module.exports = {
     },
 
     activateUser: function(req, res) {
-        if (!req.params || !req.params[0]) {
+        if (!req.params.key) {
             res.redirect('/');
         }
 
-        var activationKey = req.params[0];
+        var activationKey = req.params.key;
 
         User.activate(activationKey, function(err) {
             if (err) {

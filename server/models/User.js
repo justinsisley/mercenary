@@ -99,7 +99,7 @@ userSchema.methods.sendActivationEmail = function() {
         activationUrl += config.settings.domain;
     }
 
-    activationUrl += '/activate/' + this.activationKey;
+    activationUrl += '/users/activate/' + this.activationKey;
 
     emailController.renderTemplate('emails/activation', {
         activationUrl: activationUrl

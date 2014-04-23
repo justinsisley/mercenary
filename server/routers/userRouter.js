@@ -24,7 +24,7 @@ var express             = require('express'),
 router.get('/session', passportController.isAuthenticated, sessionController);
 
 // Activate a local user's account
-router.get('/activate/*', signupController.activateUser);
+router.get('/activate/:key', signupController.activateUser);
 
 // Create a local user account
 router.post('/sign-up', signupController.createUser);

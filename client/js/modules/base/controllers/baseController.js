@@ -108,6 +108,12 @@ define([
         // Executes a callback once the layout
         // has rendered.
         showPublicLayout: function(callback) {
+            // If the user is already logged in,
+            // send them to the dashboard.
+            if (App.vars.user) {
+                return Backbone.history.navigate('/dashboard', true);
+            }
+
             // Prevent re-rendering of the
             // public layout if it is
             // currently visible.
