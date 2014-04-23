@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         serverJS: {
             files: [
                 'server/**/*.js',
-                'server/!(config).js'
+                'server/*.js'
             ],
             tasks: ['jshint']
         },
