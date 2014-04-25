@@ -73,6 +73,8 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `SESSION_SECRET` - your session secret.
 - `MONGOLAB_URI` - when deploying to Heroku with the MongoLab addon, this will be set automatically.
 
+*If the `MONGOLAB_URI` property is left empty, Mercenary will fall back to a file system implementation of MongoDB, using [TingoDB](http://www.tingodb.com/)*
+
 ##### Email Handling
 
 *You only need to use Mandrill __or__ an SMTP service, not both. For example, you might use Mandrill in production, but use your personal email credentials during development.*
