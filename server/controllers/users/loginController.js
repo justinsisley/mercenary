@@ -13,10 +13,7 @@ module.exports = function(req, res, next) {
         }
 
         if (user.active === false) {
-            return res.json({
-                status: 'fail',
-                message: 'Account not activated. Check your email.'
-            });
+            return res.redirect('/login?active=false');
         }
 
         req.logIn(user, function(err) {

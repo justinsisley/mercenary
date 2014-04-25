@@ -1,13 +1,13 @@
 {
   "port": "8743",
   "env": "development",
+  "domain": "mercenary.electricartwork.com",
+  "cdnDomain": "",
   "logging": {
     "requests": false,
     "garbage": false,
     "memory": false
   },
-  "domain": "mercenary.electricartwork.com",
-  "cdnDomain": "",
   "forceDev": false,
   "forcePrd": false,
   "email": {

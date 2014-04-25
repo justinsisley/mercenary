@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             command: 'node server/main',
             options: options
         },
-        serveDev: {
+        servedemon: {
             command: 'nodemon server/main',
             options: options
         }

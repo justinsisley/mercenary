@@ -11,8 +11,8 @@ var config          = require('../config'),
     
     // Routers
     apiRouter       = require('./routers/apiRouter'),
-    userRouter      = require('./routers/userRouter'),
     authRouter      = require('./routers/authRouter'),
+    usersRouter     = require('./routers/usersRouter'),
     catchallRouter  = require('./routers/catchallRouter'),
 
     // Express
@@ -105,7 +105,7 @@ var mercenary = {
         // Instantiate the users router.
         // All routes in the user router will
         // be prefixed with the '/users' path.
-        app.use('/users', userRouter);
+        app.use('/users', usersRouter);
 
         // Instantiate the auth router.
         // All routes in the auth router will

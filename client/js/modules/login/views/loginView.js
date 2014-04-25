@@ -28,6 +28,10 @@ define([
                 this.showSuccessMessage('Your account is now active.');
             }
 
+            if (window.location.search.indexOf('active=false') > 0) {
+                this.showErrorMessage('Your account is not active.');
+            }
+
             if (window.location.search.indexOf('fail=true') > 0) {
                 this.showErrorMessage('Incorrect username/password combination.');
             }

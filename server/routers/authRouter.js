@@ -6,7 +6,7 @@
  * all paths defined here will have '/user'
  * preceding them.
  * For example, router.get('/session', ...)
- * is actually creating the path: '/auth/facebook'.
+ * is actually creating the path: '/auth/session'.
  * 
  * See http://expressjs.com/4x/api.html#router
  * for more information about this technique.
