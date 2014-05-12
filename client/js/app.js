@@ -5,7 +5,8 @@ define([
     'jquery',
     'underscore',
     'marionette',
-    'dustMarionette'
+    'dustMarionette',
+    'templates'
 ], function(
     $,
     _,

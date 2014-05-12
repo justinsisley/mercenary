@@ -1,8 +1,7 @@
 define([
     'marionette',
 
-    'app',
-    'modules/header/templates/publicHeader'
+    'app'
 ], function(
     Marionette,
     

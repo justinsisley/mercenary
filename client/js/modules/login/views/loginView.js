@@ -1,8 +1,6 @@
 define([
     'marionette',
-    'validator',
-
-    'modules/login/templates/login'
+    'validator'
 ], function(
     Marionette,
     validator

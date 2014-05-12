@@ -1,7 +1,5 @@
 define([
-    'marionette',
-
-    'modules/footer/templates/publicFooter'
+    'marionette'
 ], function(
     Marionette
 ) {

@@ -1,8 +1,6 @@
 define([
     'marionette',
-    'holder',
-
-    'modules/dashboard/templates/dashboard'
+    'holder'
 ], function(
     Marionette,
     holder

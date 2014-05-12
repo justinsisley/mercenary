@@ -3,9 +3,7 @@
  */
 
 define([
-    'marionette',
-    
-    'modules/base/templates/appLayout'
+    'marionette'
 ], function(Marionette) {
     return Marionette.Layout.extend({
         template: 'base/appLayout',

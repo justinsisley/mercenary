@@ -9,11 +9,10 @@ module.exports = function(grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
             separator: "\n\n",
-            strip: false,
             tab: '    '
         });
 
-        var tab = options.tab;
+        var allTemplates = [];
 
         // Iterate over all src-dest file pairs.
         this.files.forEach(function(f) {
@@ -27,37 +26,29 @@ module.exports = function(grunt) {
                     return true;
                 }
             }).map(function(filepath) {
-                // Read file source.
-                var src = 'define([\'dust\'], function() {' + "\n";
-
                 // Update file extension
                 var name = filepath.replace('.dust', f.ext);
+
+                // Create the template name
                 var templateName = name.replace(f.ext, '');
 
                 // Strip out any strings as passed via the `strip` property
                 if (options.strip) {
                     for (var i = 0, len = options.strip.length; i < len; i++) {
-                        name = name.replace(options.strip[i], '');
                         templateName = templateName.replace(options.strip[i], '');
                     }
                 }
 
-                // Get the parent directory
-                var parentDirectory = name.split('/')[0];
+                // Compile the template
+                var compiledTemplate = dust.compile(grunt.file.read(filepath), templateName)
 
-                // Get the destination directory
-                var destinationDirectory = f.dest.replace('**', parentDirectory);
-
-                // Create the destination file
-                var destinationFile = destinationDirectory + name.replace(parentDirectory + '/', '');
-
-                src += options.tab + dust.compile(grunt.file.read(filepath), templateName);
-
-                src += "\n" + '});';
-
-                // Write the destination file.
-                grunt.file.write(destinationFile, src);
+                // Push the compiled template to the collection
+                allTemplates.push(options.tab + compiledTemplate);
             });
+
+            // Write the template collection to a file and wrap
+            // the contents with the necessary requirejs syntax.
+            grunt.file.write('client/dust/compiled.js', 'define([\'dust\'], function() {' + "\n" + allTemplates.join("\n\n") + "\n" + '});');
 
             // Print a success message.
             grunt.log.writeln('Completed in .' + (Date.now() - timeStart) + 's');

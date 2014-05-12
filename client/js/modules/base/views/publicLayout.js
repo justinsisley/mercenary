@@ -3,9 +3,7 @@
  */
 
 define([
-    'marionette',
-    
-    'modules/base/templates/publicLayout'
+    'marionette'
 ], function(Marionette) {
     return Marionette.Layout.extend({
         template: 'base/publicLayout',

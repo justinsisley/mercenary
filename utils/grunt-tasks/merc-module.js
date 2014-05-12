@@ -43,7 +43,6 @@ var tab = '    ';
 function viewTemplate(name) {
     return "define([\n" + tab + 
                 "'marionette',\n\n" + tab + 
-                "'modules/" + name + "/templates/" + name + 
             "'\n], function(\n" + tab + 
                 "Marionette\n) {\n" + tab + 
                     "return Marionette.ItemView.extend({\n" + tab + tab + 

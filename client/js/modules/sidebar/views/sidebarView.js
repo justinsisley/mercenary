@@ -1,7 +1,5 @@
 define([
-    'marionette',
-
-    'modules/sidebar/templates/sidebar'
+    'marionette'
 ], function(
     Marionette
 ) {

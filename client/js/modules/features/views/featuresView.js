@@ -1,7 +1,5 @@
 define([
-    'marionette',
-
-    'modules/features/templates/features'
+    'marionette'
 ], function(
     Marionette
 ) {
