@@ -18,21 +18,25 @@ var express             = require('express'),
     logoutController    = require('../controllers/users/logoutController'),
     signupController    = require('../controllers/users/signupController'),
     sessionController   = require('../controllers/users/sessionController'),
+    passwordController  = require('../controllers/users/passwordController'),
     passportController  = require('../controllers/passportController');
 
-// Determine if there is an active session
+// Determine if there is an active session.
 router.get('/session', passportController.isAuthenticated, sessionController);
 
-// Activate a local user's account
+// Activate a local user's account.
 router.get('/activate/:key', signupController.activateUser);
 
-// Create a local user account
-router.post('/sign-up', signupController.createUser);
+// Create a local user account.
+router.post('/signup', signupController.createUser);
 
-// Log in to a local user account
-router.post('/sign-in', loginController);
+// Log in to a local user account.
+router.post('/signin', loginController);
 
-// End the current session
-router.post('/sign-out', logoutController);
+// End the current session.
+router.post('/signout', logoutController);
+
+// Change the user's password.
+router.post('/updatepassword', passwordController.updatePassword);
 
 module.exports = router;

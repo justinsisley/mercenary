@@ -61,11 +61,13 @@ userSchema.pre('save', function(next) {
                     return next(err);
                 }
 
-                // Replace any characters that could cause problems
-                // when using the activation key in a URL.
-                user.activationKey = hash.replace(/[\$]|[\/]|[\.]/g, '');
+                if (!user.active) {
+                    // Replace any characters that could cause problems
+                    // when using the activation key in a URL.
+                    user.activationKey = hash.replace(/[\$]|[\/]|[\.]/g, '');
 
-                user.sendActivationEmail();
+                    user.sendActivationEmail();
+                }
 
                 next();
             });
@@ -93,7 +95,7 @@ userSchema.methods.sendActivationEmail = function() {
     var self = this,
         activationUrl = 'http://';
 
-    if ('development' === config.settings.env || 'development' === process.env.NODE_ENV) {
+    if ('production' !== process.env.NODE_ENV && 'development' === config.settings.env) {
         activationUrl += '127.0.0.1:' + config.settings.port;
     } else {
         activationUrl += config.settings.domain;

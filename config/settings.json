@@ -11,7 +11,7 @@
   "forceDev": false,
   "forcePrd": false,
   "email": {
-    "fromAddress": "Mercenary App Framework <mercenary@electricartwork.com>",
+    "fromAddress": "mercenary@electricartwork.com",
     "fromName": "Mercenary App Framework"
   },
   "auth": {

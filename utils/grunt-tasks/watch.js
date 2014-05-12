@@ -3,6 +3,8 @@ module.exports = function(grunt) {
         clientJS: {
             files: [
                 'client/js/modules/**/!(templates)/*.js',
+                'client/js/helpers/*.js',
+                'client/js/widgets/*.js',
                 'client/js/*.js'
             ],
             tasks: ['jshint', 'revision:js']

@@ -32,16 +32,6 @@ define([
         mainContentRegion: '#main-content'
     });
 
-    // Force logout
-    App.logout = function() {
-        $.ajax({
-            method: 'POST',
-            url: '/users/sign-out'
-        }).done(function() {
-            window.location = window.location.origin;
-        });
-    };
-
     // Allow page title changes from anywhere in the application
     App.vent.on('domchange:title', function(title) {
         document.title = 'Mercenary' + ((title) ? (' | ' + title) : '');

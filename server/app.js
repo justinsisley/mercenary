@@ -3,6 +3,7 @@ var config          = require('../config'),
     // Middleware
     logger          = require('morgan'),
     session         = require('express-session'),
+    compress        = require('compression'),
     passport        = require('passport'),
     bodyParser      = require('body-parser'),
     cookieParser    = require('cookie-parser'),
@@ -46,6 +47,9 @@ var mercenary = {
                 });
             }
         }
+
+        // Compress responses with Gzip.
+        app.use(compress());
 
         // Parses the Cookie header field and populates
         // req.cookies with an object keyed by the cookie names

@@ -22,7 +22,12 @@ module.exports = function(grunt) {
             src: [
                 // Reset disabled. Using Bootstrap 3.
                 // 'client/less/utils/reset.less',
-                'client/less/**/!(reset).less'
+                'client/less/utils/!(reset).less',
+                'client/less/theme/*.less',
+                'client/less/elements/*.less',
+                'client/less/widgets/*.less',
+                'client/less/base/*.less',
+                'client/less/modules/**/*.less'
             ],
             dest: 'tmp/dist.less'
         }

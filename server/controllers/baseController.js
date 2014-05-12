@@ -11,7 +11,7 @@ module.exports = function(req, res) {
 
     // If this is a non-development environment,
     // we provide a Google Analytics tracker ID.
-    if ('development' !== config.settings.env) {
+    if ('development' !== process.env.NODE_ENV && 'development' !== config.settings.env) {
         _.extend(config, {
             googleAnalytics: process.env.GA_TRACKER || config.secrets.gaTracker
         });
@@ -21,7 +21,8 @@ module.exports = function(req, res) {
     // we want to force development assets, we
     // we tell the app template that we're in
     // development mode.
-    if ('development' === config.settings.env || true === config.settings.forceDev) {
+    if ('development' === process.env.NODE_ENV ||
+        'development' === config.settings.env || true === config.settings.forceDev) {
         _.extend(config, {
             development: true
         });

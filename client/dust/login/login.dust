@@ -1,7 +1,7 @@
 <p class="lead">You're already using Mercenary.</p>
 <p class="sub-lead">Authentication is baked-in. Log in to see the dashboard.</p>
 
-<form class="form-signin" role="form" action="/users/sign-in" method="post">
+<form class="form-signin" role="form" action="/users/signin" method="post">
     <h3 class="form-signin-heading">Log in to your account</h3>
     
     <input id="js-login-email" type="email" name="email" class="form-control" placeholder="Email address" autofocus>    

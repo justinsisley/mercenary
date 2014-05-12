@@ -102,6 +102,18 @@ define([
             });
         },
 
+        // Log the user out.
+        logout: function() {
+            $.ajax({
+                method: 'POST',
+                url: '/users/signout'
+            }).done(function() {
+                App.vars.user = null;
+
+                return Backbone.history.navigate('/', true);
+            });
+        },
+
         // Configures the app for the "public",
         // unauthenticated "mode". Each "mode"
         // has a distinct layout.

@@ -27,6 +27,7 @@ define([
 
             // Authenticated routes
             'dashboard' : 'dashboard',
+            'logout'    : 'logout',
 
             // 404
             '*notfound' : 'notFound'

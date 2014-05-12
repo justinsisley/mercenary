@@ -34,5 +34,5 @@ reports
 server/data
 server/data/*
 
-# App ID information
+# App secrets
 config/secrets.json
