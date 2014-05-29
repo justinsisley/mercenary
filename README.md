@@ -36,7 +36,7 @@ There are two ways to start the Express server: using regular ol' Node.js, or us
 
 nodemon is recommended when you're writing server code, since your server will restart upon any code changes, allowing you to just refresh the browser and test away. 
 
-A nodemon.json exists to keep nodemon's watcher focused on server-side changes only, so changes to client-side code won't trigger a server restart. There aren't really any disadvantages to using nodemon while developing, so I'd highly recommend it.
+`nodemon.json` exists to keep nodemon's watcher focused on server-side changes only, so changes to client-side code won't trigger a server restart. There aren't really any disadvantages to using nodemon while developing, so I'd highly recommend it.
 
 In the end, the choice is yours, and both methods of running the server are available via two Grunt tasks:
 
