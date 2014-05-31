@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/home/views/homeView'
 ],function(
     App,
-
     HomeView
 ) {
     return {

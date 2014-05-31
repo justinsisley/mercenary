@@ -12,10 +12,10 @@
  * for more information about this technique.
  */
 
-var config      = require('../../config'),
-    express     = require('express'),
-    router      = express.Router(),
-    passport    = require('passport');
+var config      = require('../../config');
+var express     = require('express');
+var router      = express.Router();
+var passport    = require('passport');
 
 if (config.settings.auth.facebook) {
     router.get('/facebook', passport.authenticate('facebook', {scope: 'email'}));

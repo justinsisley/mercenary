@@ -1,20 +1,20 @@
-var _                   = require('underscore'),
-    passport            = require('passport'),
-    LocalStrategy       = require('passport-local').Strategy,
-    FacebookStrategy    = require('passport-facebook').Strategy,
-    TwitterStrategy     = require('passport-twitter').Strategy,
-    GitHubStrategy      = require('passport-github').Strategy,
-    GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy,
-    config              = require('../../config'),
-    User                = require('../models/User');
+var _                   = require('underscore');
+var passport            = require('passport');
+var LocalStrategy       = require('passport-local').Strategy;
+var FacebookStrategy    = require('passport-facebook').Strategy;
+var TwitterStrategy     = require('passport-twitter').Strategy;
+var GitHubStrategy      = require('passport-github').Strategy;
+var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
+var config              = require('../../config');
+var User                = require('../models/User');
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    return done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
-        done(err, user);
+        return done(err, user);
     });
 });
 
@@ -34,18 +34,21 @@ passport.use(new LocalStrategy({usernameField: 'email'}, function(email, passwor
     });
 }));
 
+var facebookClientId = (process.env.FACEBOOK_CLIENT_ID || config.secrets.auth.facebook.clientId);
+var facebookClientSecret = (process.env.FACEBOOK_CLIENT_SECRET || config.secrets.auth.facebook.clientSecret);
+
 if (config.settings.auth.facebook) {
-    if (!process.env.FACEBOOK_CLIENT_ID && !config.secrets.auth.facebook.clientId) {
+    if (!facebookClientId) {
         throw new Error('Missing Facebook Client ID');
     }
 
-    if (!process.env.FACEBOOK_CLIENT_SECRET && !config.secrets.auth.facebook.clientSecret) {
+    if (!facebookClientSecret) {
         throw new Error('Missing Facebook Client Secret');
     }
 
     passport.use(new FacebookStrategy({
-        clientID: process.env.FACEBOOK_CLIENT_ID || config.secrets.auth.facebook.clientId,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET || config.secrets.auth.facebook.clientSecret,
+        clientID: facebookClientId,
+        clientSecret: facebookClientSecret,
         callbackURL: '/auth/facebook/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
@@ -65,7 +68,7 @@ if (config.settings.auth.facebook) {
                 user.active = true;
                 
                 user.save(function(err) {
-                    done(err, user);
+                    return done(err, user);
                 });
             });
         } else {
@@ -94,7 +97,7 @@ if (config.settings.auth.facebook) {
                     user.active = true;
                     
                     user.save(function(err) {
-                        done(err, user);
+                        return done(err, user);
                     });
                 });
             });
@@ -102,18 +105,21 @@ if (config.settings.auth.facebook) {
     }));
 }
 
+var googleClientId = (process.env.GOOGLE_CLIENT_ID || config.secrets.auth.google.clientId);
+var googleClientSecret = (process.env.GOOGLE_CLIENT_SECRET || config.secrets.auth.google.clientSecret);
+
 if (config.settings.auth.google) {
-    if (!process.env.GOOGLE_CLIENT_ID && !config.secrets.auth.google.clientId) {
+    if (!googleClientId) {
         throw new Error('Missing Google Client ID');
     }
 
-    if (!process.env.GOOGLE_CLIENT_SECRET && !config.secrets.auth.google.clientSecret) {
+    if (!googleClientSecret) {
         throw new Error('Missing Google Client Secret');
     }
 
     passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID || config.secrets.auth.google.clientId,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET || config.secrets.auth.google.clientSecret,
+        clientID: googleClientId,
+        clientSecret: googleClientSecret,
         callbackURL: '/auth/google/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
@@ -133,7 +139,7 @@ if (config.settings.auth.google) {
                 user.active = true;
                 
                 user.save(function(err) {
-                    done(err, user);
+                    return done(err, user);
                 });
             });
         } else {
@@ -162,7 +168,7 @@ if (config.settings.auth.google) {
                     user.active = true;
 
                     user.save(function(err) {
-                        done(err, user);
+                        return done(err, user);
                     });
                 });
             });
@@ -170,18 +176,21 @@ if (config.settings.auth.google) {
     }));
 }
 
+var twitterConsumerKey = (process.env.TWITTER_CONSUMER_KEY || config.secrets.auth.twitter.consumerKey);
+var twitterConsumerSecret = (process.env.TWITTER_CONSUMER_SECRET || config.secrets.auth.twitter.consumerSecret);
+
 if (config.settings.auth.twitter) {
-    if (!process.env.TWITTER_CONSUMER_KEY && !config.secrets.auth.twitter.consumerKey) {
+    if (!twitterConsumerKey) {
         throw new Error('Missing Twitter Consumer Key');
     }
 
-    if (!process.env.TWITTER_CONSUMER_SECRET && !config.secrets.auth.twitter.consumerSecret) {
+    if (!twitterConsumerSecret) {
         throw new Error('Missing Twitter Consumer Secret');
     }
 
     passport.use(new TwitterStrategy({
-        consumerKey: process.env.TWITTER_CONSUMER_KEY || config.secrets.auth.twitter.consumerKey,
-        consumerSecret: process.env.TWITTER_CONSUMER_SECRET || config.secrets.auth.twitter.consumerSecret,
+        consumerKey: twitterConsumerKey,
+        consumerSecret: twitterConsumerSecret,
         callbackURL: '/auth/twitter/callback',
         passReqToCallback: true
     }, function(req, accessToken, tokenSecret, profile, done) {
@@ -202,7 +211,7 @@ if (config.settings.auth.twitter) {
                 user.active = true;
                 
                 user.save(function(err) {
-                    done(err, user);
+                    return done(err, user);
                 });
             });
         } else {
@@ -228,25 +237,28 @@ if (config.settings.auth.twitter) {
                 user.active = true;
                 
                 user.save(function(err) {
-                    done(err, user);
+                    return done(err, user);
                 });
             });
         }
     }));
 }
 
+var githubClientId = (process.env.GITHUB_CLIENT_ID || config.secrets.auth.github.clientId);
+var githubClientSecret = (process.env.GITHUB_CLIENT_SECRET || config.secrets.auth.github.clientSecret);
+
 if (config.settings.auth.github) {
-    if (!process.env.GITHUB_CLIENT_ID && !config.secrets.auth.github.clientId) {
+    if (!githubClientId) {
         throw new Error('Missing Github Client ID');
     }
 
-    if (!process.env.GITHUB_CLIENT_SECRET && !config.secrets.auth.github.clientSecret) {
+    if (!githubClientSecret) {
         throw new Error('Missing Github Client Secret');
     }
 
     passport.use(new GitHubStrategy({
-        clientID: process.env.GITHUB_CLIENT_ID || config.secrets.auth.github.clientId,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET || config.secrets.auth.github.clientSecret,
+        clientID: githubClientId,
+        clientSecret: githubClientSecret,
         callbackURL: '/auth/github/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
@@ -267,7 +279,7 @@ if (config.settings.auth.github) {
                 user.active = true;
                 
                 user.save(function(err) {
-                    done(err, user);
+                    return done(err, user);
                 });
             });
         } else {
@@ -297,7 +309,7 @@ if (config.settings.auth.github) {
                     user.active = true;
                     
                     user.save(function(err) {
-                        done(err, user);
+                        return done(err, user);
                     });
                 });
             });
@@ -310,17 +322,18 @@ exports.isAuthenticated = function(req, res, next) {
         return next();
     }
 
-    res.json({
+    return res.json({
         status: 'fail'
     });
 };
 
 exports.isAuthorized = function(req, res, next) {
     var provider = req.path.split('/').slice(-1)[0];
+    var token = _.findWhere(req.user.tokens, {kind: provider});
 
-    if (_.findWhere(req.user.tokens, {kind: provider})) {
-        next();
+    if (token) {
+        return next();
     } else {
-        res.redirect('/auth/' + provider);
+        return res.redirect('/auth/' + provider);
     }
 };

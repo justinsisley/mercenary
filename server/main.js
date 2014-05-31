@@ -1,19 +1,22 @@
 var config = require('../config');
+
 require('colors');
 
 // If there's no MongoDB database defined,
 // we fall back to a local implementation.
 // Learn how: https://github.com/sergeyksv/tungus
-if (!process.env.MONGOLAB_URI && !config.secrets.mongoDbUri) {
+var databaseUri = (process.env.MONGOLAB_URI || config.secrets.mongoDbUri);
+
+if (!databaseUri) {
     require('tungus');
 
     config.secrets.mongoDbUri = 'tingodb://' + __dirname + '/data';
     console.log('\n✗'.red + '  No MongoDB database defined. Using TingoDB.');
 }
 
-var app = require('./app'),
-    mongoose = require('mongoose'),
-    db = mongoose.connection;
+var app = require('./app');
+var mongoose = require('mongoose');
+var db = mongoose.connection;
 
 // Initiate the DB connection
 mongoose.connect(process.env.MONGOLAB_URI || config.secrets.mongoDbUri);

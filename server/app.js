@@ -1,28 +1,28 @@
-var config          = require('../config'),
+var config          = require('../config');
 
-    // Middleware
-    logger          = require('morgan'),
-    session         = require('express-session'),
-    compress        = require('compression'),
-    passport        = require('passport'),
-    bodyParser      = require('body-parser'),
-    cookieParser    = require('cookie-parser'),
-    errorHandler    = require('errorhandler'),
-    methodOverride  = require('method-override'),
-    
-    // Routers
-    apiRouter       = require('./routers/apiRouter'),
-    authRouter      = require('./routers/authRouter'),
-    usersRouter     = require('./routers/usersRouter'),
-    catchallRouter  = require('./routers/catchallRouter'),
+// Middleware
+var logger          = require('morgan');
+var session         = require('express-session');
+var compress        = require('compression');
+var passport        = require('passport');
+var bodyParser      = require('body-parser');
+var cookieParser    = require('cookie-parser');
+var errorHandler    = require('errorhandler');
+var methodOverride  = require('method-override');
 
-    // Express
-    express         = require('express'),
-    app             = express(),
+// Routers
+var apiRouter       = require('./routers/apiRouter');
+var authRouter      = require('./routers/authRouter');
+var usersRouter     = require('./routers/usersRouter');
+var catchallRouter  = require('./routers/catchallRouter');
 
-    // Utils
-    cons            = require('consolidate'),
-    memwatch;
+// Express
+var express         = require('express');
+var app             = express();
+
+// Utils
+var cons            = require('consolidate');
+var memwatch;
 
 require('colors');
 
@@ -30,7 +30,10 @@ var mercenary = {
     start: function() {
         // Log memory leaks and garbage collection
         // events to the console using Memwatch
-        if (config.settings.logging.memory || config.settings.logging.garbage) {
+        var loggingEnabled = (config.settings.logging.memory ||
+                            config.settings.logging.garbage);
+
+        if (loggingEnabled) {
             memwatch = require('memwatch');
 
             // Log memory leaks
@@ -83,8 +86,11 @@ var mercenary = {
         app.set('views', __dirname + '/dust');
 
         // Establish development-only settings.
-        if ('development' === config.settings.env ||
-            'development' === process.env.NODE_ENV || true === config.settings.forceDev) {
+        var devEnvironment = ('development' === config.settings.env ||
+                            'development' === process.env.NODE_ENV ||
+                            true === config.settings.forceDev);
+
+        if (devEnvironment) {
             app.use(errorHandler());
 
             // When in development mode, serve static
@@ -128,10 +134,13 @@ var mercenary = {
         // Start listening on the specified port.
         app.listen(process.env.PORT || config.settings.port);
 
+        var serverUri = 'http://' + ('development' === config.settings.env ? '127.0.0.1' : config.settings.domain);
+        var serverPort = (process.env.PORT || config.settings.port);
+
         console.log('✔'.green + '  Server is running in %s mode at ' + '%s:%d'.underline.green + '\n',
             config.settings.env,
-            'http://' + ('development' === config.settings.env ? '127.0.0.1' : config.settings.domain),
-            process.env.PORT || config.settings.port
+            serverUri,
+            serverPort
         );
 
         // Make the configured Express app a

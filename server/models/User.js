@@ -1,7 +1,7 @@
-var config          = require('../../config'),
-    emailController = require('../controllers/email/emailController'),
-    mongoose        = require('mongoose'),
-    bcrypt          = require('bcrypt');
+var config          = require('../../config');
+var emailController = require('../controllers/email/emailController');
+var mongoose        = require('mongoose');
+var bcrypt          = require('bcrypt');
 
 // Create a basic user schema
 var userSchema = mongoose.Schema({
@@ -34,8 +34,8 @@ var userSchema = mongoose.Schema({
 
 // Before saving a new user, hash their password
 userSchema.pre('save', function(next) {
-    var user = this,
-        SALT_FACTOR = 5;
+    var user = this;
+    var SALT_FACTOR = 5;
 
     if (!user.isModified('password')) {
         return next();
@@ -69,7 +69,7 @@ userSchema.pre('save', function(next) {
                     user.sendActivationEmail();
                 }
 
-                next();
+                return next();
             });
         });
     });
@@ -86,16 +86,17 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
             return callback(err);
         }
     
-        callback(null, isMatch);
+        return callback(null, isMatch);
     });
 };
 
 // Sending activation email
 userSchema.methods.sendActivationEmail = function() {
-    var self = this,
-        activationUrl = 'http://';
+    var self = this;
+    var activationUrl = 'http://';
+    var devEnvironment = ('production' !== process.env.NODE_ENV && 'development' === config.settings.env);
 
-    if ('production' !== process.env.NODE_ENV && 'development' === config.settings.env) {
+    if (devEnvironment) {
         activationUrl += '127.0.0.1:' + config.settings.port;
     } else {
         activationUrl += config.settings.domain;
@@ -119,10 +120,10 @@ userSchema.methods.sendActivationEmail = function() {
             html    : html
         }, function(err, res) {
             if (err) {
-                console.log('error:emailController.sendEmail', err);
+                return console.log('error:emailController.sendEmail', err);
             }
 
-            console.log(res);
+            return console.log(res);
         });
     });
 };
@@ -147,7 +148,7 @@ userSchema.statics.activate = function(activationKey, callback) {
 
         user.save(function(err) {
             if (err) {
-                callback(err);
+                return callback(err);
             }
 
             return callback(err);

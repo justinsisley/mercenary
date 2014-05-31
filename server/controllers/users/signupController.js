@@ -17,15 +17,15 @@ module.exports = {
 
             user.save(function(err, newUser) {
                 if (err) {
-                    console.log(err);
+                    return console.log(err);
                 }
 
                 return res.json({
                     status: 'success',
                     user: {
-                        email: newUser.email,
-                        profile: newUser.profile,
-                        active: newUser.active
+                        email   : newUser.email,
+                        profile : newUser.profile,
+                        active  : newUser.active
                     }
                 });
             });
@@ -34,7 +34,7 @@ module.exports = {
 
     activateUser: function(req, res) {
         if (!req.params.key) {
-            res.redirect('/');
+            return res.redirect('/');
         }
 
         var activationKey = req.params.key;

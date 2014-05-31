@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/sidebar/views/sidebarView'
 ],function(
     App,
-
     SidebarView
 ) {
     return {

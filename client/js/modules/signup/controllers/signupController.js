@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/signup/views/signupView'
 ],function(
     App,
-
     SignupView
 ) {
     return {

@@ -25,9 +25,9 @@ define([
         formSubmitHandler: function(e) {
             e.preventDefault();
 
-            var self = this,
-                email = this.ui.signupEmail.val(),
-                password = this.ui.signupPassword.val();
+            var self = this;
+            var email = this.ui.signupEmail.val();
+            var password = this.ui.signupPassword.val();
 
             if (!email) {
                 return this.showErrorMessage('You must provide an email address.');
@@ -49,18 +49,18 @@ define([
                     password: password
                 }
             }).done(function(response) {
-                if (response) {
-                    if (response.status === 'success') {
-                        self.ui.signupEmail.attr('disabled', true);
-                        self.ui.signupPassword.attr('disabled', true);
-                        self.ui.signupSubmit.addClass('disabled');
+                if (!response) {
+                    return self.showErrorMessage('Something went wrong. Please try again.');
+                }
 
-                        self.showSuccessMessage('You have been sent an activation email.');
-                    } else {
-                        self.showErrorMessage(response.message);
-                    }
+                if (response.status === 'success') {
+                    self.ui.signupEmail.attr('disabled', true);
+                    self.ui.signupPassword.attr('disabled', true);
+                    self.ui.signupSubmit.addClass('disabled');
+
+                    self.showSuccessMessage('You have been sent an activation email.');
                 } else {
-                    self.showErrorMessage('Something went wrong. Please try again.');
+                    self.showErrorMessage(response.message);
                 }
             }).fail(function(response) {
                 // You probably don't want to display this.

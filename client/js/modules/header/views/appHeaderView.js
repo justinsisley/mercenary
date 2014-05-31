@@ -1,12 +1,4 @@
-define([
-    'marionette',
-
-    'app'
-], function(
-    Marionette,
-
-    App
-) {
+define(['marionette'], function(Marionette) {
     return Marionette.ItemView.extend({
         template: 'header/appHeader',
 
@@ -18,13 +10,13 @@ define([
         linkHandler: function(e) {
             e.preventDefault();
 
-            Backbone.history.navigate(e.target.pathname);
+            Backbone.history.navigate(e.target.pathname, true);
         },
 
         logoutHandler: function(e) {
             e.preventDefault();
 
-            App.logout();
+            Backbone.history.navigate('/logout', true);
         }
     });
 });

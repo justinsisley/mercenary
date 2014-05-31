@@ -8,10 +8,8 @@ define([
     return Marionette.ItemView.extend({
         template: 'dashboard/dashboard',
 
-        onRender: function() {
-            setTimeout(function() {
-                holder.run();
-            }, 0);
+        onShow: function() {
+            holder.run();
         }
     });
 });

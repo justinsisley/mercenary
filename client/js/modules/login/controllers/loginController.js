@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/login/views/loginView'
 ],function(
     App,
-
     LoginView
 ) {
     return {

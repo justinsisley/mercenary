@@ -1,13 +1,17 @@
-var config          = require('../../../config'),
-    mandrill        = require('node-mandrill')(process.env.MANDRILL_APIKEY || config.secrets.mandrillApiKey),
-    nodemailer      = require('nodemailer'),
-    smtpTransport   = nodemailer.createTransport('SMTP', {
-        auth: {
-            service : process.env.SMTP_SERVICE || config.secrets.smtp.service,
-            user    : process.env.SMTP_USERNAME || config.secrets.smtp.username,
-            pass    : process.env.SMTP_PASSWORD || config.secrets.smtp.password
-        }
-    });
+var config          = require('../../../config');
+var mandrillApiKey  = (process.env.MANDRILL_APIKEY || config.secrets.mandrillApiKey);
+var mandrill        = require('node-mandrill')(mandrillApiKey);
+var nodemailer      = require('nodemailer');
+var smtpService     = (process.env.SMTP_SERVICE || config.secrets.smtp.service);
+var smtpUsername    = (process.env.SMTP_USERNAME || config.secrets.smtp.username);
+var smtpPassword    = (process.env.SMTP_PASSWORD || config.secrets.smtp.password);
+var smtpTransport   = nodemailer.createTransport('SMTP', {
+    auth: {
+        service : smtpService,
+        user    : smtpUsername,
+        pass    : smtpPassword
+    }
+});
 
 module.exports = {
     // Render a Dust template
@@ -28,18 +32,21 @@ module.exports = {
     // Attempts to use Mandrill, then uses
     // NodeMailer as a fallback.
     sendEmail: function(settings, callback) {
-        if (process.env.MANDRILL_APIKEY || config.secrets.mandrillApiKey) {
-            this.sendEmailMandrill(settings, callback);
+        if (mandrillApiKey) {
+            return this.sendEmailMandrill(settings, callback);
         } else {
-            this.sendEmailNodeMailer(settings, callback);
+            return this.sendEmailNodeMailer(settings, callback);
         }
     },
 
     sendEmailMandrill: function(settings, callback) {
+        var fromEmail = (process.env.FROM_ADDRESS || config.settings.email.fromAddress);
+        var fromName = (process.env.FROM_NAME || config.settings.email.fromName);
+
         mandrill('/messages/send', {
             message: {
-                from_email  : process.env.FROM_ADDRESS || config.settings.email.fromAddress,
-                from_name   : process.env.FROM_NAME || config.settings.email.fromName,
+                from_email  : fromEmail,
+                from_name   : fromName,
                 to          : [{email: settings.to}],
                 subject     : settings.subject,
                 text        : settings.text,
@@ -55,8 +62,10 @@ module.exports = {
     },
 
     sendEmailNodeMailer: function(settings, callback) {
+        var fromEmail = (process.env.FROM_ADDRESS || config.settings.email.fromAddress);
+
         var options = {
-            from    : process.env.FROM_ADDRESS || config.settings.email.fromAddress,
+            from    : fromEmail,
             to      : settings.to,
             subject : settings.subject,
             text    : settings.text,

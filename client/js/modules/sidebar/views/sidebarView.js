@@ -1,8 +1,4 @@
-define([
-    'marionette'
-], function(
-    Marionette
-) {
+define(['marionette'], function(Marionette) {
     return Marionette.ItemView.extend({
         template: 'sidebar/sidebar'
     });

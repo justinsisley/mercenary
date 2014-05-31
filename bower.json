@@ -1,6 +1,6 @@
 {
   "name": "Mercenary",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "authors": [
     "Justin Sisley"
   ],
@@ -19,7 +19,7 @@
     "validator-js": "3.12.0",
     "dustjs-linkedin": "2.3.5",
     "marionette-dust": "~0.1.6",
-    "backbone.marionette": "2.0.0-pre.1",
+    "backbone.marionette": "1.8.6",
     "dustjs-linkedin-helpers": "1.2.0"
   }
 }

@@ -12,14 +12,14 @@
  * for more information about this technique.
  */
 
-var express             = require('express'),
-    router              = express.Router(),
-    loginController     = require('../controllers/users/loginController'),
-    logoutController    = require('../controllers/users/logoutController'),
-    signupController    = require('../controllers/users/signupController'),
-    sessionController   = require('../controllers/users/sessionController'),
-    passwordController  = require('../controllers/users/passwordController'),
-    passportController  = require('../controllers/passportController');
+var express             = require('express');
+var router              = express.Router();
+var loginController     = require('../controllers/users/loginController');
+var logoutController    = require('../controllers/users/logoutController');
+var signupController    = require('../controllers/users/signupController');
+var sessionController   = require('../controllers/users/sessionController');
+var passwordController  = require('../controllers/users/passwordController');
+var passportController  = require('../controllers/passportController');
 
 // Determine if there is an active session.
 router.get('/session', passportController.isAuthenticated, sessionController);

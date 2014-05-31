@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/footer/views/publicFooterView'
 ],function(
     App,
-
     PublicFooterView
 ) {
     return {

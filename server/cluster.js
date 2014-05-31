@@ -1,5 +1,5 @@
-var os = require('os'),
-    cluster = require('cluster');
+var os = require('os');
+var cluster = require('cluster');
 
 // Setup the cluster to use app.js
 cluster.setupMaster({exec: 'server/main.js'});

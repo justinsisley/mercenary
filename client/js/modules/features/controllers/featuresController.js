@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/features/views/featuresView'
 ], function(
     App,
-
     FeaturesView
 ) {
     return {

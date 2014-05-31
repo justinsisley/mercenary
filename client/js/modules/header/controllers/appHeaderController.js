@@ -1,10 +1,8 @@
 define([
     'app',
-
     'modules/header/views/appHeaderView'
 ],function(
     App,
-
     AppHeaderView
 ) {
     return {

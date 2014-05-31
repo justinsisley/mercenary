@@ -1,7 +1,7 @@
 var controller = {
     updatePassword: function(req, res) {
-        var currentPassword = req.body.currentPassword,
-            newPassword = req.body.newPassword;
+        var currentPassword = req.body.currentPassword;
+        var newPassword = req.body.newPassword;
 
         if (!currentPassword) {
             return res.json({
