@@ -17,6 +17,7 @@ module.exports = function(grunt) {
 
     // Run the server with Node.
     grunt.registerTask('serve', ['shell:serve']);
+    
     // Run the server with nodemon, restarting it when
     // any changes are made.
     grunt.registerTask('servedemon', ['shell:servedemon']);

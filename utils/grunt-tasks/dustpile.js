@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
     'use strict';
     
-    var dust = require('dustjs-linkedin'),
-        timeStart = Date.now();
+    var dust = require('dustjs-linkedin');
+    var timeStart = Date.now();
 
     // Create the task
     grunt.registerMultiTask('dustpile', 'Compile dustjs templates in a particular way.', function() {

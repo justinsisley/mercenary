@@ -1,5 +1,9 @@
 var config          = require('../config');
 
+// Express
+var express         = require('express');
+var app             = express();
+
 // Middleware
 var logger          = require('morgan');
 var session         = require('express-session');
@@ -15,10 +19,6 @@ var apiRouter       = require('./routers/apiRouter');
 var authRouter      = require('./routers/authRouter');
 var usersRouter     = require('./routers/usersRouter');
 var catchallRouter  = require('./routers/catchallRouter');
-
-// Express
-var express         = require('express');
-var app             = express();
 
 // Utils
 var cons            = require('consolidate');
@@ -50,9 +50,6 @@ var mercenary = {
                 });
             }
         }
-
-        // Compress responses with Gzip.
-        app.use(compress());
 
         // Parses the Cookie header field and populates
         // req.cookies with an object keyed by the cookie names
@@ -121,6 +118,13 @@ var mercenary = {
         // All routes in the auth router will
         // be prefixed with the '/auth' path.
         app.use('/auth', authRouter);
+
+        // Compress responses with Gzip.
+        // This is placed further down the
+        // stack intentionally to avoid
+        // gzipping static assets used during
+        // development.
+        app.use(compress());
 
         // Instantiate the "catchall" router
         // after all other routes. If no previous

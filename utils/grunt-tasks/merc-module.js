@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
-    var fs = require('fs'),
-        CLIENT_DIR = 'client';
+    var fs = require('fs');
+    var CLIENT_DIR = 'client';
 
     grunt.registerTask('merc-module', 'Creates a new client-side module.', function(name, layout, region) {
         if (!name) {

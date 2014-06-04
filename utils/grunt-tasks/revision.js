@@ -5,9 +5,9 @@ module.exports = function(grunt) {
     var fs = require('fs');
 
     grunt.registerTask('revision', 'Increment the revision number.', function(type) {
-        var CONFIG_FILE = 'config/index.js',
-            configFile = grunt.file.read(CONFIG_FILE),
-            revision;
+        var CONFIG_FILE = 'config/index.js';
+        var configFile = grunt.file.read(CONFIG_FILE);
+        var revision;
 
         function bump(pattern) {
             var regex = new RegExp("(" + pattern + "[ ]*:[ ]*)([0-9|A-a|.|-]*)", 'i');

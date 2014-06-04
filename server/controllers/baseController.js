@@ -9,12 +9,12 @@ module.exports = function(req, res) {
         javascriptVersion   : config.versions.javascript
     });
 
+    var devEnvironment = ('development' === process.env.NODE_ENV ||
+                        'development' === config.settings.env);
+
     // If this is a non-development environment,
     // we provide a Google Analytics tracker ID.
-    var nonDevEnvironment = ('development' !== process.env.NODE_ENV &&
-                            'development' !== config.settings.env);
-
-    if (nonDevEnvironment) {
+    if (!devEnvironment) {
         _.extend(config, {
             googleAnalytics: process.env.GA_TRACKER || config.secrets.gaTracker
         });
@@ -24,15 +24,8 @@ module.exports = function(req, res) {
     // we want to force development assets, we
     // we tell the app template that we're in
     // development mode.
-
-    var devEnvironment = ('development' === process.env.NODE_ENV ||
-                        'development' === config.settings.env ||
-                        true === config.settings.forceDev);
-    
-    if (devEnvironment) {
-        _.extend(config, {
-            development: true
-        });
+    if (devEnvironment || config.settings.forceDev) {
+        _.extend(config, {development: true});
     }
 
     // If we want to force production mode and

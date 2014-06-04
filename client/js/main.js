@@ -1,5 +1,5 @@
 /**
- * Bootstraps the application
+ * Bootstrap the application
  */
 define([
     'backbone',
@@ -14,28 +14,21 @@ define([
 ) {
     // Bootstrap the application
     App.addInitializer(function() {
-        // Instantiate router(s)
-        App.routers = {
-            baseRouter: new BaseRouter()
-        };
+        // Instantiate router
+        App.router = new BaseRouter();
 
         // Start Backbone.history
-        Backbone.history.start({
-            root: '/',
-            pushState: true
-        });
+        Backbone.history.start({pushState: true});
     });
 
     // Check for an existing session,
     // then start the application in the
     // appropriate state.
-    $.ajax({
-        url: '/users/session',
-    }).always(function(response) {
+    $.get('/users/session').done(function(response) {
         // If the session fetch was successful,
         // put the returned user data in our local
         // object and navigate to the dashboard.
-        if (response && response.status === 'success') {
+        if (response && response.user) {
             App.vars.user = response.user;
         }
 

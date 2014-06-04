@@ -147,7 +147,7 @@ define([
 
             // Show the public layout in the
             // application's main content region.
-            App.mainContentRegion.show(App.publicLayout);
+            App.mainRegion.show(App.publicLayout);
 
             // Show the public header.
             publicHeaderController.show();
@@ -206,7 +206,7 @@ define([
 
             // Show the app layout in the
             // application's main content region.
-            App.mainContentRegion.show(App.appLayout);
+            App.mainRegion.show(App.appLayout);
 
             // Show the authenticated app header.
             appHeaderController.show();
