@@ -15,7 +15,6 @@
  * layout, shown to unauthenticated users, and the
  * app layout, which is for logged-in users only.
  */
-
 define([
     'app',
 
