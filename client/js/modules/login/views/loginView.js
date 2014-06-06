@@ -1,9 +1,13 @@
 define([
     'marionette',
-    'validator'
+    'validator',
+
+    'helpers/strings'
 ], function(
     Marionette,
-    validator
+    validator,
+
+    strings
 ) {
     return Marionette.ItemView.extend({
         template: 'login/login',
@@ -24,15 +28,15 @@ define([
 
         onRender: function() {
             if (window.location.search.indexOf('active=true') > 0) {
-                this.showSuccessMessage('Your account is now active.');
+                this.showSuccessMessage(strings.accountNowActive);
             }
 
             if (window.location.search.indexOf('active=false') > 0) {
-                this.showErrorMessage('Your account is not active.');
+                this.showErrorMessage(strings.accountNowActive);
             }
 
             if (window.location.search.indexOf('fail=true') > 0) {
-                this.showErrorMessage('Incorrect username/password combination.');
+                this.showErrorMessage(strings.incorrectLoginCredentials);
             }
         },
 
@@ -43,12 +47,12 @@ define([
 
             if (!validEmail) {
                 e.preventDefault();
-                return this.showErrorMessage('Please provide a valid email address.');
+                return this.showErrorMessage(strings.invalidEmail);
             }
 
             if (!password) {
                 e.preventDefault();
-                return this.showErrorMessage('You must provide a password.');
+                return this.showErrorMessage(strings.invalidPassword);
             }
         },
 

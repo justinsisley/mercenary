@@ -1,9 +1,13 @@
 define([
     'marionette',
-    'validator'
+    'validator',
+
+    'helpers/strings'
 ], function(
     Marionette,
-    validator
+    validator,
+
+    strings
 ) {
     return Marionette.ItemView.extend({
         template: 'signup/signup',
@@ -30,34 +34,30 @@ define([
             var password = this.ui.signupPassword.val();
 
             if (!email) {
-                return this.showErrorMessage('You must provide an email address.');
+                return this.showErrorMessage(strings.noEmail);
             }
 
             if (!validator.isEmail(email)) {
-                return this.showErrorMessage('Please provide a valid email address.');
+                return this.showErrorMessage(strings.invalidEmail);
             }
 
             if (!password) {
-                return this.showErrorMessage('You must provide a password.');
+                return this.showErrorMessage(strings.invalidPassword);
             }
 
             $.post('/users/signup', {
                 email: email,
                 password: password
             }).done(function(response) {
-                if (!response) {
-                    return self.showErrorMessage('Something went wrong. Please try again.');
+                if (!response || response.status !== 'success') {
+                    return self.showErrorMessage(strings.unspecifiedError);
                 }
 
-                if (response.status === 'success') {
-                    self.ui.signupEmail.attr('disabled', true);
-                    self.ui.signupPassword.attr('disabled', true);
-                    self.ui.signupSubmit.addClass('disabled');
+                self.ui.signupEmail.attr('disabled', true);
+                self.ui.signupPassword.attr('disabled', true);
+                self.ui.signupSubmit.addClass('disabled');
 
-                    self.showSuccessMessage('You have been sent an activation email.');
-                } else {
-                    self.showErrorMessage(response.message);
-                }
+                self.showSuccessMessage(strings.activationSent);
             }).fail(function(response) {
                 // You probably don't want to display this.
                 self.showErrorMessage('Fail: ' + response);
