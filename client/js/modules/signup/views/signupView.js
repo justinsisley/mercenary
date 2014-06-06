@@ -10,16 +10,16 @@ define([
 
         className: 'inner cover',
 
-        events: {
-            'click #js-signup-submit' : 'formSubmitHandler'
-        },
-
         ui: {
             signupEmail         : '#js-signup-email',
             signupPassword      : '#js-signup-password',
             signupSubmit        : '#js-signup-submit',
             formSuccessMessage  : '#js-form-success-message',
             formErrorMessage    : '#js-form-error-message'
+        },
+
+        events: {
+            'click #js-signup-submit' : 'formSubmitHandler'
         },
 
         formSubmitHandler: function(e) {
@@ -41,13 +41,9 @@ define([
                 return this.showErrorMessage('You must provide a password.');
             }
 
-            $.ajax({
-                type: 'POST',
-                url: '/users/signup',
-                data: {
-                    email: email,
-                    password: password
-                }
+            $.post('/users/signup', {
+                email: email,
+                password: password
             }).done(function(response) {
                 if (!response) {
                     return self.showErrorMessage('Something went wrong. Please try again.');

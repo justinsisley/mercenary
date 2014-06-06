@@ -4,9 +4,9 @@
  * basically a switchboard that provides a callback
  * for each route in the base router.
  * The base controller's methods should leverage
- * other module controllers to get the real work
- * done, which, most of the time, means rendering
- * one or more views.
+ * other controllers to get the real work done,
+ * which, most of the time, means rendering
+ * one or more regions or views.
  */
 define([
     'app',

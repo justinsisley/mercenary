@@ -1,7 +1,6 @@
 /**
  * The logged-in, authenticated layout.
  */
-
 define(['marionette'], function(Marionette) {
     return Marionette.Layout.extend({
         template: 'base/appLayout',
