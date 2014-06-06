@@ -12,6 +12,7 @@ define([
             App.publicLayout.mainRegion.show(featuresView);
 
             App.vent.trigger('featuresController:show');
+            App.vent.trigger('domchange:title', 'Features');
         }
     };
 });

@@ -3,7 +3,6 @@
  * This router should be the source of truth for what
  * paths exists across your application.
  */
-
 define([
     'marionette',
 

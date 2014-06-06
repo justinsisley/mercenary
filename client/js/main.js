@@ -14,8 +14,10 @@ define([
 ) {
     // Bootstrap the application
     App.addInitializer(function() {
-        // Instantiate router
-        App.router = new BaseRouter();
+        // Instantiate routers
+        App.routers = {
+            baseRouter: new BaseRouter()
+        };
 
         // Start Backbone.history
         Backbone.history.start({pushState: true});

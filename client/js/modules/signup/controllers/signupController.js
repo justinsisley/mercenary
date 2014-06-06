@@ -12,6 +12,7 @@ define([
             App.publicLayout.mainRegion.show(signupView);
 
             App.vent.trigger('signupController:show');
+            App.vent.trigger('domchange:title', 'Sign Up');
         }
     };
 });

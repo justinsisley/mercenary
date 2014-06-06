@@ -12,6 +12,7 @@ define([
             App.appLayout.mainRegion.show(dashboardView);
 
             App.vent.trigger('dashboardController:show');
+            App.vent.trigger('domchange:title', 'Dashboard');
         }
     };
 });

@@ -12,6 +12,7 @@ define([
             App.publicLayout.mainRegion.show(homeView);
 
             App.vent.trigger('homeController:show');
+            App.vent.trigger('domchange:title');
         }
     };
 });

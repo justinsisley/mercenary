@@ -12,6 +12,7 @@ define([
             App.publicLayout.mainRegion.show(loginView);
 
             App.vent.trigger('loginController:show');
+            App.vent.trigger('domchange:title', 'Log In');
         }
     };
 });
