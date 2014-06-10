@@ -130,8 +130,6 @@ function findUser(userExists, data, callback) {
 }
 
 function updateOrCreateUser(user, oAuthData, callback) {
-    console.log(user);
-
     if (!user) {
         user = new User();
     }
@@ -157,10 +155,6 @@ if (config.settings.auth.facebook) {
         callbackURL         : '/auth/facebook/callback',
         passReqToCallback   : true
     }, function(req, accessToken, refreshToken, profile, done) {
-        function complete(err) {
-            return done(err, this);
-        }
-
         var data = {
             service     : 'facebook',
             profile     : profile,
@@ -172,7 +166,9 @@ if (config.settings.auth.facebook) {
             userExists.bind(data),
             findUser,
             updateOrCreateUser
-        ], complete);
+        ], function(err) {
+            return done(err, this);
+        });
     }));
 }
 
@@ -194,10 +190,6 @@ if (config.settings.auth.google) {
         callbackURL: '/auth/google/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
-        function complete(err) {
-            return done(err, this);
-        }
-
         var data = {
             service     : 'google',
             profile     : profile,
@@ -209,7 +201,9 @@ if (config.settings.auth.google) {
             userExists.bind(data),
             findUser,
             updateOrCreateUser
-        ], complete);
+        ], function(err) {
+            return done(err, this);
+        });
     }));
 }
 
@@ -231,10 +225,6 @@ if (config.settings.auth.twitter) {
         callbackURL: '/auth/twitter/callback',
         passReqToCallback: true
     }, function(req, accessToken, tokenSecret, profile, done) {
-        function complete(err) {
-            return done(err, this);
-        }
-
         var data = {
             service     : 'twitter',
             profile     : profile,
@@ -247,7 +237,9 @@ if (config.settings.auth.twitter) {
             userExists.bind(data),
             findUser,
             updateOrCreateUser
-        ], complete);
+        ], function(err) {
+            return done(err, this);
+        });
     }));
 }
 
@@ -269,10 +261,6 @@ if (config.settings.auth.github) {
         callbackURL: '/auth/github/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
-        function complete(err) {
-            return done(err, this);
-        }
-
         var data = {
             service     : 'github',
             profile     : profile,
@@ -284,7 +272,9 @@ if (config.settings.auth.github) {
             userExists.bind(data),
             findUser,
             updateOrCreateUser
-        ], complete);
+        ], function(err) {
+            return done(err, this);
+        });
     }));
 }
 
