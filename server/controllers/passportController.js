@@ -274,7 +274,6 @@ if (config.settings.auth.github) {
                 user.profile.name = user.profile.name || profile.displayName;
                 user.profile.picture = user.profile.picture || profile._json.avatar_url;
                 user.profile.location = user.profile.location || profile._json.location;
-                user.profile.website = user.profile.website || profile._json.blog;
 
                 user.active = true;
                 
@@ -304,7 +303,6 @@ if (config.settings.auth.github) {
                     user.profile.name = profile.displayName;
                     user.profile.picture = profile._json.avatar_url;
                     user.profile.location = profile._json.location;
-                    user.profile.website = profile._json.blog;
 
                     user.active = true;
                     

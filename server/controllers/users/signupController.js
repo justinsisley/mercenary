@@ -41,7 +41,7 @@ module.exports = {
 
         User.activate(activationKey, function(err) {
             if (err) {
-                return res.redirect('/');
+                return res.redirect('/login');
             }
 
             return res.redirect('/login?active=true');

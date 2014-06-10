@@ -29,9 +29,14 @@ define([
         formSubmitHandler: function(e) {
             e.preventDefault();
 
-            var self = this;
             var email = this.ui.signupEmail.val();
             var password = this.ui.signupPassword.val();
+
+            this.signUpUser(email, password);
+        },
+
+        signUpUser: function(email, password) {
+            var self = this;
 
             if (!email) {
                 return this.showErrorMessage(strings.noEmail);
