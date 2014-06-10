@@ -57,4 +57,12 @@ if (config.settings.auth.linkedin) {
     }));
 }
 
+if (config.settings.auth.instagram) {
+    router.get('/instagram', passport.authenticate('instagram'));
+    router.get('/instagram/callback', passport.authenticate('instagram', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
+}
+
 module.exports = router;

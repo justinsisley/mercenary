@@ -20,5 +20,6 @@
         <a class="btn btn-primary btn-twitter" href="/auth/twitter">Twitter</a>
         <a class="btn btn-primary btn-github" href="/auth/github">GitHub</a>
         <a class="btn btn-primary btn-linkedin" href="/auth/linkedin">LinkedIn</a>
+        <a class="btn btn-primary btn-instagram" href="/auth/instagram">Instagram</a>
     </div>
 </form>

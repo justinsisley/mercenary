@@ -2,7 +2,7 @@
   "name": "mercenary",
   "description": "The Force Multiplier Web Application Stack",
   "homepage": "https://github.com/justinsisley/Mercenary",
-  "version": "0.4.13",
+  "version": "0.4.15",
   "private": true,
   "scripts": {
     "start": "node server/main",
@@ -34,6 +34,7 @@
     "passport-facebook": "1.0.3",
     "passport-github": "0.1.5",
     "passport-google-oauth": "0.1.5",
+    "passport-instagram": "^0.1.2",
     "passport-linkedin-oauth2": "^1.1.1",
     "passport-local": "1.0.0",
     "passport-twitter": "1.0.2",

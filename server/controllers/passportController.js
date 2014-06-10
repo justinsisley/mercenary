@@ -6,6 +6,7 @@ var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy     = require('passport-twitter').Strategy;
 var GitHubStrategy      = require('passport-github').Strategy;
 var LinkedInStrategy    = require('passport-linkedin-oauth2').Strategy;
+var InstagramStrategy   = require('passport-instagram').Strategy;
 var async               = require('async');
 var config              = require('../../config');
 var User                = require('../models/User');
@@ -82,7 +83,8 @@ function saveOAuthUser(user, data, callback) {
                             data.profile._json.profile_image_url ||
                             data.profile._json.picture ||
                             data.profile._json.avatar_url ||
-                            data.profile._json.pictureUrl;
+                            data.profile._json.pictureUrl ||
+                            data.profile._json.data.profile_picture;
 
     user.active = true;
 
@@ -300,6 +302,41 @@ if (config.settings.auth.linkedin) {
     }, function(req, accessToken, refreshToken, profile, done) {
         var data = {
             service     : 'linkedin',
+            profile     : profile,
+            accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], function(err) {
+            return done(err, this);
+        });
+    }));
+}
+
+var instagramClientId = (process.env.INSTAGRAM_CLIENT_ID || config.secrets.auth.instagram.clientId);
+var instagramClientSecret = (process.env.INSTAGRAM_CLIENT_SECRET || config.secrets.auth.instagram.clientSecret);
+
+if (config.settings.auth.instagram) {
+    if (!instagramClientId) {
+        throw new Error('Missing Instagram Client ID');
+    }
+
+    if (!instagramClientSecret) {
+        throw new Error('Missing Instagram Client Secret');
+    }
+
+    passport.use(new InstagramStrategy({
+        clientID: instagramClientId,
+        clientSecret: instagramClientSecret,
+        callbackURL: '/auth/instagram/callback',
+        passReqToCallback: true
+    }, function(req, accessToken, refreshToken, profile, done) {
+        var data = {
+            service     : 'instagram',
             profile     : profile,
             accessToken : accessToken,
             user        : req.user
