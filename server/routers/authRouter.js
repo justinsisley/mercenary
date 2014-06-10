@@ -49,4 +49,12 @@ if (config.settings.auth.github) {
     }));
 }
 
+if (config.settings.auth.linkedin) {
+    router.get('/linkedin', passport.authenticate('linkedin', {state: 'long, hard-to-guess string'}));
+    router.get('/linkedin/callback', passport.authenticate('linkedin', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
+}
+
 module.exports = router;

@@ -2,9 +2,10 @@ var _                   = require('underscore');
 var passport            = require('passport');
 var LocalStrategy       = require('passport-local').Strategy;
 var FacebookStrategy    = require('passport-facebook').Strategy;
+var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy     = require('passport-twitter').Strategy;
 var GitHubStrategy      = require('passport-github').Strategy;
-var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
+var LinkedInStrategy    = require('passport-linkedin-oauth2').Strategy;
 var async               = require('async');
 var config              = require('../../config');
 var User                = require('../models/User');
@@ -80,7 +81,8 @@ function saveOAuthUser(user, data, callback) {
                             data.profile.picture ||
                             data.profile._json.profile_image_url ||
                             data.profile._json.picture ||
-                            data.profile._json.avatar_url;
+                            data.profile._json.avatar_url ||
+                            data.profile._json.pictureUrl;
 
     user.active = true;
 
@@ -185,10 +187,10 @@ if (config.settings.auth.google) {
     }
 
     passport.use(new GoogleStrategy({
-        clientID: googleClientId,
-        clientSecret: googleClientSecret,
-        callbackURL: '/auth/google/callback',
-        passReqToCallback: true
+        clientID            : googleClientId,
+        clientSecret        : googleClientSecret,
+        callbackURL         : '/auth/google/callback',
+        passReqToCallback   : true
     }, function(req, accessToken, refreshToken, profile, done) {
         var data = {
             service     : 'google',
@@ -220,10 +222,10 @@ if (config.settings.auth.twitter) {
     }
 
     passport.use(new TwitterStrategy({
-        consumerKey: twitterConsumerKey,
-        consumerSecret: twitterConsumerSecret,
-        callbackURL: '/auth/twitter/callback',
-        passReqToCallback: true
+        consumerKey         : twitterConsumerKey,
+        consumerSecret      : twitterConsumerSecret,
+        callbackURL         : '/auth/twitter/callback',
+        passReqToCallback   : true
     }, function(req, accessToken, tokenSecret, profile, done) {
         var data = {
             service     : 'twitter',
@@ -263,6 +265,41 @@ if (config.settings.auth.github) {
     }, function(req, accessToken, refreshToken, profile, done) {
         var data = {
             service     : 'github',
+            profile     : profile,
+            accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], function(err) {
+            return done(err, this);
+        });
+    }));
+}
+
+var linkedInClientId = (process.env.LINKEDIN_CLIENT_ID || config.secrets.auth.linkedin.clientId);
+var linkedInClientSecret = (process.env.LINKEDIN_CLIENT_SECRET || config.secrets.auth.linkedin.clientSecret);
+
+if (config.settings.auth.linkedin) {
+    if (!linkedInClientId) {
+        throw new Error('Missing LinkedIn Client ID');
+    }
+
+    if (!linkedInClientSecret) {
+        throw new Error('Missing LinkedIn Client Secret');
+    }
+
+    passport.use(new LinkedInStrategy({
+        clientID: linkedInClientId,
+        clientSecret: linkedInClientSecret,
+        callbackURL: '/auth/linkedin/callback',
+        passReqToCallback: true
+    }, function(req, accessToken, refreshToken, profile, done) {
+        var data = {
+            service     : 'linkedin',
             profile     : profile,
             accessToken : accessToken,
             user        : req.user

@@ -23,6 +23,7 @@ var userSchema = mongoose.Schema({
     twitter     : {type: String, unique: true, sparse: true},
     google      : {type: String, unique: true, sparse: true},
     github      : {type: String, unique: true, sparse: true},
+    linkedin    : {type: String, unique: true, sparse: true},
 
     // Profile information
     profile: {
