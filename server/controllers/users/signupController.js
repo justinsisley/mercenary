@@ -1,8 +1,16 @@
 var User = require('../../models/User');
+var async = require('async');
 
 module.exports = {
     createUser: function(req, res) {
-        User.findOne({email: req.body.email}, function(err, user) {
+        var email = req.body.email;
+        var password = req.body.password;
+
+        function findUserByEmail(callback) {
+            User.findOne({email: email}, callback);
+        }
+
+        function saveNewUser(user, callback) {
             if (user) {
                 return res.json({
                     status: 'fail',
@@ -11,25 +19,36 @@ module.exports = {
             }
 
             user = new User({
-                email: req.body.email,
-                password: req.body.password
+                email: email,
+                password: password
             });
 
-            user.save(function(err, newUser) {
-                if (err) {
-                    return console.log(err);
-                }
+            user.save(callback);
+        }
 
+        function respond(err, user) {
+            if (err) {
+                console.log(err);
+                
                 return res.json({
-                    status: 'success',
-                    user: {
-                        email   : newUser.email,
-                        profile : newUser.profile,
-                        active  : newUser.active
-                    }
+                    status: 'error'
                 });
+            }
+
+            return res.json({
+                status: 'success',
+                user: {
+                    email   : user.email,
+                    profile : user.profile,
+                    active  : user.active
+                }
             });
-        });
+        }
+
+        async.waterfall([
+            findUserByEmail,
+            saveNewUser
+        ], respond);
     },
 
     activateUser: function(req, res) {

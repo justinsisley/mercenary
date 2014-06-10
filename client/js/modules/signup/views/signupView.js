@@ -55,7 +55,7 @@ define([
                 password: password
             }).done(function(response) {
                 if (!response || response.status !== 'success') {
-                    return self.showErrorMessage(strings.unspecifiedError);
+                    return self.showErrorMessage(response.message || strings.unspecifiedError);
                 }
 
                 self.ui.signupEmail.attr('disabled', true);
