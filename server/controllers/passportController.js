@@ -5,6 +5,7 @@ var FacebookStrategy    = require('passport-facebook').Strategy;
 var TwitterStrategy     = require('passport-twitter').Strategy;
 var GitHubStrategy      = require('passport-github').Strategy;
 var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
+var async               = require('async');
 var config              = require('../../config');
 var User                = require('../models/User');
 
@@ -18,21 +19,125 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
+// Local user authentication
 passport.use(new LocalStrategy({usernameField: 'email'}, function(email, password, done) {
-    User.findOne({email: email}, function(err, user) {
+    // Look up a user by email
+    function findUserById(callback) {
+        User.findOne({email: email}, callback);
+    }
+
+    // Verify that the provided password matches
+    // the user's hashed password
+    function confirmCurrentPassword(user, callback) {
         if (!user) {
             return done(null, false, {message: 'Email ' + email + ' not found'});
         }
-        
-        user.comparePassword(password, function(err, isMatch) {
-            if (isMatch) {
-                return done(null, user);
-            } else {
-                return done(null, false, {message: 'Invalid email or password.'});
-            }
-        });
-    });
+
+        // Bind the callback to the user context, so we can
+        // call the `respond` function below, and the value
+        // of "this" will be `user`.
+        user.comparePassword(password, callback.bind(user));
+    }
+
+    // Completion
+    function respond(err, passwordConfirmed) {
+        if (!passwordConfirmed) {
+            return done(null, false, {message: 'Invalid email or password.'});
+        }
+
+        return done(null, this);
+    }
+
+    async.waterfall([
+        findUserById,
+        confirmCurrentPassword
+    ], respond);
 }));
+
+// Save an OAuth user to the DB.
+// This is an abstraction that is meant
+// to be used across each Passport strategy.
+function saveOAuthUser(user, data, callback) {
+    if (data.email) {
+        user.email = data.email;
+    }
+
+    user[data.service] = data.id;
+    
+    user.tokens.push({
+        kind: data.service,
+        accessToken: data.accessToken,
+        tokenSecret: data.tokenSecret
+    });
+
+    user.profile.name = user.profile.name ||
+                        data.profile.displayName;
+
+    user.profile.gender = user.profile.gender ||
+                            data.gender;
+
+    user.profile.picture = user.profile.picture ||
+                            data.profile.picture ||
+                            data.profile._json.profile_image_url ||
+                            data.profile._json.picture ||
+                            data.profile._json.avatar_url;
+
+    user.active = true;
+
+    user.save(callback.bind(user));
+}
+
+// `this` is explicitly bound
+// when this function is called
+function userExists(callback) {
+    var self = this;
+
+    if (!this.profile._json.email) {
+        return callback(null, !!this.user, this);
+    }
+
+    User.findOne({email: this.profile._json.email}, function(err, user) {
+        if (user) {
+            self.user = user;
+
+            // Second parameter is boolean indicating
+            // whether or not the user exists; third
+            // parameter is the context that this
+            // function was called with, which
+            // represents the data passed in each
+            // Passport auth strategy.
+            return callback(null, true, self);
+        }
+
+        return callback(null, false, self);
+    });
+}
+
+function findUser(userExists, data, callback) {
+    var query = {};
+
+    if (userExists) {
+        User.findById(data.user.id, function(err, user) {
+            return callback(err, user, data);
+        });
+    } else {
+        query[data.service] = data.profile.id;
+
+        User.findOne(query, function(err, user) {
+            return callback(err, user, data);
+        });
+    }
+}
+
+function updateOrCreateUser(user, oAuthData, callback) {
+    console.log(user);
+
+    if (!user) {
+        user = new User();
+    }
+
+    saveOAuthUser(user, oAuthData, callback);
+}
 
 var facebookClientId = (process.env.FACEBOOK_CLIENT_ID || config.secrets.auth.facebook.clientId);
 var facebookClientSecret = (process.env.FACEBOOK_CLIENT_SECRET || config.secrets.auth.facebook.clientSecret);
@@ -47,61 +152,27 @@ if (config.settings.auth.facebook) {
     }
 
     passport.use(new FacebookStrategy({
-        clientID: facebookClientId,
-        clientSecret: facebookClientSecret,
-        callbackURL: '/auth/facebook/callback',
-        passReqToCallback: true
+        clientID            : facebookClientId,
+        clientSecret        : facebookClientSecret,
+        callbackURL         : '/auth/facebook/callback',
+        passReqToCallback   : true
     }, function(req, accessToken, refreshToken, profile, done) {
-        if (req.user) {
-            User.findById(req.user.id, function(err, user) {
-                user.facebook = profile.id;
-                
-                user.tokens.push({
-                    kind: 'facebook',
-                    accessToken: accessToken
-                });
-
-                user.profile.name = user.profile.name || profile.displayName;
-                user.profile.gender = user.profile.gender || profile._json.gender;
-                user.profile.picture = user.profile.picture || profile._json.profile_image_url;
-
-                user.active = true;
-                
-                user.save(function(err) {
-                    return done(err, user);
-                });
-            });
-        } else {
-            User.findOne({facebook: profile.id}, function(err, existingUser) {
-                if (existingUser) {
-                    return done(null, existingUser);
-                }
-
-                User.findOne({email: profile._json.email}, function(err, user) {
-                    if (!user) {
-                        user = new User();
-                    }
-
-                    user.email = profile._json.email;
-                    user.facebook = profile.id;
-                    
-                    user.tokens.push({
-                        kind: 'facebook',
-                        accessToken: accessToken
-                    });
-                    
-                    user.profile.name = profile.displayName;
-                    user.profile.gender = profile._json.gender;
-                    user.profile.picture = profile._json.profile_image_url;
-
-                    user.active = true;
-                    
-                    user.save(function(err) {
-                        return done(err, user);
-                    });
-                });
-            });
+        function complete(err) {
+            return done(err, this);
         }
+
+        var data = {
+            service     : 'facebook',
+            profile     : profile,
+            accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], complete);
     }));
 }
 
@@ -123,56 +194,22 @@ if (config.settings.auth.google) {
         callbackURL: '/auth/google/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
-        if (req.user) {
-            User.findById(req.user.id, function(err, user) {
-                user.google = profile.id;
-                
-                user.tokens.push({
-                    kind: 'google',
-                    accessToken: accessToken
-                });
-                
-                user.profile.name = user.profile.name || profile.displayName;
-                user.profile.gender = user.profile.gender || profile._json.gender;
-                user.profile.picture = user.profile.picture || profile._json.picture;
-
-                user.active = true;
-                
-                user.save(function(err) {
-                    return done(err, user);
-                });
-            });
-        } else {
-            User.findOne({google: profile.id}, function(err, existingUser) {
-                if (existingUser) {
-                    return done(null, existingUser);
-                }
-
-                User.findOne({email: profile._json.email}, function(err, user) {
-                    if (!user) {
-                        user = new User();
-                    }
-
-                    user.email = profile._json.email;
-                    user.google = profile.id;
-                    
-                    user.tokens.push({
-                        kind: 'google',
-                        accessToken: accessToken
-                    });
-                    
-                    user.profile.name = profile.displayName;
-                    user.profile.gender = profile._json.gender;
-                    user.profile.picture = profile._json.picture;
-
-                    user.active = true;
-
-                    user.save(function(err) {
-                        return done(err, user);
-                    });
-                });
-            });
+        function complete(err) {
+            return done(err, this);
         }
+
+        var data = {
+            service     : 'google',
+            profile     : profile,
+            accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], complete);
     }));
 }
 
@@ -194,53 +231,23 @@ if (config.settings.auth.twitter) {
         callbackURL: '/auth/twitter/callback',
         passReqToCallback: true
     }, function(req, accessToken, tokenSecret, profile, done) {
-        if (req.user) {
-            User.findById(req.user.id, function(err, user) {
-                user.twitter = profile.id;
-                
-                user.tokens.push({
-                    kind: 'twitter',
-                    accessToken: accessToken,
-                    tokenSecret: tokenSecret
-                });
-                
-                user.profile.name = user.profile.name || profile.displayName;
-                user.profile.location = user.profile.location || profile._json.location;
-                user.profile.picture = user.profile.picture || profile._json.profile_image_url;
-
-                user.active = true;
-                
-                user.save(function(err) {
-                    return done(err, user);
-                });
-            });
-        } else {
-            User.findOne({twitter: profile.id}, function(err, existingUser) {
-                if (existingUser) {
-                    return done(null, existingUser);
-                }
-                
-                var user = new User();
-                
-                user.twitter = profile.id;
-                
-                user.tokens.push({
-                    kind: 'twitter',
-                    accessToken: accessToken,
-                    tokenSecret: tokenSecret
-                });
-                
-                user.profile.name = profile.displayName;
-                user.profile.location = profile._json.location;
-                user.profile.picture = profile._json.profile_image_url;
-
-                user.active = true;
-                
-                user.save(function(err) {
-                    return done(err, user);
-                });
-            });
+        function complete(err) {
+            return done(err, this);
         }
+
+        var data = {
+            service     : 'twitter',
+            profile     : profile,
+            accessToken : accessToken,
+            tokenSecret : tokenSecret,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], complete);
     }));
 }
 
@@ -262,56 +269,22 @@ if (config.settings.auth.github) {
         callbackURL: '/auth/github/callback',
         passReqToCallback: true
     }, function(req, accessToken, refreshToken, profile, done) {
-        if (req.user) {
-            User.findById(req.user.id, function(err, user) {
-                user.github = profile.id;
-                
-                user.tokens.push({
-                    kind: 'github',
-                    accessToken: accessToken
-                });
-                
-                user.profile.name = user.profile.name || profile.displayName;
-                user.profile.picture = user.profile.picture || profile._json.avatar_url;
-                user.profile.location = user.profile.location || profile._json.location;
-
-                user.active = true;
-                
-                user.save(function(err) {
-                    return done(err, user);
-                });
-            });
-        } else {
-            User.findOne({github: profile.id}, function(err, existingUser) {
-                if (existingUser) {
-                    return done(null, existingUser);
-                }
-
-                User.findOne({email: profile._json.email}, function(err, user) {
-                    if (!user) {
-                        user = new User();
-                    }
-
-                    user.email = profile._json.email;
-                    user.github = profile.id;
-                    
-                    user.tokens.push({
-                        kind: 'github',
-                        accessToken: accessToken
-                    });
-                    
-                    user.profile.name = profile.displayName;
-                    user.profile.picture = profile._json.avatar_url;
-                    user.profile.location = profile._json.location;
-
-                    user.active = true;
-                    
-                    user.save(function(err) {
-                        return done(err, user);
-                    });
-                });
-            });
+        function complete(err) {
+            return done(err, this);
         }
+
+        var data = {
+            service     : 'github',
+            profile     : profile,
+            accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], complete);
     }));
 }
 
