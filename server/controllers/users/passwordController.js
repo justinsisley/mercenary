@@ -1,9 +1,11 @@
+var async = require('async');
+
 var controller = {
     updatePassword: function(req, res) {
-        var currentPassword = req.body.currentPassword;
+        var passwordProvided = req.body.currentPassword;
         var newPassword = req.body.newPassword;
 
-        if (!currentPassword) {
+        if (!passwordProvided) {
             return res.json({
                 status: 'fail',
                 message: 'You must provide your current password.'
@@ -17,8 +19,12 @@ var controller = {
             });
         }
 
-        req.user.comparePassword(currentPassword, function(err, isMatch) {
-            if (!isMatch) {
+        function confirmCurrentPassword(callback) {
+            req.user.comparePassword(passwordProvided, callback);
+        }
+
+        function saveUpdatedPassword(passwordConfirmed, callback) {
+            if (!passwordConfirmed) {
                 return res.json({
                     status: 'fail',
                     message: 'Your current password is incorrect.'
@@ -27,19 +33,26 @@ var controller = {
 
             req.user.password = newPassword;
 
-            req.user.save(function(err) {
-                if (err) {
-                    return res.json({
-                        status: 'error',
-                        message: 'We were unable to update your password. We\'re looking into the problem.'
-                    });
-                }
+            req.user.save(callback);
+        }
 
+        function respond(err) {
+            if (err) {
                 return res.json({
-                    status: 'success'
+                    status: 'error',
+                    message: 'We were unable to update your password. We\'re looking into the problem.'
                 });
+            }
+
+            return res.json({
+                status: 'success'
             });
-        });
+        }
+
+        async.waterfall([
+            confirmCurrentPassword,
+            saveUpdatedPassword
+        ], respond);
     },
 
     recoverPassword: function() {},
