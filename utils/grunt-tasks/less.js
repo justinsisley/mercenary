@@ -9,7 +9,8 @@ module.exports = function(grunt) {
                 cleancss: true
             },
             src: [
-                'client/vendor/bootstrap/dist/css/bootstrap.css',
+                // 'client/vendor/bootstrap/dist/css/bootstrap.css',
+                'client/vendor/_nonBower/bootswatch/bootstrap-yeti.min.css',
                 'client/font/fontello/css/fontello.css',
                 'tmp/dist.less'
             ],

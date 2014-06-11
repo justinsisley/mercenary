@@ -1,4 +1,4 @@
-<div id="header-region" class="navbar navbar-inverse navbar-fixed-top" role="navigation"></div>
+<div id="header-region" class="navbar navbar-default navbar-fixed-top" role="navigation"></div>
 
 <div class="container-fluid">
     <div class="row">

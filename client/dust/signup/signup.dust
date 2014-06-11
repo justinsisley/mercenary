@@ -15,11 +15,11 @@
     <p class="lead form-signup-social">Or, sign in via...</p>
 
     <div class="row">
-        <a class="btn btn-primary btn-facebook" href="/auth/facebook">Facebook</a>
-        <a class="btn btn-primary btn-google" href="/auth/google">Google</a>
-        <a class="btn btn-primary btn-twitter" href="/auth/twitter">Twitter</a>
-        <a class="btn btn-primary btn-github" href="/auth/github">GitHub</a>
-        <a class="btn btn-primary btn-linkedin" href="/auth/linkedin">LinkedIn</a>
-        <a class="btn btn-primary btn-instagram" href="/auth/instagram">Instagram</a>
+        <a class="btn btn-primary btn-sm btn-facebook" href="/auth/facebook">Facebook</a>
+        <a class="btn btn-primary btn-sm btn-google" href="/auth/google">Google</a>
+        <a class="btn btn-primary btn-sm btn-twitter" href="/auth/twitter">Twitter</a>
+        <a class="btn btn-primary btn-sm btn-github" href="/auth/github">GitHub</a>
+        <a class="btn btn-primary btn-sm btn-linkedin" href="/auth/linkedin">LinkedIn</a>
+        <a class="btn btn-primary btn-sm btn-instagram" href="/auth/instagram">Instagram</a>
     </div>
 </form>

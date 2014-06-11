@@ -84,7 +84,7 @@ function saveOAuthUser(user, data, callback) {
                             data.profile._json.picture ||
                             data.profile._json.avatar_url ||
                             data.profile._json.pictureUrl ||
-                            data.profile._json.data.profile_picture;
+                            data.profile._json.profile_picture;
 
     user.active = true;
 

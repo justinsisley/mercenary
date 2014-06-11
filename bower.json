@@ -1,6 +1,6 @@
 {
   "name": "Mercenary",
-  "version": "0.4.15",
+  "version": "0.5.0",
   "authors": [
     "Justin Sisley"
   ],
@@ -12,14 +12,14 @@
     "lodash": "2.4.1",
     "mocha": "1.20.1",
     "jquery": "2.1.1",
-    "holderjs": "2.3.2",
     "backbone": "1.1.2",
     "bootstrap": "3.1.1",
     "requirejs": "2.1.14",
     "validator-js": "3.14.1",
-    "dustjs-linkedin": "2.3.5",
+    "dustjs-linkedin": "2.4.0",
     "marionette-dust": "~0.1.6",
     "backbone.marionette": "1.8.6",
-    "dustjs-linkedin-helpers": "1.2.0"
+    "dustjs-linkedin-helpers": "1.2.0",
+    "highcharts-release": "~4.0.1"
   }
 }

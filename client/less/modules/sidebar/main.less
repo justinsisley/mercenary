@@ -12,9 +12,8 @@
             bottom: 0;
             z-index: 1000;
             display: block;
-            padding: 70px 20px 20px;
-            background-color: #f5f5f5;
-            border-right: 1px solid #eee;
+            padding: 45px 0 20px;
+            background: #333;
         }
     }
 
@@ -28,10 +27,13 @@
     .nav-sidebar > li > a {
         padding-right: 20px;
         padding-left: 20px;
-    }
-    
-    .nav-sidebar > .active > a {
+        font-size: 13px;
+        font-weight: 300;
         color: #fff;
-        background-color: #428bca;
+    }
+
+    .nav-sidebar > .active > a,
+    .nav-sidebar > li > a:hover {
+        background: #272727;
     }
 }

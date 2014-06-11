@@ -19,11 +19,13 @@ require.config({
         templates               : '../dust/compiled',
 
         // Feature dependencies
-        holder                  : '../vendor/holderjs/holder',
-        validator               : '../vendor/validator-js/validator'
+        validator               : '../vendor/validator-js/validator',
+        highcharts              : '../vendor/highcharts-release/highcharts',
+        dropdown                : '../vendor/bootstrap/js/dropdown'
     },
     shim: {
         dust: {exports: 'dust'},
-        'dust.helpers': ['dust']
+        'dust.helpers': ['dust'],
+        highcharts: {exports: 'Highcharts'}
     }
 });
