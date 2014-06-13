@@ -5,12 +5,14 @@ define([
     'backbone',
 
     'app',
-    'modules/base/routers/baseRouter'
+    'modules/base/routers/baseRouter',
+    'modules/users/models/userModel'
 ], function(
     Backbone,
     
     App,
-    BaseRouter
+    BaseRouter,
+    User
 ) {
     // Bootstrap the application
     App.addInitializer(function() {
@@ -31,7 +33,7 @@ define([
         // put the returned user data in our local
         // object and navigate to the dashboard.
         if (response && response.user) {
-            App.vars.user = response.user;
+            App.vars.user = new User(response.user);
         }
 
         // We always start the app.

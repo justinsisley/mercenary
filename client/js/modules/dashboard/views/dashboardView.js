@@ -126,17 +126,6 @@ define([
                     21000, 20000, 19000, 18000, 18000, 17000, 16000]
                 }]
             });
-
-            // Radialize the colors
-            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
-                return {
-                    radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-                    stops: [
-                        [0, color],
-                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                    ]
-                };
-            });
             
             // Build the chart
             $('#chart-dashboard-pie').highcharts({

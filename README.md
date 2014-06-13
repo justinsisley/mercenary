@@ -32,20 +32,25 @@ These instructions assume you have some familiarity with using a command line ap
 
 ##### Starting the Express Server
 
-There are two ways to start the Express server: using regular ol' Node.js, or using [nodemon](http://nodemon.io/).
+Mercenary provides you with three distinct ways to start the Express server: using regular ol' Node.js, using [nodemon](http://nodemon.io/), or using [node-inspector](https://github.com/node-inspector/node-inspector).
 
-I recommend using nodemon, since it will cause your server to restart upon any code changes, allowing you to just refresh the browser and test away.
+Running the server with nodemon will cause your server to restart upon any code changes, allowing you to just refresh the browser and test away.
 
-`nodemon.json` exists to keep nodemon's watcher focused on server-side changes only, so changes to client-side code won't trigger a server restart. There aren't really any disadvantages to using nodemon while developing, whether you're focusing on client-side or server-side code, so again, I recommend using it.
+A `nodemon.json` file exists to keep nodemon's watcher focused on server-side changes only, so changes to client-side code won't trigger a server restart.
 
-In the end, the choice is yours, and both methods of running the server are available via two Grunt tasks:
+Running the server with node-inspector will provide you with a debugging interface nearly identical to the Chrome Developer Tools. This is very useful when you have a debugging itch that `console.log` can't quickly scratch.
 
-- `grunt serve` - start the Express server using Node.js.
-- `grunt servedemon` - start the Express server using nodemon*.
+In the end, the choice is yours, and all three methods of running the server are available via custom Grunt tasks:
+
+- `grunt serve` - start the Express server using node.
+- `grunt servedemon` - start the Express server using nodemon<sup>1</sup>.
+- `grunt servedebug` - start the Express server using node-inspector<sup>2</sup>.
 
 Once the server is running, you can view your application at <http://127.0.0.1:8743>.
 
-*To use nodemon, you must install it first: `npm install -g nodemon`
+<sup>1</sup> To use nodemon, you must install it: `npm install -g nodemon`
+
+<sup>2</sup> To use node-inspector, you must install it: `npm install -g node-inspector`
 
 ##### Starting the Grunt Watcher and LiveReload
 

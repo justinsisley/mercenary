@@ -15,7 +15,8 @@ define([
     'modules/features/controllers/featuresController',
     'modules/signup/controllers/signupController',
     'modules/login/controllers/loginController',
-    'modules/dashboard/controllers/dashboardController'
+    'modules/dashboard/controllers/dashboardController',
+    'modules/users/controllers/usersController'
 ],function(
     App,
     layoutController,
@@ -23,7 +24,8 @@ define([
     featuresController,
     signupController,
     loginController,
-    dashboardController
+    dashboardController,
+    usersController
 ) {
     return {
         // Show the public home page.
@@ -49,6 +51,11 @@ define([
         // Show the logged-in dashboard.
         dashboard: function() {
             layoutController.appLayout(dashboardController.show);
+        },
+
+        // Show the users view.
+        users: function() {
+            layoutController.appLayout(usersController.show);
         },
 
         // The requested page wasn't found.

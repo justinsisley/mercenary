@@ -7,7 +7,7 @@ define([
 ) {
     return {
         show: function() {
-            var appHeaderView = new AppHeaderView();
+            var appHeaderView = new AppHeaderView({model: App.vars.user});
             
             App.appLayout.headerRegion.show(appHeaderView);
 

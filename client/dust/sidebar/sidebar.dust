@@ -3,7 +3,7 @@
     <li class="disabled"><a href="#">Analytics</a></li>
     <li class="disabled"><a href="#">Features</a></li>
     <li class="disabled"><a href="#">Inbox</a></li>
-    <li class="disabled"><a href="#">Users</a></li>
+    <li><a href="/users">Users</a></li>
     <li class="disabled"><a href="#">API</a></li>
     <li class="disabled"><a href="#">Profile</a></li>
     <li class="disabled"><a href="#">Settings</a></li>

@@ -41,14 +41,11 @@ These aren't pretty, but they do the job for now
 var tab = '    ';
 
 function viewTemplate(name) {
-    return "define([\n" + tab + 
-                "'marionette'\n\n" + tab + 
-            "\n], function(\n" + tab + 
-                "Marionette\n) {\n" + tab + 
-                    "return Marionette.ItemView.extend({\n" + tab + tab + 
-                        "template: '" + name + "/" + name + "',\n\n" + tab + tab + 
-                        "className: '" + name + "'\n" + tab + 
-                "});\n});"
+    return "define(['marionette'], function(Marionette) {\n" + tab + 
+                "return Marionette.ItemView.extend({\n" + tab + tab + 
+                    "template: '" + name + "/" + name + "',\n\n" + tab + tab + 
+                    "className: '" + name + "'\n" + tab + 
+            "});\n});"
 }
 
 function controllerTemplate(name, layout, region) {

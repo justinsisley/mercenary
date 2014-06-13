@@ -13,6 +13,10 @@ module.exports = function(grunt) {
         servedemon: {
             command: 'nodemon server/main',
             options: options
+        },
+        servedebug: {
+            command: 'node-debug server/main.js',
+            options: options
         }
     });
 

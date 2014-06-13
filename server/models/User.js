@@ -1,7 +1,7 @@
 var config          = require('../../config');
 var emailController = require('../controllers/email/emailController');
 var mongoose        = require('mongoose');
-var bcrypt          = require('bcrypt');
+var bcrypt          = require('bcryptjs');
 var async           = require('async');
 var SALT_FACTOR     = 5;
 
