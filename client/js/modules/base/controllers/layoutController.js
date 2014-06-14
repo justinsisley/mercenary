@@ -6,29 +6,15 @@
  * layout, shown to unauthenticated users, and the
  * app layout, which is for logged-in users only.
  */
-define([
-    'app',
+define(function(require) {
+    var App                     = require('app');
+    var PublicLayout            = require('modules/base/views/publicLayout');
+    var AppLayout               = require('modules/base/views/appLayout');
+    var publicHeaderController  = require('modules/header/controllers/publicHeaderController');
+    var publicFooterController  = require('modules/footer/controllers/publicFooterController');
+    var appHeaderController     = require('modules/header/controllers/appHeaderController');
+    var sidebarController       = require('modules/sidebar/controllers/sidebarController');
 
-    'modules/base/views/publicLayout',
-    'modules/base/views/appLayout',
-
-    'modules/header/controllers/publicHeaderController',
-    'modules/footer/controllers/publicFooterController',
-    
-    'modules/header/controllers/appHeaderController',
-    'modules/sidebar/controllers/sidebarController'
-],function(
-    App,
-
-    PublicLayout,
-    AppLayout,
-    
-    publicHeaderController,
-    publicFooterController,
-    
-    appHeaderController,
-    sidebarController
-) {
     return {
         // Configures the app for the "public",
         // unauthenticated "mode". Each "mode"

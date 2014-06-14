@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/login/views/loginView'
-],function(
-    App,
-    LoginView
-) {
+define(function(require) {
+    var App = require('app');
+    var LoginView = require('modules/login/views/loginView');
+
     return {
         show: function() {
             var loginView = new LoginView();

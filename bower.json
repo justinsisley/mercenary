@@ -8,18 +8,18 @@
   "private": true,
   "dependencies": {
     "chai": "1.9.1",
-    "sinon": "1.10.2",
     "lodash": "2.4.1",
     "mocha": "1.20.1",
     "jquery": "2.1.1",
     "backbone": "1.1.2",
     "bootstrap": "3.1.1",
     "requirejs": "2.1.14",
-    "validator-js": "3.14.1",
+    "validator-js": "3.16.0",
     "dustjs-linkedin": "2.4.0",
     "marionette-dust": "~0.1.6",
     "backbone.marionette": "1.8.6",
     "dustjs-linkedin-helpers": "1.2.0",
-    "highcharts-release": "~4.0.1"
+    "highcharts-release": "~4.0.1",
+    "sinonjs": "~1.10.2"
   }
 }

@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/sidebar/views/sidebarView'
-],function(
-    App,
-    SidebarView
-) {
+define(function(require) {
+    var App = require('app');
+    var SidebarView = require('modules/sidebar/views/sidebarView');
+
     return {
         show: function() {
             var sidebarView = new SidebarView();

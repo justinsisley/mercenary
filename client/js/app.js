@@ -1,11 +1,12 @@
 /**
  * The application's core.
  */
-define([
-    'marionette',
-    'dustMarionette',
-    'templates'
-], function(Marionette) {
+define(function(require) {
+    var Marionette = require('marionette');
+
+    require('dustMarionette');
+    require('templates');
+
     // Create a Marionette application.
     var App = new Marionette.Application();
 

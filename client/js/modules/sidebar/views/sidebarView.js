@@ -1,12 +1,7 @@
-define([
-    'marionette',
+define(function(require) {
+    var Marionette = require('marionette');
+    var App = require('app');
 
-    'app'
-], function(
-    Marionette,
-    
-    App
-) {
     return Marionette.ItemView.extend({
         template: 'sidebar/sidebar',
 

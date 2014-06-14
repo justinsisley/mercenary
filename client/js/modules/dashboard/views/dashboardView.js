@@ -1,10 +1,7 @@
-define([
-    'marionette',
-    'highcharts',
-], function(
-    Marionette,
-    Highcharts
-) {
+define(function(require) {
+    var Marionette = require('marionette');
+    var Highcharts = require('highcharts');
+
     return Marionette.ItemView.extend({
         template: 'dashboard/dashboard',
 

@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/signup/views/signupView'
-],function(
-    App,
-    SignupView
-) {
+define(function(require) {
+    var App = require('app');
+    var SignupView = require('modules/signup/views/signupView');
+
     return {
         show: function() {
             var signupView = new SignupView();

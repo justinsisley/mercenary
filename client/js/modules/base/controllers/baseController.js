@@ -8,25 +8,16 @@
  * which, most of the time, means rendering
  * one or more regions or views.
  */
-define([
-    'app',
-    'modules/base/controllers/layoutController',
-    'modules/home/controllers/homeController',
-    'modules/features/controllers/featuresController',
-    'modules/signup/controllers/signupController',
-    'modules/login/controllers/loginController',
-    'modules/dashboard/controllers/dashboardController',
-    'modules/users/controllers/usersController'
-],function(
-    App,
-    layoutController,
-    homeController,
-    featuresController,
-    signupController,
-    loginController,
-    dashboardController,
-    usersController
-) {
+define(function(require) {
+    var App                 = require('app');
+    var layoutController    = require('modules/base/controllers/layoutController');
+    var homeController      = require('modules/home/controllers/homeController');
+    var featuresController  = require('modules/features/controllers/featuresController');
+    var signupController    = require('modules/signup/controllers/signupController');
+    var loginController     = require('modules/login/controllers/loginController');
+    var dashboardController = require('modules/dashboard/controllers/dashboardController');
+    var usersController     = require('modules/users/controllers/usersController');
+
     return {
         // Show the public home page.
         home: function() {

@@ -1,14 +1,8 @@
-define([
-    'marionette',
-    'validator',
+define(function(require) {
+    var Marionette = require('marionette');
+    var validator = require('validator');
+    var strings = require('helpers/strings');
 
-    'helpers/strings'
-], function(
-    Marionette,
-    validator,
-
-    strings
-) {
     return Marionette.ItemView.extend({
         template: 'signup/signup',
 

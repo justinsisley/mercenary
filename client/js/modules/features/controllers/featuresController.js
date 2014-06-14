@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/features/views/featuresView'
-], function(
-    App,
-    FeaturesView
-) {
+define(function(require) {
+    var App = require('app');
+    var FeaturesView = require('modules/features/views/featuresView');
+
     return {
         show: function() {
             var featuresView = new FeaturesView();

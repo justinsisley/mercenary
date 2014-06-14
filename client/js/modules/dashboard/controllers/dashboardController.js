@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/dashboard/views/dashboardView'
-], function(
-    App,
-    DasboardView
-) {
+define(function(require) {
+    var App             = require('app');
+    var DasboardView    = require('modules/dashboard/views/dashboardView');
+
     return {
         show: function() {
             var dashboardView = new DasboardView();

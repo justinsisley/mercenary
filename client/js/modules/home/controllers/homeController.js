@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/home/views/homeView'
-],function(
-    App,
-    HomeView
-) {
+define(function(require) {
+    var App = require('app');
+    var HomeView = require('modules/home/views/homeView');
+
     return {
         show: function() {
             var homeView = new HomeView();

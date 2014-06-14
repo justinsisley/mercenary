@@ -1,7 +1,9 @@
 /**
  * The public layout.
  */
-define(['marionette'], function(Marionette) {
+define(function(require) {
+    var Marionette = require('marionette');
+    
     return Marionette.Layout.extend({
         template: 'base/publicLayout',
 

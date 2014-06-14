@@ -1,12 +1,7 @@
-define([
-    'app',
+define(function(require) {
+    var App = require('app');
+    var UsersView = require('modules/users/views/usersView');
 
-    'modules/users/views/usersView'
-], function(
-    App,
-
-    UsersView
-) {
     return {
         show: function() {
             var usersView = new UsersView();

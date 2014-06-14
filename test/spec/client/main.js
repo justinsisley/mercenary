@@ -1,14 +1,8 @@
-define([
-    'jquery',
+define(function(require) {
+    var App = require('main');
 
-    'main'
-], function($, App) {
     describe('Application entry point', function() {
-        it('should create a `vars` object for storing session data', function() {
-            assert.isDefined(App.vars);
-        });
-
-        it('should create a `routers` object for router access', function() {
+        it('should create a `routers` object for router access', function(/*done*/) {
             assert.isDefined(App.routers);
         });
 

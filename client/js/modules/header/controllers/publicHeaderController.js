@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/header/views/publicHeaderView'
-],function(
-    App,
-    PublicHeaderView
-) {
+define(function(require) {
+    var App = require('app');
+    var PublicHeaderView = require('modules/header/views/publicHeaderView');
+
     return {
         show: function() {
             var publicHeaderView = new PublicHeaderView();

@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/footer/views/publicFooterView'
-],function(
-    App,
-    PublicFooterView
-) {
+define(function(require) {
+    var App = require('app');
+    var PublicFooterView = require('modules/footer/views/publicFooterView');
+
     return {
         show: function() {
             var publicFooterView = new PublicFooterView();

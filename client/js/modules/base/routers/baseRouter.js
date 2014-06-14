@@ -3,15 +3,10 @@
  * This router should be the source of truth for what
  * paths exists across your application.
  */
-define([
-    'marionette',
+define(function(require) {
+    var Marionette = require('marionette');
+    var BaseController = require('modules/base/controllers/baseController');
 
-    'modules/base/controllers/baseController'
-], function(
-    Marionette,
-
-    BaseController
-) {
     return Marionette.AppRouter.extend({
         // The base controller handles
         // all of our routes.

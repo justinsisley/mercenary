@@ -1,10 +1,7 @@
-define([
-    'app',
-    'modules/header/views/appHeaderView'
-],function(
-    App,
-    AppHeaderView
-) {
+define(function(require) {
+    var App = require('app');
+    var AppHeaderView = require('modules/header/views/appHeaderView');
+
     return {
         show: function() {
             var appHeaderView = new AppHeaderView({model: App.vars.user});

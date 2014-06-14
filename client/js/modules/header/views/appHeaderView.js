@@ -1,9 +1,7 @@
-define([
-    'marionette',
-    'dropdown'
-], function(
-    Marionette
-) {
+define(function(require) {
+    var Marionette = require('marionette');
+    require('dropdown');
+    
     return Marionette.ItemView.extend({
         template: 'header/appHeader',
 
