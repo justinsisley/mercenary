@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             options: options
         },
         servedemon: {
-            command: 'nodemon server/main',
+            command: 'nodemon -w server server/main',
             options: options
         },
         servedebug: {

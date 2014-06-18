@@ -36,7 +36,7 @@ Mercenary provides you with three distinct ways to start the Express server: usi
 
 Running the server with nodemon will cause your server to restart upon any code changes, allowing you to just refresh the browser and test away.
 
-A `nodemon.json` file exists to keep nodemon's watcher focused on server-side changes only, so changes to client-side code won't trigger a server restart.
+A `-w server` flag is passed to keep nodemon's watcher focused on server-side changes only, so changes to client-side code won't trigger a server restart.
 
 Running the server with node-inspector will provide you with a debugging interface nearly identical to the Chrome Developer Tools. This is very useful when you have a debugging itch that `console.log` can't quickly scratch.
 
