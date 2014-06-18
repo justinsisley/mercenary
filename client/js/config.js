@@ -10,7 +10,7 @@ require.config({
         jquery                  : '../vendor/jquery/dist/jquery.min',
         underscore              : '../vendor/lodash/dist/lodash.underscore',
         backbone                : '../vendor/backbone/backbone',
-        marionette              : '../vendor/backbone.marionette/lib/core/amd/backbone.marionette',
+        marionette              : '../vendor/backbone.marionette/lib/backbone.marionette',
         'backbone.babysitter'   : '../vendor/backbone.babysitter/lib/backbone.babysitter',
         'backbone.wreqr'        : '../vendor/backbone.wreqr/lib/backbone.wreqr',
         dust                    : '../vendor/dustjs-linkedin/dist/dust-full',

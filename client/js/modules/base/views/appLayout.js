@@ -4,7 +4,7 @@
 define(function(require) {
     var Marionette = require('marionette');
     
-    return Marionette.Layout.extend({
+    return Marionette.LayoutView.extend({
         template: 'base/appLayout',
 
         regions: {
