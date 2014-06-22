@@ -1,4 +1,4 @@
-# Mercenary
+# Mercenary [![Code Climate](https://codeclimate.com/github/justinsisley/Mercenary.png)](https://codeclimate.com/github/justinsisley/Mercenary) [![Dependency Status](https://gemnasium.com/justinsisley/Mercenary.svg)](https://gemnasium.com/justinsisley/Mercenary)
 
 Mercenary is a full-featured, single-page web application. Bend it to your will and make something beautiful.
 
@@ -9,8 +9,6 @@ On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js
 Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/) for template rendering.
 
 The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
-
-For detailed information, explore the directories and read the [Wiki](https://github.com/justinsisley/Mercenary/wiki).
 
 ## Installation
 
@@ -78,7 +76,7 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `SESSION_SECRET` - your session secret.
 - `MONGOLAB_URI` - when deploying to Heroku with the MongoLab addon, this will be set automatically.
 
-*If the `MONGOLAB_URI` property is left empty, Mercenary will fall back to a file system implementation of MongoDB, using [TingoDB](http://www.tingodb.com/)*
+*If the `MONGOLAB_URI` property is left empty, Mercenary will fall back to a file system implementation of MongoDB, using [TingoDB](http://www.tingodb.com/).*
 
 ##### Email Handling
 

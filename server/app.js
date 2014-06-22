@@ -76,9 +76,12 @@ var mercenary = {
             secret: process.env.SESSION_SECRET || config.secrets.sessionSecret
         }));
 
-        // Request body parsing middleware supporting JSON,
-        // urlencoded, and multipart requests
-        app.use(bodyParser());
+        // Body parser middleware.
+        // You probably don't need
+        // all of these enabled.
+        app.use(bodyParser.json());
+        app.use(bodyParser.raw());
+        app.use(bodyParser.text());
 
         // Simulate DELETE and PUT
         app.use(methodOverride());

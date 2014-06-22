@@ -17,7 +17,7 @@
     "validator-js": "3.16.0",
     "dustjs-linkedin": "2.4.0",
     "marionette-dust": "~0.1.6",
-    "backbone.marionette": "2.0.0",
+    "backbone.marionette": "2.0.1",
     "dustjs-linkedin-helpers": "1.2.0",
     "highcharts-release": "~4.0.1",
     "sinonjs": "~1.10.2",
