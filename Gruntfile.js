@@ -15,18 +15,17 @@ module.exports = function(grunt) {
         'clean:tmp'
     ]);
 
-    // Run all default tasks, then start
-    // the file watcher.
-    grunt.registerTask('dev', ['default', 'watch']);
-
-    // Run the server with node.
-    grunt.registerTask('serve', ['shell:serve']);
+    // Run all default tasks, start the server with node,
+    // and start the file watcher.
+    grunt.registerTask('dev', ['default', 'concurrent:nodemon']);
     
-    // Run the server with nodemon.
-    grunt.registerTask('servedemon', ['shell:servedemon']);
+    // Run all default tasks, start the server with nodemon,
+    // and start the file watcher.
+    grunt.registerTask('devdemon', ['default', 'concurrent:nodemon']);
 
-    // Run the server with node-inspector.
-    grunt.registerTask('servedebug', ['shell:servedebug']);
+    // Run all default tasks, start the server with node-inspector,
+    // and start the file watcher.
+    grunt.registerTask('devinspect', ['default', 'concurrent:nodedebug']);
 
     // Launch a connect server and run unit tests.
     grunt.registerTask('test', ['connect:test', 'shell:test']);
