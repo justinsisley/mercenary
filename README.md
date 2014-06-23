@@ -1,4 +1,4 @@
-# Mercenary [![Dependency Status](https://gemnasium.com/justinsisley/Mercenary.svg)](https://gemnasium.com/justinsisley/Mercenary)
+# Mercenary [![Dependency Status](https://gemnasium.com/justinsisley/Mercenary.svg)](https://gemnasium.com/justinsisley/Mercenary) [![Build Status](https://travis-ci.org/justinsisley/Mercenary.svg?branch=master)](https://travis-ci.org/justinsisley/Mercenary)
 
 Mercenary is a full-featured, single-page web application. Bend it to your will and make something beautiful.
 

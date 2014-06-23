@@ -20,8 +20,7 @@
     "backbone.marionette": "2.0.1",
     "dustjs-linkedin-helpers": "1.2.0",
     "highcharts-release": "~4.0.1",
-    "sinonjs": "~1.10.2",
-    "highmaps": "git@github.com:highslide-software/highmaps-release.git#~1.0.2"
+    "sinonjs": "~1.10.2"
   },
   "resolutions": {
     "jquery": "2.1.1"
