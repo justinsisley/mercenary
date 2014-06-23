@@ -9,8 +9,7 @@ module.exports = function(grunt) {
                 cleancss: true
             },
             src: [
-                // 'client/vendor/bootstrap/dist/css/bootstrap.css',
-                'client/vendor/_nonBower/bootswatch/bootstrap-yeti.min.css',
+                'client/vendor/bootstrap/dist/css/bootstrap.css',
                 'client/font/fontello/css/fontello.css',
                 'tmp/dist.less'
             ],
@@ -21,9 +20,7 @@ module.exports = function(grunt) {
     grunt.config('concat', {
         less: {
             src: [
-                // Reset disabled. Using Bootstrap 3.
-                // 'client/less/utils/reset.less',
-                'client/less/utils/!(reset).less',
+                'client/less/utils/*.less',
                 'client/less/theme/*.less',
                 'client/less/elements/*.less',
                 'client/less/widgets/*.less',

@@ -77,11 +77,8 @@ var mercenary = {
         }));
 
         // Body parser middleware.
-        // You probably don't need
-        // all of these enabled.
         app.use(bodyParser.json());
-        app.use(bodyParser.raw());
-        app.use(bodyParser.text());
+        app.use(bodyParser.urlencoded());
 
         // Simulate DELETE and PUT
         app.use(methodOverride());

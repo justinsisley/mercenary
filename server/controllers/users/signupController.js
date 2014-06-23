@@ -6,6 +6,15 @@ module.exports = {
         var email = req.body.email;
         var password = req.body.password;
 
+        console.log(req.body);
+
+        if (!email || !password) {
+            return res.json({
+                status: 'fail',
+                message: 'You must provide a valid email and password.'
+            });
+        }
+
         function findUserByEmail(callback) {
             User.findOne({email: email}, callback);
         }
