@@ -1,4 +1,4 @@
-# Mercenary [![Code Climate](https://codeclimate.com/github/justinsisley/Mercenary.png)](https://codeclimate.com/github/justinsisley/Mercenary) [![Dependency Status](https://gemnasium.com/justinsisley/Mercenary.svg)](https://gemnasium.com/justinsisley/Mercenary)
+# Mercenary [![Dependency Status](https://gemnasium.com/justinsisley/Mercenary.svg)](https://gemnasium.com/justinsisley/Mercenary)
 
 Mercenary is a full-featured, single-page web application. Bend it to your will and make something beautiful.
 

@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "node server/main",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "test": "grunt"
   },
   "author": {
     "name": "Justin Sisley"
@@ -55,8 +56,7 @@
     "grunt-plato": "1.0.0",
     "grunt-recess": "0.6.1",
     "grunt-s3": "0.2.0-alpha.3",
-    "grunt-shell": "0.7.0",
-    "grunt-strip": "0.2.1"
+    "grunt-shell": "0.7.0"
   },
   "engines": {
     "node": "0.10.28"
