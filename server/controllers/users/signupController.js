@@ -6,8 +6,6 @@ module.exports = {
         var email = req.body.email;
         var password = req.body.password;
 
-        console.log(req.body);
-
         if (!email || !password) {
             return res.json({
                 status: 'fail',

@@ -12,7 +12,6 @@ var passport        = require('passport');
 var bodyParser      = require('body-parser');
 var cookieParser    = require('cookie-parser');
 var errorHandler    = require('errorhandler');
-var methodOverride  = require('method-override');
 
 // Routers
 var apiRouter       = require('./routers/apiRouter');
@@ -26,11 +25,9 @@ var memwatch;
 
 require('colors');
 
-// Increase the number of concurrent connections
-// before additional requests are blocked.
 // https://github.com/mikeal/request/issues/158
-// "i'd advise against making it unlimited though, but it's possible."
-// require('http').globalAgent.maxSockets = 30;
+// http://qzaidi.github.io/2013/07/20/surprises/
+require('http').globalAgent.maxSockets = 25;
 
 var mercenary = {
     start: function() {
@@ -61,16 +58,7 @@ var mercenary = {
         // req.cookies with an object keyed by the cookie names
         app.use(cookieParser());
 
-        // Establish a session secret token.
-        /*
-        http://engineering.linkedin.com/nodejs/blazing-fast-nodejs-10-performance-tips-linkedin-mobile
-        By default, session data is stored in memory, which can add significant overhead to the server, especially as the number of users grows. You could switch to an external session store, such as MongoDB or Redis, but then each request incurs the overhead of a remote call to fetch session data. Where possible, the best option is to store no state on the server-side at all. Go session free by NOT including the express config above and you'll see better performance.
-
-        Also... http://bocoup.com/weblog/node-stress-test-analysis/
-        There’s a catch, though: distributing across cores means spawning multiple processes, each with its own memory space. If your application uses in-memory storage for global state, spawning across processes will require some re-structuring.
-
-        ... so having sessions stored in-memory won't work when scaled to multiple processes.
-         */
+        // Session data.
         app.use(session({
             key: 'mercenary.sid',
             secret: process.env.SESSION_SECRET || config.secrets.sessionSecret
@@ -78,10 +66,7 @@ var mercenary = {
 
         // Body parser middleware.
         app.use(bodyParser.json());
-        app.use(bodyParser.urlencoded());
-
-        // Simulate DELETE and PUT
-        app.use(methodOverride());
+        app.use(bodyParser.urlencoded({extended: true}));
 
         // Passport authentication
         app.use(passport.initialize());
