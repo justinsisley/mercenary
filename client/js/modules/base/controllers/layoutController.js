@@ -8,9 +8,11 @@
  */
 define(function(require) {
     var App                     = require('app');
+
     var PublicLayout            = require('modules/base/views/publicLayout');
     var AppLayout               = require('modules/base/views/appLayout');
-    var publicHeaderController  = require('modules/header/controllers/publicHeaderController');
+
+    var publicNavController     = require('modules/navbar/controllers/navbarController');
     var publicFooterController  = require('modules/footer/controllers/publicFooterController');
     var appHeaderController     = require('modules/header/controllers/appHeaderController');
     var sidebarController       = require('modules/sidebar/controllers/sidebarController');
@@ -51,8 +53,8 @@ define(function(require) {
             // application's main content region.
             App.mainRegion.show(App.publicLayout);
 
-            // Show the public header.
-            publicHeaderController.show();
+            // Show the public navigation menu.
+            publicNavController.show();
 
             // Show the public footer.
             publicFooterController.show();

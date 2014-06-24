@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.config('plato', {
         report: {
             options: {
-                jshint: grunt.file.readJSON('utils/javascript/.jshintrc')
+                jshint: grunt.file.readJSON('.jshintrc')
             },
             files: {
                 'reports': ['<%= jshint.client %>']

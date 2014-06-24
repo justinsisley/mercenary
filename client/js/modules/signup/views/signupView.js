@@ -6,8 +6,6 @@ define(function(require) {
     return Marionette.ItemView.extend({
         template: 'signup/signup',
 
-        className: 'inner cover',
-
         ui: {
             signupEmail         : '#js-signup-email',
             signupPassword      : '#js-signup-password',
@@ -18,6 +16,14 @@ define(function(require) {
 
         events: {
             'click #js-signup-submit' : 'formSubmitHandler'
+        },
+
+        onShow: function() {
+            $('body').addClass('signup');
+        },
+
+        onDestroy: function() {
+            $('body').removeClass('signup');
         },
 
         formSubmitHandler: function(e) {

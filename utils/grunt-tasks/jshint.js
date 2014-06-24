@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
     grunt.config('jshint', {
         options: {
-            jshintrc: 'utils/javascript/.jshintrc'
+            jshintrc: '.jshintrc'
         },
         client: [
             'Gruntfile.js',

@@ -6,8 +6,6 @@ define(function(require) {
     return Marionette.ItemView.extend({
         template: 'login/login',
 
-        className: 'inner cover',
-
         ui: {
             loginEmail          : '#js-login-email',
             loginPassword       : '#js-login-password',
@@ -20,7 +18,9 @@ define(function(require) {
             'click @ui.loginSubmitBtn' : 'formSubmitHandler'
         },
 
-        onRender: function() {
+        onShow: function() {
+            $('body').addClass('login');
+
             if (window.location.search.indexOf('active=true') > 0) {
                 this.showSuccessMessage(strings.accountNowActive);
             }
@@ -32,6 +32,10 @@ define(function(require) {
             if (window.location.search.indexOf('fail=true') > 0) {
                 this.showErrorMessage(strings.incorrectLoginCredentials);
             }
+        },
+
+        onDestroy: function() {
+            $('body').removeClass('login');
         },
 
         formSubmitHandler: function(e) {

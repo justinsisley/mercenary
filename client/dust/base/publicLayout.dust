@@ -1,7 +1,17 @@
-<div class="cover-container">
-    <header id="header-region" class="masthead clearfix"></header>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron hero">
+            <div class="container">
+                <div id="navbar-region"></div>
 
-    <div id="main-region"></div>
+                <div id="hero-region"></div>
+            </div>
 
-    <footer id="footer-region"></footer>
+            <div id="signin-region"></div>
+        </div>
+    </div>
 </div>
+
+<div id="content-region"></div>
+
+<div id="footer-region"></div>

@@ -12,7 +12,6 @@ define(function(require) {
     var App                 = require('app');
     var layoutController    = require('modules/base/controllers/layoutController');
     var homeController      = require('modules/home/controllers/homeController');
-    var featuresController  = require('modules/features/controllers/featuresController');
     var signupController    = require('modules/signup/controllers/signupController');
     var loginController     = require('modules/login/controllers/loginController');
     var dashboardController = require('modules/dashboard/controllers/dashboardController');
@@ -22,11 +21,6 @@ define(function(require) {
         // Show the public home page.
         home: function() {
             layoutController.publicLayout(homeController.show);
-        },
-
-        // Show the public features page.
-        features: function() {
-            layoutController.publicLayout(featuresController.show);
         },
 
         // Show the signup page.

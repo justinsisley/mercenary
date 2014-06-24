@@ -1,3 +1,24 @@
-<div class="inner">
-    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+<div class="row">
+    <div class="col-md-12">
+        <nav class="navbar navbar-default footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 pull-left">
+                        <ul class="nav navbar-nav">
+                            <li class="social"><a href="https://github.com/justinsisley/Mercenary" target="_blank"><span class="fa fa-github"></span></a></li>
+                            <li class="social"><a href="https://www.linkedin.com/in/justinsisley" target="_blank"><span class="fa fa-linkedin-square"></span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="navbar-text">© 2014 WTFPL – Do What the Fuck You Want to Public License &bull; <a href="#">Privacy</a></p>
+                    </div>
+
+                    <div class="col-md-3 pull-right">
+                        <a class="navbar-brand pull-right" href="/home.html">Mercenary</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 </div>

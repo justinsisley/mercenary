@@ -1,7 +1,164 @@
-<h2 class="cover-heading">The Force Multiplier Web Application Stack</h2>
+<div class="container features">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-cubes pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">Backbone + Marionette</h4>
+                        <span>Backbone gives Mercenary its structure, while Marionette makes it more modularized and maintainable, with built-in event-aggregation, layouts, regions, and much more.</span>
+                    </div>
+                </div>
+            </div>
 
-<p class="lead">Mercenary is a full-featured, single-page web application based on <a href="http://backbonejs.org/" target="_blank">Backbone</a>, <a href="http://marionettejs.com/" target="_blank">Marionette</a>, <a href="http://requirejs.org/" target="_blank">requirejs</a>, <a href="http://expressjs.com/" target="_blank">Express</a> and <a href="http://gruntjs.com/" target="_blank">Grunt</a>. Bend it to your will and <strong>make something beautiful</strong>.</p>
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-code pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">requirejs + Bower</h4>
+                        <span>requirejs makes dependency injection, concatenation and minification a breeze. Bower manages dependencies like a boss.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p class="lead">
-    <a href="https://github.com/justinsisley/Mercenary" class="btn btn-lg btn-default">Learn more on GitHub</a>
-</p>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-files-o pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">LESS</h4>
+                        <span>LESS is beautiful. From modularized stylesheets to variables and mixins, LESS is supercharged CSS.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-users pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">Passport</h4>
+                        <span>Authentication is already taken care of, so you can focus on getting users and not on writing signup and login logic.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-bolt pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">Node.js + Express</h4>
+                        <span>Quick boot, no build, and blazing fast, Node.js and Express provide an awesome server-side web application architecture.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-bug pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">Mocha + Chai</h4>
+                        <span>Get your test on with runners in both the browser and on the command line. Write tests your way with <i>should</i>, <i>assert</i> and <i>expect</i>.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-wrench pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">Grunt</h4>
+                        <span>Somebody has to do the dirty work. With pre-configured tasks ranging from concatenation to deployment to running tests, Grunt's got you covered.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="media">
+                    <i class="media-object fa fa-database pull-left"></i>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading">MongoDB</h4>
+                        <span>Support for MongoDB is baked in, but Mercenary can configured to work with virtually any data store.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container download">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-1"></div>
+            <div class="col-md-6 text">Getting started with Mercenary is quick and easy. Setup takes less than 2 minutes.</div>
+
+            <div class="col-md-5">
+                <a href="https://github.com/justinsisley/Mercenary" type="button" class="btn btn-primary btn-lg">Download Mercenary Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container technology">
+    <h3>Battle hardened<small> Proven technologies</small></h3>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-2">
+            <a href="http://backbonejs.org/" target="_blank" class="thumbnail">
+                <img src="/img/backbone.jpg" alt="Backbone">
+            </a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="http://marionettejs.com/" target="_blank" class="thumbnail">
+                <img src="/img/marionette.jpg" width="40" alt="Backbone Marionette">
+            </a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="http://requirejs.org/" target="_blank" class="thumbnail">
+                <img src="/img/requirejs.jpg" width="100" alt="requirejs">
+            </a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="http://nodejs.org/" target="_blank" class="thumbnail">
+                <img src="/img/nodejs.jpg" alt="node.js">
+            </a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="http://expressjs.com/" target="_blank" class="thumbnail">
+                <img src="/img/expressjs.jpg" alt="express.js">
+            </a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="http://gruntjs.com/" target="_blank" class="thumbnail">
+                <img src="/img/gruntjs.jpg" width="40" alt="Grunt">
+            </a>
+        </div>
+
+        <div class="col-md-1"></div>
+    </div>
+</div>

@@ -1,25 +1,84 @@
-<p class="lead">You're already using Mercenary.</p>
-<p class="sub-lead">Authentication is baked-in. Create an account and give it a test drive.</p>
-
-<form class="form-signin" role="form">
-    <h3 class="form-signin-heading">Create an account</h3>
-
-    <input id="js-signup-email" type="email" class="form-control" placeholder="Email address" required autofocus>
-    <input id="js-signup-password" type="password" class="form-control" placeholder="Password" required>
+<div class="container social-signup">
+    <div class="row">
+        <div class="col-md-3"></div>
         
-    <button class="btn btn-lg btn-primary btn-block" id="js-signup-submit" type="submit">Sign up</button>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-facebook pull-right">
+                <i class="fa fa-facebook"></i> Sign Up Using Facebook
+            </button>
+        </div>
 
-    <div class="alert alert-danger hidden" id="js-form-error-message">&nbsp;</div>
-    <div class="alert alert-success hidden" id="js-form-success-message">&nbsp;</div>
-
-    <p class="lead form-signup-social">Or, sign in via...</p>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-instagram pull-left">
+                <i class="fa fa-instagram"></i> Sign Up Using Instagram
+            </button>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
 
     <div class="row">
-        <a class="btn btn-primary btn-sm btn-facebook" href="/auth/facebook">Facebook</a>
-        <a class="btn btn-primary btn-sm btn-google" href="/auth/google">Google</a>
-        <a class="btn btn-primary btn-sm btn-twitter" href="/auth/twitter">Twitter</a>
-        <a class="btn btn-primary btn-sm btn-github" href="/auth/github">GitHub</a>
-        <a class="btn btn-primary btn-sm btn-linkedin" href="/auth/linkedin">LinkedIn</a>
-        <a class="btn btn-primary btn-sm btn-instagram" href="/auth/instagram">Instagram</a>
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-google pull-right">
+                <i class="fa fa-google"></i> Sign Up Using Google
+            </button>
+        </div>
+        
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-linkedin pull-left">
+                <i class="fa fa-linkedin"></i> Sign Up Using LinkedIn
+            </button>
+        </div>
+        
+        <div class="col-md-3"></div>
     </div>
-</form>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-twitter pull-right">
+                <i class="fa fa-twitter"></i> Sign Up Using Twitter
+            </button>
+        </div>
+        
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-github pull-left">
+                <i class="fa fa-github"></i> Sign Up Using GitHub
+            </button>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<div class="container social-or-text">or</div>
+
+<div class="container email-signup">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="form-inline">
+                <div class="form-group email-group">
+                    <input type="email" class="form-control input-email" placeholder="Email">
+                    
+                    <i class="glyphicon glyphicon-remove-circle validation-error"></i>
+                    <i class="glyphicon glyphicon-ok-sign validation-success"></i>
+                </div>
+
+                <div class="form-group password-group">
+                    <input type="password" class="form-control input-password" placeholder="Password">
+                </div>
+
+                <div class="form-group pull-right">
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3"></div>
+</div>

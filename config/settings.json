@@ -8,7 +8,6 @@
     "garbage": false,
     "memory": false
   },
-  "forceDev": false,
   "forcePrd": false,
   "email": {
     "fromAddress": "mercenary@electricartwork.com",

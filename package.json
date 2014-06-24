@@ -6,7 +6,6 @@
   "private": true,
   "scripts": {
     "start": "node server/main",
-    "postinstall": "./node_modules/bower/bin/bower install",
     "test": "grunt"
   },
   "author": {
@@ -16,7 +15,6 @@
     "async": "^0.9.0",
     "bcryptjs": "1.0.2",
     "body-parser": "^1.4.3",
-    "bower": "1.3.5",
     "express-session": "^1.5.1",
     "colors": "^0.6.2",
     "compression": "^1.0.8",

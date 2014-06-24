@@ -15,7 +15,6 @@ define(function(require) {
         appRoutes: {
             // Unauthenticated routes
             ''          : 'home',
-            'features'  : 'features',
             'signup'    : 'signup',
             'login'     : 'login',
 

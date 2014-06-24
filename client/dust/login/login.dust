@@ -1,25 +1,85 @@
-<p class="lead">You're already using Mercenary.</p>
-<p class="sub-lead">Authentication is baked-in. Log in to see the dashboard.</p>
+<div class="container social-login">
+    <div class="row">
+        <div class="col-md-3"></div>
+        
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-facebook pull-right">
+                <i class="fa fa-facebook"></i> Log In Using Facebook
+            </button>
+        </div>
 
-<form class="form-signin" role="form" action="/users/signin" method="post">
-    <h3 class="form-signin-heading">Log in to your account</h3>
-    
-    <input id="js-login-email" type="email" name="email" class="form-control" placeholder="Email address" autofocus>    
-    <input id="js-login-password" type="password" name="password" class="form-control" placeholder="Password">
-
-    <button class="btn btn-lg btn-primary btn-block" id="js-login-submit" type="submit">Log in</button>
-
-    <div class="alert alert-danger hidden" id="js-form-error-message">&nbsp;</div>
-    <div class="alert alert-success hidden" id="js-form-success-message">&nbsp;</div>
-
-    <p class="lead form-signup-social">Or, sign in via...</p>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-instagram pull-left">
+                <i class="fa fa-instagram"></i> Log In Using Instagram
+            </button>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
 
     <div class="row">
-        <a class="btn btn-primary btn-sm btn-facebook" href="/auth/facebook">Facebook</a>
-        <a class="btn btn-primary btn-sm btn-google" href="/auth/google">Google</a>
-        <a class="btn btn-primary btn-sm btn-twitter" href="/auth/twitter">Twitter</a>
-        <a class="btn btn-primary btn-sm btn-github" href="/auth/github">GitHub</a>
-        <a class="btn btn-primary btn-sm btn-linkedin" href="/auth/linkedin">LinkedIn</a>
-        <a class="btn btn-primary btn-sm btn-instagram" href="/auth/instagram">Instagram</a>
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-google pull-right">
+                <i class="fa fa-google"></i> Log In Using Google
+            </button>
+        </div>
+        
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-linkedin pull-left">
+                <i class="fa fa-linkedin"></i> Log In Using LinkedIn
+            </button>
+        </div>
+        
+        <div class="col-md-3"></div>
     </div>
-</form>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-twitter pull-right">
+                <i class="fa fa-twitter"></i> Log In Using Twitter
+            </button>
+        </div>
+        
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-github pull-left">
+                <i class="fa fa-github"></i> Log In Using GitHub
+            </button>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<div class="container social-or-text">or</div>
+
+<div class="container email-login">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="form-inline">
+                <div class="form-group email-group">
+                    <input type="email" class="form-control input-email" placeholder="Email">
+                    
+                    <i class="glyphicon glyphicon-remove-circle validation-error"></i>
+                    <i class="glyphicon glyphicon-ok-sign validation-success"></i>
+                </div>
+
+                <div class="form-group password-group">
+                    <input type="password" class="form-control input-password" placeholder="Password">
+                </div>
+
+                <div class="form-group pull-right">
+                    <!-- <button type="submit" class="btn btn-success">Log In</button> -->
+                    <a href="/dashboard.html" class="btn btn-success">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3"></div>
+</div>
