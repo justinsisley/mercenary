@@ -10,7 +10,6 @@ module.exports = function(grunt) {
             },
             src: [
                 'client/vendor/bootstrap/dist/css/bootstrap.css',
-                'client/font/fontello/css/fontello.css',
                 'tmp/dist.less'
             ],
             dest: 'client/css/style.css'

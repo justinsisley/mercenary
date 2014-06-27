@@ -10,7 +10,6 @@ module.exports = function(grunt) {
         'concat:less',
         'recess',
         'less:dev',
-        'less:prd',
         'dustpile',
         'clean:tmp'
     ]);
