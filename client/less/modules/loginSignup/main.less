@@ -1,0 +1,126 @@
+.public-layout {
+    .social-signup,
+    .social-login {
+        margin-top: 20px;
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .btn-facebook,
+        .btn-google,
+        .btn-twitter,
+        .btn-linkedin,
+        .btn-github,
+        .btn-instagram {
+            position: relative;
+            padding-right: 20px;
+            padding-left: 44px;
+            overflow: hidden;
+            font-size: 12px;
+            color: @offWhite;
+            background: none;
+            border-color: @offWhite;
+
+            &:hover {
+                color: @white;
+                border-color: @white;
+            }
+
+            i {
+                position: absolute;
+                top: 0;
+                left: 12px;
+                width: 45px;
+                padding: 10px 14px;
+                font-size: 20px;
+            }
+        }
+    }
+
+    .social-or-text {
+        margin: 20px auto;
+        font-weight: 300;
+        color: @mediumGray;
+        text-align: center;
+    }
+
+    .email-signup,
+    .email-login {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+
+        .row {
+            padding: 20px;
+            border: 1px solid @white;
+            border-radius: 4px;
+        }
+
+        .email-group,
+        .password-group {
+            position: relative;
+            top: 5px;
+        }
+
+        .password-group {
+            padding-left: 20px;
+            margin-left: 30px;
+            border-left: 1px solid @mediumGray;
+        }
+
+        .form-control {
+            font-weight: 300;
+            color: @white;
+            background: none;
+            border: none;
+            box-shadow: none;
+            transition: all 0s;
+        }
+
+        // Hack to style yellow background
+        // on auto-filled form fields.
+        .form-control:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px #000 inset;
+            -webkit-text-fill-color: @white !important;
+        }
+
+        .input-email {
+            width: 180px;
+        }
+
+        .validation-error,
+        .validation-success {
+            position: absolute;
+            top: 8px;
+            right: -20px;
+            display: none;
+            font-size: 18px;
+        }
+
+        .validation-error {
+            color: @red;
+        }
+
+        .validation-success {
+            color: @green;
+        }
+
+        .btn-success {
+            padding: 12px 30px;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .alert-success,
+        .alert-danger {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+            background: none;
+            border: none;
+        }
+    }
+}

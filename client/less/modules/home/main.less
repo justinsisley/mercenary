@@ -1,0 +1,155 @@
+.public-layout {
+    .hero {
+        padding-top: 10px;
+        padding-bottom: 200px;
+        background: url('/img/hero.jpg') no-repeat center bottom;
+        background-size: cover;
+
+        .page-header {
+            margin-top: 120px;
+            border: none;
+
+            h1 {
+                margin-bottom: 35px;
+                font-size: 20px;
+                font-weight: 100;
+                color: @offWhite;
+                text-align: center;
+                text-shadow: 0 0 1px rgba(0, 0, 0, .75);
+                text-transform: uppercase;
+            }
+
+            small {
+                margin-bottom: 15px;
+                font-size: 13px;
+                font-weight: 300;
+                color: @offWhite;
+                text-align: center;
+                text-shadow: 0 0 1px rgba(0, 0, 0, .75);
+
+                a {
+                    color: @offWhite;
+                    text-decoration: underline;
+
+                    &:hover {
+                        color: @white;
+                    }
+                }
+            }
+        }
+
+        .btn-primary {
+            display: block;
+            padding: 12px 30px;
+            margin: 0 auto;
+            font-size: 13px;
+            font-weight: 500;
+            color: @offWhite;
+            text-transform: uppercase;
+            background: none;
+            border-color: @offWhite;
+            border-radius: 4px;
+
+            &:hover {
+                color: @white;
+                border-color: @white;
+            }
+        }
+    }
+
+    .features {
+        margin-top: 60px;
+
+        .row {
+            margin-bottom: 60px;
+        }
+
+        .row:last-child {
+            padding-bottom: 100px;
+            margin-bottom: 0;
+            border-bottom: 1px solid @white;
+        }
+
+        .media {
+            .pull-left {
+                margin-right: 50px;
+            }
+
+            .media-object {
+                width: 120px;
+                height: 120px;
+                padding: 5px;
+                font-size: 110px;
+                color: @lightBrown;
+                text-align: center;
+            }
+
+            .media-body {
+                margin-right: 70px;
+
+                .media-heading {
+                    margin-bottom: 15px;
+                }
+
+                span {
+                    font-size: 13px;
+                    font-weight: 300;
+                    line-height: 22px;
+                    color: @mediumGray;
+                }
+            }
+        }
+    }
+
+    .download {
+        padding-top: 50px;
+
+        .container {
+            padding-bottom: 50px;
+            border-bottom: 1px solid @white;
+        }
+
+        .text {
+            top: 10px;
+            font-size: 15px;
+            font-weight: 300;
+            color: @mediumGray;
+            text-align: right;
+        }
+
+        .btn-primary {
+            padding: 12px 30px;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            background: @lightBrown;
+            border-color: @lightBrown;
+            border-radius: 4px;
+        }
+    }
+
+    .technology {
+        h3 {
+            margin-top: 50px;
+            text-align: center;
+            text-transform: uppercase;
+
+            small {
+                font-size: 24px;
+                font-weight: 100;
+            }
+        }
+
+        .row {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .thumbnail {
+            position: relative;
+            margin-bottom: 0;
+            border: none;
+            border-radius: 0;
+        }
+    }
+}

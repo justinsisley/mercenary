@@ -1,21 +1,27 @@
 define(function(require) {
-    var Marionette = require('marionette');
-    var validator = require('validator');
-    var strings = require('helpers/strings');
+    var _                       = require('underscore');
+    var Marionette              = require('marionette');
+    var validator               = require('validator');
+    var signupFormController    = require('../controllers/signupFormController');
 
     return Marionette.ItemView.extend({
         template: 'signup/signup',
 
         ui: {
-            signupEmail         : '#js-signup-email',
-            signupPassword      : '#js-signup-password',
-            signupSubmit        : '#js-signup-submit',
-            formSuccessMessage  : '#js-form-success-message',
-            formErrorMessage    : '#js-form-error-message'
+            signupForm              : '#js-signup-form',
+            signupEmail             : '#js-signup-email',
+            signupPassword          : '#js-signup-password',
+            signupSubmit            : '#js-signup-submit',
+            emailValidationSuccess  : '#js-email-validation-success',
+            emailValidationFailure  : '#js-email-validation-error',
+            formSuccessMessage      : '#js-form-success-message',
+            formErrorMessage        : '#js-form-error-message'
         },
 
         events: {
-            'click #js-signup-submit' : 'formSubmitHandler'
+            'click @ui.signupSubmit'    : 'formSubmitHandler',
+            'keypress @ui.signupForm'   : 'formKeypressHandler',
+            'input @ui.signupEmail'     : 'emailKeypressHandler'
         },
 
         onShow: function() {
@@ -26,61 +32,51 @@ define(function(require) {
             $('body').removeClass('signup');
         },
 
+        formKeypressHandler: function(e) {
+            if (e.which && e.which === 13) {
+                return this.formSubmitHandler(e);
+            }
+        },
+
+        emailKeypressHandler: function() {
+            if (validator.isEmail(this.ui.signupEmail.val())) {
+                this.ui.emailValidationSuccess.show();
+                this.ui.emailValidationFailure.hide();
+            } else {
+                this.ui.emailValidationSuccess.hide();
+                this.ui.emailValidationFailure.show();
+            }
+        },
+
         formSubmitHandler: function(e) {
             e.preventDefault();
 
             var email = this.ui.signupEmail.val();
             var password = this.ui.signupPassword.val();
 
-            this.signUpUser(email, password);
+            signupFormController.submit(email, password, _.bind(this.signupCallback, this));
         },
 
-        signUpUser: function(email, password) {
-            var self = this;
-
-            if (!email) {
-                return this.showErrorMessage(strings.noEmail);
+        signupCallback: function(err, response) {
+            if (err) {
+                return this.showErrorMessage(err);
             }
 
-            if (!validator.isEmail(email)) {
-                return this.showErrorMessage(strings.invalidEmail);
-            }
+            this.ui.signupEmail.attr('disabled', true);
+            this.ui.signupPassword.attr('disabled', true);
+            this.ui.signupSubmit.addClass('disabled');
 
-            if (!password) {
-                return this.showErrorMessage(strings.invalidPassword);
-            }
-
-            $.post('/users/signup', {
-                email: email,
-                password: password
-            }).done(function(response) {
-                if (!response || response.status !== 'success') {
-                    return self.showErrorMessage(response.message || strings.unspecifiedError);
-                }
-
-                self.ui.signupEmail.attr('disabled', true);
-                self.ui.signupPassword.attr('disabled', true);
-                self.ui.signupSubmit.addClass('disabled');
-
-                self.showSuccessMessage(strings.activationSent);
-            }).fail(function(response) {
-                // You probably don't want to display this.
-                self.showErrorMessage('Fail: ' + response);
-            });
+            this.showSuccessMessage(response);
         },
 
         showSuccessMessage: function(message) {
-            this.ui.formErrorMessage.addClass('hidden');
-            this.ui.formSuccessMessage.removeClass('hidden');
-
-            this.ui.formSuccessMessage.text(message);
+            this.ui.formSuccessMessage.text(message).show();
+            this.ui.formErrorMessage.hide();
         },
 
         showErrorMessage: function(message) {
-            this.ui.formSuccessMessage.addClass('hidden');
-            this.ui.formErrorMessage.removeClass('hidden');
-
-            this.ui.formErrorMessage.text(message);
+            this.ui.formSuccessMessage.hide();
+            this.ui.formErrorMessage.text(message).show();
         }
     });
 });

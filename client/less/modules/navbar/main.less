@@ -1,0 +1,41 @@
+.public-layout {
+    .primary-navigation {
+        background: none;
+        border: none;
+
+        .navbar-brand {
+            font-weight: 600;
+            color: @white;
+            text-shadow: 0 0 2px rgba(0, 0, 0, .75);
+            text-transform: uppercase;
+        }
+
+        .navbar-nav {
+            li {
+                margin-right: 25px;
+            }
+
+            li > a,
+            .active > a {
+                font-size: 13px;
+                font-weight: 300;
+                color: @white;
+            }
+
+            .active > a {
+                background: none;
+            }
+
+            .social {
+                top: 5px;
+                margin-right: 0;
+            }
+
+            .social > a {
+                padding: 10px;
+                font-size: 20px;
+                text-shadow: none;
+            }
+        }
+    }
+}

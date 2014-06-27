@@ -3,15 +3,15 @@
         <div class="col-md-3"></div>
         
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block btn-facebook pull-right">
+            <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-facebook pull-right">
                 <i class="fa fa-facebook"></i> Sign Up Using Facebook
-            </button>
+            </a>
         </div>
 
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block btn-instagram pull-left">
+            <a href="/auth/instagram" class="btn btn-primary btn-lg btn-block btn-instagram pull-left">
                 <i class="fa fa-instagram"></i> Sign Up Using Instagram
-            </button>
+            </a>
         </div>
         
         <div class="col-md-3"></div>
@@ -21,15 +21,15 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block btn-google pull-right">
+            <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-google pull-right">
                 <i class="fa fa-google"></i> Sign Up Using Google
-            </button>
+            </a>
         </div>
         
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block btn-linkedin pull-left">
+            <a href="/auth/linkedin" class="btn btn-primary btn-lg btn-block btn-linkedin pull-left">
                 <i class="fa fa-linkedin"></i> Sign Up Using LinkedIn
-            </button>
+            </a>
         </div>
         
         <div class="col-md-3"></div>
@@ -39,15 +39,15 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block btn-twitter pull-right">
+            <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-twitter pull-right">
                 <i class="fa fa-twitter"></i> Sign Up Using Twitter
-            </button>
+            </a>
         </div>
         
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block btn-github pull-left">
+            <a href="/auth/github" class="btn btn-primary btn-lg btn-block btn-github pull-left">
                 <i class="fa fa-github"></i> Sign Up Using GitHub
-            </button>
+            </a>
         </div>
         
         <div class="col-md-3"></div>
@@ -61,23 +61,26 @@
 
     <div class="col-md-6">
         <div class="row">
-            <div class="form-inline">
+            <div class="form-inline" id="js-signup-form">
                 <div class="form-group email-group">
-                    <input type="email" class="form-control input-email" placeholder="Email">
+                    <input type="email" class="form-control input-email" placeholder="Email" id="js-signup-email">
                     
-                    <i class="glyphicon glyphicon-remove-circle validation-error"></i>
-                    <i class="glyphicon glyphicon-ok-sign validation-success"></i>
+                    <i class="glyphicon glyphicon-ok-sign validation-success" id="js-email-validation-success"></i>
+                    <i class="glyphicon glyphicon-remove-circle validation-error" id="js-email-validation-error"></i>
                 </div>
 
                 <div class="form-group password-group">
-                    <input type="password" class="form-control input-password" placeholder="Password">
+                    <input type="password" class="form-control input-password" placeholder="Password" id="js-signup-password">
                 </div>
 
                 <div class="form-group pull-right">
-                    <button type="submit" class="btn btn-success">Sign Up</button>
+                    <button type="submit" class="btn btn-success" id="js-signup-submit">Sign Up</button>
                 </div>
             </div>
         </div>
+
+        <div class="alert alert-success" role="alert" id="js-form-success-message"></div>
+        <div class="alert alert-danger" role="alert" id="js-form-error-message"></div>
     </div>
     
     <div class="col-md-3"></div>
