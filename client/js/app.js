@@ -31,7 +31,7 @@ define(function(require) {
             id: 'test-region',
             class: 'test-region'
         }));
-        
+
         App.addRegions({testRegion: '#test-region'});
     }
 
@@ -39,6 +39,6 @@ define(function(require) {
     App.vent.on('domchange:title', function(title) {
         document.title = 'Mercenary' + (title ? (' | ' + title) : '');
     });
-    
+
     return App;
 });

@@ -1,12 +1,17 @@
 define(function(require) {
     var App = require('app');
     var Marionette = require('marionette');
-    
+    var linkHelper = require('../../../helpers/links');
+
     return Marionette.ItemView.extend({
         template: 'footer/publicFooter',
 
         ui: {
             navbar: '.navbar-default'
+        },
+
+        events: {
+            'click a.navbar-brand': linkHelper
         },
 
         initialize: function() {

@@ -1,23 +1,19 @@
 define(function(require) {
     var Marionette = require('marionette');
+    var linkHelper = require('../../../helpers/links');
+
     require('dropdown');
-    
+
     return Marionette.ItemView.extend({
         template: 'header/appHeader',
 
         events: {
-            'click a'               : 'linkHandler',
+            'click a'               : linkHelper,
             'click #js-logout-link' : 'logoutHandler'
         },
 
         onShow: function() {
             $('.dropdown-toggle').dropdown();
-        },
-
-        linkHandler: function(e) {
-            e.preventDefault();
-
-            Backbone.history.navigate(e.target.pathname, true);
         },
 
         logoutHandler: function(e) {

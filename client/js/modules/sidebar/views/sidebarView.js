@@ -1,5 +1,7 @@
 define(function(require) {
     var Marionette = require('marionette');
+    var linkHelper = require('../../../helpers/links');
+
     var App = require('app');
 
     return Marionette.ItemView.extend({
@@ -18,13 +20,7 @@ define(function(require) {
         },
 
         events: {
-            'click a': 'linkHandler'
-        },
-
-        linkHandler: function(e) {
-            e.preventDefault();
-
-            Backbone.history.navigate(e.target.pathname, true);
+            'click a': linkHelper
         },
 
         selectMenuItem: function(item) {
