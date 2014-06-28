@@ -2,14 +2,14 @@ module.exports = function(grunt) {
     grunt.config('requirejs', {
         compile: {
             options: {
-                baseUrl: 'client/js',
+                baseUrl: 'tmp/js',
                 name: 'main',
-                mainConfigFile: 'client/js/config.js',
+                mainConfigFile: 'tmp/js/config.js',
                 include: ['requireLib'],
                 insertRequire: [
                     'main'
                 ],
-                out: 'tmp/app.js',
+                out: 'tmp/build.js',
                 preserveLicenseComments: false
             }
         }

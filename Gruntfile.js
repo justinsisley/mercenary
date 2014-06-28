@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     // Run all default tasks, start the server with node,
     // and start the file watcher.
     grunt.registerTask('dev', ['default', 'concurrent:nodemon']);
-    
+
     // Run all default tasks, start the server with nodemon,
     // and start the file watcher.
     grunt.registerTask('devdemon', ['default', 'concurrent:nodemon']);
@@ -38,6 +38,8 @@ module.exports = function(grunt) {
         'recess',
         'less:prd',
         'dustpile',
+        'shell:copyDeps',
+        'shell:requireConvert',
         'requirejs',
         's3',
         'clean:tmp'

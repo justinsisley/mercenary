@@ -17,6 +17,14 @@ module.exports = function(grunt) {
         servedebug: {
             command: 'node-debug server/main.js',
             options: options
+        },
+        requireConvert: {
+            command: 'node node_modules/requirejs/bin/r.js -convert client/js/ tmp/js',
+            options: options
+        },
+        copyDeps: {
+            command: 'cp -R client/vendor/ tmp/vendor; cp -R client/dust/ tmp/dust',
+            options: options
         }
     });
 

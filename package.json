@@ -15,7 +15,7 @@
     "async": "^0.9.0",
     "bcryptjs": "1.0.4",
     "body-parser": "^1.4.3",
-    "express-session": "^1.5.2",
+    "cajon": "^0.2.4",
     "colors": "^0.6.2",
     "compression": "^1.0.8",
     "consolidate": "0.10.0",
@@ -23,6 +23,7 @@
     "dustjs-linkedin": "2.4.0",
     "errorhandler": "^1.1.1",
     "express": "4.4.5",
+    "express-session": "^1.5.2",
     "memwatch": "0.2.2",
     "mongoose": "3.8.12",
     "morgan": "^1.1.1",
@@ -54,7 +55,8 @@
     "grunt-plato": "1.0.0",
     "grunt-recess": "0.6.1",
     "grunt-s3": "0.2.0-alpha.3",
-    "grunt-shell": "0.7.0"
+    "grunt-shell": "0.7.0",
+    "requirejs": "^2.1.14"
   },
   "engines": {
     "node": "0.10.29"
