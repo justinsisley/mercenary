@@ -1,14 +1,12 @@
-define(function(require) {
-    var App = require('app');
-    var SidebarView = require('modules/sidebar/views/sidebarView');
+var App = require('app');
+var SidebarView = require('modules/sidebar/views/sidebarView');
 
-    return {
-        show: function() {
-            var sidebarView = new SidebarView();
-            
-            App.appLayout.sidebarRegion.show(sidebarView);
+module.exports = {
+    show: function() {
+        var sidebarView = new SidebarView();
 
-            App.vent.trigger('sidebarController:show');
-        }
-    };
-});
+        App.appLayout.sidebarRegion.show(sidebarView);
+
+        App.vent.trigger('sidebarController:show');
+    }
+};

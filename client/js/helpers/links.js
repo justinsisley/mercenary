@@ -1,9 +1,7 @@
-define(function(require) {
-    var Backbone = require('backbone');
+var Backbone = require('backbone');
 
-    return function(e) {
-        e.preventDefault();
+module.exports = function(e) {
+    e.preventDefault();
 
-        Backbone.history.navigate(e.target.pathname, true);
-    };
-});
+    Backbone.history.navigate(e.target.pathname, true);
+};

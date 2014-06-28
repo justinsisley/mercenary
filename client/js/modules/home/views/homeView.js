@@ -1,7 +1,5 @@
-define(function(require) {
-    var Marionette = require('marionette');
+var Marionette = require('marionette');
 
-    return Marionette.ItemView.extend({
-        template: 'home/home'
-    });
+module.exports = Marionette.ItemView.extend({
+    template: 'home/home'
 });

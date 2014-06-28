@@ -1,4 +1,4 @@
-define({
+module.exports = {
     activationSent: 'You have been sent an activation email.',
     accountNowActive: 'Your account is now active.',
 
@@ -9,4 +9,4 @@ define({
     incorrectLoginCredentials: 'Incorrect username/password combination.',
 
     unspecifiedError: 'Something went wrong. Please try again.'
-});
+};

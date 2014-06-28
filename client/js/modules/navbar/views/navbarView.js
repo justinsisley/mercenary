@@ -1,12 +1,10 @@
-define(function(require) {
-    var Marionette = require('marionette');
-    var linkHelper = require('../../../helpers/links');
+var Marionette = require('marionette');
+var linkHelper = require('../../../helpers/links');
 
-    return Marionette.ItemView.extend({
-        template: 'navbar/navbar',
+module.exports = Marionette.ItemView.extend({
+    template: 'navbar/navbar',
 
-        events: {
-            'click .nav-link' : linkHelper
-        }
-    });
+    events: {
+        'click .nav-link' : linkHelper
+    }
 });

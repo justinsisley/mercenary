@@ -1,16 +1,14 @@
 /**
  * The logged-in, authenticated layout.
  */
-define(function(require) {
-    var Marionette = require('marionette');
-    
-    return Marionette.LayoutView.extend({
-        template: 'base/appLayout',
+var Marionette = require('marionette');
 
-        regions: {
-            headerRegion    : '#header-region',
-            sidebarRegion   : '#sidebar-region',
-            mainRegion      : '#main-region'
-        }
-    });
+module.exports = Marionette.LayoutView.extend({
+    template: 'base/appLayout',
+
+    regions: {
+        headerRegion    : '#header-region',
+        sidebarRegion   : '#sidebar-region',
+        mainRegion      : '#main-region'
+    }
 });

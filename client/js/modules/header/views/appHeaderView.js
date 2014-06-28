@@ -1,25 +1,23 @@
-define(function(require) {
-    var Marionette = require('marionette');
-    var linkHelper = require('../../../helpers/links');
+var Marionette = require('marionette');
+var linkHelper = require('../../../helpers/links');
 
-    require('dropdown');
+require('dropdown');
 
-    return Marionette.ItemView.extend({
-        template: 'header/appHeader',
+module.exports = Marionette.ItemView.extend({
+    template: 'header/appHeader',
 
-        events: {
-            'click a'               : linkHelper,
-            'click #js-logout-link' : 'logoutHandler'
-        },
+    events: {
+        'click a'               : linkHelper,
+        'click #js-logout-link' : 'logoutHandler'
+    },
 
-        onShow: function() {
-            $('.dropdown-toggle').dropdown();
-        },
+    onShow: function() {
+        $('.dropdown-toggle').dropdown();
+    },
 
-        logoutHandler: function(e) {
-            e.preventDefault();
+    logoutHandler: function(e) {
+        e.preventDefault();
 
-            Backbone.history.navigate('/logout', true);
-        }
-    });
+        Backbone.history.navigate('/logout', true);
+    }
 });

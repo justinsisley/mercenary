@@ -1,23 +1,21 @@
-define(function(require) {
-    var App = require('app');
-    var HomeView = require('modules/home/views/homeView');
-    var HeroView = require('modules/home/views/heroView');
+var App = require('app');
+var HomeView = require('modules/home/views/homeView');
+var HeroView = require('modules/home/views/heroView');
 
-    return {
-        show: function() {
-            var homeView = new HomeView();
-            var heroView = new HeroView();
-            
-            App.publicLayout.heroRegion.show(heroView);
-            App.publicLayout.signinRegion.empty();
-            App.publicLayout.contentRegion.show(homeView);
+module.exports = {
+    show: function() {
+        var homeView = new HomeView();
+        var heroView = new HeroView();
 
-            // Unfix the public footer from the bottom
-            // of the page.
-            App.vent.trigger('publicFooter:unfix');
+        App.publicLayout.heroRegion.show(heroView);
+        App.publicLayout.signinRegion.empty();
+        App.publicLayout.contentRegion.show(homeView);
 
-            App.vent.trigger('homeController:show');
-            App.vent.trigger('domchange:title');
-        }
-    };
-});
+        // Unfix the public footer from the bottom
+        // of the page.
+        App.vent.trigger('publicFooter:unfix');
+
+        App.vent.trigger('homeController:show');
+        App.vent.trigger('domchange:title');
+    }
+};

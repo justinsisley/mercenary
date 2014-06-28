@@ -1,32 +1,30 @@
-define(function(require) {
-    var Marionette = require('marionette');
-    var linkHelper = require('../../../helpers/links');
+var Marionette = require('marionette');
+var linkHelper = require('../../../helpers/links');
 
-    var App = require('app');
+var App = require('app');
 
-    return Marionette.ItemView.extend({
-        template: 'sidebar/sidebar',
+module.exports = Marionette.ItemView.extend({
+    template: 'sidebar/sidebar',
 
-        initialize: function() {
-            var self = this;
+    initialize: function() {
+        var self = this;
 
-            App.vent.on('dashboardController:show', function() {
-                self.selectMenuItem('Dashboard');
-            });
+        App.vent.on('dashboardController:show', function() {
+            self.selectMenuItem('Dashboard');
+        });
 
-            App.vent.on('usersController:show', function() {
-                self.selectMenuItem('Users');
-            });
-        },
+        App.vent.on('usersController:show', function() {
+            self.selectMenuItem('Users');
+        });
+    },
 
-        events: {
-            'click a': linkHelper
-        },
+    events: {
+        'click a': linkHelper
+    },
 
-        selectMenuItem: function(item) {
-            this.$('.active').removeClass('active');
+    selectMenuItem: function(item) {
+        this.$('.active').removeClass('active');
 
-            this.$('a:contains("' + item + '")').parent().addClass('active');
-        }
-    });
+        this.$('a:contains("' + item + '")').parent().addClass('active');
+    }
 });
