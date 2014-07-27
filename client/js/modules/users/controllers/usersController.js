@@ -1,7 +1,12 @@
 var App = require('app');
+var showAppLayout = require('modules/layout/controllers/appLayoutController');
 var UsersView = require('modules/users/views/usersView');
 
-module.exports = {
+var controller = {
+    users: function() {
+        showAppLayout(controller.show);
+    },
+
     show: function() {
         var usersView = new UsersView();
 
@@ -10,3 +15,5 @@ module.exports = {
         App.vent.trigger('usersController:show');
     }
 };
+
+module.exports = controller;

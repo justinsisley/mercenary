@@ -61,7 +61,9 @@ var mercenary = {
         // Session data.
         app.use(session({
             key: 'mercenary.sid',
-            secret: process.env.SESSION_SECRET || config.secrets.sessionSecret
+            secret: process.env.SESSION_SECRET || config.secrets.sessionSecret,
+            resave: true,
+            saveUninitialized: true
         }));
 
         // Body parser middleware.

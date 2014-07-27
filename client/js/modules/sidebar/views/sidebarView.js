@@ -1,5 +1,4 @@
 var Marionette = require('marionette');
-var linkHelper = require('../../../helpers/links');
 
 var App = require('app');
 
@@ -16,10 +15,6 @@ module.exports = Marionette.ItemView.extend({
         App.vent.on('usersController:show', function() {
             self.selectMenuItem('Users');
         });
-    },
-
-    events: {
-        'click a': linkHelper
     },
 
     selectMenuItem: function(item) {

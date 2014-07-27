@@ -4,7 +4,7 @@
 var Marionette = require('marionette');
 
 module.exports = Marionette.LayoutView.extend({
-    template: 'base/publicLayout',
+    template: 'layout/publicLayout',
 
     regions: {
         navbarRegion    : '#navbar-region',

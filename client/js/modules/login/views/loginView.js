@@ -1,6 +1,6 @@
 var Marionette  = require('marionette');
 var validator   = require('validator');
-var strings     = require('helpers/strings');
+var strings     = require('constants/strings');
 
 module.exports = Marionette.ItemView.extend({
     template: 'login/login',
@@ -24,15 +24,15 @@ module.exports = Marionette.ItemView.extend({
         $('body').addClass('login');
 
         if (window.location.search.indexOf('active=true') > 0) {
-            this.showSuccessMessage(strings.accountNowActive);
+            this.showSuccessMessage(strings.ACCOUNT_NOW_ACTIVE);
         }
 
         if (window.location.search.indexOf('active=false') > 0) {
-            this.showErrorMessage(strings.accountNowActive);
+            this.showErrorMessage(strings.ACCOUNT_NOW_ACTIVE);
         }
 
         if (window.location.search.indexOf('fail=true') > 0) {
-            this.showErrorMessage(strings.incorrectLoginCredentials);
+            this.showErrorMessage(strings.INCORRECT_LOGIN_CREDENTIALS);
         }
     },
 
@@ -47,12 +47,12 @@ module.exports = Marionette.ItemView.extend({
 
         if (!validEmail) {
             e.preventDefault();
-            return this.showErrorMessage(strings.invalidEmail);
+            return this.showErrorMessage(strings.INVALID_EMAIL);
         }
 
         if (!password) {
             e.preventDefault();
-            return this.showErrorMessage(strings.invalidPassword);
+            return this.showErrorMessage(strings.INVALID_PASSWORD);
         }
     },
 

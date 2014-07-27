@@ -1,8 +1,13 @@
 var App = require('app');
+var showPublicLayout = require('modules/layout/controllers/publicLayoutController');
 var LoginView = require('modules/login/views/loginView');
 var HeroView = require('modules/login/views/heroView');
 
-module.exports = {
+var controller = {
+    login: function() {
+        showPublicLayout(controller.show);
+    },
+
     show: function() {
         var loginView = new LoginView();
         var heroView = new HeroView();
@@ -19,3 +24,5 @@ module.exports = {
         App.vent.trigger('domchange:title', 'Log In');
     }
 };
+
+module.exports = controller;

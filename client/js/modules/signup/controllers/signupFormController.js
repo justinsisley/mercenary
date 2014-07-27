@@ -1,6 +1,6 @@
 var validator   = require('validator');
-var constants   = require('../../../helpers/constants');
-var strings     = require('../../../helpers/strings');
+var settings    = require('../../../constants/settings');
+var strings     = require('../../../constants/strings');
 
 var controller = {
     submit: function(email, password, callback) {
@@ -16,7 +16,7 @@ var controller = {
             return callback(strings.invalidPassword);
         }
 
-        if (password.length < constants.MINIMUM_PASSWORD_LENGTH) {
+        if (password.length < settings.MINIMUM_PASSWORD_LENGTH) {
             return callback(strings.shortPassword);
         }
 

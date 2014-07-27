@@ -1,7 +1,12 @@
 var App             = require('app');
+var showAppLayout   = require('modules/layout/controllers/appLayoutController');
 var DasboardView    = require('modules/dashboard/views/dashboardView');
 
-module.exports = {
+var controller = {
+    dashboard: function() {
+        showAppLayout(controller.show);
+    },
+
     show: function() {
         var dashboardView = new DasboardView();
 
@@ -11,3 +16,5 @@ module.exports = {
         App.vent.trigger('domchange:title', 'Dashboard');
     }
 };
+
+module.exports = controller;

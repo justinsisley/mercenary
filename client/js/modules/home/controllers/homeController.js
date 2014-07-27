@@ -1,8 +1,13 @@
 var App = require('app');
+var showPublicLayout = require('modules/layout/controllers/publicLayoutController');
 var HomeView = require('modules/home/views/homeView');
 var HeroView = require('modules/home/views/heroView');
 
-module.exports = {
+var controller = {
+    home: function() {
+        showPublicLayout(controller.show);
+    },
+
     show: function() {
         var homeView = new HomeView();
         var heroView = new HeroView();
@@ -19,3 +24,5 @@ module.exports = {
         App.vent.trigger('domchange:title');
     }
 };
+
+module.exports = controller;

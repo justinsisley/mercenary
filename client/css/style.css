@@ -2,10 +2,6 @@ html,
 body {
   overflow-x: hidden;
 }
-::selection {
-  color: #ffffff;
-  background: #332a25;
-}
 .sans {
   font-family: sans-serif;
 }
