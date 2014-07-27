@@ -4,7 +4,7 @@
 var Backbone    = require('backbone');
 var App         = require('app');
 var User        = require('modules/users/models/userModel');
-var routers     = require('./routers');
+var routers     = require('helpers/routers');
 var linkHandler = require('helpers/linkHandler');
 
 // Runs as soon as App.start() is called
