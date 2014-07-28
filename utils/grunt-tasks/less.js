@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.config('less', {
         dev: {
             src: ['tmp/dist.less'],
-            dest: 'client/css/style.css'
+            dest: 'client/css/app.css'
         },
         prd: {
             options: {
@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                 'client/vendor/bootstrap/dist/css/bootstrap.css',
                 'tmp/dist.less'
             ],
-            dest: 'client/css/style.css'
+            dest: 'client/css/app.css'
         }
     });
 

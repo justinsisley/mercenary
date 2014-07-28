@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             ]
         },
         css: {
-            files: ['client/css/style.css'],
+            files: ['client/css/app.css'],
             options: {
                 livereload: true
             }

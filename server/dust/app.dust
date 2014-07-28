@@ -9,11 +9,10 @@
         <meta name="viewport" content="width=device-width">
 
         {?development}
-            <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css">
-            <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.css">
-            <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/css/lib.css">
+            <link rel="stylesheet" href="/css/app.css">
         {:else}
-            <link rel="stylesheet" href="http://{cdnDomain}/css/style.{cssVersion}.css">
+            <link rel="stylesheet" href="http://{cdnDomain}/css/app.{cssVersion}.css">
         {/development}
     </head>
 
