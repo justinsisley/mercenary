@@ -20,11 +20,11 @@ module.exports = function(grunt) {
         less: {
             src: [
                 'client/less/utils/*.less',
-                'client/less/theme/*.less',
+                'client/less/variables/*.less',
                 'client/less/elements/*.less',
-                'client/less/widgets/*.less',
-                'client/less/base/*.less',
-                'client/less/modules/**/*.less'
+                'client/less/modules/**/*.less',
+                'client/less/layouts/**/*.less',
+                'client/less/widgets/*.less'
             ],
             dest: 'tmp/dist.less'
         }

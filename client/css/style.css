@@ -2,20 +2,15 @@ html,
 body {
   overflow-x: hidden;
 }
+::selection {
+  color: #ffffff;
+  background: #332a25;
+}
 .sans {
   font-family: sans-serif;
 }
 .serif {
   font-family: serif;
-}
-.signup,
-.login {
-  padding-bottom: 200px;
-  background: #000;
-}
-.signup .hero,
-.login .hero {
-  height: 628px;
 }
 .public-layout .footer {
   padding-top: 10px;
@@ -370,4 +365,13 @@ body {
   padding: 10px;
   font-size: 20px;
   text-shadow: none;
+}
+.signup,
+.login {
+  padding-bottom: 200px;
+  background: #000;
+}
+.signup .hero,
+.login .hero {
+  height: 628px;
 }

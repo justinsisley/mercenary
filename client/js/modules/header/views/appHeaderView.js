@@ -3,7 +3,7 @@ var Marionette = require('marionette');
 require('dropdown');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'header/appHeader',
+    template: 'modules/header/appHeader',
 
     events: {
         'click #js-logout-link' : 'logoutHandler'

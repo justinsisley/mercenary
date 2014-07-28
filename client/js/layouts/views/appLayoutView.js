@@ -4,7 +4,7 @@
 var Marionette = require('marionette');
 
 module.exports = Marionette.LayoutView.extend({
-    template: 'layout/appLayout',
+    template: 'layouts/appLayout',
 
     regions: {
         headerRegion    : '#header-region',

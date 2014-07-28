@@ -1,5 +1,5 @@
 /**
- * Shared configuration (between application and tests)
+ * Shared configuration (between application and tests).
  */
 require.config({
     baseUrl: '/js/',

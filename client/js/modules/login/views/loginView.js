@@ -3,7 +3,7 @@ var validator   = require('validator');
 var strings     = require('constants/strings');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'login/login',
+    template: 'modules/login/login',
 
     ui: {
         loginEmail              : '#js-login-email',
