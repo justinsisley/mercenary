@@ -84,8 +84,8 @@
                     <i class="media-object fa fa-wrench pull-left"></i>
                     
                     <div class="media-body">
-                        <h4 class="media-heading">Grunt</h4>
-                        <span>Somebody has to do the dirty work. With pre-configured tasks ranging from concatenation to deployment to running tests, Grunt's got you covered.</span>
+                        <h4 class="media-heading">Gulp</h4>
+                        <span>Somebody has to do the dirty work. With pre-configured tasks ranging from concatenation to deployment to running tests, Gulp's got you covered.</span>
                     </div>
                 </div>
             </div>
@@ -141,6 +141,12 @@
             </a>
         </div>
 
+        <div class="col-md-1">
+            <a href="http://gulpjs.com/" target="_blank" class="thumbnail">
+                <img src="/img/gulpjs.jpg" width="40" alt="Grunt">
+            </a>
+        </div>
+
         <div class="col-md-2">
             <a href="http://nodejs.org/" target="_blank" class="thumbnail">
                 <img src="/img/nodejs.jpg" alt="node.js">
@@ -150,12 +156,6 @@
         <div class="col-md-2">
             <a href="http://expressjs.com/" target="_blank" class="thumbnail">
                 <img src="/img/expressjs.jpg" alt="express.js">
-            </a>
-        </div>
-
-        <div class="col-md-1">
-            <a href="http://gruntjs.com/" target="_blank" class="thumbnail">
-                <img src="/img/gruntjs.jpg" width="40" alt="Grunt">
             </a>
         </div>
 
