@@ -21,7 +21,8 @@ require.config({
         // Feature dependencies
         validator               : '../vendor/validator-js/validator',
         highcharts              : '../vendor/highcharts-release/highcharts',
-        dropdown                : '../vendor/bootstrap/js/dropdown'
+        dropdown                : '../vendor/bootstrap/js/dropdown',
+        tooltip                 : '../vendor/bootstrap/js/tooltip'
     },
     shim: {
         dust: {exports: 'dust'},

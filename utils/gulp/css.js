@@ -16,7 +16,7 @@ gulp.task('less-dev', function() {
     return gulp.src(config.lessSrc)
         .pipe(sourcemaps.init())
             .pipe(concat('app.css'))
-            .pipe(recess().on('error', handleError))
+            .pipe(recess({noOverqualifying: false}).on('error', handleError))
             .pipe(less().on('error', handleError))
             .pipe(prefix())
         .pipe(sourcemaps.write())
@@ -29,7 +29,7 @@ gulp.task('less-dev', function() {
 gulp.task('less-prd', function() {
     return gulp.src(config.lessSrc)
         .pipe(concat('app.css'))
-        .pipe(recess())
+        .pipe(recess({noOverqualifying: false}))
         .pipe(less())
         .pipe(prefix())
         .pipe(minifyCSS())

@@ -1,9 +1,9 @@
-<div id="header-region" class="navbar navbar-default navbar-fixed-top" role="navigation"></div>
+<div class="wrapper">
+    <div class="sidebar-wrapper" id="sidebar-region"></div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div id="sidebar-region" class="col-sm-3 col-md-2 sidebar"></div>
+    <div class="page-content-wrapper">
+        <nav class="navbar navbar-default page-content-header" role="navigation" id="header-region"></nav>
 
-        <div id="main-region" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"></div>
+        <div class="page-content" id="main-region"></div>
     </div>
 </div>
