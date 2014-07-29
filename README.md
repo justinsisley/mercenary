@@ -4,7 +4,7 @@
 
 Mercenary is a full-featured, single-page web application. Bend it to your will and make something beautiful.
 
-On the client side, Mercenary uses [Backbone.js](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Grunt](http://gruntjs.com/) as a build and deploy utility. It also takes advantage of the [Grunt watcher's live reload capability](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload), which automatically reloads updated CSS files without needing a manual refresh.
+On the client side, Mercenary uses [Backbone.js](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Gulp](http://gulpjs.com/) as a build and deploy utility. It also leverages livereload, which automatically reloads updated CSS files without needing a manual refresh.
 
 On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js](http://nodejs.org/) application framework.
 
@@ -21,7 +21,7 @@ If Homebrew isn't your cup of tea, you'll just need to [install Node.js and NPM]
 These instructions assume you have some familiarity with using a command line application.
 
 - Install Node.js and NPM: `brew install node`
-- Install Grunt and Bower: `npm install -g grunt-cli bower`
+- Install Gulp and Bower: `npm install -g gulp bower`
 - Install Mocha, PhantomJS and Mocha-Phantom: `npm install -g mocha phantomjs mocha-phantomjs`
 - [Download Mercenary](https://github.com/justinsisley/Mercenary/archive/master.zip)
 - Unzip the archive: `unzip Mercenary-master.zip`
@@ -36,13 +36,13 @@ Running the application with nodemon will cause the Express server to restart up
 
 Running the server with node-inspector will provide you with a debugging interface nearly identical to the Chrome Developer Tools. This is very useful when you have a debugging itch that `console.log` can't quickly scratch.
 
-In the end, the choice is yours, and all three methods of running the server are available via custom Grunt tasks.
+In the end, the choice is yours, and all three methods of running the server are available via custom Gulp tasks.
 
-*Each of the following tasks automatically runs the Grunt watcher, which provides JavaScript linting via [JSHint](http://www.jshint.com/), LESS linting via [RECESS](http://twitter.github.io/recess/), concatenation and compilation of stylesheets and templates, and LiveReload, so style changes don't require a browser refresh.*
+*Each of the following tasks automatically runs the Gulp watcher, which provides JavaScript linting via [JSHint](http://www.jshint.com/), LESS linting via [RECESS](http://twitter.github.io/recess/), concatenation and compilation of stylesheets and templates, and livereload, so style changes don't require a browser refresh.*
 
-- `grunt dev` - start the application using node.
-- `grunt devdemon` - start the application using nodemon<sup>1</sup>.
-- `grunt devinspect` - start the application using node-inspector<sup>2</sup>.
+- `gulp dev` - start the application using node.
+- `gulp devdemon` - start the application using nodemon<sup>1</sup>.
+- `gulp devinspect` - start the application using node-inspector<sup>2</sup>.
 
 Once the server is running, you can view your application at <http://127.0.0.1:8743>.
 
@@ -91,8 +91,6 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `TWITTER_CONSUMER_SECRET` - your Twitter application's consumer secret.
 - `GITHUB_CLIENT_ID` - your Github application's client ID.
 - `GITHUB_CLIENT_SECRET` - your Github application's client secret.
-
-<!--To make things even easier, a custom Grunt task called `merc-module` will generate new client-side modules for you, including dust templates, LESS stylesheets, and JavaScript views and controllers. After installation, run `grunt merc-module` to learn about the module generator.-->
 
 ## Browser Support
 
