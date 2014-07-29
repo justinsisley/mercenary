@@ -1,6 +1,6 @@
-var gulp = require('gulp');
+var gulp    = require('gulp');
 var nodemon = require('gulp-nodemon');
-var shell = require('gulp-shell');
+var shell   = require('gulp-shell');
 
 gulp.task('server-node', shell.task(['node server/main.js']));
 

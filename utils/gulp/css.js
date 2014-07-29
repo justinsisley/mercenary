@@ -8,10 +8,11 @@ var minifyCSS   = require('gulp-minify-css');
 var gutil       = require('gulp-util');
 var handleError = require('./errorHandler');
 var config      = require('./config');
+var livereload  = require('gulp-livereload');
 
 // Lint, concatenate and compile
 // LESS stylesheets.
-gulp.task('less-src-dev', function() {
+gulp.task('less-dev', function() {
     return gulp.src(config.lessSrc)
         .pipe(sourcemaps.init())
             .pipe(concat('app.css'))
@@ -19,12 +20,13 @@ gulp.task('less-src-dev', function() {
             .pipe(less().on('error', handleError))
             .pipe(prefix())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('client/css'));
+        .pipe(gulp.dest('client/css'))
+        .pipe(livereload());
 });
 
 // Lint, concatenate, compile and
 // minify LESS stylesheets.
-gulp.task('less-src-prd', function() {
+gulp.task('less-prd', function() {
     return gulp.src(config.lessSrc)
         .pipe(concat('app.css'))
         .pipe(recess())
