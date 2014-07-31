@@ -8,11 +8,7 @@
  * 
  * @type {Object}
  */
-module.exports = {
-    // Attempts to load your secrets.json file and falls
-    // back to empty objects to prevent errors.
-    secrets: require('./secrets.json') || {smtp: {}, auth: {facebook: {}, google: {}, twitter: {}, github: {}}},
-    
+var config = {
     // Loads your settings.json file, which should
     // always exist.
     settings: require('./settings.json'),
@@ -21,3 +17,13 @@ module.exports = {
     // by a custom Grunt task.
     versions: {javascript: 1202, css: 205}
 };
+
+// Attempts to load your secrets.json file and falls
+// back to empty objects to prevent errors.
+try {
+    config.secrets = require('./secrets.json');
+} catch(e) {
+    config.secrets = {smtp: {}, auth: {facebook: {}, google: {}, twitter: {}, github: {}}}
+}
+
+module.exports = config;
