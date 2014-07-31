@@ -1,4 +1,4 @@
-# Mercenary [![Build Status](http://img.shields.io/travis/justinsisley/Mercenary.svg?style=flat&branch=master)](http://img.shields.io/travis/justinsisley/Mercenary.svg?style=flat&branch=master)
+# Mercenary [![Build Status](http://img.shields.io/travis/justinsisley/Mercenary.svg?style=flat&branch=Cajon)](http://img.shields.io/travis/justinsisley/Mercenary.svg?style=flat&branch=Cajon)
 
 ![Mercenary](https://dl.dropboxusercontent.com/u/4682832/Mercenary/mercenary-screenshot.jpg)
 
