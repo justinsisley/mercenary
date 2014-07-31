@@ -1,4 +1,4 @@
-# Mercenary [![Build Status](https://travis-ci.org/justinsisley/Mercenary.svg?branch=master)](https://travis-ci.org/justinsisley/Mercenary)
+# Mercenary [![Build Status](http://img.shields.io/travis/justinsisley/Mercenary.svg?style=flat&branch=master)](http://img.shields.io/travis/justinsisley/Mercenary.svg?style=flat&branch=master)
 
 ![Mercenary](https://dl.dropboxusercontent.com/u/4682832/Mercenary/mercenary-screenshot.jpg)
 
