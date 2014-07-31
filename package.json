@@ -24,7 +24,6 @@
     "errorhandler": "^1.1.1",
     "express": "4.7.2",
     "express-session": "^1.7.2",
-    "memwatch": "0.2.2",
     "mongoose": "3.8.14",
     "morgan": "^1.2.2",
     "node-mandrill": "1.0.1",

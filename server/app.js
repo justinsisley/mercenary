@@ -21,7 +21,6 @@ var catchallRouter  = require('./routers/catchallRouter');
 
 // Utils
 var cons            = require('consolidate');
-var memwatch;
 
 require('colors');
 
@@ -31,29 +30,6 @@ require('http').globalAgent.maxSockets = 25;
 
 var mercenary = {
     start: function() {
-        // Log memory leaks and garbage collection
-        // events to the console using Memwatch
-        var loggingEnabled = (config.settings.logging.memory ||
-                            config.settings.logging.garbage);
-
-        if (loggingEnabled) {
-            memwatch = require('memwatch');
-
-            // Log memory leaks
-            if (config.settings.logging.memory) {
-                memwatch.on('leak', function(info) {
-                    console.log('memwatch:leak', info);
-                });
-            }
-
-            // Log garbage collection events
-            if (config.settings.logging.garbage) {
-                memwatch.on('stats', function(stats) {
-                    console.log('memwatch:garbage', stats);
-                });
-            }
-        }
-
         // Parses the Cookie header field and populates
         // req.cookies with an object keyed by the cookie names
         app.use(cookieParser());
@@ -84,10 +60,13 @@ var mercenary = {
         // Tell Express where to find Dust templates.
         app.set('views', __dirname + '/dust');
 
+        var prdEnvironment = ('production' === process.env.NODE_ENV ||
+                            'production' === config.settings.env);
+
         // Establish development-only settings.
         var devEnvironment = ('development' === config.settings.env ||
-                            'development' === process.env.NODE_ENV ||
-                            true === config.settings.forceDev);
+                            'development' === process.env.NODE_ENV &&
+                            !prdEnvironment);
 
         if (devEnvironment) {
             app.use(errorHandler());

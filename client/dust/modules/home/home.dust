@@ -111,7 +111,7 @@
             <div class="col-md-6 text">Getting started with Mercenary is quick and easy. Setup takes less than 2 minutes.</div>
 
             <div class="col-md-5">
-                <a href="https://github.com/justinsisley/Mercenary" type="button" class="btn btn-primary btn-lg">Download Mercenary Now</a>
+                <a href="https://github.com/justinsisley/Mercenary" class="btn btn-primary btn-lg" target="_self">Download Mercenary Now</a>
             </div>
         </div>
     </div>
