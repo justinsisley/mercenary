@@ -3,6 +3,7 @@ var shell       = require('gulp-shell');
 var rjs         = require('gulp-requirejs');
 var uglify      = require('gulp-uglify');
 var runSequence = require('run-sequence');
+var config      = require('../../config');
 
 gulp.task('requirejs-convert',
     shell.task(['r.js -convert client/js/ tmp/js']));
@@ -19,15 +20,12 @@ gulp.task('requirejs-build', function() {
         insertRequire: [
             'main'
         ],
-        out: 'build.js',
+        out: 'app.' + config.versions.javascript + '.js',
         preserveLicenseComments: false
     })
     .pipe(uglify())
     .pipe(gulp.dest('tmp'));
 });
-
-gulp.task('requirejs-cleanup',
-    shell.task(['rm -rf tmp']));
 
 gulp.task('requirejs', function() {
     runSequence('requirejs-convert', 'copy-dependencies', 'requirejs-build');

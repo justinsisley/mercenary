@@ -39,6 +39,10 @@ if (window.mocha || window.mochaPhantomJS) {
 // Allow page title changes from anywhere in the application.
 App.vent.on('domchange:title', function(title) {
     document.title = 'Mercenary' + (title ? (' | ' + title) : '');
+
+    // This is also a good time to scroll to the
+    // top of the window.
+    $('html, body').scrollTop(0);
 });
 
 module.exports = App;

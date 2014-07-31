@@ -12,6 +12,7 @@
             <link rel="stylesheet" href="/css/lib.css">
             <link rel="stylesheet" href="/css/app.css">
         {:else}
+            <link rel="stylesheet" href="http://{cdnDomain}/css/lib.{cssVersion}.css">
             <link rel="stylesheet" href="http://{cdnDomain}/css/app.{cssVersion}.css">
         {/development}
     </head>

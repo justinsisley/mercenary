@@ -9,6 +9,7 @@ var gutil       = require('gulp-util');
 var handleError = require('./errorHandler');
 var config      = require('./config');
 var livereload  = require('gulp-livereload');
+var appConfig   = require('../../config');
 
 // Lint, concatenate and compile
 // LESS stylesheets.
@@ -28,12 +29,12 @@ gulp.task('less-dev', function() {
 // minify LESS stylesheets.
 gulp.task('less-prd', function() {
     return gulp.src(config.lessSrc)
-        .pipe(concat('app.css'))
+        .pipe(concat('app.' + appConfig.versions.css + '.css'))
         .pipe(recess({noOverqualifying: false}))
         .pipe(less())
         .pipe(prefix())
         .pipe(minifyCSS())
-        .pipe(gulp.dest('client/css'));
+        .pipe(gulp.dest('tmp'));
 });
 
 gulp.task('css-lib-dev', function() {
@@ -46,7 +47,7 @@ gulp.task('css-lib-dev', function() {
 gulp.task('css-lib-prd', function() {
     return gulp.src(config.cssLib)
         .pipe(prefix())
-        .pipe(concat('lib.css'))
+        .pipe(concat('lib.' + appConfig.versions.css + '.css'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest('tmp'));
 });

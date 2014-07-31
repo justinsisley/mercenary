@@ -19,5 +19,5 @@ module.exports = {
 
     // Don't edit these directly. They're managed
     // by a custom Grunt task.
-    versions: {javascript: 1200, css: 205}
+    versions: {javascript: 1202, css: 205}
 };

@@ -29,3 +29,16 @@ gulp.task('devdebug', function() {
 gulp.task('devdemon', function() {
     runSequence('default', 'watch', 'server-nodemon');
 });
+
+gulp.task('cdn', function() {
+    runSequence(
+        'requirejs',
+        'less-prd',
+        'css-lib-prd',
+        's3-css',
+        's3-js',
+        's3-fonts',
+        's3-img',
+        'tmp-cleanup'
+    );
+});

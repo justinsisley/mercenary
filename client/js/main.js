@@ -34,7 +34,7 @@ App.addInitializer(function() {
         // Unless an anchor tag has a "target" attribute
         // with a value of "_blank" or "_self", Backbone
         // will handle all links.
-        $('a', 'body').on('click', linkHandler);
+        $('body').on('click', 'a', linkHandler);
     });
 });
 
