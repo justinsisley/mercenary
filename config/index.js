@@ -15,7 +15,7 @@ var config = {
 
     // Don't edit these directly. They're managed
     // by a custom Grunt task.
-    versions: {javascript: 1202, css: 208}
+    versions: {javascript: 1203, css: 208}
 };
 
 // Attempts to load your secrets.json file and falls

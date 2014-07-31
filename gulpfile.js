@@ -8,7 +8,7 @@ requireDir('./utils/gulp');
 gulp.task('watch', function() {
     gulp.watch(config.jsSrc, ['jshint', 'revision-js']);
     gulp.watch(config.lessSrc, ['less-dev', 'revision-css']);
-    gulp.watch(config.templates, ['dust']);
+    gulp.watch(config.templates, ['dust', 'revision-js']);
 });
 
 gulp.task('default', [
