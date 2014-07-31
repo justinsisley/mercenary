@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node server/main",
-    "test": "grunt"
+    "test": "gulp test"
   },
   "author": {
     "name": "Justin Sisley"
