@@ -91,6 +91,10 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `TWITTER_CONSUMER_SECRET` - your Twitter application's consumer secret.
 - `GITHUB_CLIENT_ID` - your Github application's client ID.
 - `GITHUB_CLIENT_SECRET` - your Github application's client secret.
+- `LINKEDIN_CLIENT_ID` - your LinkedIn application's client ID.
+- `LINKEDIN_CLIENT_SECRET` - your LinkedIn application's client secret.
+- `INSTAGRAM_CLIENT_ID` - your Instagram application's client ID.
+- `INSTAGRAM_CLIENT_SECRET` - your Instagram application's client secret.
 
 ## Browser Support
 
