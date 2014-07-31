@@ -6,9 +6,9 @@ define(function(require) {
             assert.isDefined(App.routers);
         });
 
-        it('should create the base router', function() {
-            assert.isDefined(App.routers.baseRouter);
-        });
+        // it('should create the base router', function() {
+            // assert.isDefined(App.routers.baseRouter);
+        // });
 
         it('should configure and start Backbone.history', function() {
             assert.isDefined(Backbone.history.options);
