@@ -12,7 +12,13 @@
     <ul class="nav navbar-nav navbar-right">
         <li><a href="/help">Help</a></li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{name} <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {?profile.name}
+                    {profile.name}
+                {:else}
+                    {email}
+                {/profile.name} <b class="caret"></b>
+            </a>
             
             <ul class="dropdown-menu">
                 <li><a href="/account">Account</a></li>
