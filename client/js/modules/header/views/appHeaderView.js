@@ -6,10 +6,6 @@ require('tooltip');
 module.exports = Marionette.ItemView.extend({
     template: 'modules/header/appHeader',
 
-    events: {
-        'click #js-logout-link' : 'logoutHandler'
-    },
-
     onShow: function() {
         $('.dropdown-toggle').dropdown();
 
@@ -30,15 +26,6 @@ module.exports = Marionette.ItemView.extend({
             }
 
             $(window).trigger('resize');
-        });
-    },
-
-    logoutHandler: function(e) {
-        e.preventDefault();
-
-        $.post('/users/signout')
-        .done(function() {
-            window.location.reload();
         });
     }
 });

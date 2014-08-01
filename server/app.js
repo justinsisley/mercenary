@@ -37,8 +37,8 @@ var mercenary = {
         // Session data.
         app.use(session({
             key: 'mercenary.sid',
-            secret: '123456' || process.env.SESSION_SECRET || config.secrets.sessionSecret,
-            resave: true,
+            secret: process.env.SESSION_SECRET || config.secrets.sessionSecret,
+            resave: false,
             saveUninitialized: true
         }));
 

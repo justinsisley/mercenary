@@ -34,7 +34,7 @@ router.post('/signup', signupController.createUser);
 router.post('/signin', loginController);
 
 // End the current session.
-router.post('/signout', logoutController);
+router.post('/logout', logoutController);
 
 // Change the user's password.
 router.post('/updatepassword', passwordController.updatePassword);

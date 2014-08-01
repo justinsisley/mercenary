@@ -60,12 +60,14 @@ passport.use(new LocalStrategy({usernameField: 'email'}, function(email, passwor
 // This is an abstraction that is meant
 // to be used across each Passport strategy.
 function saveOAuthUser(user, data, callback) {
-    if (data.email) {
-        user.email = data.email;
+    if (data.profile._json.email) {
+        user.email = data.profile._json.email;
     }
 
     user[data.service] = data.id;
     
+    // FIXME: Blindly push tokens? No...
+    // Need to manage tokens more effectively.
     user.tokens.push({
         kind: data.service,
         accessToken: data.accessToken,
@@ -95,12 +97,13 @@ function saveOAuthUser(user, data, callback) {
 // when this function is called
 function userExists(callback) {
     var self = this;
+    var email = this.profile._json.email;
 
-    if (!this.profile._json.email) {
+    if (!email) {
         return callback(null, !!this.user, this);
     }
 
-    User.findOne({email: this.profile._json.email}, function(err, user) {
+    User.findOne({email: email}, function(err, user) {
         if (user) {
             self.user = user;
 

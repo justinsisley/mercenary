@@ -10,6 +10,7 @@ module.exports = Marionette.AppRouter.extend({
     controller: LoginController,
 
     appRoutes: {
-        'login': 'login'
+        'login': 'login',
+        'logout': 'logout'
     }
 });

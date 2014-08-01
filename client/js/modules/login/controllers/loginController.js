@@ -8,6 +8,16 @@ var controller = {
         showPublicLayout(controller.show);
     },
 
+    logout: function() {
+        $.post('/users/logout')
+        .done(function() {
+            var protocol = window.location.protocol + '//';
+            var host = window.location.host;
+
+            window.location = protocol + host;
+        });
+    },
+
     show: function() {
         var loginView = new LoginView();
         var heroView = new HeroView();
