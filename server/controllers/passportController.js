@@ -134,9 +134,7 @@ function findUser(userExists, data, callback) {
 }
 
 function updateOrCreateUser(user, oAuthData, callback) {
-    if (!user) {
-        user = new User();
-    }
+    if (!user) {user = new User();}
 
     saveOAuthUser(user, oAuthData, callback);
 }
