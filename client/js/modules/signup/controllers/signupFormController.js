@@ -5,19 +5,19 @@ var strings     = require('../../../constants/strings');
 var controller = {
     submit: function(email, password, callback) {
         if (!email) {
-            return callback(strings.noEmail);
+            return callback(strings.NO_EMAIL);
         }
 
         if (!validator.isEmail(email)) {
-            return callback(strings.invalidEmail);
+            return callback(strings.INVALID_EMAIL);
         }
 
         if (!password) {
-            return callback(strings.invalidPassword);
+            return callback(strings.INVALID_PASSWORD);
         }
 
         if (password.length < settings.MINIMUM_PASSWORD_LENGTH) {
-            return callback(strings.shortPassword);
+            return callback(strings.SHORT_PASSWORD);
         }
 
         $.post('/users/signup', {
@@ -28,7 +28,7 @@ var controller = {
                 return callback(response.message || 'Unable to signup');
             }
 
-            return callback(null, strings.activationSent);
+            return callback(null, strings.ACTIVATION_SENT);
         }).fail(function(response) {
             var message = response && response.message;
 

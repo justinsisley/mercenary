@@ -32,6 +32,8 @@ module.exports = {
     // Attempts to use Mandrill, then uses
     // NodeMailer as a fallback.
     sendEmail: function(settings, callback) {
+        console.log('sendEmail');
+
         if (mandrillApiKey) {
             return this.sendEmailMandrill(settings, callback);
         } else {
