@@ -12,7 +12,8 @@ var livereload  = require('gulp-livereload');
 var appConfig   = require('../../config');
 
 // Lint, concatenate and compile
-// LESS stylesheets.
+// LESS stylesheets, start livereload
+// server.
 gulp.task('less-dev', function() {
     return gulp.src(config.lessSrc)
         .pipe(sourcemaps.init())
@@ -50,4 +51,11 @@ gulp.task('css-lib-prd', function() {
         .pipe(concat('lib.' + appConfig.versions.css + '.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('tmp'));
+});
+
+gulp.task('less-recess', function() {
+    return gulp.src(config.lessSrc)
+        .pipe(concat('app.css'))
+        .pipe(recess({noOverqualifying: false}).on('error', handleError))
+        .pipe(less().on('error', handleError));
 });

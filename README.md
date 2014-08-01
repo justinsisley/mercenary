@@ -4,7 +4,7 @@
 
 Mercenary is a full-featured, single-page web application. Bend it to your will and make something beautiful.
 
-On the client side, Mercenary uses [Backbone.js](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Gulp](http://gulpjs.com/) as a build and deploy utility. It also leverages livereload, which automatically reloads updated CSS files without needing a manual refresh.
+On the client side, Mercenary uses [Backbone.js](http://backbonejs.org/) with [Marionette](http://marionettejs.com/), the [cajon](https://github.com/requirejs/cajon) flavor of [requirejs](http://requirejs.org/) for dependency injection, [LESS](http://lesscss.org/) for CSS preprocessing, [Bower](http://bower.io/) for dependency management, and [Gulp](http://gulpjs.com/) as a build and deploy utility. It also leverages livereload, which automatically reloads updated CSS files without needing a manual refresh.
 
 On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js](http://nodejs.org/) application framework.
 
@@ -66,7 +66,7 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `SESSION_SECRET` - your session secret.
 - `MONGOLAB_URI` - when deploying to Heroku with the MongoLab addon, this will be set automatically.
 
-*If the `MONGOLAB_URI` property is left empty, Mercenary will fall back to a file system implementation of MongoDB, using [TingoDB](http://www.tingodb.com/).*
+*If the `MONGOLAB_URI` property is left empty, Mercenary will fall back to a file system implementation of MongoDB, using [TingoDB](http://www.tingodb.com/). This is extremely convenient for local development, since you don't need to set up a to get full functionality.*
 
 ##### Email Handling
 
