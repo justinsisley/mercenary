@@ -7,7 +7,7 @@ var SALT_FACTOR     = 5;
 
 // Create a basic user schema
 var userSchema = mongoose.Schema({
-    email       : {type: String, unique: true},
+    email       : {type: String/*, unique: true*/},
     password    : String,
 
     // Account status
