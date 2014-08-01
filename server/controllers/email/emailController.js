@@ -5,11 +5,11 @@ var nodemailer      = require('nodemailer');
 var smtpService     = (process.env.SMTP_SERVICE || config.secrets.smtp.service);
 var smtpUsername    = (process.env.SMTP_USERNAME || config.secrets.smtp.username);
 var smtpPassword    = (process.env.SMTP_PASSWORD || config.secrets.smtp.password);
-var smtpTransport   = nodemailer.createTransport('SMTP', {
+var smtpTransport   = nodemailer.createTransport({
+    service: smtpService,
     auth: {
-        service : smtpService,
-        user    : smtpUsername,
-        pass    : smtpPassword
+        user: smtpUsername,
+        pass: smtpPassword
     }
 });
 
@@ -32,8 +32,6 @@ module.exports = {
     // Attempts to use Mandrill, then uses
     // NodeMailer as a fallback.
     sendEmail: function(settings, callback) {
-        console.log('sendEmail');
-
         if (mandrillApiKey) {
             return this.sendEmailMandrill(settings, callback);
         } else {
@@ -74,10 +72,12 @@ module.exports = {
             html    : settings.html
         };
 
+        console.log(options);
+
         smtpTransport.sendMail(options, function(err, res) {
-            if (err) {
-                return callback && callback(err);
-            }
+            console.log(err, res);
+
+            if (err) {return callback && callback(err);}
 
             return callback && callback(null, res);
         });
