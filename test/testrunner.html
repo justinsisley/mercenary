@@ -1,14 +1,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Test Runner</title>
+        <title>Mercenary Test Runner</title>
         
         <link rel="stylesheet" href="../client/vendor/mocha/mocha.css" />
-        <style>
-        .main-region {
-            display: none;
-        }
-        </style>
+        <style>.main-region {display: none;}</style>
     </head>
 
     <body>
@@ -22,11 +18,26 @@
 
         <script src="../client/vendor/sinonjs/sinon.js"></script>
 
+        <!-- Set up a fake server for XHR -->
+        <script>
+        server = sinon.fakeServer.create();
+        server.autoRespond = true;
+        server.xhr.useFilters = true;
+        // Allow requirejs requests to go through,
+        // while letting the fake server handle XHRs.
+        server.xhr.addFilter(function(method, url, async, username, password) {
+            return /client\/js/.test(url);
+        });
+        </script>
+
         <script src="../client/vendor/cajon/cajon.js"></script>
         <!-- Shared configuration -->
         <script src="../client/js/config.js"></script>
         <!-- Overwrite the base URL for tests -->
         <script>requirejs.s.contexts._.config.baseUrl = '../client/js/';</script>
+
+        <script src="../test/test.helpers.js"></script>
+        
         <!-- Fetch a fresh test config on every page load -->
         <script>
         (function(){ 
