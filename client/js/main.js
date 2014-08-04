@@ -3,7 +3,7 @@
  */
 var Backbone    = require('backbone');
 var App         = require('app');
-var User        = require('modules/users/models/userModel');
+var User        = require('modules/users/models/user');
 var routers     = require('helpers/routers');
 var linkHandler = require('helpers/linkHandler');
 
