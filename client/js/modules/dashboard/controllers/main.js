@@ -1,5 +1,5 @@
 var App             = require('app');
-var showAppLayout   = require('shared/layouts/controllers/appLayoutController');
+var showAppLayout   = require('shared/layouts/controllers/appLayout');
 var DasboardView    = require('modules/dashboard/views/mainItem');
 
 var controller = {

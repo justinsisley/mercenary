@@ -7,7 +7,7 @@
  * app layout, which is for logged-in users only.
  */
 var App                     = require('app');
-var PublicLayout            = require('shared/layouts/views/publicLayoutView');
+var PublicLayout            = require('shared/layouts/views/publicLayout');
 var publicNavController     = require('modules/navbar/controllers/main');
 var publicFooterController  = require('modules/footer/controllers/main');
 

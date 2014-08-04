@@ -1,5 +1,5 @@
 var App             = require('app');
-var showAppLayout   = require('shared/layouts/controllers/appLayoutController');
+var showAppLayout   = require('shared/layouts/controllers/appLayout');
 var UsersView       = require('modules/users/views/mainItem');
 
 var controller = {

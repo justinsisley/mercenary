@@ -1,5 +1,5 @@
 var App                 = require('app');
-var showPublicLayout    = require('shared/layouts/controllers/publicLayoutController');
+var showPublicLayout    = require('shared/layouts/controllers/publicLayout');
 var LoginView           = require('modules/login/views/mainItem');
 var HeroView            = require('modules/login/views/heroItem');
 

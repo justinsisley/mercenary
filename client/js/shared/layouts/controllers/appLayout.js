@@ -7,7 +7,7 @@
  * app layout, which is for logged-in users only.
  */
 var App                     = require('app');
-var AppLayout               = require('shared/layouts/views/appLayoutView');
+var AppLayout               = require('shared/layouts/views/appLayout');
 var appHeaderController     = require('modules/header/controllers/main');
 var sidebarController       = require('modules/sidebar/controllers/main');
 
