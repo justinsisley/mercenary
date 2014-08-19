@@ -12,13 +12,16 @@
  * for more information about this technique.
  */
 
-var config      = require('../../config');
 var express     = require('express');
-var router      = express.Router();
 var passport    = require('passport');
+var router      = express.Router();
+var config      = require('../../config');
 
 if (config.settings.auth.facebook) {
-    router.get('/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    router.get('/facebook', passport.authenticate('facebook', {
+        scope: config.secrets.auth.facebook.scope
+    }));
+
     router.get('/facebook/callback', passport.authenticate('facebook', {
         successRedirect: '/',
         failureRedirect: '/login'
@@ -26,7 +29,10 @@ if (config.settings.auth.facebook) {
 }
 
 if (config.settings.auth.google) {
-    router.get('/google', passport.authenticate('google', {scope: 'profile email'}));
+    router.get('/google', passport.authenticate('google', {
+        scope: config.secrets.auth.google.scope
+    }));
+    
     router.get('/google/callback', passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/login'
@@ -35,6 +41,7 @@ if (config.settings.auth.google) {
 
 if (config.settings.auth.twitter) {
     router.get('/twitter', passport.authenticate('twitter'));
+    
     router.get('/twitter/callback', passport.authenticate('twitter', {
         successRedirect: '/',
         failureRedirect: '/login'
@@ -43,6 +50,7 @@ if (config.settings.auth.twitter) {
 
 if (config.settings.auth.github) {
     router.get('/github', passport.authenticate('github'));
+    
     router.get('/github/callback', passport.authenticate('github', {
         successRedirect: '/',
         failureRedirect: '/login'
@@ -50,7 +58,10 @@ if (config.settings.auth.github) {
 }
 
 if (config.settings.auth.linkedin) {
-    router.get('/linkedin', passport.authenticate('linkedin', {state: 'long, hard-to-guess string'}));
+    router.get('/linkedin', passport.authenticate('linkedin', {
+        state: config.secrets.auth.linkedin.state
+    }));
+    
     router.get('/linkedin/callback', passport.authenticate('linkedin', {
         successRedirect: '/',
         failureRedirect: '/login'
@@ -59,6 +70,7 @@ if (config.settings.auth.linkedin) {
 
 if (config.settings.auth.instagram) {
     router.get('/instagram', passport.authenticate('instagram'));
+    
     router.get('/instagram/callback', passport.authenticate('instagram', {
         successRedirect: '/',
         failureRedirect: '/login'

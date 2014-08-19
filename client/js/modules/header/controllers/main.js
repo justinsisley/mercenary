@@ -1,12 +1,13 @@
-var App = require('app');
-var AppHeaderView = require('modules/header/views/mainItem');
+var App             = require('app');
+var AppHeaderView   = require('modules/header/views/mainItem');
+var controller      = {};
 
-module.exports = {
-    show: function() {
-        var appHeaderView = new AppHeaderView({model: App.vars.user});
+controller.show = function() {
+    var appHeaderView = new AppHeaderView({model: App.vars.user});
 
-        App.appLayout.headerRegion.show(appHeaderView);
+    App.appLayout.headerRegion.show(appHeaderView);
 
-        App.vent.trigger('appHeaderController:show');
-    }
+    App.vent.trigger('appHeaderController:show');
 };
+
+module.exports = controller;

@@ -1,12 +1,13 @@
-var App = require('app');
-var PublicFooterView = require('modules/footer/views/mainItem');
+var App                 = require('app');
+var PublicFooterView    = require('modules/footer/views/mainItem');
+var controller          = {};
 
-module.exports = {
-    show: function() {
-        var publicFooterView = new PublicFooterView();
+controller.show = function() {
+    var publicFooterView = new PublicFooterView();
 
-        App.publicLayout.footerRegion.show(publicFooterView);
+    App.publicLayout.footerRegion.show(publicFooterView);
 
-        App.vent.trigger('publicFooterController:show');
-    }
+    App.vent.trigger('publicFooterController:show');
 };
+
+module.exports = controller;

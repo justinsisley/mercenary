@@ -18,9 +18,9 @@
  * for more information about this technique.
  */
 
-var express = require('express');
-var router = express.Router();
-var passportController = require('../controllers/passportController');
+var express             = require('express');
+var router              = express.Router();
+var passportController  = require('../controllers/passport');
 
 // User must be authenticated for all API routes.
 router.use(passportController.isAuthenticated);

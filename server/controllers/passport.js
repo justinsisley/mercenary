@@ -10,6 +10,7 @@ var InstagramStrategy   = require('passport-instagram').Strategy;
 var async               = require('async');
 var config              = require('../../config');
 var User                = require('../models/User');
+var strings             = require('../constants/strings');
 
 passport.serializeUser(function(user, done) {
     return done(null, user.id);
@@ -32,7 +33,9 @@ passport.use(new LocalStrategy({usernameField: 'email'}, function(email, passwor
     // the user's hashed password
     function confirmCurrentPassword(user, callback) {
         if (!user) {
-            return done(null, false, {message: 'Email ' + email + ' not found'});
+            return done(null, false, {
+                message: strings.ACCOUNT_NOT_FOUND
+            });
         }
 
         // Bind the callback to the user context, so we can
@@ -44,7 +47,9 @@ passport.use(new LocalStrategy({usernameField: 'email'}, function(email, passwor
     // Completion
     function respond(err, passwordConfirmed) {
         if (!passwordConfirmed) {
-            return done(null, false, {message: 'Invalid email or password.'});
+            return done(null, false, {
+                message: strings.INVALID_EMAIL_OR_PASSWORD
+            });
         }
 
         return done(null, this);
@@ -75,18 +80,18 @@ function saveOAuthUser(user, data, callback) {
     });
 
     user.profile.name = user.profile.name ||
-                        data.profile.displayName;
+        data.profile.displayName;
 
     user.profile.gender = user.profile.gender ||
-                            data.gender;
+        data.gender;
 
     user.profile.picture = user.profile.picture ||
-                            data.profile.picture ||
-                            data.profile._json.profile_image_url ||
-                            data.profile._json.picture ||
-                            data.profile._json.avatar_url ||
-                            data.profile._json.pictureUrl ||
-                            data.profile._json.profile_picture;
+        data.profile.picture ||
+        data.profile._json.profile_image_url ||
+        data.profile._json.picture ||
+        data.profile._json.avatar_url ||
+        data.profile._json.pictureUrl ||
+        data.profile._json.profile_picture;
 
     user.active = true;
 
@@ -147,11 +152,11 @@ var facebookClientSecret = (process.env.FACEBOOK_CLIENT_SECRET || config.secrets
 
 if (config.settings.auth.facebook) {
     if (!facebookClientId) {
-        throw new Error('Missing Facebook Client ID');
+        throw new Error(strings.FACEBOOK_CLIENT_ID_NOT_FOUND);
     }
 
     if (!facebookClientSecret) {
-        throw new Error('Missing Facebook Client Secret');
+        throw new Error(strings.FACEBOOK_CLIENT_SECRET_NOT_FOUND);
     }
 
     passport.use(new FacebookStrategy({
@@ -182,11 +187,11 @@ var googleClientSecret = (process.env.GOOGLE_CLIENT_SECRET || config.secrets.aut
 
 if (config.settings.auth.google) {
     if (!googleClientId) {
-        throw new Error('Missing Google Client ID');
+        throw new Error(strings.GOOGLE_CLIENT_ID_NOT_FOUND);
     }
 
     if (!googleClientSecret) {
-        throw new Error('Missing Google Client Secret');
+        throw new Error(strings.GOOGLE_CLIENT_SECRET_NOT_FOUND);
     }
 
     passport.use(new GoogleStrategy({
@@ -217,11 +222,11 @@ var twitterConsumerSecret = (process.env.TWITTER_CONSUMER_SECRET || config.secre
 
 if (config.settings.auth.twitter) {
     if (!twitterConsumerKey) {
-        throw new Error('Missing Twitter Consumer Key');
+        throw new Error(strings.TWITTER_CONSUMER_KEY_NOT_FOUND);
     }
 
     if (!twitterConsumerSecret) {
-        throw new Error('Missing Twitter Consumer Secret');
+        throw new Error(strings.TWITTER_CONSUMER_SECRET_NOT_FOUND);
     }
 
     passport.use(new TwitterStrategy({
@@ -253,11 +258,11 @@ var githubClientSecret = (process.env.GITHUB_CLIENT_SECRET || config.secrets.aut
 
 if (config.settings.auth.github) {
     if (!githubClientId) {
-        throw new Error('Missing Github Client ID');
+        throw new Error(strings.GITHUB_CLIENT_ID_NOT_FOUND);
     }
 
     if (!githubClientSecret) {
-        throw new Error('Missing Github Client Secret');
+        throw new Error(strings.GITHUB_CLIENT_SECRET_NOT_FOUND);
     }
 
     passport.use(new GitHubStrategy({
@@ -288,11 +293,11 @@ var linkedInClientSecret = (process.env.LINKEDIN_CLIENT_SECRET || config.secrets
 
 if (config.settings.auth.linkedin) {
     if (!linkedInClientId) {
-        throw new Error('Missing LinkedIn Client ID');
+        throw new Error(strings.LINKEDIN_CLIENT_ID_NOT_FOUND);
     }
 
     if (!linkedInClientSecret) {
-        throw new Error('Missing LinkedIn Client Secret');
+        throw new Error(strings.LINKEDIN_CLIENT_SECRET_NOT_FOUND);
     }
 
     passport.use(new LinkedInStrategy({
@@ -323,11 +328,11 @@ var instagramClientSecret = (process.env.INSTAGRAM_CLIENT_SECRET || config.secre
 
 if (config.settings.auth.instagram) {
     if (!instagramClientId) {
-        throw new Error('Missing Instagram Client ID');
+        throw new Error(strings.INSTAGRAM_CLIENT_ID_NOT_FOUND);
     }
 
     if (!instagramClientSecret) {
-        throw new Error('Missing Instagram Client Secret');
+        throw new Error(strings.INSTAGRAM_CLIENT_SECRET_NOT_FOUND);
     }
 
     passport.use(new InstagramStrategy({
@@ -367,9 +372,7 @@ exports.isAuthorized = function(req, res, next) {
     var provider = req.path.split('/').slice(-1)[0];
     var token = _.findWhere(req.user.tokens, {kind: provider});
 
-    if (token) {
-        return next();
-    } else {
-        return res.redirect('/auth/' + provider);
-    }
+    if (token) {return next();}
+    
+    return res.redirect(300, '/auth/' + provider);
 };

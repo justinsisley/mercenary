@@ -1,4 +1,5 @@
 var async = require('async');
+var strings = require('../../constants/strings');
 
 var controller = {
     updatePassword: function(req, res) {
@@ -8,14 +9,14 @@ var controller = {
         if (!passwordProvided) {
             return res.json({
                 status: 'fail',
-                message: 'You must provide your current password.'
+                message: strings.CURRENT_PASSWORD_REQUIRED
             });
         }
 
         if (!newPassword) {
             return res.json({
                 status: 'fail',
-                message: 'You must provide a new password.'
+                message: strings.NEW_PASSWORD_REQUIRED
             });
         }
 
@@ -27,7 +28,7 @@ var controller = {
             if (!passwordConfirmed) {
                 return res.json({
                     status: 'fail',
-                    message: 'Your current password is incorrect.'
+                    message: strings.CURRENT_PASSWORD_INCORRECT
                 });
             }
 
@@ -40,13 +41,11 @@ var controller = {
             if (err) {
                 return res.json({
                     status: 'error',
-                    message: 'We were unable to update your password. We\'re looking into the problem.'
+                    message: strings.PASSWORD_CHANGE_FAILED
                 });
             }
 
-            return res.json({
-                status: 'success'
-            });
+            return res.json({status: 'success'});
         }
 
         async.waterfall([

@@ -5,7 +5,7 @@ module.exports = Marionette.ItemView.extend({
     template: 'modules/dashboard/main',
 
     onShow: function() {
-        $('#line-chart').highcharts({
+        this.$('#line-chart').highcharts({
             title: {
                 text: 'Monthly Active Users',
                 align: 'left',
@@ -63,7 +63,7 @@ module.exports = Marionette.ItemView.extend({
             }]
         });
 
-        $('#combo-chart').highcharts({
+        this.$('#combo-chart').highcharts({
             title: {
                 text: 'Who\'s Eating all that fruit?',
                 align: 'left',
@@ -139,7 +139,7 @@ module.exports = Marionette.ItemView.extend({
             }]
         });
 
-        $('#scatter-chart').highcharts({
+        this.$('#scatter-chart').highcharts({
             chart: {
                 type: 'scatter',
                 zoomType: 'xy'

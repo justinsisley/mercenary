@@ -1,16 +1,20 @@
 /**
  * The core Marionette application.
  */
-var Marionette  = require('marionette');
+var Marionette = require('marionette');
 
 // Set primary region names
-var mainRegion  = 'main-region';
-var testRegion  = 'test-region';
+var mainRegion = 'main-region';
+var testRegion = 'test-region';
 
 // Import Dust.js/Marionette integration
 require('dustMarionette');
+// Import Dust helpers
+require('dustHelpers');
 // Import all compiled templates
 require('templates');
+// Import Stickit for data binding
+require('stickit');
 
 // Create a Marionette application.
 var App = new Marionette.Application();

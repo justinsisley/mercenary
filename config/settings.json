@@ -3,6 +3,7 @@
   "env": "development",
   "domain": "mercenary.io",
   "cdnDomain": "cdn.mercenary.io",
+  "apiBaseUrl": "http://api.mercenary.io",
   "logging": {
     "requests": false,
     "garbage": false,
@@ -10,7 +11,7 @@
   },
   "forcePrd": false,
   "email": {
-    "fromAddress": "mercenary@electricartwork.com",
+    "fromAddress": "welcome@mercenary.io",
     "fromName": "Mercenary App Framework"
   },
   "auth": {

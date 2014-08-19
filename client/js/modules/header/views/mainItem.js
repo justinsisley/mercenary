@@ -7,6 +7,7 @@ module.exports = Marionette.ItemView.extend({
     template: 'modules/header/main',
 
     onShow: function() {
+        // FIXME: should use event aggregator
         $('.dropdown-toggle').dropdown();
 
         $('.btn-sidebar-toggle').click(function() {

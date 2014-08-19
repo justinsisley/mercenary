@@ -96,7 +96,7 @@
                     
                     <div class="media-body">
                         <h4 class="media-heading">MongoDB</h4>
-                        <span>Support for MongoDB is baked in, but Mercenary can configured to work with virtually any data store.</span>
+                        <span>Support for MongoDB is baked in, but Mercenary can be configured to work with virtually any data store.</span>
                     </div>
                 </div>
             </div>

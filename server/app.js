@@ -13,11 +13,14 @@ var bodyParser      = require('body-parser');
 var cookieParser    = require('cookie-parser');
 var errorHandler    = require('errorhandler');
 
+// TODO: Remove "Controller" from all controller file names
+
 // Routers
-var apiRouter       = require('./routers/apiRouter');
-var authRouter      = require('./routers/authRouter');
-var usersRouter     = require('./routers/usersRouter');
-var catchallRouter  = require('./routers/catchallRouter');
+var apiRouter       = require('./routers/api');
+var authRouter      = require('./routers/auth');
+var usersRouter     = require('./routers/users');
+var proxyRouter     = require('./routers/proxy');
+var catchallRouter  = require('./routers/catchall');
 
 // Utils
 var cons            = require('consolidate');
@@ -60,13 +63,17 @@ var mercenary = {
         // Tell Express where to find Dust templates.
         app.set('views', __dirname + '/dust');
 
-        var prdEnvironment = ('production' === process.env.NODE_ENV ||
-                            'production' === config.settings.env);
+        var prdEnvironment = (
+            'production' === process.env.NODE_ENV ||
+            'production' === config.settings.env
+        );
 
         // Establish development-only settings.
-        var devEnvironment = ('development' === config.settings.env ||
-                            'development' === process.env.NODE_ENV &&
-                            !prdEnvironment);
+        var devEnvironment = (
+            'development' === config.settings.env ||
+            'development' === process.env.NODE_ENV &&
+            !prdEnvironment
+        );
 
         if (devEnvironment) {
             app.use(errorHandler());
@@ -99,6 +106,16 @@ var mercenary = {
         // All routes in the auth router will
         // be prefixed with the '/auth' path.
         app.use('/auth', authRouter);
+
+        // Instantiate the proxy router.
+        // In real-world scenarios, this will
+        // probably proxy requests to a dedicated
+        // API server and allow you to make
+        // cross-origin requests without having
+        // to set up CORS. You would probably end
+        // up removing the API router above and
+        // using this as your "/api" route handler.
+        app.use('/proxy', proxyRouter);
 
         // Compress responses with Gzip.
         // This is placed further down the

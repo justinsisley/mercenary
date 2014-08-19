@@ -1,4 +1,4 @@
-var config  = require('../../config');
+var config = require('../../config');
 
 module.exports = function(req, res) {
     // Add special properties to the config
@@ -9,12 +9,16 @@ module.exports = function(req, res) {
     config.cssVersion = config.versions.css;
     config.javascriptVersion = config.versions.javascript;
 
-    var prdEnvironment = ('production' === process.env.NODE_ENV ||
-                        'production' === config.settings.env);
+    var prdEnvironment = (
+        'production' === process.env.NODE_ENV ||
+        'production' === config.settings.env
+    );
 
-    var devEnvironment = ('development' === process.env.NODE_ENV ||
-                        'development' === config.settings.env &&
-                        !prdEnvironment);
+    var devEnvironment = (
+        'development' === process.env.NODE_ENV ||
+        'development' === config.settings.env &&
+        !prdEnvironment
+    );
 
     // If this is a development environment, we
     // we tell the app template that we're in

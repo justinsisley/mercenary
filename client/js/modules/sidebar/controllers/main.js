@@ -1,12 +1,13 @@
-var App = require('app');
+var App         = require('app');
 var SidebarView = require('modules/sidebar/views/mainItem');
+var controller  = {};
 
-module.exports = {
-    show: function() {
-        var sidebarView = new SidebarView();
+controller.show = function() {
+    var sidebarView = new SidebarView();
 
-        App.appLayout.sidebarRegion.show(sidebarView);
+    App.appLayout.sidebarRegion.show(sidebarView);
 
-        App.vent.trigger('sidebarController:show');
-    }
+    App.vent.trigger('sidebarController:show');
 };
+
+module.exports = controller;

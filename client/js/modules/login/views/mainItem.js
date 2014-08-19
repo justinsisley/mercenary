@@ -23,15 +23,17 @@ module.exports = Marionette.ItemView.extend({
     onShow: function() {
         $('body').addClass('login');
 
-        if (window.location.search.indexOf('active=true') > 0) {
+        var queryString = window.location.search;
+
+        if (/active=true/.test(queryString)) {
             this.showSuccessMessage(strings.ACCOUNT_NOW_ACTIVE);
         }
 
-        if (window.location.search.indexOf('active=false') > 0) {
+        if (/active=false/.test(queryString)) {
             this.showErrorMessage(strings.ACCOUNT_NOW_ACTIVE);
         }
 
-        if (window.location.search.indexOf('fail=true') > 0) {
+        if (/fail=true/.test(queryString)) {
             this.showErrorMessage(strings.INCORRECT_LOGIN_CREDENTIALS);
         }
     },

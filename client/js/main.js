@@ -4,7 +4,7 @@
 var Backbone    = require('backbone');
 var App         = require('app');
 var User        = require('modules/users/models/user');
-var routers     = require('helpers/routers');
+var routers     = require('shared/routers');
 var linkHandler = require('helpers/linkHandler');
 
 // Runs as soon as App.start() is called
@@ -25,6 +25,10 @@ App.addInitializer(function() {
         App.routers = routers.start();
 
         // Start Backbone.history
+        // If a route succeeds with a match for the 
+        // current URL, Backbone.history.start()
+        // returns true. If no defined route matches
+        // the current URL, it returns false.
         var pageFound = Backbone.history.start({pushState: true});
 
         // If the user navigated directly to a path

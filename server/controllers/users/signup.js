@@ -1,5 +1,6 @@
-var User = require('../../models/User');
-var async = require('async');
+var async   = require('async');
+var User    = require('../../models/User');
+var strings = require('../../constants/strings');
 
 module.exports = {
     createUser: function(req, res) {
@@ -9,7 +10,7 @@ module.exports = {
         if (!email || !password) {
             return res.json({
                 status: 'fail',
-                message: 'You must provide a valid email and password.'
+                message: strings.INVALID_EMAIL_OR_PASSWORD
             });
         }
 
@@ -21,7 +22,7 @@ module.exports = {
             if (user) {
                 return res.json({
                     status: 'fail',
-                    message: 'That account already exists.'
+                    message: strings.ACCOUNT_ALREADY_EXISTS
                 });
             }
 

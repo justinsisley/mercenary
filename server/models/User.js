@@ -1,8 +1,9 @@
-var config          = require('../../config');
-var emailController = require('../controllers/email/emailController');
 var mongoose        = require('mongoose');
 var bcrypt          = require('bcryptjs');
 var async           = require('async');
+var config          = require('../../config');
+var emailController = require('../controllers/email/email');
+var strings         = require('../constants/strings');
 var SALT_FACTOR     = 5;
 
 // Create a basic user schema
@@ -79,9 +80,7 @@ userSchema.pre('save', function(next) {
         hashPassword,
         generateActivationKey
     ], function(err, results) {
-        if (err) {
-            return next(err);
-        }
+        if (err) {return next(err);}
 
         return next(null, results);
     });
@@ -94,9 +93,7 @@ Instance methods
 // Password verification
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) {
-            return callback(err);
-        }
+        if (err) {return callback(err);}
     
         return callback(null, isMatch);
     });
@@ -125,8 +122,8 @@ userSchema.methods.sendActivationEmail = function() {
     function sendEmail(html, callback) {
         emailController.sendEmail({
             to      : self.email,
-            subject : 'Activate your Mercenary account',
-            text    : 'Paste the following link into your browser to activate your Mercenary account: ' + activationUrl,
+            subject : strings.ACTIVATION_EMAIL_SUBJECT,
+            text    : strings.ACTIVATION_EMAIL_TEXT + activationUrl,
             html    : html
         }, callback);
     }
@@ -135,9 +132,7 @@ userSchema.methods.sendActivationEmail = function() {
         renderEmailTemplate,
         sendEmail
     ], function (err, results) {
-        if (err) {
-            return console.log('error:emailController.sendEmail', err);
-        }
+        if (err) {return console.log(strings.SEND_EMAIL_FAILED, err);}
 
         return console.log(results);
     });
@@ -155,9 +150,7 @@ userSchema.statics.activate = function(activationKey, callback) {
     }
 
     function activateUser(user, callback) {
-        if (!user) {
-            return callback('No user found with that activation key.');
-        }
+        if (!user) {return callback(strings.ACTIVATION_KEY_NOT_FOUND);}
 
         user.active = true;
         user.activationKey = undefined;

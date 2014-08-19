@@ -1,6 +1,6 @@
 {
   "name": "Mercenary",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Justin Sisley"
   ],
@@ -9,12 +9,12 @@
   "dependencies": {
     "chai": "1.9.1",
     "lodash": "2.4.1",
-    "mocha": "1.21.3",
+    "mocha": "1.21.4",
     "jquery": "2.1.1",
     "backbone": "1.1.2",
     "bootstrap": "3.2.0",
     "requirejs": "2.1.14",
-    "validator-js": "3.16.2",
+    "validator-js": "3.17.0",
     "dustjs-linkedin": "2.4.0",
     "marionette-dust": "~0.1.6",
     "backbone.marionette": "2.1.0",

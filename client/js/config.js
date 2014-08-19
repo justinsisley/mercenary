@@ -11,10 +11,9 @@ require.config({
         underscore              : '../vendor/lodash/dist/lodash.underscore',
         backbone                : '../vendor/backbone/backbone',
         marionette              : '../vendor/backbone.marionette/lib/backbone.marionette',
-        'backbone.babysitter'   : '../vendor/backbone.babysitter/lib/backbone.babysitter',
-        'backbone.wreqr'        : '../vendor/backbone.wreqr/lib/backbone.wreqr',
+        stickit                 : '../vendor/backbone.stickit/backbone.stickit',
         dust                    : '../vendor/dustjs-linkedin/dist/dust-full',
-        'dust.helpers'          : '../vendor/dustjs-linkedin-helpers/dist/dust-helpers-1.1.2',
+        dustHelpers             : '../vendor/dustjs-linkedin-helpers/dist/dust-helpers',
         dustMarionette          : '../vendor/marionette-dust/src/amd/backbone.marionette.dust',
         templates               : '../dust/compiled',
 
@@ -26,7 +25,7 @@ require.config({
     },
     shim: {
         dust: {exports: 'dust'},
-        'dust.helpers': ['dust'],
+        dustHelpers: ['dust'],
         highcharts: {exports: 'Highcharts'}
     }
 });

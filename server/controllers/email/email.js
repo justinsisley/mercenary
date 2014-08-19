@@ -21,9 +21,7 @@ module.exports = {
         var app = require('../../app').app;
 
         app.render(templateName, data, function(err, out) {
-            if (err) {
-                return callback && callback(err);
-            }
+            if (err) {return callback && callback(err);}
 
             return callback && callback(null, out);
         });
@@ -53,9 +51,7 @@ module.exports = {
                 html        : settings.html
             }
         }, function(err, res) {
-            if (err) {
-                return callback && callback(err);
-            }
+            if (err) {return callback && callback(err);}
 
             return callback && callback(null, res);
         });
@@ -71,8 +67,6 @@ module.exports = {
             text    : settings.text,
             html    : settings.html
         };
-
-        console.log(options);
 
         smtpTransport.sendMail(options, function(err, res) {
             console.log(err, res);
