@@ -1,7 +1,7 @@
 var Marionette = require('marionette');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/users/main',
+    template: 'modules/users/mainItem',
 
     className: 'users'
 });

@@ -4,7 +4,7 @@ var validator               = require('validator');
 var signupFormController    = require('modules/signup/controllers/signupForm');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/signup/main',
+    template: 'modules/signup/mainItem',
 
     ui: {
         signupForm              : '#js-signup-form',

@@ -20,7 +20,7 @@ gulp.task('requirejs-build', function() {
         insertRequire: [
             'main'
         ],
-        out: 'app.' + config.versions.javascript + '.js',
+        out: 'app.' + config.revision + '.js',
         preserveLicenseComments: false
     })
     .pipe(uglify())

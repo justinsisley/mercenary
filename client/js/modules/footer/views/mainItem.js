@@ -2,7 +2,7 @@ var App = require('app');
 var Marionette = require('marionette');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/footer/main',
+    template: 'modules/footer/mainItem',
 
     ui: {
         navbar: '.navbar-default'

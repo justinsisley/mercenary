@@ -2,7 +2,7 @@ var Marionette = require('marionette');
 var App = require('app');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/sidebar/main',
+    template: 'modules/sidebar/mainItem',
 
     initialize: function() {
         var self = this;

@@ -1,5 +1,5 @@
 var Marionette = require('marionette');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/home/main'
+    template: 'modules/home/mainItem'
 });

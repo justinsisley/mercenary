@@ -5,7 +5,8 @@ var config = {
     templates: [clientSrcDir + '/dust/**/*.dust'],
 
     jsSrc: [
-        clientSrcDir + '/js/**/*.js'
+        'client/js/**/*.js',
+        'server/**/*.js'
     ],
 
     cssLib: [

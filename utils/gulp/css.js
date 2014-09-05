@@ -18,7 +18,9 @@ gulp.task('less-dev', function() {
     return gulp.src(config.lessSrc)
         .pipe(sourcemaps.init())
             .pipe(concat('app.css'))
-            .pipe(recess({noOverqualifying: false}).on('error', handleError))
+            .pipe(recess({
+                noOverqualifying: false
+            }).on('error', handleError))
             .pipe(less().on('error', handleError))
             .pipe(prefix())
         .pipe(sourcemaps.write())
@@ -30,8 +32,10 @@ gulp.task('less-dev', function() {
 // minify LESS stylesheets.
 gulp.task('less-prd', function() {
     return gulp.src(config.lessSrc)
-        .pipe(concat('app.' + appConfig.versions.css + '.css'))
-        .pipe(recess({noOverqualifying: false}))
+        .pipe(concat('app.' + appConfig.revision + '.css'))
+        .pipe(recess({
+            noOverqualifying: false
+        }))
         .pipe(less())
         .pipe(prefix())
         .pipe(minifyCSS())
@@ -48,7 +52,7 @@ gulp.task('css-lib-dev', function() {
 gulp.task('css-lib-prd', function() {
     return gulp.src(config.cssLib)
         .pipe(prefix())
-        .pipe(concat('lib.' + appConfig.versions.css + '.css'))
+        .pipe(concat('lib.' + appConfig.revision + '.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('tmp'));
 });
@@ -56,6 +60,8 @@ gulp.task('css-lib-prd', function() {
 gulp.task('less-recess', function() {
     return gulp.src(config.lessSrc)
         .pipe(concat('app.css'))
-        .pipe(recess({noOverqualifying: false}).on('error', handleError))
+        .pipe(recess({
+            noOverqualifying: false
+        }).on('error', handleError))
         .pipe(less().on('error', handleError));
 });

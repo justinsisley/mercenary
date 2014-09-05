@@ -12,8 +12,8 @@
             <link rel="stylesheet" href="/css/lib.css">
             <link rel="stylesheet" href="/css/app.css">
         {:else}
-            <link rel="stylesheet" href="http://{cdnDomain}/css/lib.{cssVersion}.css">
-            <link rel="stylesheet" href="http://{cdnDomain}/css/app.{cssVersion}.css">
+            <link rel="stylesheet" href="http://{settings.cdnDomain}/css/lib.{revision}.css">
+            <link rel="stylesheet" href="http://{settings.cdnDomain}/css/app.{revision}.css">
         {/development}
     </head>
 
@@ -27,7 +27,7 @@
             <script src="/js/config.js"></script>
             <script>require(['main'])</script>
         {:else}
-            <script src="http://{cdnDomain}/js/app.{javascriptVersion}.js"></script>
+            <script src="http://{settings.cdnDomain}/js/app.{revision}.js"></script>
         {/development}
 
         {?googleAnalytics}
@@ -36,7 +36,7 @@
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create', '{googleAnalytics}', '{domain}');
+            ga('create', '{googleAnalytics}', '{settings.domain}');
             ga('send', 'pageview');
             </script>
         {/googleAnalytics}

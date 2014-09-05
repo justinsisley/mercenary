@@ -1,20 +1,21 @@
-var gulp = require('gulp');
-var bump = require('gulp-bump');
+var gulp    = require('gulp');
+var bump    = require('gulp-bump');
+var files   = ['./bower.json', './package.json'];
 
 gulp.task('bump', function(){
-    gulp.src(['./bower.json', './package.json'])
-    .pipe(bump())
-    .pipe(gulp.dest('./'));
+    return gulp.src(files)
+        .pipe(bump())
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('bump-minor', function(){
-    gulp.src(['./bower.json', './package.json'])
-    .pipe(bump({type: 'minor'}))
-    .pipe(gulp.dest('./'));
+    return gulp.src(files)
+        .pipe(bump({type: 'minor'}))
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('bump-major', function(){
-    gulp.src(['./bower.json', './package.json'])
-    .pipe(bump({type: 'major'}))
-    .pipe(gulp.dest('./'));
+    return gulp.src(files)
+        .pipe(bump({type: 'major'}))
+        .pipe(gulp.dest('./'));
 });

@@ -4,7 +4,7 @@ require('dropdown');
 require('tooltip');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/header/main',
+    template: 'modules/header/mainItem',
 
     onShow: function() {
         // FIXME: should use event aggregator

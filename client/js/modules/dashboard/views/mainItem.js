@@ -2,7 +2,7 @@ var Marionette = require('marionette');
 var Highcharts = require('highcharts');
 
 module.exports = Marionette.ItemView.extend({
-    template: 'modules/dashboard/main',
+    template: 'modules/dashboard/mainItem',
 
     onShow: function() {
         this.$('#line-chart').highcharts({

@@ -6,12 +6,13 @@ var config      = require('./utils/gulp/config');
 requireDir('./utils/gulp');
 
 gulp.task('watch', function() {
-    gulp.watch(['client/js/**/*.js', 'server/**/*.js'], ['jshint', 'revision-js']);
-    gulp.watch(config.lessSrc, ['less-dev', 'revision-css']);
-    gulp.watch(config.templates, ['dust', 'revision-js']);
+    gulp.watch(config.jsSrc, ['jshint']);
+    gulp.watch(config.lessSrc, ['less-dev']);
+    gulp.watch(config.templates, ['dust']);
 });
 
 gulp.task('default', [
+    'git-hash',
     'jshint',
     'dust',
     'css-lib-dev',
@@ -19,19 +20,32 @@ gulp.task('default', [
 ]);
 
 gulp.task('dev', function() {
-    runSequence('default', 'watch', 'server-node');
+    runSequence(
+        'default',
+        'watch',
+        'server-node'
+    );
 });
 
 gulp.task('devdebug', function() {
-    runSequence('default', 'watch', 'server-debug');
+    runSequence(
+        'default',
+        'watch',
+        'server-debug'
+    );
 });
 
 gulp.task('devdemon', function() {
-    runSequence('default', 'watch', 'server-nodemon');
+    runSequence(
+        'default',
+        'watch',
+        'server-nodemon'
+    );
 });
 
 gulp.task('cdn', function() {
     runSequence(
+        'git-hash',
         'requirejs',
         'less-prd',
         'css-lib-prd',

@@ -3,6 +3,9 @@
  */
 var Marionette = require('marionette');
 
+// Import settings constants
+var SETTINGS = require('constants/settings');
+
 // Set primary region names
 var mainRegion = 'main-region';
 var testRegion = 'test-region';
@@ -42,7 +45,7 @@ if (window.mocha || window.mochaPhantomJS) {
 
 // Allow page title changes from anywhere in the application.
 App.vent.on('domchange:title', function(title) {
-    document.title = 'Mercenary' + (title ? (' | ' + title) : '');
+    document.title = SETTINGS.APP_NAME + (title ? (' | ' + title) : '');
 
     // This is also a good time to scroll to the
     // top of the window.

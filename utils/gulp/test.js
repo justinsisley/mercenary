@@ -4,8 +4,7 @@ var connect         = require('gulp-connect');
 var open = require('gulp-open');
 
 gulp.task('test', function () {
-    return gulp
-        .src('test/testrunner.html')
+    return gulp.src('test/testrunner.html')
         .pipe(mochaPhantomJS());
 });
 

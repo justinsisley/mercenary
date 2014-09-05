@@ -9,7 +9,6 @@
     "garbage": false,
     "memory": false
   },
-  "forcePrd": false,
   "email": {
     "fromAddress": "welcome@mercenary.io",
     "fromName": "Mercenary App Framework"

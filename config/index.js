@@ -5,25 +5,28 @@
  * Change application settings using settings.json,
  * and add API keys and other sensitive information
  * to secrets.json, which is ignored by Git.
- * 
- * @type {Object}
  */
 var config = {
-    // Loads your settings.json file, which should
-    // always exist.
     settings: require('./settings.json'),
 
-    // Don't edit these directly. They're managed
-    // by a custom Grunt task.
-    versions: {javascript: 1639, css: 209}
+    revision: '6b40e1306e3654'
 };
 
 // Attempts to load your secrets.json file and falls
-// back to empty objects to prevent errors.
+// back to a dummy object to prevent errors.
 try {
     config.secrets = require('./secrets.json');
 } catch(e) {
-    config.secrets = {smtp: {}, auth: {facebook: {}, google: {}, twitter: {}, github: {}}}
+    // Dummy object
+    config.secrets = {
+        smtp: {},
+        auth: {
+            facebook: {},
+            google: {},
+            twitter: {},
+            github: {}
+        }
+    }
 }
 
 module.exports = config;
