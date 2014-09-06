@@ -4,8 +4,8 @@ var wrapper = require('gulp-wrapper');
 var dust    = require('gulp-dust');
 var config  = require('./config');
 
-gulp.task('dust', function () {
-    return gulp.src(config.templates)
+gulp.task('dust', function(cb) {
+    gulp.src(config.templates)
         .pipe(dust({
             name: function (file) {
                 return file.relative.replace('.dust', '');
@@ -17,4 +17,6 @@ gulp.task('dust', function () {
             footer: '});'
         }))
         .pipe(gulp.dest(config.compiledTemplatesDir));
+
+    cb();
 });

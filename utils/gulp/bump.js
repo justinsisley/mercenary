@@ -8,14 +8,20 @@ function bumpVersion(type) {
         .pipe(gulp.dest('./'));
 }
 
-gulp.task('bump', function(){
-    return bumpVersion('patch');
+gulp.task('bump', function(cb) {
+    bumpVersion('patch');
+
+    cb();
 });
 
-gulp.task('bump-minor', function(){
-    return bumpVersion('minor');
+gulp.task('bump-minor', function(cb) {
+    bumpVersion('minor');
+
+    cb();
 });
 
-gulp.task('bump-major', function(){
-    return bumpVersion('major');
+gulp.task('bump-major', function(cb) {
+    bumpVersion('major');
+
+    cb();
 });
