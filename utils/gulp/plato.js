@@ -2,7 +2,7 @@ var gulp    = require('gulp');
 var plato   = require('gulp-plato');
 var config  = require('./config');
 
-gulp.task('plato', function(cb) {
+gulp.task('plato', function() {
     gulp.src(config.jsSrc)
         .pipe(plato('report', {
             jshint: {
@@ -14,6 +14,4 @@ gulp.task('plato', function(cb) {
                 trycatch: true
             }
         }));
-
-    cb();
 });

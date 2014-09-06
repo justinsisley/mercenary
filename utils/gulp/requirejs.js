@@ -36,8 +36,6 @@ gulp.task('requirejs-build', function() {
     });
 });
 
-gulp.task('requirejs', function(cb) {
+gulp.task('requirejs', function() {
     runSequence('requirejs-convert', 'copy-dependencies', 'requirejs-build');
-
-    cb();
 });

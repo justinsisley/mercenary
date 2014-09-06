@@ -20,7 +20,7 @@ function revParse(cb) {
 // Lint, concatenate and compile
 // LESS stylesheets, start livereload
 // server.
-gulp.task('less-dev', function(cb) {
+gulp.task('less-dev', function() {
     gulp.src(config.lessSrc)
         .pipe(sourcemaps.init())
             .pipe(concat('app.css'))
@@ -32,13 +32,11 @@ gulp.task('less-dev', function(cb) {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('client/css'))
         .pipe(livereload());
-
-    cb()
 });
 
 // Lint, concatenate, compile and
 // minify LESS stylesheets.
-gulp.task('less-prd', function(cb) {
+gulp.task('less-prd', function() {
     revParse(function(err, hash) {
         gulp.src(config.lessSrc)
             .pipe(concat('app.' + hash + '.css'))
@@ -49,39 +47,31 @@ gulp.task('less-prd', function(cb) {
             .pipe(prefix())
             .pipe(minifyCSS())
             .pipe(gulp.dest('tmp'));
-
-        cb();
     });
 });
 
-gulp.task('css-lib-dev', function(cb) {
+gulp.task('css-lib-dev', function() {
     gulp.src(config.cssLib)
         .pipe(prefix())
         .pipe(concat('lib.css'))
         .pipe(gulp.dest('client/css'));
-
-    cb();
 });
 
-gulp.task('css-lib-prd', function(cb) {
+gulp.task('css-lib-prd', function() {
     revParse(function(err, hash) {
         gulp.src(config.cssLib)
             .pipe(prefix())
             .pipe(concat('lib.' + hash + '.css'))
             .pipe(minifyCSS())
             .pipe(gulp.dest('tmp'));
-
-        cb();
     });
 });
 
-gulp.task('less-recess', function(cb) {
+gulp.task('less-recess', function() {
     gulp.src(config.lessSrc)
         .pipe(concat('app.css'))
         .pipe(recess({
             noOverqualifying: false
         }).on('error', handleError))
         .pipe(less().on('error', handleError));
-
-    cb();
 });

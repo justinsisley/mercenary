@@ -4,7 +4,7 @@ var wrapper = require('gulp-wrapper');
 var dust    = require('gulp-dust');
 var config  = require('./config');
 
-gulp.task('dust', function(cb) {
+gulp.task('dust', function() {
     gulp.src(config.templates)
         .pipe(dust({
             name: function (file) {
@@ -17,6 +17,4 @@ gulp.task('dust', function(cb) {
             footer: '});'
         }))
         .pipe(gulp.dest(config.compiledTemplatesDir));
-
-    cb();
 });

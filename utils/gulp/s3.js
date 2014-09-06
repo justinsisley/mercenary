@@ -14,26 +14,18 @@ function publish(src, destination) {
         .pipe(awspublish.reporter());
 }
 
-gulp.task('s3-css', function(cb) {
+gulp.task('s3-css', function() {
     publish('./tmp/*.css', '/css');
-
-    cb();
 });
 
-gulp.task('s3-js', function(cb) {
+gulp.task('s3-js', function() {
     publish('./tmp/*.js', '/js');
-
-    cb();
 });
 
-gulp.task('s3-fonts', function(cb) {
+gulp.task('s3-fonts', function() {
     publish('./client/fonts/*', '/fonts');
-
-    cb();
 });
 
-gulp.task('s3-img', function(cb) {
+gulp.task('s3-img', function() {
     publish('./client/img/*', '/img');
-
-    cb();
 });
