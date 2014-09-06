@@ -19,8 +19,8 @@ function updateConfigFile(configFileData, cb) {
     var pattern = /revision\s*:\s*'\S*'/i;
 
     revParse(function(err, hash) {
-        var revision        = '\'' + hash + '\'';
-        var newConfigFile   = configFileData.replace(pattern, 'revision: ' + revision);
+        var revision = '\'' + hash + '\'';
+        var newConfigFile = configFileData.replace(pattern, 'revision: ' + revision);
 
         fs.writeFile(CONFIG_FILE, newConfigFile, cb);
     });
@@ -41,7 +41,7 @@ function logUpdateToConsole() {
     console.log('[' + timestamp + '] Revision number updated.');
 }
 
-function updateRevision() {
+function updateRevision(cb) {
     readConfigFile(function(err, configFileData) {
         if (err) throw err;
 
@@ -49,8 +49,12 @@ function updateRevision() {
             if (err) throw err;
 
             logUpdateToConsole();
+
+            cb();
         });
     });
 }
 
-gulp.task('git-hash', updateRevision);
+gulp.task('git-hash', function(cb) {
+    updateRevision(cb);
+});
