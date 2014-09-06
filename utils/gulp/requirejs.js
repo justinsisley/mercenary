@@ -18,7 +18,7 @@ gulp.task('requirejs-convert',
 gulp.task('copy-dependencies',
     shell.task(['cp -R client/vendor/ tmp/vendor; cp -R client/dust/ tmp/dust']));
 
-gulp.task('requirejs-build', function(cb) {
+gulp.task('requirejs-build', function() {
     revParse(function(err, hash) {
         rjs({
             baseUrl: 'tmp/js',
@@ -33,11 +33,11 @@ gulp.task('requirejs-build', function(cb) {
         })
         .pipe(uglify())
         .pipe(gulp.dest('tmp'));
-
-        cb();
     });
 });
 
-gulp.task('requirejs', function() {
+gulp.task('requirejs', function(cb) {
     runSequence('requirejs-convert', 'copy-dependencies', 'requirejs-build');
+
+    cb();
 });
