@@ -147,8 +147,8 @@ function updateOrCreateUser(user, oAuthData, callback) {
     saveOAuthUser(user, oAuthData, callback);
 }
 
-var facebookClientId = (process.env.FACEBOOK_CLIENT_ID || config.secrets.auth.facebook.clientId);
-var facebookClientSecret = (process.env.FACEBOOK_CLIENT_SECRET || config.secrets.auth.facebook.clientSecret);
+var facebookClientId = process.env.FACEBOOK_CLIENT_ID || config.secrets.auth.facebook.clientId;
+var facebookClientSecret = process.env.FACEBOOK_CLIENT_SECRET || config.secrets.auth.facebook.clientSecret;
 
 if (config.settings.auth.facebook) {
     if (!facebookClientId) {
@@ -182,8 +182,8 @@ if (config.settings.auth.facebook) {
     }));
 }
 
-var googleClientId = (process.env.GOOGLE_CLIENT_ID || config.secrets.auth.google.clientId);
-var googleClientSecret = (process.env.GOOGLE_CLIENT_SECRET || config.secrets.auth.google.clientSecret);
+var googleClientId = process.env.GOOGLE_CLIENT_ID || config.secrets.auth.google.clientId;
+var googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || config.secrets.auth.google.clientSecret;
 
 if (config.settings.auth.google) {
     if (!googleClientId) {
@@ -217,8 +217,8 @@ if (config.settings.auth.google) {
     }));
 }
 
-var twitterConsumerKey = (process.env.TWITTER_CONSUMER_KEY || config.secrets.auth.twitter.consumerKey);
-var twitterConsumerSecret = (process.env.TWITTER_CONSUMER_SECRET || config.secrets.auth.twitter.consumerSecret);
+var twitterConsumerKey = process.env.TWITTER_CONSUMER_KEY || config.secrets.auth.twitter.consumerKey;
+var twitterConsumerSecret = process.env.TWITTER_CONSUMER_SECRET || config.secrets.auth.twitter.consumerSecret;
 
 if (config.settings.auth.twitter) {
     if (!twitterConsumerKey) {
@@ -253,8 +253,8 @@ if (config.settings.auth.twitter) {
     }));
 }
 
-var githubClientId = (process.env.GITHUB_CLIENT_ID || config.secrets.auth.github.clientId);
-var githubClientSecret = (process.env.GITHUB_CLIENT_SECRET || config.secrets.auth.github.clientSecret);
+var githubClientId = process.env.GITHUB_CLIENT_ID || config.secrets.auth.github.clientId;
+var githubClientSecret = process.env.GITHUB_CLIENT_SECRET || config.secrets.auth.github.clientSecret;
 
 if (config.settings.auth.github) {
     if (!githubClientId) {
@@ -288,8 +288,8 @@ if (config.settings.auth.github) {
     }));
 }
 
-var linkedInClientId = (process.env.LINKEDIN_CLIENT_ID || config.secrets.auth.linkedin.clientId);
-var linkedInClientSecret = (process.env.LINKEDIN_CLIENT_SECRET || config.secrets.auth.linkedin.clientSecret);
+var linkedInClientId = process.env.LINKEDIN_CLIENT_ID || config.secrets.auth.linkedin.clientId;
+var linkedInClientSecret = process.env.LINKEDIN_CLIENT_SECRET || config.secrets.auth.linkedin.clientSecret;
 
 if (config.settings.auth.linkedin) {
     if (!linkedInClientId) {
@@ -323,8 +323,8 @@ if (config.settings.auth.linkedin) {
     }));
 }
 
-var instagramClientId = (process.env.INSTAGRAM_CLIENT_ID || config.secrets.auth.instagram.clientId);
-var instagramClientSecret = (process.env.INSTAGRAM_CLIENT_SECRET || config.secrets.auth.instagram.clientSecret);
+var instagramClientId = process.env.INSTAGRAM_CLIENT_ID || config.secrets.auth.instagram.clientId;
+var instagramClientSecret = process.env.INSTAGRAM_CLIENT_SECRET || config.secrets.auth.instagram.clientSecret;
 
 if (config.settings.auth.instagram) {
     if (!instagramClientId) {

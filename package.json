@@ -36,6 +36,7 @@
     "passport-linkedin-oauth2": "^1.1.1",
     "passport-local": "1.0.0",
     "passport-twitter": "1.0.2",
+    "superagent": "^0.18.2",
     "underscore": "1.7.0"
   },
   "devDependencies": {
