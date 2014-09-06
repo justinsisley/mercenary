@@ -12,13 +12,23 @@ function revParse(cb) {
     git.revParse({args: args}, cb);
 }
 
-gulp.task('requirejs-convert',
-    shell.task(['r.js -convert client/js/ tmp/js']));
+gulp.task('requirejs-convert', function(cb) {
+    shell.task([
+        'node_modules/requirejs/bin/r.js -convert client/js/ tmp/js'
+    ])();
 
-gulp.task('copy-dependencies',
-    shell.task(['cp -R client/vendor/ tmp/vendor; cp -R client/dust/ tmp/dust']));
+    cb();
+});
 
-gulp.task('requirejs-build', function() {
+gulp.task('copy-dependencies', function(cb) {
+    shell.task([
+        'cp -R client/vendor/ tmp/vendor; cp -R client/dust/ tmp/dust'
+    ])();
+
+    cb();
+});
+
+gulp.task('requirejs-build', function(cb) {
     revParse(function(err, hash) {
         rjs({
             baseUrl: 'tmp/js',
@@ -33,9 +43,16 @@ gulp.task('requirejs-build', function() {
         })
         .pipe(uglify())
         .pipe(gulp.dest('tmp'));
+
+        cb(); 
     });
 });
 
-gulp.task('requirejs', function() {
-    runSequence('requirejs-convert', 'copy-dependencies', 'requirejs-build');
+gulp.task('requirejs', function(cb) {
+    runSequence(
+        'requirejs-convert',
+        'copy-dependencies',
+        'requirejs-build',
+        cb
+    );
 });

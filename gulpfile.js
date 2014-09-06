@@ -43,16 +43,18 @@ gulp.task('devdemon', function() {
     );
 });
 
-gulp.task('cdn', function() {
+gulp.task('cdn', function(cb) {
     runSequence(
         'git-hash',
         'requirejs',
         'less-prd',
         'css-lib-prd',
-        's3-css',
         's3-js',
+        's3-css',
         's3-fonts',
         's3-img',
         'tmp-cleanup'
     );
+
+    return cb();
 });
