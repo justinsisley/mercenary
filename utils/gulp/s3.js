@@ -5,10 +5,10 @@ var config      = require('../../config');
 var publisher   = awspublish.create(config.secrets.amazonS3);
 var headers     = {'Cache-Control': 'max-age=87091200000, no-transform, public'};
 
-function publish(src, path) {
+function publish(src, destination) {
     return gulp.src(src)
         .pipe(rename(function(path) {
-            path.dirname += path;
+            path.dirname += destination;
         }))
         .pipe(publisher.publish(headers))
         .pipe(awspublish.reporter());
