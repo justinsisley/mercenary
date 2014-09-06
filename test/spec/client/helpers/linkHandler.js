@@ -1,6 +1,6 @@
 define(function(require) {
-    var linkHandler     = require('helpers/linkHandler');
-    var linkHandlerSpy  = sinon.spy(linkHandler);
+    var linkHandler = require('helpers/linkHandler');
+    var linkHandlerSpy = sinon.spy(linkHandler);
     var link;
 
     describe('Global link handler', function() {

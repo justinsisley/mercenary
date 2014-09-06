@@ -1,17 +1,7 @@
-var clientLibDir = 'client/vendor';
-var clientSrcDir = 'client';
-
-var config = {
-    templates: [clientSrcDir + '/dust/**/*.dust'],
-
+module.exports = {
     jsSrc: [
         'client/js/**/*.js',
         'server/**/*.js'
-    ],
-
-    cssLib: [
-        clientLibDir + '/bootstrap/dist/css/bootstrap.css',
-        clientLibDir + '/font-awesome/css/font-awesome.css'
     ],
 
     lessSrc: [
@@ -21,7 +11,21 @@ var config = {
         'client/less/modules/**/*.less',
         'client/less/layouts/**/*.less',
         'client/less/widgets/*.less'
-    ]
-};
+    ],
 
-module.exports = config;
+    cssLib: [
+        'client/vendor/bootstrap/dist/css/bootstrap.css',
+        'client/vendor/font-awesome/css/font-awesome.css'
+    ],
+
+    templates: [
+        'client/dust/**/*.dust'
+    ],
+
+    compiledTemplatesName: 'compiled.js',
+    compiledTemplatesDir: 'client/dust',
+
+    testRunnerHost: 'localhost',
+    testRunnerPort: 8744,
+    testRunnerFile: 'test/testrunner.html'
+};

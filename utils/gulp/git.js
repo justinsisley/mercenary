@@ -4,33 +4,54 @@ var fs          = require('fs');
 var CONFIG_FILE = 'config/index.js';
 
 function revParse(cb) {
-    git.revParse({
-        args: '--short=14 --quiet HEAD'
-    }, cb);
+    var args = '--short=14 --quiet HEAD';
+
+    git.revParse({args: args}, cb);
+}
+
+function readConfigFile(cb) {
+    var encoding = 'utf8';
+
+    fs.readFile(CONFIG_FILE, {encoding: encoding}, cb);
+}
+
+function updateConfigFile(configFileData, cb) {
+    var configFileData = data;
+    var pattern = /revision\s*:\s*'\S*'/i;
+
+    revParse(function(err, hash) {
+        var revision        = '\'' + hash + '\'';
+        var newConfigFile   = configFileData.replace(pattern, 'revision: ' + revision);
+
+        fs.writeFile(CONFIG_FILE, newConfigFile, cb);
+    });
+}
+
+function logUpdateToConsole() {
+    var d       = new Date();
+    var hours   = d.getHours();
+    var minutes = d.getMinutes();
+    var seconds = d.getSeconds();
+
+    if (hours   < 10) {hours   = '0' + hours;}
+    if (minutes < 10) {minutes = '0' + minutes;}
+    if (seconds < 10) {seconds = '0' + seconds;}
+
+    var timestamp = hours + ':' + minutes + ':' + seconds;
+    
+    console.log('[' + timestamp + '] Revision number updated.');
 }
 
 function updateRevision() {
-    fs.readFile(CONFIG_FILE, {
-        encoding: 'utf8'
-    }, function(err, data) {
+    readConfigFile(function(err, configFileData) {
         if (err) throw err;
 
-        var configFile = data;
+        updateConfigFile(configFileData, function(err) {
+            if (err) throw err;
 
-        revParse(function(err, hash) {
-            var revision        = '\'' + hash + '\'';
-            var regex           = /revision\s*:\s*'\S*'/i;
-            var newConfigFile   = configFile.replace(regex, 'revision: ' + revision);
-
-            fs.writeFile(CONFIG_FILE, newConfigFile, function(err) {
-                if (err) throw err;
-                
-                console.log('Revision number updated.');
-            });
+            logUpdateToConsole();
         });
     });
 }
 
-gulp.task('git-hash', function() {
-    updateRevision();
-});
+gulp.task('git-hash', updateRevision);

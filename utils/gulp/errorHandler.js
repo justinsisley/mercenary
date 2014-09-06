@@ -2,7 +2,9 @@ var gutil = require('gulp-util');
 var beep = require('beepbeep');
 
 module.exports = function(err) {
-    beep();
+    var message = err.plugin + ': ' + err.message;
 
-    console.warn(gutil.colors.red(err.plugin + ': ' + err.message));
+    console.warn(gutil.colors.red(message));
+
+    beep();
 }

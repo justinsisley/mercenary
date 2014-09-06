@@ -5,7 +5,6 @@ var less        = require('gulp-less');
 var sourcemaps  = require('gulp-sourcemaps');
 var prefix      = require('gulp-autoprefixer');
 var minifyCSS   = require('gulp-minify-css');
-var gutil       = require('gulp-util');
 var handleError = require('./errorHandler');
 var config      = require('./config');
 var livereload  = require('gulp-livereload');

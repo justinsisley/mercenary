@@ -62,11 +62,9 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 ##### Application and Database
 
 - `NODE_ENV` - your server environment. By default, Mercenary handles "development" and "production".
-- `PORT` - when deploying to Heroku, this will be set automatically.
+- `PORT` - the port your application will run on.
 - `SESSION_SECRET` - your session secret.
-- `MONGOLAB_URI` - when deploying to Heroku with the MongoLab addon, this will be set automatically.
-
-*If the `MONGOLAB_URI` property is left empty, Mercenary will fall back to a file system implementation of MongoDB, using [TingoDB](http://www.tingodb.com/). This is extremely convenient for local development, since you don't need to set up a to get full functionality.*
+- `MONGODB_URI` - a fully-qualified URI for your MongoDB instance. (I highly recommend [MongoLab](https://mongolab.com/).)
 
 ##### Email Handling
 

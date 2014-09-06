@@ -1,31 +1,26 @@
-var config = require('../config');
+var mongoose    = require('mongoose');
+var database    = mongoose.connection;
+var app         = require('./app');
+var config      = require('../config');
+var databaseUri = process.env.MONGODB_URI || config.secrets.mongoDbUri;
 
 require('colors');
 
-// If there's no MongoDB database defined,
-// we fall back to a local implementation.
-// Learn how: https://github.com/sergeyksv/tungus
-var databaseUri = (process.env.MONGOLAB_URI || config.secrets.mongoDbUri);
-
 if (!databaseUri) {
-    require('tungus');
+    console.log('\n✗'.red + '  No MongoDB database defined.');
+    console.log('   Refer to ' + 'README.md'.white + ' on setting up MongoDB.\n');
 
-    config.secrets.mongoDbUri = 'tingodb://' + __dirname + '/data';
-    console.log('\n✗'.red + '  No MongoDB database defined. Using TingoDB.');
+    return;
 }
 
-var app = require('./app');
-var mongoose = require('mongoose');
-var db = mongoose.connection;
-
 // Initiate the DB connection
-mongoose.connect(process.env.MONGOLAB_URI || config.secrets.mongoDbUri);
+mongoose.connect(databaseUri);
 
 // Log DB connection error
-db.on('error', console.error.bind(console, 'connection error:'));
+database.on('error', console.error.bind(console, 'connection error:'));
 
 // Once the connection to the DB is
 // successful, start the application.
-db.once('open', app.start);
+database.once('open', app.start);
 
-console.log('✔'.green + '  Connected to "%s"', process.env.MONGOLAB_URI || config.secrets.mongoDbUri);
+console.log('\n✔'.green + '  Connected to ' + '%s'.white, databaseUri);

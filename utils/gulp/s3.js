@@ -1,13 +1,9 @@
 var gulp        = require('gulp');
-var _           = require('underscore');
 var rename      = require('gulp-rename');
 var awspublish  = require('gulp-awspublish');
 var config      = require('../../config');
-
-var publisher = awspublish.create(config.secrets.amazonS3);
-var headers = {
-    'Cache-Control': 'max-age=87091200000, no-transform, public'
-};
+var publisher   = awspublish.create(config.secrets.amazonS3);
+var headers     = {'Cache-Control': 'max-age=87091200000, no-transform, public'};
 
 function publish(src, path) {
     return gulp.src(src)

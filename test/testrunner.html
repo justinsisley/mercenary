@@ -23,7 +23,8 @@
         server = sinon.fakeServer.create();
         server.autoRespond = true;
         server.xhr.useFilters = true;
-        // Allow requirejs requests to go through,
+
+        // Allow requirejs requests to go through
         // while letting the fake server handle XHRs.
         server.xhr.addFilter(function(method, url, async, username, password) {
             return /client\/js/.test(url);
