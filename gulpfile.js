@@ -45,6 +45,7 @@ gulp.task('devdemon', function() {
 
 gulp.task('cdn', function() {
     runSequence(
+        'git-hash',
         'requirejs',
         'less-prd',
         'css-lib-prd',
