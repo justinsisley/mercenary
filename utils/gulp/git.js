@@ -16,7 +16,6 @@ function readConfigFile(cb) {
 }
 
 function updateConfigFile(configFileData, cb) {
-    var configFileData = data;
     var pattern = /revision\s*:\s*'\S*'/i;
 
     revParse(function(err, hash) {
