@@ -1,5 +1,5 @@
 define(function(require) {
-    var routers = require('helpers/routers');
+    var routers = require('shared/routers');
     var returnedObject;
 
     describe('Routers helper', function() {

@@ -6,7 +6,7 @@ define(function(require) {
     describe('Global link handler', function() {
         beforeEach(function() {
             link = document.createElement('a');
-            link.href = '/linkHandlerTest';
+            link.href = 'javascript:close()';
             link.addEventListener('click', linkHandlerSpy, false);
 
             document.body.appendChild(link);
