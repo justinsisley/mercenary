@@ -6,8 +6,12 @@ define(function(require) {
     describe('Global link handler', function() {
         beforeEach(function() {
             link = document.createElement('a');
-            link.href = 'javascript:close()';
-            link.addEventListener('click', linkHandlerSpy, false);
+            link.href = '/linkHandlerTest';
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                linkHandlerSpy(e);
+            }, false);
 
             document.body.appendChild(link);
         });

@@ -11,9 +11,9 @@ gulp.task('test', function() {
 
 gulp.task('test-browser', function() {
     var testRunnerURL = 'http://' +
-        config.testRunnerHost + ':' +
-        config.testRunnerPort + '/' +
-        config.testRunnerFile;
+                        config.testRunnerHost + ':' +
+                        config.testRunnerPort + '/' +
+                        config.testRunnerFile;
 
     gulp.src('./' + config.testRunnerFile)
         .pipe(open('', {url: testRunnerURL}));
