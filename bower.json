@@ -22,7 +22,6 @@
     "highcharts-release": "4.0.4",
     "sinonjs": "~1.10.2",
     "font-awesome": "4.2.0",
-    "cajon": "~0.2.4",
-    "backbone.stickit": "~0.8.0"
+    "cajon": "~0.2.4"
   }
 }
