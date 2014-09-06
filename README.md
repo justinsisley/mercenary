@@ -83,14 +83,17 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `GA_TRACKER` - your Google Analytics tracker ID.
 - `FACEBOOK_CLIENT_ID` - your Facebook application's client ID.
 - `FACEBOOK_CLIENT_SECRET` - your Facebook application's client secret.
+- 'FACEBOOK_SCOPE' - your Facebook application's scope.
 - `GOOGLE_CLIENT_ID` - your Google application's client ID.
 - `GOOGLE_CLIENT_SECRET` - your Google application's client secret.
+- 'GOOGLE_SCOPE' - your Google application's scope.
 - `TWITTER_CONSUMER_KEY` - your Twitter application's consumer key.
 - `TWITTER_CONSUMER_SECRET` - your Twitter application's consumer secret.
 - `GITHUB_CLIENT_ID` - your Github application's client ID.
 - `GITHUB_CLIENT_SECRET` - your Github application's client secret.
 - `LINKEDIN_CLIENT_ID` - your LinkedIn application's client ID.
 - `LINKEDIN_CLIENT_SECRET` - your LinkedIn application's client secret.
+- 'LINKEDIN_STATE' - a long, hard-to-guess string.
 - `INSTAGRAM_CLIENT_ID` - your Instagram application's client ID.
 - `INSTAGRAM_CLIENT_SECRET` - your Instagram application's client secret.
 

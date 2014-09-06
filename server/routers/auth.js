@@ -19,7 +19,7 @@ var config      = require('../../config');
 
 if (config.settings.auth.facebook) {
     router.get('/facebook', passport.authenticate('facebook', {
-        scope: config.secrets.auth.facebook.scope
+        scope: process.env.FACEBOOK_SCOPE || config.secrets.auth.facebook.scope
     }));
 
     router.get('/facebook/callback', passport.authenticate('facebook', {
@@ -30,7 +30,7 @@ if (config.settings.auth.facebook) {
 
 if (config.settings.auth.google) {
     router.get('/google', passport.authenticate('google', {
-        scope: config.secrets.auth.google.scope
+        scope: process.env.GOOGLE_SCOPE || config.secrets.auth.google.scope
     }));
     
     router.get('/google/callback', passport.authenticate('google', {
@@ -59,7 +59,7 @@ if (config.settings.auth.github) {
 
 if (config.settings.auth.linkedin) {
     router.get('/linkedin', passport.authenticate('linkedin', {
-        state: config.secrets.auth.linkedin.state
+        state: process.env.LINKEDIN_STATE || config.secrets.auth.linkedin.state
     }));
     
     router.get('/linkedin/callback', passport.authenticate('linkedin', {
