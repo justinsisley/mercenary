@@ -14,9 +14,9 @@ controller.logout = function() {
     var homeUrl     = protocol + host;
 
     $.post('/users/logout')
-    .done(function() {
-        window.location = homeUrl;
-    });
+        .done(function() {
+            window.location = homeUrl;
+        });
 };
 
 controller.show = function() {

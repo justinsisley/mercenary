@@ -6,27 +6,46 @@ require('tooltip');
 module.exports = Marionette.ItemView.extend({
     template: 'modules/header/mainItem',
 
+    ui: {
+        userMenu: '.dropdown-toggle',
+        sidebarToggle: '.btn-sidebar-toggle'
+    },
+
     onShow: function() {
-        // FIXME: should use event aggregator
-        $('.dropdown-toggle').dropdown();
+        this.ui.userMenu.dropdown();
 
-        $('.btn-sidebar-toggle').click(function() {
-            $('.wrapper').toggleClass('wrapper-sidenav-collapsed');
-            
-            $('.sidebar-wrapper').toggleClass('sidebar-wrapper-collapsed');
+        this.ui.sidebarToggle.on('click', this.toggleSidebar);
+    },
 
-            if ($('.sidebar-wrapper').hasClass('sidebar-wrapper-collapsed')) {
-                $('[data-toggle="tooltip"]').tooltip({
-                    placement: 'right',
-                    container: 'body',
-                    animation: false,
-                    template: '<div class="tooltip sidebar-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
-                });
-            } else {
-                $('[data-toggle="tooltip"]').tooltip('destroy');
-            }
+    toggleSidebar: function() {
+        var $wrapper = $('.wrapper');
+        var $sidebarWrapper = $('.sidebar-wrapper');
 
-            $(window).trigger('resize');
-        });
+        var wrapperNavCollapsedClass = 'wrapper-sidenav-collapsed';
+        var sidebarWrapperCollapsedClass = 'sidebar-wrapper-collapsed';
+
+        var tooltipMarkup = '<div class="tooltip sidebar-tooltip">' +
+                                '<div class="tooltip-arrow"></div>' +
+                                '<div class="tooltip-inner"></div>' +
+                            '</div>';
+                            
+        var $tooltipTarget = $('[data-toggle="tooltip"]');
+
+        $wrapper.toggleClass(wrapperNavCollapsedClass);
+        
+        $sidebarWrapper.toggleClass(sidebarWrapperCollapsedClass);
+
+        if ($sidebarWrapper.hasClass(sidebarWrapperCollapsedClass)) {
+            $tooltipTarget.tooltip({
+                placement: 'right',
+                container: 'body',
+                animation: false,
+                template: tooltipMarkup
+            });
+        } else {
+            $tooltipTarget.tooltip('destroy');
+        }
+
+        $(window).trigger('resize');
     }
 });

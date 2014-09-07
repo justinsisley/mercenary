@@ -4,12 +4,12 @@
  * paths exists across your application.
  */
 var Marionette = require('marionette');
-var Controller = require('modules/signup/controllers/main');
+var Controller = require('modules/dashboard/controllers/module');
 
 module.exports = Marionette.AppRouter.extend({
     controller: Controller,
 
     appRoutes: {
-        'signup': 'signup'
+        'dashboard': 'dashboard'
     }
 });

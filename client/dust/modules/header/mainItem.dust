@@ -1,6 +1,10 @@
 <div class="container-fluid">
     <ul class="nav navbar-nav">
-        <li><button type="button" class="btn btn-default btn-sidebar-toggle"><i class="fa fa-bars"></i></button></li>
+        <li>
+            <button type="button" class="btn btn-default btn-sidebar-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </li>
     </ul>
 
     <form class="navbar-form navbar-left form-search" role="search">

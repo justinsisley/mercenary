@@ -4,7 +4,7 @@
  * paths exists across your application.
  */
 var Marionette = require('marionette');
-var Controller = require('modules/home/controllers/main');
+var Controller = require('modules/home/controllers/module');
 
 module.exports = Marionette.AppRouter.extend({
     controller: Controller,

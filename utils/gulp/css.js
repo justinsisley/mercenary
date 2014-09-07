@@ -5,12 +5,13 @@ var less        = require('gulp-less');
 var sourcemaps  = require('gulp-sourcemaps');
 var prefix      = require('gulp-autoprefixer');
 var minifyCSS   = require('gulp-minify-css');
+var git         = require('gulp-git');
+var livereload  = require('gulp-livereload');
+var colorguard  = require('gulp-colorguard');
 var handleError = require('./errorHandler');
 var config      = require('./config');
-var livereload  = require('gulp-livereload');
 var appConfig   = require('../../config');
 
-var git = require('gulp-git');
 function revParse(cb) {
     var args = '--short=14 --quiet HEAD';
 
@@ -28,6 +29,7 @@ gulp.task('less-dev', function() {
                 noOverqualifying: false
             }).on('error', handleError))
             .pipe(less().on('error', handleError))
+            .pipe(colorguard())
             .pipe(prefix())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('client/css'))

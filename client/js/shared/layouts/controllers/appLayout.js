@@ -8,8 +8,8 @@
  */
 var App                     = require('app');
 var AppLayout               = require('shared/layouts/views/appLayout');
-var appHeaderController     = require('modules/header/controllers/main');
-var sidebarController       = require('modules/sidebar/controllers/main');
+var appHeaderController     = require('modules/header/controllers/module');
+var sidebarController       = require('modules/sidebar/controllers/module');
 
 // Configures the app for the logged-in,
 // or authenticated "mode".

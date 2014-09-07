@@ -1,9 +1,9 @@
-var HomeRouter      = require('modules/home/routers/main');
-var SignupRouter    = require('modules/signup/routers/main');
-var LoginRouter     = require('modules/login/routers/main');
-var DashboardRouter = require('modules/dashboard/routers/main');
-var UsersRouter     = require('modules/users/routers/main');
-var ErrorsRouter    = require('modules/errors/routers/main');
+var HomeRouter      = require('modules/home/routers/module');
+var SignupRouter    = require('modules/signup/routers/module');
+var LoginRouter     = require('modules/login/routers/module');
+var DashboardRouter = require('modules/dashboard/routers/module');
+var UsersRouter     = require('modules/users/routers/module');
+var ErrorsRouter    = require('modules/errors/routers/module');
 
 module.exports = {
     start: function() {

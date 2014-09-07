@@ -8,8 +8,8 @@
  */
 var App                     = require('app');
 var PublicLayout            = require('shared/layouts/views/publicLayout');
-var publicNavController     = require('modules/navbar/controllers/main');
-var publicFooterController  = require('modules/footer/controllers/main');
+var publicNavController     = require('modules/navbar/controllers/module');
+var publicFooterController  = require('modules/footer/controllers/module');
 
 // Configures the app for the "public",
 // unauthenticated "mode". Each "mode"

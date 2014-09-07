@@ -1,7 +1,7 @@
-var _                       = require('underscore');
-var Marionette              = require('marionette');
-var validator               = require('validator');
-var signupFormController    = require('modules/signup/controllers/signupForm');
+var _           = require('underscore');
+var Marionette  = require('marionette');
+var validator   = require('validator');
+var controller  = require('modules/signup/controllers/mainItem');
 
 module.exports = Marionette.ItemView.extend({
     template: 'modules/signup/mainItem',
@@ -53,7 +53,7 @@ module.exports = Marionette.ItemView.extend({
         var email = this.ui.signupEmail.val();
         var password = this.ui.signupPassword.val();
 
-        signupFormController.submit(email, password, _.bind(this.signupCallback, this));
+        controller.submit(email, password, _.bind(this.signupCallback, this));
     },
 
     signupCallback: function(err, response) {

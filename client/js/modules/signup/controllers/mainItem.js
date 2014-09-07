@@ -25,14 +25,14 @@ controller.submit = function(email, password, callback) {
         password: password
     }).done(function(response) {
         if (!response || response.status !== 'success') {
-            return callback(response.message || 'Unable to signup');
+            return callback(response.message || strings.UNSPECIFIED_ERROR);
         }
 
         return callback(null, strings.ACTIVATION_SENT);
     }).fail(function(response) {
         var message = response && response.message;
 
-        return callback(message || 'Something went wrong');
+        return callback(message || strings.UNSPECIFIED_ERROR);
     });
 };
 
