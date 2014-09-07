@@ -52,7 +52,8 @@ gulp.task('requirejs', function(cb) {
     runSequence(
         'requirejs-convert',
         'copy-dependencies',
-        'requirejs-build',
-        cb
+        'requirejs-build'
     );
+
+    cb();
 });

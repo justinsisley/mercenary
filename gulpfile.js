@@ -27,7 +27,7 @@ gulp.task('dev', function() {
     );
 });
 
-gulp.task('devdebug', function() {
+gulp.task('devi', function() {
     runSequence(
         'default',
         'watch',
@@ -35,7 +35,7 @@ gulp.task('devdebug', function() {
     );
 });
 
-gulp.task('devdemon', function() {
+gulp.task('devd', function() {
     runSequence(
         'default',
         'watch',

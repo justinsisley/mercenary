@@ -41,8 +41,8 @@ In the end, the choice is yours, and all three methods of running the server are
 *Each of the following tasks automatically runs the Gulp watcher, which provides JavaScript linting via [JSHint](http://www.jshint.com/), LESS linting via [RECESS](http://twitter.github.io/recess/), concatenation and compilation of stylesheets and templates, and livereload, so style changes don't require a browser refresh.*
 
 - `gulp dev` - start the application using node.
-- `gulp devdemon` - start the application using nodemon<sup>1</sup>.
-- `gulp devinspect` - start the application using node-inspector<sup>2</sup>.
+- `gulp devd` - start the application using nodemon<sup>1</sup>.
+- `gulp devi` - start the application using node-inspector<sup>2</sup>.
 
 Once the server is running, you can view your application at <http://127.0.0.1:8743>.
 
