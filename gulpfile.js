@@ -45,6 +45,7 @@ gulp.task('devd', function() {
 
 gulp.task('cdn', function(cb) {
     runSequence(
+        'tmp-cleanup',
         'git-hash',
         'requirejs',
         'less-prd',
@@ -53,8 +54,7 @@ gulp.task('cdn', function(cb) {
         's3-css',
         's3-fonts',
         's3-img',
-        'tmp-cleanup'
+        'tmp-cleanup',
+        cb
     );
-
-    return cb();
 });

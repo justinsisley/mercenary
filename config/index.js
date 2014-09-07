@@ -9,7 +9,7 @@
 var config = {
     settings: require('./settings.json'),
 
-    revision: '4204266634d748'
+    revision: 'b5c7de5ac0a805'
 };
 
 // Attempts to load your secrets.json file and falls

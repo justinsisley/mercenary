@@ -2,43 +2,41 @@ var gulp        = require('gulp');
 var shell       = require('gulp-shell');
 var rjs         = require('gulp-requirejs');
 var uglify      = require('gulp-uglify');
+var git         = require('gulp-git');
 var runSequence = require('run-sequence');
 var config      = require('../../config');
 
-var git = require('gulp-git');
 function revParse(cb) {
     var args = '--short=14 --quiet HEAD';
 
     git.revParse({args: args}, cb);
 }
 
-gulp.task('requirejs-convert', function(cb) {
-    shell.task([
-        'node_modules/requirejs/bin/r.js -convert client/js/ tmp/js'
-    ])();
-
-    cb();
+gulp.task('requirejs-convert', function() {
+    return gulp.src('').pipe(shell([
+        'node_modules/requirejs/bin/r.js -convert client/js tmp/js'
+    ]));
 });
 
-gulp.task('copy-dependencies', function(cb) {
-    shell.task([
-        'cp -R client/vendor/ tmp/vendor; cp -R client/dust/ tmp/dust'
-    ])();
+gulp.task('copy-templates', function() {
+    return gulp.src(['client/dust/**/*'])
+        .pipe(gulp.dest('tmp/dust'));
+});
 
-    cb();
+gulp.task('copy-vendor', function() {
+    return gulp.src(['client/vendor/**/*'])
+        .pipe(gulp.dest('tmp/vendor'));
 });
 
 gulp.task('requirejs-build', function(cb) {
     revParse(function(err, hash) {
         rjs({
-            baseUrl: 'tmp/js',
             name: 'main',
-            mainConfigFile: 'tmp/js/config.js',
+            baseUrl: 'tmp/js',
             include: ['requireLib'],
-            insertRequire: [
-                'main'
-            ],
+            insertRequire: ['main'],
             out: 'app.' + hash + '.js',
+            mainConfigFile: 'tmp/js/config.js',
             preserveLicenseComments: false
         })
         .pipe(uglify())
@@ -51,9 +49,9 @@ gulp.task('requirejs-build', function(cb) {
 gulp.task('requirejs', function(cb) {
     runSequence(
         'requirejs-convert',
-        'copy-dependencies',
-        'requirejs-build'
+        'copy-templates',
+        'copy-vendor',
+        'requirejs-build',
+        cb
     );
-
-    cb();
 });
