@@ -96,6 +96,8 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `LINKEDIN_STATE` - a long, hard-to-guess string.
 - `INSTAGRAM_CLIENT_ID` - your Instagram application's client ID.
 - `INSTAGRAM_CLIENT_SECRET` - your Instagram application's client secret.
+- `SOUNDCLOUD_CLIENT_ID` - your SoundCloud application's client ID.
+- `SOUNDCLOUD_CLIENT_SECRET` - your SoundCloud application's client secret.
 
 ## Browser Support
 

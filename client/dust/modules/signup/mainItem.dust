@@ -3,32 +3,14 @@
         <div class="col-md-3"></div>
         
         <div class="col-md-3">
-            <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-facebook pull-right" target="_self">
-                <i class="fa fa-facebook"></i> Sign Up Using Facebook
+            <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
+                <i class="fa fa-facebook"></i> Sign Up With Facebook
             </a>
         </div>
 
         <div class="col-md-3">
-            <a href="/auth/instagram" class="btn btn-primary btn-lg btn-block btn-instagram pull-left" target="_self">
-                <i class="fa fa-instagram"></i> Sign Up Using Instagram
-            </a>
-        </div>
-        
-        <div class="col-md-3"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
-            <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-google pull-right" target="_self">
-                <i class="fa fa-google"></i> Sign Up Using Google
-            </a>
-        </div>
-        
-        <div class="col-md-3">
-            <a href="/auth/linkedin" class="btn btn-primary btn-lg btn-block btn-linkedin pull-left" target="_self">
-                <i class="fa fa-linkedin"></i> Sign Up Using LinkedIn
+            <a href="/auth/instagram" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
+                <i class="fa fa-instagram"></i> Sign Up With Instagram
             </a>
         </div>
         
@@ -39,14 +21,50 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-3">
-            <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-twitter pull-right" target="_self">
-                <i class="fa fa-twitter"></i> Sign Up Using Twitter
+            <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
+                <i class="fa fa-google"></i> Sign Up With Google
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="/auth/github" class="btn btn-primary btn-lg btn-block btn-github pull-left" target="_self">
-                <i class="fa fa-github"></i> Sign Up Using GitHub
+            <a href="/auth/linkedin" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
+                <i class="fa fa-linkedin"></i> Sign Up With LinkedIn
+            </a>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
+                <i class="fa fa-twitter"></i> Sign Up With Twitter
+            </a>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="/auth/github" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
+                <i class="fa fa-github"></i> Sign Up With GitHub
+            </a>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <a href="/auth/soundcloud" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
+                <i class="fa fa-soundcloud"></i> Sign Up With SoundCloud
+            </a>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="/auth/dropbox" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
+                <i class="fa fa-dropbox"></i> Sign Up With DropBox
             </a>
         </div>
         

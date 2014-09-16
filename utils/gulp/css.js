@@ -23,7 +23,7 @@ function revParse(cb) {
 // server.
 gulp.task('less-dev', function() {
     gulp.src(config.lessSrc)
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
             .pipe(concat('app.css'))
             .pipe(recess({
                 noOverqualifying: false
@@ -31,7 +31,7 @@ gulp.task('less-dev', function() {
             .pipe(less().on('error', handleError))
             .pipe(colorguard())
             .pipe(prefix())
-        .pipe(sourcemaps.write())
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest('client/css'))
         .pipe(livereload());
 });

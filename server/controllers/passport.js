@@ -7,6 +7,7 @@ var TwitterStrategy     = require('passport-twitter').Strategy;
 var GitHubStrategy      = require('passport-github').Strategy;
 var LinkedInStrategy    = require('passport-linkedin-oauth2').Strategy;
 var InstagramStrategy   = require('passport-instagram').Strategy;
+var SoundCloudStrategy  = require('passport-soundcloud').Strategy;
 var async               = require('async');
 var config              = require('../../config');
 var User                = require('../models/User');
@@ -343,6 +344,41 @@ if (config.settings.auth.instagram) {
     }, function(req, accessToken, refreshToken, profile, done) {
         var data = {
             service     : 'instagram',
+            profile     : profile,
+            accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], function(err) {
+            return done(err, this);
+        });
+    }));
+}
+
+var soundCloudClientId = process.env.SOUNDCLOUD_CLIENT_ID || config.secrets.auth.soundcloud.clientId;
+var soundCloudClientSecret = process.env.SOUNDCLOUD_CLIENT_SECRET || config.secrets.auth.soundcloud.clientId;
+
+if (config.settings.auth.soundcloud) {
+    if (!soundCloudClientId) {
+        throw new Error(strings.SOUNDCLOUD_CLIENT_ID_NOT_FOUND);
+    }
+
+    if (!soundCloudClientSecret) {
+        throw new Error(strings.SOUNDCLOUD_CLIENT_SECRET_NOT_FOUND);
+    }
+
+    passport.use(new SoundCloudStrategy({
+        clientID: soundCloudClientId,
+        clientSecret: soundCloudClientSecret,
+        callbackURL: '/auth/soundcloud/callback',
+        passReqToCallback: true
+    }, function(req, accessToken, refreshToken, profile, done) {
+        var data = {
+            service     : 'soundcloud',
             profile     : profile,
             accessToken : accessToken,
             user        : req.user

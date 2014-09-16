@@ -19,6 +19,8 @@
     "twitter": true,
     "github": true,
     "linkedin": true,
-    "instagram": true
+    "instagram": true,
+    "soundcloud": true,
+    "dropbox": true
   }
 }

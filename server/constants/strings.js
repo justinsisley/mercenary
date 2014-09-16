@@ -24,6 +24,8 @@ module.exports = {
     LINKEDIN_CLIENT_SECRET_NOT_FOUND    : 'Missing LinkedIn Client Secret.',
     INSTAGRAM_CLIENT_ID_NOT_FOUND       : 'Missing Instagram Client ID.',
     INSTAGRAM_CLIENT_SECRET_NOT_FOUND   : 'Missing Instagram Client Secret.',
+    SOUNDCLOUD_CLIENT_ID_NOT_FOUND      : 'Missing SoundCloud Client ID.',
+    SOUNDCLOUD_CLIENT_SECRET_NOT_FOUND  : 'Missing SoundCloud Client Secret.',
 
     // Errors
     SEND_EMAIL_FAILED           : 'Failed to send email.',

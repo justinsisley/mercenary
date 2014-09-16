@@ -77,4 +77,13 @@ if (config.settings.auth.instagram) {
     }));
 }
 
+if (config.settings.auth.soundcloud) {
+    router.get('/soundcloud', passport.authenticate('soundcloud'));
+
+    router.get('/soundcloud/callback', passport.authenticate('soundcloud', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
+}
+
 module.exports = router;
