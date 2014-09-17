@@ -1,8 +1,6 @@
 <div class="container social-signup">
     <div class="row">
-        <div class="col-md-3"></div>
-        
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-facebook"></i> Sign Up With Facebook
             </a>
@@ -13,14 +11,10 @@
                 <i class="fa fa-instagram"></i> Sign Up With Instagram
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-google"></i> Sign Up With Google
             </a>
@@ -31,14 +25,10 @@
                 <i class="fa fa-linkedin"></i> Sign Up With LinkedIn
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-twitter"></i> Sign Up With Twitter
             </a>
@@ -49,14 +39,10 @@
                 <i class="fa fa-github"></i> Sign Up With GitHub
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/soundcloud" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-soundcloud"></i> Sign Up With SoundCloud
             </a>
@@ -67,17 +53,13 @@
                 <i class="fa fa-dropbox"></i> Sign Up With DropBox
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 </div>
 
 <div class="container social-or-text">or</div>
 
 <div class="container email-signup">
-    <div class="col-md-3"></div>
-
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
         <div class="row">
             <div class="form-inline" id="js-signup-form">
                 <div class="form-group email-group">
@@ -100,6 +82,4 @@
         <div class="alert alert-success" role="alert" id="js-form-success-message"></div>
         <div class="alert alert-danger" role="alert" id="js-form-error-message"></div>
     </div>
-    
-    <div class="col-md-3"></div>
 </div>

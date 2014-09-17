@@ -1,8 +1,11 @@
+{!
+TODO: auth provider rows should be a loop
+with available providers pulled from a config
+(preferably a config API)
+!}
 <div class="container social-login">
     <div class="row">
-        <div class="col-md-3"></div>
-        
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-facebook"></i> Log In Using Facebook
             </a>
@@ -13,14 +16,10 @@
                 <i class="fa fa-instagram"></i> Log In Using Instagram
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-google"></i> Log In Using Google
             </a>
@@ -31,14 +30,10 @@
                 <i class="fa fa-linkedin"></i> Log In Using LinkedIn
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-twitter"></i> Log In Using Twitter
             </a>
@@ -49,14 +44,10 @@
                 <i class="fa fa-github"></i> Log In Using GitHub
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-
-        <div class="col-md-3">
+        <div class="col-md-3 col-md-offset-3">
             <a href="/auth/soundcloud" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-soundcloud"></i> Log In Using SoundCloud
             </a>
@@ -67,17 +58,13 @@
                 <i class="fa fa-dropbox"></i> Log In Using DropBox
             </a>
         </div>
-        
-        <div class="col-md-3"></div>
     </div>
 </div>
 
 <div class="container social-or-text">or</div>
 
 <div class="container email-login">
-    <div class="col-md-3"></div>
-
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
         <div class="row">
             <form class="form-inline" action="/users/signin" method="post">
                 <div class="form-group email-group">
@@ -100,6 +87,4 @@
         <div class="alert alert-success" role="alert" id="js-form-success-message"></div>
         <div class="alert alert-danger" role="alert" id="js-form-error-message"></div>
     </div>
-    
-    <div class="col-md-3"></div>
 </div>

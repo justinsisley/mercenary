@@ -26,11 +26,11 @@ module.exports = Marionette.ItemView.extend({
         var queryString = window.location.search;
 
         if (/active=true/.test(queryString)) {
-            this.showSuccessMessage(strings.ACCOUNT_NOW_ACTIVE);
+            this.showSuccessMessage(strings.ACCOUNT_ACTIVE);
         }
 
         if (/active=false/.test(queryString)) {
-            this.showErrorMessage(strings.ACCOUNT_NOW_ACTIVE);
+            this.showErrorMessage(strings.ACCOUNT_NOT_ACTIVE);
         }
 
         if (/fail=true/.test(queryString)) {
