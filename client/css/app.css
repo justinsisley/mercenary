@@ -141,125 +141,6 @@ body {
 .public-layout .footer .navbar-brand:hover {
   color: #bbbbbb;
 }
-.public-layout .social-signup,
-.public-layout .social-login {
-  margin-top: 20px;
-}
-.public-layout .social-signup .row,
-.public-layout .social-login .row {
-  margin-bottom: 20px;
-}
-.public-layout .social-signup .btn-provider,
-.public-layout .social-login .btn-provider {
-  position: relative;
-  padding-right: 20px;
-  padding-left: 44px;
-  overflow: hidden;
-  font-size: 11px;
-  color: #dddddd;
-  background: none;
-  border-color: #dddddd;
-}
-.public-layout .social-signup .btn-provider:hover,
-.public-layout .social-login .btn-provider:hover {
-  color: #ffffff;
-  border-color: #ffffff;
-}
-.public-layout .social-signup .btn-provider i,
-.public-layout .social-login .btn-provider i {
-  position: absolute;
-  top: 0;
-  left: 12px;
-  width: 45px;
-  padding: 10px 14px;
-  font-size: 20px;
-}
-.public-layout .social-or-text {
-  margin: 20px auto;
-  font-weight: 300;
-  color: #bbbbbb;
-  text-align: center;
-}
-.public-layout .email-signup,
-.public-layout .email-login {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-top: 20px;
-}
-.public-layout .email-signup .row,
-.public-layout .email-login .row {
-  padding: 20px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-}
-.public-layout .email-signup .email-group,
-.public-layout .email-login .email-group,
-.public-layout .email-signup .password-group,
-.public-layout .email-login .password-group {
-  position: relative;
-  top: 5px;
-}
-.public-layout .email-signup .password-group,
-.public-layout .email-login .password-group {
-  padding-left: 20px;
-  margin-left: 30px;
-  border-left: 1px solid #bbbbbb;
-}
-.public-layout .email-signup .form-control,
-.public-layout .email-login .form-control {
-  font-weight: 300;
-  color: #ffffff;
-  background: none;
-  border: none;
-  box-shadow: none;
-  -webkit-transition: all 0s;
-          transition: all 0s;
-}
-.public-layout .email-signup .form-control:-webkit-autofill,
-.public-layout .email-login .form-control:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #000 inset;
-  -webkit-text-fill-color: #ffffff !important;
-}
-.public-layout .email-signup .input-email,
-.public-layout .email-login .input-email {
-  width: 180px;
-}
-.public-layout .email-signup .validation-error,
-.public-layout .email-login .validation-error,
-.public-layout .email-signup .validation-success,
-.public-layout .email-login .validation-success {
-  position: absolute;
-  top: 8px;
-  right: -20px;
-  display: none;
-  font-size: 18px;
-}
-.public-layout .email-signup .validation-error,
-.public-layout .email-login .validation-error {
-  color: #d9534f;
-}
-.public-layout .email-signup .validation-success,
-.public-layout .email-login .validation-success {
-  color: #5cb85c;
-}
-.public-layout .email-signup .btn-success,
-.public-layout .email-login .btn-success {
-  padding: 12px 30px;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-radius: 4px;
-}
-.public-layout .email-signup .alert-success,
-.public-layout .email-login .alert-success,
-.public-layout .email-signup .alert-danger,
-.public-layout .email-login .alert-danger {
-  display: none;
-  margin-top: 10px;
-  text-align: center;
-  background: none;
-  border: none;
-}
 .public-layout .hero {
   padding-top: 10px;
   padding-bottom: 200px;
@@ -385,6 +266,125 @@ body {
   margin-bottom: 0;
   border: none;
   border-radius: 0;
+}
+.public-layout .social-signup,
+.public-layout .social-login {
+  margin-top: 20px;
+}
+.public-layout .social-signup .row,
+.public-layout .social-login .row {
+  margin-bottom: 20px;
+}
+.public-layout .social-signup .btn-provider,
+.public-layout .social-login .btn-provider {
+  position: relative;
+  padding-right: 20px;
+  padding-left: 44px;
+  overflow: hidden;
+  font-size: 11px;
+  color: #dddddd;
+  background: none;
+  border-color: #dddddd;
+}
+.public-layout .social-signup .btn-provider:hover,
+.public-layout .social-login .btn-provider:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+.public-layout .social-signup .btn-provider i,
+.public-layout .social-login .btn-provider i {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  width: 45px;
+  padding: 10px 14px;
+  font-size: 20px;
+}
+.public-layout .social-or-text {
+  margin: 20px auto;
+  font-weight: 300;
+  color: #bbbbbb;
+  text-align: center;
+}
+.public-layout .email-signup,
+.public-layout .email-login {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+.public-layout .email-signup .row,
+.public-layout .email-login .row {
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+.public-layout .email-signup .email-group,
+.public-layout .email-login .email-group,
+.public-layout .email-signup .password-group,
+.public-layout .email-login .password-group {
+  position: relative;
+  top: 5px;
+}
+.public-layout .email-signup .password-group,
+.public-layout .email-login .password-group {
+  padding-left: 20px;
+  margin-left: 30px;
+  border-left: 1px solid #bbbbbb;
+}
+.public-layout .email-signup .form-control,
+.public-layout .email-login .form-control {
+  font-weight: 300;
+  color: #ffffff;
+  background: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transition: all 0s;
+          transition: all 0s;
+}
+.public-layout .email-signup .form-control:-webkit-autofill,
+.public-layout .email-login .form-control:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #000 inset;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.public-layout .email-signup .input-email,
+.public-layout .email-login .input-email {
+  width: 180px;
+}
+.public-layout .email-signup .validation-error,
+.public-layout .email-login .validation-error,
+.public-layout .email-signup .validation-success,
+.public-layout .email-login .validation-success {
+  position: absolute;
+  top: 8px;
+  right: -20px;
+  display: none;
+  font-size: 18px;
+}
+.public-layout .email-signup .validation-error,
+.public-layout .email-login .validation-error {
+  color: #d9534f;
+}
+.public-layout .email-signup .validation-success,
+.public-layout .email-login .validation-success {
+  color: #5cb85c;
+}
+.public-layout .email-signup .btn-success,
+.public-layout .email-login .btn-success {
+  padding: 12px 30px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+.public-layout .email-signup .alert-success,
+.public-layout .email-login .alert-success,
+.public-layout .email-signup .alert-danger,
+.public-layout .email-login .alert-danger {
+  display: none;
+  margin-top: 10px;
+  text-align: center;
+  background: none;
+  border: none;
 }
 .public-layout .primary-navigation {
   background: none;

@@ -360,7 +360,7 @@ if (config.settings.auth.instagram) {
 }
 
 var soundCloudClientId = process.env.SOUNDCLOUD_CLIENT_ID || config.secrets.auth.soundcloud.clientId;
-var soundCloudClientSecret = process.env.SOUNDCLOUD_CLIENT_SECRET || config.secrets.auth.soundcloud.clientId;
+var soundCloudClientSecret = process.env.SOUNDCLOUD_CLIENT_SECRET || config.secrets.auth.soundcloud.clientSecret;
 
 if (config.settings.auth.soundcloud) {
     if (!soundCloudClientId) {
