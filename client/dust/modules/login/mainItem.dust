@@ -3,13 +3,13 @@
         <div class="col-md-3"></div>
         
         <div class="col-md-3">
-            <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-facebook pull-right" target="_self">
+            <a href="/auth/facebook" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-facebook"></i> Log In Using Facebook
             </a>
         </div>
 
         <div class="col-md-3">
-            <a href="/auth/instagram" class="btn btn-primary btn-lg btn-block btn-instagram pull-left" target="_self">
+            <a href="/auth/instagram" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
                 <i class="fa fa-instagram"></i> Log In Using Instagram
             </a>
         </div>
@@ -21,13 +21,13 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-3">
-            <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-google pull-right" target="_self">
+            <a href="/auth/google" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-google"></i> Log In Using Google
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="/auth/linkedin" class="btn btn-primary btn-lg btn-block btn-linkedin pull-left" target="_self">
+            <a href="/auth/linkedin" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
                 <i class="fa fa-linkedin"></i> Log In Using LinkedIn
             </a>
         </div>
@@ -39,13 +39,13 @@
         <div class="col-md-3"></div>
 
         <div class="col-md-3">
-            <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-twitter pull-right" target="_self">
+            <a href="/auth/twitter" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
                 <i class="fa fa-twitter"></i> Log In Using Twitter
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="/auth/github" class="btn btn-primary btn-lg btn-block btn-github pull-left" target="_self">
+            <a href="/auth/github" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
                 <i class="fa fa-github"></i> Log In Using GitHub
             </a>
         </div>
