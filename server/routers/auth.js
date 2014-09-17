@@ -86,4 +86,13 @@ if (config.settings.auth.soundcloud) {
     }));
 }
 
+if (config.settings.auth.dropbox) {
+    router.get('/dropbox', passport.authenticate('dropbox'));
+
+    router.get('/dropbox/callback', passport.authenticate('dropbox', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
+}
+
 module.exports = router;

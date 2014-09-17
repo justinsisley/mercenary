@@ -26,6 +26,8 @@ module.exports = {
     INSTAGRAM_CLIENT_SECRET_NOT_FOUND   : 'Missing Instagram Client Secret.',
     SOUNDCLOUD_CLIENT_ID_NOT_FOUND      : 'Missing SoundCloud Client ID.',
     SOUNDCLOUD_CLIENT_SECRET_NOT_FOUND  : 'Missing SoundCloud Client Secret.',
+    DROPBOX_CONSUMER_KEY_NOT_FOUND      : 'Missing DropBox Consumer Key.',
+    DROPBOX_CONSUMER_SECRET_NOT_FOUND   : 'Missing DropBox Consumer Secret.',
 
     // Errors
     SEND_EMAIL_FAILED           : 'Failed to send email.',

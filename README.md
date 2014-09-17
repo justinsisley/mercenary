@@ -98,6 +98,8 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `INSTAGRAM_CLIENT_SECRET` - your Instagram application's client secret.
 - `SOUNDCLOUD_CLIENT_ID` - your SoundCloud application's client ID.
 - `SOUNDCLOUD_CLIENT_SECRET` - your SoundCloud application's client secret.
+- `DROPBOX_CONSUMER_KEY` - your DropBox application's consumer key.
+- `DROPBOX_CONSUMER_SECRET` - your DropBox application's consumer secret.
 
 ## Browser Support
 

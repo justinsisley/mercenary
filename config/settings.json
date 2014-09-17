@@ -1,6 +1,7 @@
 {
   "port": "8743",
   "env": "development",
+  "protocol": "http",
   "domain": "mercenary.io",
   "cdnDomain": "cdn.mercenary.io",
   "apiBaseUrl": "http://api.mercenary.io",

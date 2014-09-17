@@ -8,10 +8,12 @@ var GitHubStrategy      = require('passport-github').Strategy;
 var LinkedInStrategy    = require('passport-linkedin-oauth2').Strategy;
 var InstagramStrategy   = require('passport-instagram').Strategy;
 var SoundCloudStrategy  = require('passport-soundcloud').Strategy;
+var DropBoxStrategy     = require('passport-dropbox').Strategy;
 var async               = require('async');
 var config              = require('../../config');
 var User                = require('../models/User');
 var strings             = require('../constants/strings');
+var env                 = require('../constants/env');
 
 passport.serializeUser(function(user, done) {
     return done(null, user.id);
@@ -381,6 +383,46 @@ if (config.settings.auth.soundcloud) {
             service     : 'soundcloud',
             profile     : profile,
             accessToken : accessToken,
+            user        : req.user
+        };
+
+        async.waterfall([
+            userExists.bind(data),
+            findUser,
+            updateOrCreateUser
+        ], function(err) {
+            return done(err, this);
+        });
+    }));
+}
+
+var dropboxConsumerKey = process.env.DROPBOX_CONSUMER_KEY || config.secrets.auth.dropbox.consumerKey;
+var dropboxConsumerSecret = process.env.DROPBOX_CONSUMER_SECRET || config.secrets.auth.dropbox.consumerSecret;
+
+if (config.settings.auth.dropbox) {
+    if (!dropboxConsumerKey) {
+        throw new Error(strings.DROPBOX_CONSUMER_KEY_NOT_FOUND);
+    }
+
+    if (!dropboxConsumerSecret) {
+        throw new Error(strings.DROPBOX_CONSUMER_SECRET_NOT_FOUND);
+    }
+
+    passport.use(new DropBoxStrategy({
+        consumerKey         : dropboxConsumerKey,
+        consumerSecret      : dropboxConsumerSecret,
+        // NOTE: the callbackURL for DropBox requires
+        // a fully-qualified URL, unlock all of the
+        // other providers, which only require a relative
+        // path.
+        callbackURL         : env.SERVER_URL + '/auth/dropbox/callback',
+        passReqToCallback   : true
+    }, function(req, accessToken, tokenSecret, profile, done) {
+        var data = {
+            service     : 'dropbox',
+            profile     : profile,
+            accessToken : accessToken,
+            tokenSecret : tokenSecret,
             user        : req.user
         };
 

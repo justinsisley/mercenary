@@ -29,6 +29,7 @@
     "node-mandrill": "1.0.1",
     "nodemailer": "^1.3.0",
     "passport": "0.2.1",
+    "passport-dropbox": "^0.1.2",
     "passport-facebook": "1.0.3",
     "passport-github": "0.1.5",
     "passport-google-oauth": "0.1.5",

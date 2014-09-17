@@ -52,6 +52,24 @@
         
         <div class="col-md-3"></div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
+            <a href="/auth/soundcloud" class="btn btn-primary btn-lg btn-block btn-provider pull-right" target="_self">
+                <i class="fa fa-soundcloud"></i> Log In Using SoundCloud
+            </a>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="/auth/dropbox" class="btn btn-primary btn-lg btn-block btn-provider pull-left" target="_self">
+                <i class="fa fa-dropbox"></i> Log In Using DropBox
+            </a>
+        </div>
+        
+        <div class="col-md-3"></div>
+    </div>
 </div>
 
 <div class="container social-or-text">or</div>

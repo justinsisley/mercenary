@@ -13,8 +13,6 @@ var bodyParser      = require('body-parser');
 var cookieParser    = require('cookie-parser');
 var errorHandler    = require('errorhandler');
 
-// TODO: Remove "Controller" from all controller file names
-
 // Routers
 var apiRouter       = require('./routers/api');
 var authRouter      = require('./routers/auth');
@@ -24,6 +22,9 @@ var catchallRouter  = require('./routers/catchall');
 
 // Utils
 var cons            = require('consolidate');
+
+// Constants
+var env             = require('./constants/env');
 
 require('colors');
 
@@ -63,19 +64,7 @@ var mercenary = {
         // Tell Express where to find Dust templates.
         app.set('views', __dirname + '/dust');
 
-        var prdEnvironment = (
-            'production' === process.env.NODE_ENV ||
-            'production' === config.settings.env
-        );
-
-        // Establish development-only settings.
-        var devEnvironment = (
-            'development' === config.settings.env ||
-            'development' === process.env.NODE_ENV &&
-            !prdEnvironment
-        );
-
-        if (devEnvironment) {
+        if (env.IS_DEV) {
             app.use(errorHandler());
 
             // When in development mode, serve static
@@ -134,15 +123,11 @@ var mercenary = {
         app.use(catchallRouter);
 
         // Start listening on the specified port.
-        app.listen(process.env.PORT || config.settings.port);
+        app.listen(env.PORT);
 
-        var serverUri = 'http://' + ('development' === config.settings.env ? '127.0.0.1' : config.settings.domain);
-        var serverPort = (process.env.PORT || config.settings.port);
-
-        console.log('✔'.green + '  Server is running in %s mode at ' + '%s:%d'.underline.green + '\n',
+        console.log('✔'.green + '  Server is running in %s mode at ' + '%s'.underline.green + '\n',
             config.settings.env,
-            serverUri,
-            serverPort
+            env.SERVER_URL
         );
 
         // Make the configured Express app a
