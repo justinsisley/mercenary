@@ -18,9 +18,9 @@ module.exports = {
         'client/vendor/font-awesome/css/font-awesome.css'
     ],
 
-    templates: [
-        'client/dust/**/*.dust'
-    ],
+    templates: ['client/dust/**/*.dust'],
+
+    images: ['client/img/**/*'],
 
     compiledTemplatesName: 'compiled.js',
     compiledTemplatesDir: 'client/dust',

@@ -50,6 +50,7 @@ gulp.task('cdn', function(cb) {
         'requirejs',
         'less-prd',
         'css-lib-prd',
+        'img-min',
         's3-js',
         's3-css',
         's3-fonts',

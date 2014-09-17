@@ -28,5 +28,5 @@ gulp.task('s3-fonts', function() {
 });
 
 gulp.task('s3-img', function() {
-    return publish('./client/img/*', '/img');
+    return publish('./tmp/img/*', '/img');
 });
