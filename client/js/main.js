@@ -7,6 +7,8 @@ var User        = require('modules/users/models/user');
 var routers     = require('shared/routers');
 var linkHandler = require('helpers/linkHandler');
 
+require('helpers/flags');
+
 // Runs as soon as App.start() is called
 App.addInitializer(function() {
     // Check for an existing session,

@@ -267,6 +267,16 @@ body {
   border: none;
   border-radius: 0;
 }
+.public-layout .account-help {
+  position: relative;
+  top: 16px;
+}
+.public-layout .account-help-link {
+  margin-right: 15px;
+}
+.public-layout .account-help-link:last-of-type {
+  margin-right: 0;
+}
 .public-layout .social-signup,
 .public-layout .social-login {
   margin-top: 20px;

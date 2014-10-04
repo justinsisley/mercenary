@@ -43,7 +43,8 @@ var mercenary = {
             key: 'mercenary.sid',
             secret: process.env.SESSION_SECRET || config.secrets.sessionSecret,
             resave: false,
-            saveUninitialized: true
+            saveUninitialized: true,
+            cookie: {httpOnly: true}
         }));
 
         // Body parser middleware.

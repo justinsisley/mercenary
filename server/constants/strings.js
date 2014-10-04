@@ -5,7 +5,7 @@ module.exports = {
     NEW_PASSWORD_REQUIRED       : 'You must provide a new password.',
     PASSWORD_CHANGE_FAILED      : 'We were unable to update your password. We\'re looking into the problem.',
     INVALID_EMAIL_OR_PASSWORD   : 'You must provide a valid email and password.',
-    ACCOUNT_ALREADY_EXISTS      : 'That account already exists.',
+    ACCOUNT_ALREADY_EXISTS      : 'That account already exists. Try logging in.',
     ACCOUNT_NOT_FOUND           : 'Account not found.',
     ACTIVATION_EMAIL_SUBJECT    : 'Activate your Mercenary account.',
     ACTIVATION_EMAIL_TEXT       : 'Paste the following link into your browser to activate your Mercenary account: ',
