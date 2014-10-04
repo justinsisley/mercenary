@@ -22,7 +22,6 @@
 
 var _               = require('underscore');
 var $               = require('jquery');
-var App             = require('app');
 var queryString     = require('helpers/queryString')();
 var storage         = require('helpers/localStorage');
 var flagsOn         = queryString.ff_on;
@@ -42,14 +41,14 @@ updatedFlags = _.union(existingFlags, onList);
 // Removed flags to be turned off
 updatedFlags = _.difference(updatedFlags, offList);
 
+// Allow enabling of all flags at once
+if (flagsOn === '*') {updatedFlags = ['*'];}
+
 // Allow removal off all flags at once
 if (flagsOff === '*') {updatedFlags = [];}
 
 // Save the updated flags to localStorage
 storage.set('flags', updatedFlags);
-
-// Add the flags list to our app cache.
-App.vars.flags = updatedFlags;
 
 // For each flag, add a special class
 // to the HTML element to enable
@@ -58,5 +57,23 @@ App.vars.flags = updatedFlags;
 for (var i = updatedFlags.length - 1; i >= 0; i--) {
     $('html').addClass('_ff-' + updatedFlags[i]);
 }
+
+helper.isOn = function(flag) {
+    var flagEnabled = false;
+
+    // If the specified flag exists,
+    // return true.
+    if (updatedFlags.indexOf(flag) > -1) {
+        flagEnabled = true;
+    }
+
+    // If the "all" flag exists,
+    // return true.
+    if (updatedFlags.indexOf('*') > -1) {
+        flagEnabled = true;
+    }
+
+    return flagEnabled;
+};
 
 module.exports = helper;
