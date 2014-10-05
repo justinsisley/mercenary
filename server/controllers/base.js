@@ -13,7 +13,7 @@ module.exports = function(req, res) {
         config.googleAnalytics = process.env.GA_TRACKER || config.secrets.gaTracker;
 
         if (process.env.CDN_DOMAIN) {
-            settings.cdnDomain = process.env.CDN_DOMAIN;
+            config.settings.cdnDomain = process.env.CDN_DOMAIN;
         }
     }
 
