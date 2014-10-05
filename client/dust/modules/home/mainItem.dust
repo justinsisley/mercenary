@@ -123,37 +123,37 @@
     <div class="row">
         <div class="col-md-2 col-md-offset-1">
             <a href="http://backbonejs.org/" target="_blank" class="thumbnail">
-                <img src="/img/backbone.jpg" alt="Backbone">
+                <img src="http://cdn.mercenary.io/img/backbone.jpg" alt="Backbone">
             </a>
         </div>
 
         <div class="col-md-1">
             <a href="http://marionettejs.com/" target="_blank" class="thumbnail">
-                <img src="/img/marionette.jpg" width="40" alt="Backbone Marionette">
+                <img src="http://cdn.mercenary.io/img/marionette.jpg" width="40" alt="Backbone Marionette">
             </a>
         </div>
 
         <div class="col-md-2">
             <a href="http://requirejs.org/" target="_blank" class="thumbnail">
-                <img src="/img/requirejs.jpg" width="100" alt="requirejs">
+                <img src="http://cdn.mercenary.io/img/requirejs.jpg" width="100" alt="requirejs">
             </a>
         </div>
 
         <div class="col-md-1">
             <a href="http://gulpjs.com/" target="_blank" class="thumbnail">
-                <img src="/img/gulpjs.jpg" width="40" alt="Grunt">
+                <img src="http://cdn.mercenary.io/img/gulpjs.jpg" width="40" alt="Grunt">
             </a>
         </div>
 
         <div class="col-md-2">
             <a href="http://nodejs.org/" target="_blank" class="thumbnail">
-                <img src="/img/nodejs.jpg" alt="node.js">
+                <img src="http://cdn.mercenary.io/img/nodejs.jpg" alt="node.js">
             </a>
         </div>
 
         <div class="col-md-2">
             <a href="http://expressjs.com/" target="_blank" class="thumbnail">
-                <img src="/img/expressjs.jpg" alt="express.js">
+                <img src="http://cdn.mercenary.io/img/expressjs.jpg" alt="express.js">
             </a>
         </div>
     </div>

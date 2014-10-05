@@ -11,6 +11,10 @@ module.exports = function(req, res) {
         config.development = true;
     } else {
         config.googleAnalytics = process.env.GA_TRACKER || config.secrets.gaTracker;
+
+        if (process.env.CDN_DOMAIN) {
+            settings.cdnDomain = process.env.CDN_DOMAIN;
+        }
     }
 
     return res.render('app', config);

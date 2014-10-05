@@ -15,6 +15,9 @@
  *
  * Turn off your comments and sticky header features:
  * http://mercenary.io/?ff_off=comments,sticky-header
+ * 
+ * Turn on all features:
+ * http://mercenary.io/?ff_on=*
  *
  * Turn off all enabled features:
  * http://mercenary.io/?ff_off=*

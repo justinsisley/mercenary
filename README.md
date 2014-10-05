@@ -65,6 +65,7 @@ In addition to the two configuration files above, Mercenary also attempts to pul
 - `PORT` - the port your application will run on.
 - `SESSION_SECRET` - your session secret.
 - `MONGODB_URI` - a fully-qualified URI for your MongoDB instance. (I highly recommend [MongoLab](https://mongolab.com/).)
+- `CDN_DOMAIN` - the domain to use as a CDN in non-development environments.
 
 ##### Email Handling
 
