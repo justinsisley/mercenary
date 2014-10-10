@@ -6,10 +6,10 @@
  * layout, shown to unauthenticated users, and the
  * app layout, which is for logged-in users only.
  */
-var App                     = require('app');
-var AppLayout               = require('shared/layouts/views/appLayout');
-var appHeaderController     = require('modules/header/controllers/module');
-var sidebarController       = require('modules/sidebar/controllers/module');
+var App                 = require('app');
+var AppLayout           = require('shared/layouts/views/appLayout');
+var appHeaderController = require('components/header/controllers/module');
+var sidebarController   = require('components/sidebar/controllers/module');
 
 // Configures the app for the logged-in,
 // or authenticated "mode".

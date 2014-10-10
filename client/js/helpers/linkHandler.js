@@ -3,7 +3,11 @@
 // an external link by adding a "target"
 // attribute with a value of "_blank"
 // or "_self".
-module.exports = function(e) {
+
+var $ = require('jquery');
+var Backbone = require('backbone');
+
+function linkHandler(e) {
     var link            = e.currentTarget;
     var target          = link.target;
     var path            = link.pathname;
@@ -14,4 +18,6 @@ module.exports = function(e) {
 
         Backbone.history.navigate(path, true);
     }
-};
+}
+
+$('body').on('click', 'a', linkHandler);

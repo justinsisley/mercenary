@@ -8,6 +8,7 @@ var minifyCSS   = require('gulp-minify-css');
 var git         = require('gulp-git');
 var livereload  = require('gulp-livereload');
 var colorguard  = require('gulp-colorguard');
+var beep        = require('beepbeep');
 var handleError = require('./errorHandler');
 var config      = require('./config');
 var appConfig   = require('../../config');
@@ -27,7 +28,8 @@ gulp.task('less-dev', function() {
             .pipe(concat('app.css'))
             .pipe(recess({
                 noOverqualifying: false
-            }).on('error', handleError))
+            }).on('error', beep))
+            .pipe(recess.reporter())
             .pipe(less().on('error', handleError))
             .pipe(colorguard())
             .pipe(prefix())

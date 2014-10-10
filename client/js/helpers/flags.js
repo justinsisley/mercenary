@@ -34,6 +34,7 @@ var onList          = [];
 var offList         = [];
 var updatedFlags    = [];
 var helper          = {};
+var className;
 
 if (flagsOn) {onList = flagsOn.split(',');}
 if (flagsOff) {offList = flagsOff.split(',');}
@@ -58,7 +59,11 @@ storage.set('flags', updatedFlags);
 // application-wide style changes based
 // on flags.
 for (var i = updatedFlags.length - 1; i >= 0; i--) {
-    $('html').addClass('_ff-' + updatedFlags[i]);
+    className = updatedFlags[i];
+
+    if (className === '*') {className = 'all';}
+
+    $('html').addClass('_ff-' + className);
 }
 
 helper.isOn = function(flag) {
