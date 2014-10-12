@@ -69,9 +69,11 @@ module.exports = {
         };
 
         smtpTransport.sendMail(options, function(err, res) {
-            console.log(err, res);
+            if (err) {
+                console.log('sendEmailNodeMailer\n', err);
 
-            if (err) {return callback && callback(err);}
+                return callback && callback(err);
+            }
 
             return callback && callback(null, res);
         });

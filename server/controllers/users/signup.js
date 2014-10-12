@@ -73,5 +73,19 @@ module.exports = {
 
             return res.redirect('/login?active=true');
         });
+    },
+
+    resendActivation: function(req, res) {
+        var email = req.body.email;
+
+        User.resendActivation(email, function(err) {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+
+            return res.json({});
+        });
     }
 };

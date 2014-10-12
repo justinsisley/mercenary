@@ -59,8 +59,6 @@ module.exports = Marionette.ItemView.extend({
     signupCallback: function(err, response) {
         if (err) {return this.showErrorMessage(err);}
 
-        console.log('signupCallback', response);
-
         this.ui.signupEmail.attr('disabled', true);
         this.ui.signupPassword.attr('disabled', true);
         this.ui.signupSubmit.addClass('disabled');

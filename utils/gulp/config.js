@@ -8,7 +8,7 @@ module.exports = {
         'client/less/utils/*.less',
         'client/less/variables/*.less',
         'client/less/elements/*.less',
-        'client/less/modules/**/*.less',
+        'client/less/components/**/*.less',
         'client/less/layouts/**/*.less',
         'client/less/widgets/*.less'
     ],

@@ -11,8 +11,8 @@
     "memory": false
   },
   "email": {
-    "fromAddress": "welcome@mercenary.io",
-    "fromName": "Mercenary App Framework"
+    "fromAddress": "noreply@mercenary.io",
+    "fromName": "Mercenary.io"
   },
   "auth": {
     "facebook": true,

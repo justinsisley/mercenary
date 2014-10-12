@@ -27,6 +27,9 @@ router.get('/session', passportController.isAuthenticated, sessionController);
 // Activate a local user's account.
 router.get('/activate/:key', signupController.activateUser);
 
+// Re-send activation email
+router.post('/activation/resend', signupController.resendActivation);
+
 // Create a local user account.
 router.post('/signup', signupController.createUser);
 

@@ -20,7 +20,8 @@ require.config({
         validator   : '../vendor/validator-js/validator',
         highcharts  : '../vendor/highcharts-release/highcharts',
         dropdown    : '../vendor/bootstrap/js/dropdown',
-        tooltip     : '../vendor/bootstrap/js/tooltip'
+        tooltip     : '../vendor/bootstrap/js/tooltip',
+        modal       : '../vendor/bootstrap/js/modal'
     },
     shim: {
         dust        : {exports: 'dust'},

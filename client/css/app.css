@@ -8,6 +8,55 @@ body {
 .serif {
   font-family: serif;
 }
+.public-layout .footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  background: #000000;
+  border: none;
+  border-radius: 0;
+}
+.public-layout .footer .navbar-nav li > a {
+  font-size: 11px;
+  font-weight: 600;
+}
+.public-layout .footer .navbar-nav li > a:hover {
+  color: #bbbbbb;
+}
+.public-layout .footer .navbar-nav .social {
+  top: 5px;
+  margin-right: 0;
+}
+.public-layout .footer .navbar-nav .social > a {
+  padding: 10px;
+  font-size: 20px;
+  text-shadow: none;
+}
+.public-layout .footer .navbar-text {
+  position: relative;
+  top: 18px;
+  width: 100%;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
+.public-layout .footer .navbar-text a {
+  color: #bbbbbb;
+}
+.public-layout .footer .navbar-text a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+.public-layout .footer .navbar-brand {
+  font-weight: 600;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+}
+.public-layout .footer .navbar-brand:hover {
+  color: #bbbbbb;
+}
 .page-content-wrapper {
   width: 100%;
 }
@@ -91,55 +140,6 @@ body {
 }
 .page-content .row {
   margin-bottom: 20px;
-}
-.public-layout .footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 0;
-  text-transform: uppercase;
-  background: #000000;
-  border: none;
-  border-radius: 0;
-}
-.public-layout .footer .navbar-nav li > a {
-  font-size: 11px;
-  font-weight: 600;
-}
-.public-layout .footer .navbar-nav li > a:hover {
-  color: #bbbbbb;
-}
-.public-layout .footer .navbar-nav .social {
-  top: 5px;
-  margin-right: 0;
-}
-.public-layout .footer .navbar-nav .social > a {
-  padding: 10px;
-  font-size: 20px;
-  text-shadow: none;
-}
-.public-layout .footer .navbar-text {
-  position: relative;
-  top: 18px;
-  width: 100%;
-  margin: 0;
-  font-size: 11px;
-  font-weight: 600;
-  text-align: center;
-}
-.public-layout .footer .navbar-text a {
-  color: #bbbbbb;
-}
-.public-layout .footer .navbar-text a:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-.public-layout .footer .navbar-brand {
-  font-weight: 600;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
-  text-transform: uppercase;
-}
-.public-layout .footer .navbar-brand:hover {
-  color: #bbbbbb;
 }
 .public-layout .hero {
   padding-top: 10px;
@@ -347,6 +347,7 @@ body {
   color: #ffffff;
   background: none;
   border: none;
+  border-radius: 0;
   box-shadow: none;
   -webkit-transition: all 0s;
           transition: all 0s;

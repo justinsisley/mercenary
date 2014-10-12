@@ -166,6 +166,20 @@ userSchema.statics.activate = function(activationKey, callback) {
     });
 };
 
+userSchema.statics.resendActivation = function(email, callback) {
+    var User = this || mongoose.model('User');
+
+    User.findOne({email: email}, function(err, user) {
+        if (err) {return callback(err);}
+        
+        if (!user) {return callback(strings.ACCOUNT_NOT_FOUND);}
+
+        user.sendActivationEmail();
+
+        return callback();
+    });
+};
+
 // Create a model using the schema
 var User = mongoose.model('User', userSchema);
 
