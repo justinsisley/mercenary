@@ -21,3 +21,5 @@ function linkHandler(e) {
 }
 
 $('body').on('click', 'a', linkHandler);
+
+module.exports = linkHandler;
