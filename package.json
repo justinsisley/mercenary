@@ -73,6 +73,7 @@
     "gulp-wrapper": "^0.1.5",
     "imagemin-pngcrush": "^1.0.0",
     "jshint-stylish": "^1.0.0",
+    "map-stream": "^0.1.0",
     "require-dir": "^0.1.0",
     "requirejs": "^2.1.15",
     "run-sequence": "^1.0.1"

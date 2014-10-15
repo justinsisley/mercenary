@@ -1,8 +1,8 @@
 var gulp    = require('gulp');
 var jshint  = require('gulp-jshint');
 var beep    = require('beepbeep');
-var config  = require('./config');
 var map     = require('map-stream');
+var config  = require('./config');
 
 var beepOnError = function() {
     return map(function(file, cb) {
