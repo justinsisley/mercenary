@@ -1,0 +1,15 @@
+<div class="page-header">
+    <div class="container">
+        <h1>Your Dashboard Awaits</h1>
+
+        <small class="center-block">Mercenary has a lot to offer, and these pages are only its public face. Log in to view the users-only dashboard.</small>
+
+        <small class="center-block">Want to experiment with a local copy of Mercenary? <a href="https://github.com/justinsisley/Mercenary" target="_blank">Download it on GitHub</a>.</small>
+
+        <small class="center-block account-help">
+            <a href="/password/reset" class="account-help-link">Forgot your password?</a>
+
+            <a href="/activation/resend" class="account-help-link">Can't find your activation email?</a>
+        </small>
+    </div>
+</div>

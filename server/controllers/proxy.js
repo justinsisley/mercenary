@@ -14,7 +14,7 @@ module.exports = function(req, res) {
         if (!response) {return res.json({error: strings.NO_PROXY_SERVER_RESPONSE});}
 
         var statusCode = response.statusCode;
-        var errorCodes = [400, 401, 403, 500];
+        var errorCodes = [400, 401, 403, 404, 405, 408, 500, 503];
         var error = (errorCodes.indexOf(statusCode) > -1);
 
         if (error) {

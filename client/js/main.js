@@ -3,10 +3,19 @@
  */
 var Backbone    = require('backbone');
 var App         = require('app');
-var routers     = require('shared/routers');
+var routers     = require('routers');
 var User        = require('components/users/models/user');
 
+// Import Dust.js/Marionette integration and Dust helpers
+require('dustMarionette');
+require('dustHelpers');
+
+// Import all compiled templates
+require('templates');
+
+// Import global helpers
 require('helpers/linkHandler');
+require('helpers/pageTitle');
 require('helpers/flags');
 
 // Runs as soon as App.start() is called

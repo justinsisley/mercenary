@@ -1,21 +1,11 @@
 /**
- * The core Marionette application.
+ * The core application object and markup.
  */
 var Marionette = require('marionette');
-
-// Import settings constants
-var SETTINGS = require('constants/settings');
 
 // Set primary region names
 var mainRegion = 'main-region';
 var testRegion = 'test-region';
-
-// Import Dust.js/Marionette integration
-require('dustMarionette');
-// Import Dust helpers
-require('dustHelpers');
-// Import all compiled templates
-require('templates');
 
 // Create a Marionette application.
 var App = new Marionette.Application();
@@ -43,14 +33,5 @@ if (window.mocha || window.mochaPhantomJS) {
 
     App.addRegions({testRegion: '#' + testRegion});
 }
-
-// Allow page title changes from anywhere in the application.
-App.vent.on('domchange:title', function(title) {
-    document.title = SETTINGS.APP_NAME + (title ? (' | ' + title) : '');
-
-    // This is also a good time to scroll to the
-    // top of the window.
-    $('html, body').scrollTop(0);
-});
 
 module.exports = App;

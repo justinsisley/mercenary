@@ -12,7 +12,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', [
-    'git-hash',
     'jshint',
     'dust',
     'css-lib-dev',

@@ -1,8 +1,8 @@
 require([
     '../../test/spec/client/app',
     '../../test/spec/client/main',
-    '../../test/spec/client/helpers/linkHandler',
-    '../../test/spec/client/helpers/routers'
+    '../../test/spec/client/routers',
+    '../../test/spec/client/helpers/linkHandler'
 ], function() {
     if (window.mochaPhantomJS) {
         mochaPhantomJS.run();

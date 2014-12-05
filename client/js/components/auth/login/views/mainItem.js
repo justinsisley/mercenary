@@ -1,0 +1,83 @@
+var Marionette  = require('marionette');
+var validator   = require('validator');
+var strings     = require('constants/strings');
+var uri         = require('helpers/uri');
+
+module.exports = Marionette.ItemView.extend({
+    template: 'components/auth/login/mainItem',
+
+    ui: {
+        loginEmail              : '#js-login-email',
+        loginPassword           : '#js-login-password',
+        loginSubmitBtn          : '#js-login-submit',
+        emailValidationSuccess  : '#js-email-validation-success',
+        emailValidationFailure  : '#js-email-validation-error',
+        formSuccessMessage      : '#js-form-success-message',
+        formErrorMessage        : '#js-form-error-message'
+    },
+
+    events: {
+        'click @ui.loginSubmitBtn'  : 'formSubmitHandler',
+        'input @ui.loginEmail'      : 'emailKeypressHandler'
+    },
+
+    onShow: function() {
+        $('body').addClass('login');
+
+        var queryParams = uri().searchObject;
+
+        if (queryParams.active === true) {
+            this.showSuccessMessage(strings.ACCOUNT_ACTIVE);
+        }
+
+        // Need strict equality to avoid false
+        // error messaging.
+        if (queryParams.active === false) {
+            this.showErrorMessage(strings.ACCOUNT_NOT_ACTIVE);
+        }
+
+        if (queryParams.fail) {
+            this.showErrorMessage(strings.INCORRECT_LOGIN_CREDENTIALS);
+        }
+    },
+
+    onDestroy: function() {
+        $('body').removeClass('login');
+    },
+
+    formSubmitHandler: function(e) {
+        var email       = this.ui.loginEmail.val();
+        var password    = this.ui.loginPassword.val();
+        var validEmail  = (email && validator.isEmail(email));
+
+        if (!validEmail) {
+            e.preventDefault();
+            return this.showErrorMessage(strings.INVALID_EMAIL);
+        }
+
+        if (!password) {
+            e.preventDefault();
+            return this.showErrorMessage(strings.INVALID_PASSWORD);
+        }
+    },
+
+    emailKeypressHandler: function() {
+        if (validator.isEmail(this.ui.loginEmail.val())) {
+            this.ui.emailValidationSuccess.show();
+            this.ui.emailValidationFailure.hide();
+        } else {
+            this.ui.emailValidationSuccess.hide();
+            this.ui.emailValidationFailure.show();
+        }
+    },
+
+    showSuccessMessage: function(message) {
+        this.ui.formSuccessMessage.text(message).show();
+        this.ui.formErrorMessage.hide();
+    },
+
+    showErrorMessage: function(message) {
+        this.ui.formSuccessMessage.hide();
+        this.ui.formErrorMessage.text(message).show();
+    }
+});

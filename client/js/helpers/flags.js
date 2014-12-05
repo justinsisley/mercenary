@@ -25,10 +25,10 @@
 
 var _               = require('underscore');
 var $               = require('jquery');
-var queryString     = require('helpers/queryString')();
+var uri             = require('helpers/uri')();
 var storage         = require('helpers/localStorage');
-var flagsOn         = queryString.ff_on;
-var flagsOff        = queryString.ff_off;
+var flagsOn         = uri.searchObject.ff_on;
+var flagsOff        = uri.searchObject.ff_off;
 var existingFlags   = storage.get('flags') || [];
 var onList          = [];
 var offList         = [];

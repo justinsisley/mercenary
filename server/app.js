@@ -63,7 +63,7 @@ var mercenary = {
         app.set('view engine', 'dust');
 
         // Tell Express where to find Dust templates.
-        app.set('views', __dirname + '/dust');
+        app.set('views', __dirname + '/templates');
 
         if (env.IS_DEV) {
             app.use(errorHandler());
