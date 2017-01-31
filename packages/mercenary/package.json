@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.39",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -28,7 +28,7 @@
     "compression": "1.6.2",
     "css-loader": "0.26.1",
     "eslint": "3.14.1",
-    "eslint-config-mercenary": "1.1.0",
+    "eslint-config-mercenary": "1.1.1",
     "eslint-loader": "1.6.1",
     "express": "4.14.1",
     "express-validator": "3.1.2",

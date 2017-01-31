@@ -4,6 +4,7 @@ const fs = require('fs');
 const arrayUniq = require('array-uniq');
 
 const templatesDir = path.join(__dirname, '../templates');
+const boilerplateDir = path.join(__dirname, '../boilerplate');
 
 let cwd = process.cwd();
 try {
@@ -21,14 +22,6 @@ const exec = (command) => {
 };
 
 const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
-
-// Add pre-commit hook
-const precommit = () => {
-  exec(`
-    echo "#!/bin/sh" > "${cwd}/.git/hooks/pre-commit" &&
-    echo "npm test" >> "${cwd}/.git/hooks/pre-commit"
-  `);
-};
 
 // Add .gitignore; modify if one exists; create if one doesn't
 const gitignore = () => {
@@ -125,9 +118,28 @@ const npmScripts = () => {
   } catch (err) {} // eslint-disable-line
 };
 
+// Set up npm dependencies for the boilerplate
+const npmDeps = () => {
+  try {
+    const boilerplatePckgJson = readFile(`${boilerplateDir}/package.json`);
+    const parsedBoilerplatePckgJson = JSON.parse(boilerplatePckgJson);
+
+    const packageJson = readFile(`${cwd}/package.json`);
+    const parsedPackageJson = JSON.parse(packageJson);
+    const packageJsonDeps = Object.assign(
+      {},
+      parsedPackageJson.dependencies,
+      parsedBoilerplatePckgJson.dependencies // eslint-disable-line
+    );
+
+    parsedPackageJson.dependencies = packageJsonDeps;
+
+    fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
+  } catch (err) {} // eslint-disable-line
+};
+
 // Basic project setup
 const setup = () => {
-  precommit();
   gitignore();
   babelrc();
   eslintrc();
@@ -135,6 +147,7 @@ const setup = () => {
   editorconfig();
   configFile();
   npmScripts();
+  npmDeps();
 };
 
 module.exports = setup;

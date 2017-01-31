@@ -1,13 +1,13 @@
 {
   "name": "eslint-config-mercenary",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ESLint configuration used by mercenary",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
   "files": [
     "index.js"
   ],
-  "peerDependencies": {
+  "dependencies": {
     "babel-eslint": "7.1.1",
     "eslint-config-airbnb": "13.0.0",
     "eslint-plugin-class-property": "1.0.3",

@@ -7,8 +7,8 @@ module.exports = {
   },
 
   htmlTemplate: {
-    title: 'The Invisible Framework',
-    description: 'The Invisible Framework',
+    title: 'Mercenary',
+    description: 'The force multiplier web application stack',
     favicon: '',
   },
 
