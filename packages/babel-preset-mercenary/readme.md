@@ -6,11 +6,11 @@ Please refer to its documentation:
 * [Getting Started](https://github.com/justinsisley/mercenary/blob/master/README.md#getting-started) – How to create a new app.
 * [User Guide](https://github.com/justinsisley/mercenary/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with mercenary.
 
-## Usage in mercenary projects
+## Usage in Mercenary projects
 
 The easiest way to use this configuration is with [mercenary](https://github.com/justinsisley/mercenary), which includes it by default. **You don’t need to install it separately in mercenary projects.**
 
-## Usage Outside of mercenary
+## Usage Outside of Mercenary
 
 If you want to use this Babel preset in a project not built with mercenary, you can install it with following steps.
 
