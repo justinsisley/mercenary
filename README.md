@@ -10,7 +10,7 @@ On the server side, it uses [Express](http://expressjs.com/), a popular [Node.js
 
 Both the client and server utilize [LinkedIn's fork of Dust.js](http://linkedin.github.io/dustjs/) for template rendering.
 
-The entire stack is test-ready, using [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
+The entire stack is test-ready, using [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/), with test runners in both the command line and the browser.
 
 ## Installation
 
