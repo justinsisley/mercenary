@@ -1,7 +1,7 @@
 {
   "name": "mercenary",
-  "version": "2.0.0-alpha.0",
-  "description": "The Force Multiplier Web Application Stack",
+  "version": "2.0.0-alpha.1",
+  "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
   },
@@ -18,14 +18,9 @@
     "array-uniq": "1.0.3",
     "atob": "2.0.3",
     "babel-core": "6.22.1",
-    "babel-eslint": "^7.1.1",
     "babel-istanbul": "0.12.1",
     "babel-loader": "6.2.10",
-    "babel-preset-env": "1.1.8",
-    "babel-preset-latest": "6.22.0",
-    "babel-preset-react": "6.22.0",
-    "babel-preset-react-hmre": "1.1.1",
-    "babel-preset-stage-0": "6.22.0",
+    "babel-preset-mercenary": "1.1.0",
     "body-parser": "1.16.0",
     "btoa": "1.1.2",
     "chai": "3.5.0",
@@ -33,12 +28,8 @@
     "compression": "1.6.2",
     "css-loader": "0.26.1",
     "eslint": "3.14.1",
-    "eslint-config-airbnb": "13.0.0",
+    "eslint-config-mercenary": "1.1.0",
     "eslint-loader": "1.6.1",
-    "eslint-plugin-class-property": "^1.0.3",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-react": "6.9.0",
     "express": "4.14.1",
     "express-validator": "3.1.2",
     "extract-text-webpack-plugin": "1.0.1",
@@ -66,6 +57,6 @@
     "stylelint-config-standard": "15.0.1",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
-    "yargs": "6.6.0"
+    "yargs": "^6.6.0"
   }
 }

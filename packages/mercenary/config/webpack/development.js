@@ -82,7 +82,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: [/client/, /server/],
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: [
             ['env', {

@@ -47,6 +47,17 @@ const gitignore = () => {
   }
 };
 
+// Add .babelrc without overwriting existing
+// TODO: need to be able to patch existing
+const babelrc = () => {
+  try {
+    readFile(`${cwd}/.babelrc`);
+  } catch (error) {
+    exec(`cp "${templatesDir}/_babelrc" "${cwd}/.babelrc"`);
+  }
+};
+
+
 // Add .eslintrc without overwriting existing
 // TODO: need to be able to patch existing
 const eslintrc = () => {
@@ -110,10 +121,7 @@ const npmScripts = () => {
 
     parsedPackageJson.scripts = packageJsonScripts;
 
-    fs.writeFileSync(
-      `${cwd}/package.json`,
-      JSON.stringify(parsedPackageJson, null, 2)
-    );
+    fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
   } catch (err) {} // eslint-disable-line
 };
 
@@ -121,6 +129,7 @@ const npmScripts = () => {
 const setup = () => {
   precommit();
   gitignore();
+  babelrc();
   eslintrc();
   stylelintrc();
   editorconfig();
