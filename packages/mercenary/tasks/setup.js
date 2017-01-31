@@ -97,15 +97,15 @@ const npmScripts = () => {
     const packageJson = readFile(`${cwd}/package.json`);
     const parsedPackageJson = JSON.parse(packageJson);
     const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
-      setup: 'infr --setup',
-      clean: 'infr --clean',
-      test: 'infr --test',
-      'test:watch': 'infr --testWatch',
-      e2e: 'infr --e2e',
-      build: 'infr --build',
-      start: 'infr --start',
-      prod: 'infr --prod',
-      docker: 'infr --docker',
+      setup: 'merc --setup',
+      clean: 'merc --clean',
+      test: 'merc --test',
+      'test:watch': 'merc --testWatch',
+      e2e: 'merc --e2e',
+      build: 'merc --build',
+      start: 'merc --start',
+      prod: 'merc --prod',
+      docker: 'merc --docker',
     });
 
     parsedPackageJson.scripts = packageJsonScripts;

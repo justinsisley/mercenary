@@ -3,7 +3,7 @@
   "version": "2.0.0-alpha.0",
   "description": "The Force Multiplier Web Application Stack",
   "bin": {
-    "infr": "./index.js"
+    "merc": "./index.js"
   },
   "scripts": {
     "postinstall": "node ./bin/postinstall.js"

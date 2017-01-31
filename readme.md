@@ -1,31 +1,31 @@
 # Mercenary
 
-The best way to get started with Mercenary is by trying out the [demo application](https://github.com/justinsisley/mercenary-demo).
+The best way to get started with mercenary is by trying out the [demo application](https://github.com/justinsisley/mercenary-demo).
 
 ## Introduction
 
 Mercenary and its cli (command line interface) are designed to get you from empty directory to production environment in a matter of seconds.
 
-This documentation will guide you through the creation, testing, and deployment of a new Mercenary application.
+This documentation will guide you through the creation, testing, and deployment of a new mercenary application.
 
 Mercenary requires __Node.js__ v6+ and __NPM__ v3+.
 
 ## Installation and Setup
 
-In this step, you'll start with an empty directory, then create the basic files required for a Mercenary application. You'll only need your terminal.
+In this step, you'll start with an empty directory, then create the basic files required for a mercenary application. You'll only need your terminal.
 
 1. From a starting location of your choosing, create a new project directory: `mkdir my-project && cd my-project`
 2. Initialize a Git repository: `git init`
 2. Initialize an NPM repository: `npm init -y`
-3. Install Mercenary cli: `npm i -S mercenary`
+3. Install mercenary cli: `npm i -S mercenary`
 
-When the installation completes, take a look at the contents of your project directory. You should see the standard __node_modules__ directory, and you should see a few files that Mercenary has generated for you: __.editorconfig__, __.eslintrc__, and __.gitignore__. These files represent the basic project configuration for Babel, ESLint, Git, and your editor.
+When the installation completes, take a look at the contents of your project directory. You should see the standard __node_modules__ directory, and you should see a few files that mercenary has generated for you: __.editorconfig__, __.eslintrc__, and __.gitignore__. These files represent the basic project configuration for Babel, ESLint, Git, and your editor.
 
 ### Environment Configuration
 
 A special environment configuration file named __config.js__ is also created.
 
-When created for the first time, __config.js__ will contain default values for all of Mercenary's configurable properties. Mercenary is also capable of adding more configurable properties as they become available, and will non-destructively patch the local __config.js__ file as needed.
+When created for the first time, __config.js__ will contain default values for all of mercenary's configurable properties. Mercenary is also capable of adding more configurable properties as they become available, and will non-destructively patch the local __config.js__ file as needed.
 
 Now that Mercenary is configured, it's time to build your application.
 
@@ -52,7 +52,7 @@ Save __client/index.js__, then go back to your browser. You should see your logg
 
 All files in the __client__ directory are processed by Babel via webpack, and supports ES6 (including modules), JSX, CSS, JSON, images, and fonts. Mercenary doesn't care how you structure your files and folders within the __client__ directory. The only required file is your entry point: __client/index.js__.
 
-See the [Mercenary demo project](https://github.com/justinsisley/mercenary-demo) for more information.
+See the [mercenary demo project](https://github.com/justinsisley/mercenary-demo) for more information.
 
 ## Building the Server
 
@@ -144,7 +144,7 @@ Congratulations! With no server configuration or excess boilerplate, you've crea
 
 > __NOTE:__ Just like the client, the server only requires one file: __server/index.js__. All other files and folders are up to you. Unlike the client, server files are not parsed by Babel, so your syntax is limited only by the version of Node.js that you're running.
 
-See the [Mercenary demo project](https://github.com/justinsisley/mercenary-demo) for more information.
+See the [mercenary demo project](https://github.com/justinsisley/mercenary-demo) for more information.
 
 ## Custom Express Middleware
 
@@ -152,7 +152,7 @@ See the [Mercenary demo project](https://github.com/justinsisley/mercenary-demo)
 
 ## Tests
 
-One of Mercenary's strengths is how easy it makes writing and running tests.
+One of mercenary's strengths is how easy it makes writing and running tests.
 
 > __NOTE:__ If the `npm start` process is still running, stop it using ctrl+c.
 
@@ -220,7 +220,7 @@ Congratulations! You've created your first end-to-end test. Just like with your 
 
 ## Production
 
-While Mercenary does a lot to optimize the development experience, it also does a lot of heavy lifting to make deployment a breeze.
+While mercenary does a lot to optimize the development experience, it also does a lot of heavy lifting to make deployment a breeze.
 
 To run a local production build, just run `npm run prod`. This will use webpack to produce a directory of optimized static assets, and will run your Express.js server in production mode.
 
