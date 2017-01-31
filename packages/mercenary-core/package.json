@@ -1,0 +1,8 @@
+{
+  "name": "mercenary-core",
+  "version": "1.0.0",
+  "description": "The force multiplier web application stack",
+  "author": "Justin Sisley",
+  "repository": "https://github.com/justinsisley/mercenary",
+  "license": "ISC"
+}
