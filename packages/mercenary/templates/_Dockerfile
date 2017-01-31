@@ -1,0 +1,20 @@
+# Base image
+FROM node:latest
+
+# Create a non-root user
+# RUN groupadd -r nodejs && useradd -m -r -g nodejs nodejs
+
+# Run all subsequent commands using non-root user
+# USER nodejs
+
+# Bundle source
+ADD . /application
+
+# Install dependencies
+RUN cd /application && npm install --production
+
+# Expose the application port
+EXPOSE 3325
+
+# Run the application in production mode
+CMD cd /application && npm run prod
