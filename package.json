@@ -1,8 +1,6 @@
 {
   "private": true,
-  "scripts": {
-    "publish-all": "./bin/publish-all.sh"
-  },
+  "author": "Justin Sisley",
   "dependencies": {
     "babel-eslint": "7.1.1",
     "eslint": "3.14.1",

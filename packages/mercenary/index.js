@@ -6,6 +6,7 @@ const extfs = require('extfs');
 const spawn = require('cross-spawn');
 const chalk = require('chalk');
 
+const corePackage = 'mercenary-core';
 const appName = process.argv[2];
 
 if (!appName) {
@@ -49,7 +50,12 @@ console.log('Installing mercenary core packages...');
 console.log();
 
 const installCore = (callback) => {
-  const child = spawn('npm', ['install', '--save', '--save-exact', 'mercenary-core'], { stdio: 'inherit' });
+  const child = spawn('npm', [
+    'install',
+    '--save',
+    '--save-exact',
+    corePackage
+  ], { stdio: 'inherit' });
 
   child.on('close', callback);
 };
@@ -70,7 +76,7 @@ const runSetup = () => {
 
 installCore((code) => {
   if (code !== 0) {
-    console.log(chalk.red('Failed to install mercenary-core.'));
+    console.log(chalk.red(`Failed to install ${corePackage}.`));
     console.log();
     process.exit(1);
   }

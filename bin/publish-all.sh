@@ -1,4 +1,0 @@
-npm publish packages/babel-preset-mercenary
-npm publish packages/eslint-config-mercenary
-npm publish packages/mercenary-core
-npm publish packages/mercenary

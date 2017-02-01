@@ -2,6 +2,7 @@
 
 const argv = require('yargs').argv;
 const setup = require('./tasks/setup');
+const lint = require('./tasks/lint');
 const test = require('./tasks/test');
 const testWatch = require('./tasks/testWatch');
 const e2e = require('./tasks/e2e');
@@ -14,6 +15,10 @@ const docker = require('./tasks/docker');
 
 if (argv.setup) {
   setup();
+}
+
+if (argv.lint) {
+  lint();
 }
 
 if (argv.test) {
