@@ -3,17 +3,13 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const precss = require('precss');
-const config = require('../index');
-
-const htmlTitle = config.get('htmlTitle');
-const htmlDescription = config.get('htmlDescription');
-const favicon = config.get('favicon');
 
 // Directories of interest
 const cwd = process.cwd();
 const clientDir = path.join(cwd, './client');
 const staticDir = path.join(cwd, './static');
-const templatesDir = path.join(__dirname, '../../templates');
+const packageDirectory = path.join(__dirname, '../../');
+const templatesDir = path.join(packageDirectory, '/templates');
 
 // Set global vars
 const environment = new webpack.DefinePlugin({
@@ -45,11 +41,7 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
 // Webpack-generated HTML file
 const htmlEntryPoint = new HtmlWebpackPlugin({
   filename: path.join(staticDir, '/index.html'),
-  template: path.join(templatesDir, '/_index.html'),
-  title: htmlTitle,
-  description: htmlDescription,
-  mountId: 'root',
-  favicon,
+  template: path.join(templatesDir, '/client/index.html'),
 });
 
 module.exports = {

@@ -6,17 +6,15 @@ const eslintFormatter = require('eslint/lib/formatters/stylish');
 const config = require('../index');
 
 const webpackDevServerPort = config.get('webpackDevServerPort');
-const htmlTitle = config.get('htmlTitle');
-const htmlDescription = config.get('htmlDescription');
-const favicon = config.get('favicon');
 
 // Directories of interest
 const cwd = process.cwd();
-const templatesDir = path.join(__dirname, '../../templates');
+const packageDirectory = path.join(__dirname, '../../');
+const templatesDir = path.join(packageDirectory, '/templates');
 
 // Files of interest
 const javascriptEntryPoint = path.join(cwd, './client/index');
-const eslintConfig = path.join(cwd, './.eslintrc');
+const eslintConfig = path.join(packageDirectory, '/.eslintrc');
 
 // Developers' custom config.js
 const projectConfigPath = path.join(cwd, './config.js');
@@ -30,11 +28,7 @@ if (projectConfig.webpack && projectConfig.webpack.globals) {
 
 // Webpack-generated HTML file
 const htmlEntryPoint = new HtmlWebpackPlugin({
-  template: path.join(templatesDir, '/_index.html'),
-  title: htmlTitle,
-  description: htmlDescription,
-  mountId: 'root',
-  favicon,
+  template: path.join(templatesDir, '/client/index.html'),
 });
 
 module.exports = {

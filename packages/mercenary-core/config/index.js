@@ -43,27 +43,6 @@ const config = marshall({
     env: 'CACHE_MAX_AGE',
     arg: 'cache-max-age',
   },
-  htmlTitle: {
-    doc: 'The title used in the client HTML template',
-    format: String,
-    default: projectConfig.htmlTemplate.title || '',
-    env: 'HTML_TITLE',
-    arg: 'html-title',
-  },
-  htmlDescription: {
-    doc: 'The description used in the client HTML template',
-    format: String,
-    default: projectConfig.htmlTemplate.description || '',
-    env: 'HTML_DESCRIPTION',
-    arg: 'html-description',
-  },
-  favicon: {
-    doc: 'The favicon used for the client application',
-    format: String,
-    default: projectConfig.htmlTemplate.favicon || '',
-    env: 'FAVICON',
-    arg: 'favicon',
-  },
 });
 
 module.exports = config;
