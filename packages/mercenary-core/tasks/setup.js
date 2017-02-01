@@ -5,11 +5,14 @@ const chalk = require('chalk');
 const install = require('./install');
 
 const cwd = process.cwd();
-const templatesDir = path.join(__dirname, '../templates');
+const packageDirectory = path.join(__dirname, '..');
+const templatesDir = path.join(packageDirectory, '/templates');
 
 const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
 
 const copyTemplates = () => {
+  cp.execSync(`cp "${packageDirectory}/.babelrc" "${cwd}/.babelrc"`);
+  cp.execSync(`cp "${packageDirectory}/.eslintrc" "${cwd}/.eslintrc"`);
   cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
   cp.execSync(`cp "${templatesDir}/readme.md" "${cwd}/readme.md"`);
   cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
@@ -22,14 +25,14 @@ const copyNpmScripts = () => {
   const parsedPackageJson = JSON.parse(packageJson);
   const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
     start: 'merc --start',
-    prod: 'merc --prod',
-    build: 'merc --build',
-    lint: 'merc --lint',
-    test: 'merc --test',
-    testwatch: 'merc --testWatch',
-    e2e: 'merc --e2e',
-    docker: 'merc --docker',
-    clean: 'merc --clean',
+    // prod: 'merc --prod',
+    // build: 'merc --build',
+    // lint: 'merc --lint',
+    // test: 'merc --test',
+    // testwatch: 'merc --testWatch',
+    // e2e: 'merc --e2e',
+    // docker: 'merc --docker',
+    // clean: 'merc --clean',
   });
 
   parsedPackageJson.scripts = packageJsonScripts;
@@ -87,29 +90,7 @@ const setup = () => {
       ${chalk.cyan('npm start')}
         Starts the development server.
 
-      ${chalk.cyan('npm prod')}
-        Starts the production server.
 
-      ${chalk.cyan('npm run build')}
-        Bundles the client app into static files for production.
-
-      ${chalk.cyan('npm run lint')}
-        Runs ESLint.
-
-      ${chalk.cyan('npm test')}
-        Runs unit tests.
-
-      ${chalk.cyan('npm run testwatch')}
-        Starts the unit test watcher.
-
-      ${chalk.cyan('npm run e2e')}
-        Runs end-to-end tests.
-
-      ${chalk.cyan('npm run docker')}
-        Generate Docker-related files for production.
-
-      ${chalk.cyan('npm run clean')}
-        Delete all build and test artifacts.
 
 
     But first, you should run:
@@ -120,3 +101,29 @@ const setup = () => {
 };
 
 module.exports = setup;
+
+/*
+${chalk.cyan('npm prod')}
+  Starts the production server.
+
+${chalk.cyan('npm run build')}
+  Bundles the client app into static files for production.
+
+${chalk.cyan('npm run lint')}
+  Runs ESLint.
+
+${chalk.cyan('npm test')}
+  Runs unit tests.
+
+${chalk.cyan('npm run testwatch')}
+  Starts the unit test watcher.
+
+${chalk.cyan('npm run e2e')}
+  Runs end-to-end tests.
+
+${chalk.cyan('npm run docker')}
+  Generate Docker-related files for production.
+
+${chalk.cyan('npm run clean')}
+  Delete all build and test artifacts.
+ */

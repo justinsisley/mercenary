@@ -8,7 +8,7 @@ const start = () => {
   nodemon({
     script: serverIndex,
     watch: ['server/'],
-    exec: 'node --inspect',
+    exec: 'NODE_ENV=development node --inspect',
   });
 
   nodemon

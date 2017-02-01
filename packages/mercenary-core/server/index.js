@@ -19,11 +19,11 @@ const ENV = config.get('env');
 const PORT = config.get('port');
 const PROXY_API = config.get('proxyApi');
 const MAX_AGE = config.get('maxAge');
+const WEBPACK_DEV_SERVER_PORT = config.get('webpackDevServerPort');
 
 // Dev server hostname
 const devServerDomain = 'http://localhost';
-const devServerPort = webpackConfig.webpackDevServerPort;
-const devServerHost = `${devServerDomain}:${devServerPort}/`;
+const devServerHost = `${devServerDomain}:${WEBPACK_DEV_SERVER_PORT}/`;
 
 // Get local IP address
 const ip = getIp.address();
@@ -113,7 +113,7 @@ if (ENV === 'development') {
   });
 
   // Start the webpack dev server
-  webpackDevServer.listen(devServerPort);
+  webpackDevServer.listen(WEBPACK_DEV_SERVER_PORT);
 } else {
   // Proxy static assets to the local static directory and cache them
   app.use('/', express.static(staticDir, {

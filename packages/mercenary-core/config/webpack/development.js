@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const precss = require('precss');
 const eslintFormatter = require('eslint/lib/formatters/stylish');
 const config = require('../index');
 
@@ -14,7 +13,6 @@ const templatesDir = path.join(packageDirectory, '/templates');
 
 // Files of interest
 const javascriptEntryPoint = path.join(cwd, './client/index');
-const eslintConfig = path.join(packageDirectory, '/.eslintrc');
 
 // Developers' custom config.js
 const projectConfigPath = path.join(cwd, './config.js');
@@ -30,6 +28,8 @@ if (projectConfig.webpack && projectConfig.webpack.globals) {
 const htmlEntryPoint = new HtmlWebpackPlugin({
   template: path.join(templatesDir, '/client/index.html'),
 });
+
+console.log(path.resolve('node_modules/babel-preset-mercenary'));
 
 module.exports = {
   // The entry point for the bundle
@@ -53,87 +53,84 @@ module.exports = {
   // Generate a source map
   devtool: 'inline-source-map',
 
-  // Configure eslint for terminal output during development
-  eslint: {
-    configFile: eslintConfig,
-    formatter: eslintFormatter,
-  },
-
   // Options affecting the normal modules
   module: {
-    preLoaders: [
-      // eslint preloader
+    rules: [
+      // ESLint
       {
         test: /\.jsx?$/,
+        enforce: 'pre',
         include: /client/,
         loader: 'eslint-loader',
+        options: {
+          formatter: eslintFormatter,
+        },
       },
-    ],
 
-    // A array of automatically applied loaders
-    loaders: [
       // JavaScript and JSX
       {
         test: /\.jsx?$/,
         include: [/client/, /server/],
         loader: 'babel-loader',
-        query: {
-          presets: [
-            ['env', {
-              targets: {
-                browsers: ['last 2 versions', 'safari >= 7'],
-              },
-            }],
-            'stage-0',
-            'react',
-            'react-hmre',
-          ],
-        },
       },
+
       // CSS modules
       {
         test: /\.css$/,
         include: /client/,
-        loader: 'style!css?modules&sourceMap&localIdentName=[local]___[hash:base64:7]!postcss',
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              localIdentName: '[local]___[hash:base64:7]',
+            },
+          },
+        ],
       },
+
       // Vendor CSS from NPM
       {
         test: /\.css$/,
         include: /node_modules/,
-        loader: 'style!css',
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
       },
+
       // Images
       {
         test: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
         include: [/node_modules/, /clients/],
-        loader: 'file?name=images/[name].[ext]',
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]',
+        },
       },
+
       // Fonts
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
         include: [/node_modules/, /clients/],
-        loader: 'file?name=fonts/[name].[ext]',
-      },
-      // JSON
-      {
-        test: /\.json$/,
-        loader: 'json',
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]',
+        },
       },
     ],
   },
-
-  // PostCSS plugins
-  postcss: [
-    precss(),
-  ],
 
   // Additional plugins for the compiler
   plugins: [
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
     // Skips the emitting phase when there are errors during compilation
-    new webpack.NoErrorsPlugin(),
-
+    new webpack.NoEmitOnErrorsPlugin(),
     // Add entry point and globals
     htmlEntryPoint,
     javaScriptGlobals,
@@ -141,7 +138,4 @@ module.exports = {
 
   // Make web variables accessible to webpack, e.g. window
   target: 'web',
-
-  // Non-standard property to expose the port the webpack dev server runs on
-  webpackDevServerPort,
 };

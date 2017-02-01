@@ -9,14 +9,14 @@ const projectConfig = require(projectConfigPath); // eslint-disable-line
 // Configuration schema
 const config = marshall({
   port: {
-    doc: 'The port to bind',
+    doc: 'The Express server\'s port',
     format: 'port',
     default: (projectConfig.server && projectConfig.server.port) || 3325,
     env: 'PORT',
     arg: 'port',
   },
   webpackDevServerPort: {
-    doc: 'The Webpack Dev Server port to bind',
+    doc: 'The webpack dev server\'s port',
     format: 'port',
     default: (projectConfig.webpack && projectConfig.webpack.devServerPort) || 3326,
     env: 'WEBPACK_DEV_SERVER_PORT',
