@@ -3,17 +3,9 @@ const cp = require('child_process');
 const fs = require('fs');
 const arrayUniq = require('array-uniq');
 
+const cwd = process.cwd();
 const templatesDir = path.join(__dirname, '../templates');
-const boilerplateDir = path.join(__dirname, '../boilerplate');
-
-let cwd = process.cwd();
-try {
-  // When run from npm scripts, this directory will resolve
-  fs.readdirSync(path.join(cwd, '/.git'));
-} catch (err) {
-  // When we run the post-install, we need to traverse up several directories
-  cwd = path.join(cwd, '../..');
-}
+// const boilerplateDir = path.join(__dirname, '../boilerplate');
 
 const exec = (command) => {
   try {
@@ -40,46 +32,45 @@ const gitignore = () => {
   }
 };
 
-// Add .babelrc without overwriting existing
-// TODO: need to be able to patch existing
-const babelrc = () => {
+// Add readme
+const readme = () => {
   try {
-    readFile(`${cwd}/.babelrc`);
+    readFile(`${cwd}/readme.md`);
   } catch (error) {
-    exec(`cp "${templatesDir}/_babelrc" "${cwd}/.babelrc"`);
+    exec(`cp "${templatesDir}/_readme.md" "${cwd}/readme.md"`);
   }
 };
+
+// Add .babelrc without overwriting existing
+// TODO: need to be able to patch existing
+// const babelrc = () => {
+//   try {
+//     readFile(`${cwd}/.babelrc`);
+//   } catch (error) {
+//     exec(`cp "${templatesDir}/_babelrc" "${cwd}/.babelrc"`);
+//   }
+// };
 
 
 // Add .eslintrc without overwriting existing
 // TODO: need to be able to patch existing
-const eslintrc = () => {
-  try {
-    readFile(`${cwd}/.eslintrc`);
-  } catch (error) {
-    exec(`cp "${templatesDir}/_eslintrc" "${cwd}/.eslintrc"`);
-  }
-};
-
-// Add .stylelintrc without overwriting existing
-// TODO: need to be able to patch existing
-const stylelintrc = () => {
-  try {
-    readFile(`${cwd}/.stylelintrc`);
-  } catch (error) {
-    exec(`cp "${templatesDir}/_stylelintrc" "${cwd}/.stylelintrc"`);
-  }
-};
+// const eslintrc = () => {
+//   try {
+//     readFile(`${cwd}/.eslintrc`);
+//   } catch (error) {
+//     exec(`cp "${templatesDir}/_eslintrc" "${cwd}/.eslintrc"`);
+//   }
+// };
 
 // Add .editorconfig without overwriting existing
 // TODO: need to be able to patch existing
-const editorconfig = () => {
-  try {
-    readFile(`${cwd}/.editorconfig`);
-  } catch (error) {
-    exec(`cp "${templatesDir}/_editorconfig" "${cwd}/.editorconfig"`);
-  }
-};
+// const editorconfig = () => {
+//   try {
+//     readFile(`${cwd}/.editorconfig`);
+//   } catch (error) {
+//     exec(`cp "${templatesDir}/_editorconfig" "${cwd}/.editorconfig"`);
+//   }
+// };
 
 // Add config.js
 const configFile = () => {
@@ -119,35 +110,34 @@ const npmScripts = () => {
 };
 
 // Set up npm dependencies for the boilerplate
-const npmDeps = () => {
-  try {
-    const boilerplatePckgJson = readFile(`${boilerplateDir}/package.json`);
-    const parsedBoilerplatePckgJson = JSON.parse(boilerplatePckgJson);
-
-    const packageJson = readFile(`${cwd}/package.json`);
-    const parsedPackageJson = JSON.parse(packageJson);
-    const packageJsonDeps = Object.assign(
-      {},
-      parsedPackageJson.dependencies,
-      parsedBoilerplatePckgJson.dependencies // eslint-disable-line
-    );
-
-    parsedPackageJson.dependencies = packageJsonDeps;
-
-    fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
-  } catch (err) {} // eslint-disable-line
-};
+// const npmDeps = () => {
+//   try {
+//     const boilerplatePckgJson = readFile(`${boilerplateDir}/package.json`);
+//     const parsedBoilerplatePckgJson = JSON.parse(boilerplatePckgJson);
+//
+//     const packageJson = readFile(`${cwd}/package.json`);
+//     const parsedPackageJson = JSON.parse(packageJson);
+//     const packageJsonDeps = Object.assign(
+//       {},
+//       parsedPackageJson.dependencies,
+//       parsedBoilerplatePckgJson.dependencies // eslint-disable-line
+//     );
+//
+//     parsedPackageJson.dependencies = packageJsonDeps;
+//
+//     fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
+//   } catch (err) {} // eslint-disable-line
+// };
 
 // Basic project setup
 const setup = () => {
   gitignore();
-  babelrc();
-  eslintrc();
-  stylelintrc();
-  editorconfig();
+  readme();
+  // babelrc();
+  // eslintrc();
   configFile();
   npmScripts();
-  npmDeps();
+  // npmDeps();
 };
 
 module.exports = setup;

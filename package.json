@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "bump-all": "./bin/bump-all.sh",
     "publish-all": "./bin/publish-all.sh"
   },
   "dependencies": {
