@@ -1,9 +1,12 @@
 {
   "name": "mercenary",
-  "version": "2.0.1",
+  "version": "2.0.5",
   "description": "The force multiplier web application stack",
   "bin": {
     "mercenary": "./index.js"
+  },
+  "scripts": {
+    "postinstall": "node ./postinstall.js"
   },
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -15,6 +18,7 @@
     "chalk": "1.1.3",
     "cross-spawn": "5.0.1",
     "extfs": "0.0.7",
-    "fs-extra": "2.0.0"
+    "fs-extra": "2.0.0",
+    "update-notifier": "1.0.3"
   }
 }

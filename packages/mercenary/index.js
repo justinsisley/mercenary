@@ -5,6 +5,10 @@ const path = require('path');
 const extfs = require('extfs');
 const spawn = require('cross-spawn');
 const chalk = require('chalk');
+const updateNotifier = require('update-notifier');
+const pkg = require('./package.json');
+
+updateNotifier({ pkg }).notify();
 
 const corePackage = 'mercenary-core';
 const appName = process.argv[2];
