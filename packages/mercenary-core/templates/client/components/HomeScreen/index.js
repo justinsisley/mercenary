@@ -12,7 +12,7 @@ function HomeScreen(props) {
   }
 
   return (
-    <DocumentTitle title="Opsurance | Home">
+    <DocumentTitle title="Mercenary | Home">
       <Grid centered columns={6}>
         <Grid.Column>
           <UserForm {...props} />
