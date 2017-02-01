@@ -16,6 +16,7 @@ const presets = [
     targets: {
       browsers: ['last 2 versions', 'safari >= 7'],
     },
+    modules: false,
   }],
   require.resolve('babel-preset-stage-0'),
   require.resolve('babel-preset-react'),
