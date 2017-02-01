@@ -1,15 +1,10 @@
 {
   "name": "mercenary-react-redux",
-  "version": "1.0.0",
   "description": "A react/redux web application built on mercenary",
-  "author": "Justin Sisley",
-  "repository": "https://github.com/justinsisley/mercenary",
-  "license": "ISC",
   "dependencies": {
     "aphrodite": "1.1.0",
     "axios": "0.15.3",
     "classnames": "2.2.5",
-    "mixpanel-browser": "2.10.0",
     "normalizr": "3.1.0",
     "react": "15.4.2",
     "react-document-title": "2.0.2",

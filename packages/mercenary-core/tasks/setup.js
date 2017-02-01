@@ -1,143 +1,84 @@
 const path = require('path');
 const cp = require('child_process');
 const fs = require('fs');
-const arrayUniq = require('array-uniq');
+const chalk = require('chalk');
+const install = require('./install');
 
 const cwd = process.cwd();
 const templatesDir = path.join(__dirname, '../templates');
-// const boilerplateDir = path.join(__dirname, '../boilerplate');
-
-const exec = (command) => {
-  try {
-    cp.execSync(command);
-  } catch (err) {} // eslint-disable-line
-};
 
 const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
 
-// Add .gitignore; modify if one exists; create if one doesn't
-const gitignore = () => {
-  try {
-    const existingGitIgnoreData = readFile(`${cwd}/.gitignore`);
-    const existingIgnores = existingGitIgnoreData.split('\n');
-
-    const templateGitIgnoreData = readFile(`${templatesDir}/_gitignore`);
-    const templateIgnores = templateGitIgnoreData.split('\n');
-
-    const targetIgnores = arrayUniq(templateIgnores.concat(existingIgnores));
-    const targetIgnoresData = targetIgnores.join('\n');
-    fs.writeFileSync(`${cwd}/.gitignore`, targetIgnoresData);
-  } catch (err) {
-    exec(`cp "${templatesDir}/_gitignore" "${cwd}/.gitignore"`);
-  }
-};
-
-// Add readme
-const readme = () => {
-  try {
-    readFile(`${cwd}/readme.md`);
-  } catch (error) {
-    exec(`cp "${templatesDir}/_readme.md" "${cwd}/readme.md"`);
-  }
-};
-
-// Add .babelrc without overwriting existing
-// TODO: need to be able to patch existing
-// const babelrc = () => {
-//   try {
-//     readFile(`${cwd}/.babelrc`);
-//   } catch (error) {
-//     exec(`cp "${templatesDir}/_babelrc" "${cwd}/.babelrc"`);
-//   }
-// };
-
-
-// Add .eslintrc without overwriting existing
-// TODO: need to be able to patch existing
-// const eslintrc = () => {
-//   try {
-//     readFile(`${cwd}/.eslintrc`);
-//   } catch (error) {
-//     exec(`cp "${templatesDir}/_eslintrc" "${cwd}/.eslintrc"`);
-//   }
-// };
-
-// Add .editorconfig without overwriting existing
-// TODO: need to be able to patch existing
-// const editorconfig = () => {
-//   try {
-//     readFile(`${cwd}/.editorconfig`);
-//   } catch (error) {
-//     exec(`cp "${templatesDir}/_editorconfig" "${cwd}/.editorconfig"`);
-//   }
-// };
-
-// Add config.js
-const configFile = () => {
-  var configJson = {}; // eslint-disable-line
-  // If config.js already exists, don't overwrite it
-  try {
-    configJson = require(`${cwd}/config.js`); // eslint-disable-line
-    // TODO: need to be able to patch existing config.js
-  } catch (err) {
-    // config.js doesn't exist; create it
-    const templateConfig = readFile(`${templatesDir}/_config.js`);
-    fs.writeFileSync(`${cwd}/config.js`, templateConfig);
-  }
-};
-
 // Set up npm scripts
 const npmScripts = () => {
-  try {
-    const packageJson = readFile(`${cwd}/package.json`);
-    const parsedPackageJson = JSON.parse(packageJson);
-    const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
-      setup: 'merc --setup',
-      clean: 'merc --clean',
-      test: 'merc --test',
-      'test:watch': 'merc --testWatch',
-      e2e: 'merc --e2e',
-      build: 'merc --build',
-      start: 'merc --start',
-      prod: 'merc --prod',
-      docker: 'merc --docker',
-    });
+  const packageJson = readFile(`${cwd}/package.json`);
+  const parsedPackageJson = JSON.parse(packageJson);
+  const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
+    start: 'merc --start',
+    prod: 'merc --prod',
+    build: 'merc --build',
+    test: 'merc --test',
+    testwatch: 'merc --testWatch',
+    e2e: 'merc --e2e',
+    docker: 'merc --docker',
+    clean: 'merc --clean',
+  });
 
-    parsedPackageJson.scripts = packageJsonScripts;
+  parsedPackageJson.scripts = packageJsonScripts;
 
-    fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
-  } catch (err) {} // eslint-disable-line
+  fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
 };
 
 // Set up npm dependencies for the boilerplate
-// const npmDeps = () => {
-//   try {
-//     const boilerplatePckgJson = readFile(`${boilerplateDir}/package.json`);
-//     const parsedBoilerplatePckgJson = JSON.parse(boilerplatePckgJson);
-//
-//     const packageJson = readFile(`${cwd}/package.json`);
-//     const parsedPackageJson = JSON.parse(packageJson);
-//     const packageJsonDeps = Object.assign(
-//       {},
-//       parsedPackageJson.dependencies,
-//       parsedBoilerplatePckgJson.dependencies // eslint-disable-line
-//     );
-//
-//     parsedPackageJson.dependencies = packageJsonDeps;
-//
-//     fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
-//   } catch (err) {} // eslint-disable-line
-// };
+const npmDeps = () => {
+  const templatesPackageJson = readFile(`${templatesDir}/package.json`);
+  const parsedTemplatesPackageJson = JSON.parse(templatesPackageJson);
+
+  const packageJson = readFile(`${cwd}/package.json`);
+  const parsedPackageJson = JSON.parse(packageJson);
+  const packageJsonDeps = Object.assign(
+    {},
+    parsedPackageJson.dependencies,
+    parsedTemplatesPackageJson.dependencies
+  );
+
+  parsedPackageJson.dependencies = packageJsonDeps;
+
+  fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(parsedPackageJson, null, 2));
+
+  console.log('Installing boilerplate packages...');
+  console.log();
+
+  install();
+};
 
 // Basic project setup
 const setup = () => {
-  gitignore();
-  readme();
-  // babelrc();
-  // eslintrc();
-  configFile();
+  cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
+  cp.execSync(`cp "${templatesDir}/readme.md" "${cwd}/readme.md"`);
+  cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
+  cp.execSync(`cp -R "${templatesDir}/client" "${cwd}/client"`);
+  cp.execSync(`cp -R "${templatesDir}/server" "${cwd}/server"`);
+
   npmScripts();
-  // npmDeps();
+  npmDeps();
+
+  const paths = cwd.split('/');
+  const appName = paths[paths.length - 1];
+  const appPath = cwd.replace(`/${appName}`, '');
+
+  console.log(`Success! Created ${chalk.green(appName)} at ${chalk.green(appPath)}`);
+  console.log('Inside that directory, you can run several commands:');
+  console.log();
+  console.log(chalk.cyan('  npm start'));
+  console.log('    Starts the development server.');
+  console.log();
+  console.log(chalk.cyan('  npm run build'));
+  console.log('    Bundles the app into static files for production.');
+  console.log();
+  console.log(chalk.cyan('  npm test'));
+  console.log('    Starts the test runner.');
+  console.log();
 };
 
 module.exports = setup;

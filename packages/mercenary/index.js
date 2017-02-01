@@ -45,7 +45,7 @@ fs.writeFileSync(
 
 process.chdir(projectDirectory);
 
-console.log('Installing packages...');
+console.log('Installing mercenary core packages...');
 console.log();
 
 const installCore = (callback) => {
