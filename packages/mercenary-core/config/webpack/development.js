@@ -116,6 +116,8 @@ module.exports = {
     javaScriptGlobals,
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
+    // prints more readable module names in the browser console on HMR updates
+    new webpack.NamedModulesPlugin(),
     // Skips the emitting phase when there are errors during compilation
     new webpack.NoEmitOnErrorsPlugin(),
     // Inject generated assets into HTML file
