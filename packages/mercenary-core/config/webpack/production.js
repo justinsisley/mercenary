@@ -1,23 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const precss = require('precss');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // Directories of interest
 const cwd = process.cwd();
 const clientDir = path.join(cwd, './client');
 const staticDir = path.join(cwd, './static');
-const packageDirectory = path.join(__dirname, '../../');
-const templatesDir = path.join(packageDirectory, '/templates');
-
-// Set global vars
-const environment = new webpack.DefinePlugin({
-  'process.env': {
-    // Useful to reduce the size of client-side libraries, e.g. react
-    NODE_ENV: JSON.stringify('production'),
-  },
-});
 
 // Developers' custom config.js
 const projectConfigPath = path.join(cwd, './config.js');
@@ -28,21 +18,6 @@ var javaScriptGlobals = null; // eslint-disable-line
 if (projectConfig.webpack && projectConfig.webpack.globals) {
   javaScriptGlobals = new webpack.ProvidePlugin(projectConfig.webpack.globals);
 }
-
-// Minify JavaScript
-const uglify = new webpack.optimize.UglifyJsPlugin({
-  comments: false,
-  compress: {
-    warnings: false,
-  },
-  mangle: true,
-});
-
-// Webpack-generated HTML file
-const htmlEntryPoint = new HtmlWebpackPlugin({
-  filename: path.join(staticDir, '/index.html'),
-  template: path.join(templatesDir, '/client/index.html'),
-});
 
 module.exports = {
   // The entry point for the bundle
@@ -58,71 +33,86 @@ module.exports = {
 
   // Options affecting the normal modules
   module: {
-    // A array of automatically applied loaders
-    loaders: [
+    rules: [
       // JavaScript and JSX
       {
         test: /\.jsx?$/,
         include: [/client/, /server/],
         loader: 'babel-loader',
-        query: {
-          presets: [
-            ['env', {
-              targets: {
-                browsers: ['last 2 versions', 'safari >= 7'],
-              },
-            }],
-            'stage-0',
-            'react',
-          ],
-        },
       },
       // CSS modules
       {
         test: /\.css$/,
         include: /client/,
-        loader:
-        ExtractTextPlugin.extract('style', 'css?modules!postcss'),
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader',
+        }),
       },
       // Vendor CSS from NPM
       {
         test: /\.css$/,
         include: /node_modules/,
-        loader: ExtractTextPlugin.extract('style', 'css'),
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader',
+        }),
       },
       // Images
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
         include: [/node_modules/, /clients/],
-        loader: 'file?name=/images/[hash].[ext]',
+        loader: 'file-loader',
+        options: {
+          name: '/images/[hash].[ext]',
+        },
       },
       // Fonts
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
         include: [/node_modules/, /clients/],
-        loader: 'file?name=/fonts/[hash].[ext]',
-      },
-      // JSON
-      {
-        test: /\.json$/,
-        loader: 'json',
+        loader: 'file-loader',
+        options: {
+          name: '/fonts/[hash].[ext]',
+        },
       },
     ],
   },
 
-  // PostCSS plugins
-  postcss: [
-    precss(),
-  ],
-
   // Additional plugins for the compiler
   plugins: [
-    environment,
+    // JavaScript runtime globals
     javaScriptGlobals,
-    uglify,
-    // Extract text from bundle into a file
-    new ExtractTextPlugin('/css/[contenthash].css'),
-    htmlEntryPoint,
+    // Define globals for compilation
+    new webpack.DefinePlugin({
+      'process.env': {
+        // Useful to reduce the size of client-side libraries, e.g. react
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+    // Minify JavaScript
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      mangle: true,
+    }),
+    // Extract CSS into a separate file
+    new ExtractTextPlugin({
+      filename: '/css/[contenthash].css',
+    }),
+    // Minify CSS
+    new OptimizeCssAssetsPlugin({
+      // assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessorOptions: {
+        discardComments: {
+          removeAll: true,
+        },
+      },
+    }),
+    // Copy HTML file and inject generated assets
+    new HtmlWebpackPlugin({
+      filename: path.join(staticDir, '/index.html'),
+      template: path.join(clientDir, '/index.html'),
+    }),
   ],
 
   // Make web variables accessible to webpack, e.g. window

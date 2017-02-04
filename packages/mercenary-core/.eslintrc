@@ -1,3 +1,7 @@
 {
-  "extends": "mercenary"
+  "extends": "mercenary",
+  "rules": {
+    "comma-dangle": "off",
+    "no-console": "off",
+  }
 }

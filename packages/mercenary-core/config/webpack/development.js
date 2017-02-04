@@ -8,11 +8,7 @@ const webpackDevServerPort = config.get('webpackDevServerPort');
 
 // Directories of interest
 const cwd = process.cwd();
-const packageDirectory = path.join(__dirname, '../../');
-const templatesDir = path.join(packageDirectory, '/templates');
-
-// Files of interest
-const javascriptEntryPoint = path.join(cwd, './client/index');
+const clientDir = path.join(cwd, './client');
 
 // Developers' custom config.js
 const projectConfigPath = path.join(cwd, './config.js');
@@ -24,19 +20,13 @@ if (projectConfig.webpack && projectConfig.webpack.globals) {
   javaScriptGlobals = new webpack.ProvidePlugin(projectConfig.webpack.globals);
 }
 
-// Webpack-generated HTML file
-const htmlEntryPoint = new HtmlWebpackPlugin({
-  template: path.join(templatesDir, '/client/index.html'),
-});
-
-console.log(path.resolve('node_modules/babel-preset-mercenary'));
-
 module.exports = {
   // The entry point for the bundle
   entry: [
     `webpack-dev-server/client?http://localhost:${webpackDevServerPort}`,
     'webpack/hot/only-dev-server',
-    javascriptEntryPoint,
+    // JavaScript entry point
+    path.join(cwd, './client/index'),
   ],
 
   // Options affecting the output
@@ -66,14 +56,12 @@ module.exports = {
           formatter: eslintFormatter,
         },
       },
-
       // JavaScript and JSX
       {
         test: /\.jsx?$/,
         include: [/client/, /server/],
         loader: 'babel-loader',
       },
-
       // CSS modules
       {
         test: /\.css$/,
@@ -92,7 +80,6 @@ module.exports = {
           },
         ],
       },
-
       // Vendor CSS from NPM
       {
         test: /\.css$/,
@@ -102,7 +89,6 @@ module.exports = {
           'css-loader',
         ],
       },
-
       // Images
       {
         test: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
@@ -112,7 +98,6 @@ module.exports = {
           name: 'images/[name].[ext]',
         },
       },
-
       // Fonts
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
@@ -127,13 +112,16 @@ module.exports = {
 
   // Additional plugins for the compiler
   plugins: [
+    // JavaScript runtime globals
+    javaScriptGlobals,
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
     // Skips the emitting phase when there are errors during compilation
     new webpack.NoEmitOnErrorsPlugin(),
-    // Add entry point and globals
-    htmlEntryPoint,
-    javaScriptGlobals,
+    // Inject generated assets into HTML file
+    new HtmlWebpackPlugin({
+      template: path.join(clientDir, '/index.html'),
+    }),
   ],
 
   // Make web variables accessible to webpack, e.g. window

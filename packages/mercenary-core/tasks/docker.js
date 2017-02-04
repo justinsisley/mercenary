@@ -1,8 +1,8 @@
 const path = require('path');
 const cp = require('child_process');
 
-const cwd = process.cwd(); // eslint-disable-line
-const templatesDir = path.join(__dirname, '../templates');
+const cwd = process.cwd();
+const dockerDir = path.join(__dirname, '../docker');
 
 const exec = (command) => {
   try {
@@ -12,9 +12,8 @@ const exec = (command) => {
 
 // Add Docker-related files
 const docker = () => {
-  // Add Dockerfile and .dockerignore
-  exec(`cp "${templatesDir}/_Dockerfile" "${cwd}/Dockerfile"`);
-  exec(`cp "${templatesDir}/_dockerignore" "${cwd}/.dockerignore"`);
+  exec(`cp "${dockerDir}/Dockerfile" "${cwd}/Dockerfile"`);
+  exec(`cp "${dockerDir}/dockerignore" "${cwd}/.dockerignore"`);
 };
 
 module.exports = docker;

@@ -7,7 +7,6 @@ const test = require('./tasks/test');
 const testWatch = require('./tasks/testWatch');
 const e2e = require('./tasks/e2e');
 const clean = require('./tasks/clean');
-const install = require('./tasks/install');
 const build = require('./tasks/build');
 const startDev = require('./tasks/startDev');
 const startProd = require('./tasks/startProd');
@@ -37,7 +36,6 @@ if (argv.e2e) {
 
 if (argv.clean) {
   clean();
-  install();
 }
 
 if (argv.build) {

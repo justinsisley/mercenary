@@ -25,14 +25,14 @@ const copyNpmScripts = () => {
   const parsedPackageJson = JSON.parse(packageJson);
   const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
     start: 'merc --start',
-    // prod: 'merc --prod',
-    // build: 'merc --build',
-    // lint: 'merc --lint',
-    // test: 'merc --test',
-    // testwatch: 'merc --testWatch',
-    // e2e: 'merc --e2e',
-    // docker: 'merc --docker',
-    // clean: 'merc --clean',
+    prod: 'merc --prod',
+    build: 'merc --build',
+    lint: 'merc --lint',
+    test: 'merc --test',
+    testwatch: 'merc --testWatch',
+    e2e: 'merc --e2e',
+    docker: 'merc --docker',
+    clean: 'merc --clean',
   });
 
   parsedPackageJson.scripts = packageJsonScripts;
@@ -90,7 +90,29 @@ const setup = () => {
       ${chalk.cyan('npm start')}
         Starts the development server.
 
+      ${chalk.cyan('npm prod')}
+        Starts the production server.
 
+      ${chalk.cyan('npm run build')}
+        Bundles the client app into static files for production.
+
+      ${chalk.cyan('npm run lint')}
+        Runs ESLint.
+
+      ${chalk.cyan('npm test')}
+        Runs unit tests.
+
+      ${chalk.cyan('npm run testwatch')}
+        Starts the unit test watcher.
+
+      ${chalk.cyan('npm run e2e')}
+        Runs end-to-end tests.
+
+      ${chalk.cyan('npm run docker')}
+        Generate Docker-related files for production.
+
+      ${chalk.cyan('npm run clean')}
+        Delete all build and test artifacts.
 
 
     But first, you should run:
@@ -101,29 +123,3 @@ const setup = () => {
 };
 
 module.exports = setup;
-
-/*
-${chalk.cyan('npm prod')}
-  Starts the production server.
-
-${chalk.cyan('npm run build')}
-  Bundles the client app into static files for production.
-
-${chalk.cyan('npm run lint')}
-  Runs ESLint.
-
-${chalk.cyan('npm test')}
-  Runs unit tests.
-
-${chalk.cyan('npm run testwatch')}
-  Starts the unit test watcher.
-
-${chalk.cyan('npm run e2e')}
-  Runs end-to-end tests.
-
-${chalk.cyan('npm run docker')}
-  Generate Docker-related files for production.
-
-${chalk.cyan('npm run clean')}
-  Delete all build and test artifacts.
- */
