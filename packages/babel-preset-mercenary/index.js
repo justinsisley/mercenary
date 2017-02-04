@@ -2,7 +2,7 @@
 // https://babeljs.io/docs/usage/babelrc/#env-option
 // It’s also nice that we can enforce `NODE_ENV` being specified.
 const env = process.env.BABEL_ENV || process.env.NODE_ENV;
-if (env !== 'development' && env !== 'production') {
+if (env !== 'development' && env !== 'test' && env !== 'production') {
   throw new Error(`
     Using \`babel-preset-mercenary\` requires that you specify \`NODE_ENV\` or
     \`BABEL_ENV\` environment variables. Valid values are "development",
