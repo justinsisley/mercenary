@@ -112,7 +112,7 @@ const setup = () => {
         Generate Docker-related files for production.
 
       ${chalk.cyan('npm run clean')}
-        Delete all build and test artifacts.
+        Delete build and test artifacts.
 
 
     But first, you should run:
