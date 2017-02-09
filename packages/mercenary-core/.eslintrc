@@ -3,5 +3,6 @@
   "rules": {
     "comma-dangle": "off",
     "no-console": "off",
+    "import/no-dynamic-require": "off"
   }
 }

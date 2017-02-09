@@ -3,25 +3,11 @@ const marshall = require('marshall/index');
 
 // Handle config.js overrides
 const cwd = process.cwd();
-const projectConfigPath = path.join(cwd, './config.js');
+const projectConfigPath = path.join(cwd, './mercenary.config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Configuration schema
 const config = marshall({
-  port: {
-    doc: 'The Express server\'s port',
-    format: 'port',
-    default: (projectConfig.server && projectConfig.server.port) || 3325,
-    env: 'PORT',
-    arg: 'port',
-  },
-  webpackDevServerPort: {
-    doc: 'The webpack dev server\'s port',
-    format: 'port',
-    default: (projectConfig.webpack && projectConfig.webpack.devServerPort) || 3326,
-    env: 'WEBPACK_DEV_SERVER_PORT',
-    arg: 'webpackDevServerPort',
-  },
   env: {
     doc: 'The environment',
     format: String,
@@ -29,10 +15,24 @@ const config = marshall({
     env: 'ENV',
     arg: 'env',
   },
+  expressPort: {
+    doc: 'The Express server\'s port',
+    format: 'port',
+    default: 3325,
+    env: 'EXPRESS_PORT',
+    arg: 'express-port',
+  },
+  webpackDevServerPort: {
+    doc: 'The webpack dev server\'s port',
+    format: 'port',
+    default: 3326,
+    env: 'WEBPACK_DEV_SERVER_PORT',
+    arg: 'webpackDevServerPort',
+  },
   proxyApi: {
     doc: 'The remote API to proxy to',
     format: String,
-    default: (projectConfig.server && projectConfig.server.proxyApi) || '',
+    default: projectConfig.proxyApi || '',
     env: 'PROXY_API',
     arg: 'proxy-api',
   },

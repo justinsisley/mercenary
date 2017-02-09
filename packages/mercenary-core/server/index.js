@@ -16,10 +16,10 @@ const webpackConfig = require('../config/webpack/development');
 
 // Configurable values
 const ENV = config.get('env');
-const PORT = config.get('port');
+const EXPRESS_PORT = config.get('expressPort');
+const WEBPACK_DEV_SERVER_PORT = config.get('webpackDevServerPort');
 const PROXY_API = config.get('proxyApi');
 const MAX_AGE = config.get('maxAge');
-const WEBPACK_DEV_SERVER_PORT = config.get('webpackDevServerPort');
 
 // Dev server hostname
 const devServerDomain = 'http://localhost';
@@ -29,9 +29,9 @@ const devServerHost = `${devServerDomain}:${WEBPACK_DEV_SERVER_PORT}/`;
 const ip = getIp.address();
 
 // Various references to this local server
-const localhost = `http://localhost:${PORT}`;
-const localhostIP = `http://127.0.0.1:${PORT}`;
-const localhostNetworkIP = `http://${ip}:${PORT}`;
+const localhost = `http://localhost:${EXPRESS_PORT}`;
+const localhostIP = `http://127.0.0.1:${EXPRESS_PORT}`;
+const localhostNetworkIP = `http://${ip}:${EXPRESS_PORT}`;
 
 // References to important directories
 const cwd = process.cwd();
@@ -127,7 +127,7 @@ if (ENV === 'development') {
 }
 
 // Start the Express server
-app.listen(PORT, () => {
+app.listen(EXPRESS_PORT, () => {
   // eslint-disable-next-line
   var message = `\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`;
 

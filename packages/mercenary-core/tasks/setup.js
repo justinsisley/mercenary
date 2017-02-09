@@ -15,7 +15,9 @@ const copyTemplates = () => {
   cp.execSync(`cp "${packageDirectory}/.eslintrc" "${cwd}/.eslintrc"`);
   cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
   cp.execSync(`cp "${templatesDir}/readme.md" "${cwd}/readme.md"`);
-  cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
+  cp.execSync(`cp "${templatesDir}/mercenary.config.js" "${cwd}/mercenary.config.js"`);
+  cp.execSync(`cp "${templatesDir}/mercenary.deploy.js" "${cwd}/mercenary.deploy.js"`);
+
   cp.execSync(`cp -R "${templatesDir}/client" "${cwd}/client"`);
   cp.execSync(`cp -R "${templatesDir}/server" "${cwd}/server"`);
 };
@@ -26,13 +28,11 @@ const copyNpmScripts = () => {
   const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
     start: 'merc --start',
     prod: 'merc --prod',
-    build: 'merc --build',
-    lint: 'merc --lint',
     test: 'merc --test',
     testwatch: 'merc --testWatch',
     e2e: 'merc --e2e',
-    docker: 'merc --docker',
     clean: 'merc --clean',
+    deploy: 'merc --deploy',
   });
 
   parsedPackageJson.scripts = packageJsonScripts;

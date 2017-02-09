@@ -23,9 +23,9 @@ When the installation completes, take a look at the contents of your project dir
 
 ### Environment Configuration
 
-A special environment configuration file named __config.js__ is also created.
+A special environment configuration file named __mercenary.config.js__ is also created.
 
-When created for the first time, __config.js__ will contain default values for all of mercenary's configurable properties. Mercenary is also capable of adding more configurable properties as they become available, and will non-destructively patch the local __config.js__ file as needed.
+When created for the first time, __mercenary.config.js__ will contain default values for all of mercenary's configurable properties. Mercenary is also capable of adding more configurable properties as they become available, and will non-destructively patch the local __mercenary.config.js__ file as needed.
 
 Now that Mercenary is configured, it's time to build your application.
 

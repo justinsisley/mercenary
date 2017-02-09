@@ -5,7 +5,7 @@
     "aphrodite": "1.1.0",
     "axios": "0.15.3",
     "classnames": "2.2.5",
-    "normalizr": "3.1.0",
+    "normalizr": "3.2.0",
     "react": "15.4.2",
     "react-document-title": "2.0.2",
     "react-dom": "15.4.2",

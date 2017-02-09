@@ -11,7 +11,7 @@ const cwd = process.cwd();
 const clientDir = path.join(cwd, './client');
 
 // Developers' custom config.js
-const projectConfigPath = path.join(cwd, './config.js');
+const projectConfigPath = path.join(cwd, './mercenary.config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Globals for webpack
