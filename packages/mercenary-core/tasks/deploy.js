@@ -32,12 +32,12 @@ function getAppVersionLabel() {
 }
 
 // AWS constants
-const accessKeyId = config.accessKeyId;
-const secretAccessKey = config.secretAccessKey;
-const region = config.region;
-const ebApplicationName = config.ebApplicationName;
-const ebEnvironmentName = config.ebEnvironmentName;
-const s3Bucket = config.s3Bucket;
+const accessKeyId = config.iam.accessKeyId;
+const secretAccessKey = config.iam.secretAccessKey;
+const region = config.elasticBeanstalk.region;
+const ebApplicationName = config.elasticBeanstalk.applicationName;
+const ebEnvironmentName = config.elasticBeanstalk.environmentName;
+const s3Bucket = config.s3.bucket;
 const containerPort = 3325;
 
 // Basic AWS configuration
