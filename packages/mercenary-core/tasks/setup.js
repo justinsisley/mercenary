@@ -13,7 +13,7 @@ const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
 const copyTemplates = () => {
   // Files
   cp.execSync(`cp "${packageDirectory}/.babelrc" "${cwd}/.babelrc"`);
-  cp.execSync(`cp "${packageDirectory}/.eslintrc" "${cwd}/.eslintrc"`);
+  cp.execSync(`cp "${templatesDir}/.eslintrc" "${cwd}/.eslintrc"`);
   cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
   cp.execSync(`cp "${templatesDir}/readme.md" "${cwd}/readme.md"`);
   cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
