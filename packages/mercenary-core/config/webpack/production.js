@@ -10,7 +10,7 @@ const clientDir = path.join(cwd, './client');
 const staticDir = path.join(cwd, './static');
 
 // Developers' custom config.js
-const projectConfigPath = path.join(cwd, './mercenary.config.js');
+const projectConfigPath = path.join(cwd, './config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Globals for webpack

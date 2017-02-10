@@ -11,13 +11,15 @@ const templatesDir = path.join(packageDirectory, '/templates');
 const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
 
 const copyTemplates = () => {
+  // Files
   cp.execSync(`cp "${packageDirectory}/.babelrc" "${cwd}/.babelrc"`);
   cp.execSync(`cp "${packageDirectory}/.eslintrc" "${cwd}/.eslintrc"`);
   cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
   cp.execSync(`cp "${templatesDir}/readme.md" "${cwd}/readme.md"`);
-  cp.execSync(`cp "${templatesDir}/mercenary.config.js" "${cwd}/mercenary.config.js"`);
-  cp.execSync(`cp "${templatesDir}/mercenary.deploy.js" "${cwd}/mercenary.deploy.js"`);
+  cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
+  cp.execSync(`cp "${templatesDir}/deploy.js" "${cwd}/deploy.js"`);
 
+  // Directories
   cp.execSync(`cp -R "${templatesDir}/client" "${cwd}/client"`);
   cp.execSync(`cp -R "${templatesDir}/server" "${cwd}/server"`);
 };
@@ -27,12 +29,12 @@ const copyNpmScripts = () => {
   const parsedPackageJson = JSON.parse(packageJson);
   const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
     start: 'merc --start',
-    prod: 'merc --prod',
     test: 'merc --test',
     testwatch: 'merc --testWatch',
     e2e: 'merc --e2e',
-    clean: 'merc --clean',
+    prod: 'merc --prod',
     deploy: 'merc --deploy',
+    clean: 'merc --clean',
   });
 
   parsedPackageJson.scripts = packageJsonScripts;
@@ -90,15 +92,6 @@ const setup = () => {
       ${chalk.cyan('npm start')}
         Starts the development server.
 
-      ${chalk.cyan('npm prod')}
-        Starts the production server.
-
-      ${chalk.cyan('npm run build')}
-        Bundles the client app into static files for production.
-
-      ${chalk.cyan('npm run lint')}
-        Runs ESLint.
-
       ${chalk.cyan('npm test')}
         Runs unit tests.
 
@@ -108,8 +101,11 @@ const setup = () => {
       ${chalk.cyan('npm run e2e')}
         Runs end-to-end tests.
 
-      ${chalk.cyan('npm run docker')}
-        Generate Docker-related files for production.
+      ${chalk.cyan('npm run prod')}
+        Builds the client and starts the production server.
+
+      ${chalk.cyan('npm run deploy')}
+        Deploy application to ElasticBeanstalk.
 
       ${chalk.cyan('npm run clean')}
         Delete build and test artifacts.

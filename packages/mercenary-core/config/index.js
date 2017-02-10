@@ -3,7 +3,7 @@ const marshall = require('marshall/index');
 
 // Handle config.js overrides
 const cwd = process.cwd();
-const projectConfigPath = path.join(cwd, './mercenary.config.js');
+const projectConfigPath = path.join(cwd, './config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Configuration schema
