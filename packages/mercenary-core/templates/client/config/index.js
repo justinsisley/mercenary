@@ -11,13 +11,6 @@ const config = marshall({
       arg: 'jwt-localstorage-key',
     },
   },
-  mixPanelToken: {
-    doc: 'The MixPanel token for event tracking',
-    format: String,
-    default: '9753a34980798dc65709f2592f6b1eee',
-    env: 'MIXPANEL_TOKEN',
-    arg: 'mixpanel-token',
-  },
 });
 
 module.exports = config;
