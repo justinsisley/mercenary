@@ -14,6 +14,8 @@ const getIp = require('ip');
 const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
+require('babel-polyfill');
+
 // Configurable values
 const ENV = config.get('env');
 const EXPRESS_PORT = config.get('expressPort');
