@@ -105,7 +105,7 @@ const setup = () => {
         Builds the client and starts the production server.
 
       ${chalk.cyan('npm run deploy')}
-        Deploy application to ElasticBeanstalk.
+        Deploy the Dockerized application to ElasticBeanstalk.
 
       ${chalk.cyan('npm run clean')}
         Delete build and test artifacts.
