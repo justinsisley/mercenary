@@ -38,7 +38,7 @@ const region = config.region;
 const ebApplicationName = config.ebApplicationName;
 const ebEnvironmentName = config.ebEnvironmentName;
 const s3Bucket = config.s3Bucket;
-const containerPort = config.containerPort;
+const containerPort = 3325;
 
 // Basic AWS configuration
 AWS.config.region = region;

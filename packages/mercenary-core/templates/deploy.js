@@ -1,6 +1,6 @@
 module.exports = {
   // AWS credentials from IAM.
-  // This user should have the following policies:
+  // This user must have the following policies:
   // AmazonS3FullAccess, AWSElasticBeanstalkFullAccess
   accessKeyId: '',
   secretAccessKey: '',
@@ -16,7 +16,4 @@ module.exports = {
   s3: {
     bucket: '',
   },
-
-  // The port the Docker container will expose
-  containerPort: '3325',
 };
