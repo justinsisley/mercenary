@@ -11,6 +11,7 @@ const url = require('url');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const getIp = require('ip');
+const chokidar = require('chokidar');
 const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
@@ -73,8 +74,11 @@ try {
 // code to throw errors as expected.
 if (localServerExists) {
   // eslint-disable-next-line
-  const rootRouter = require(localServerIndex);
-  app.use('/api', rootRouter);
+  // let rootRouter = require(localServerIndex);
+  app.use('/api', (req, res, next) => {
+    // eslint-disable-next-line
+    require(localServerIndex)(req, res, next);
+  });
 }
 
 // Determine if a local middleware file exists
@@ -114,6 +118,25 @@ if (ENV === 'development') {
 
   // Start the webpack dev server
   webpackDevServer.listen(WEBPACK_DEV_SERVER_PORT);
+
+  // Do "hot-reloading" of express stuff on the server
+  // Throw away cached modules and re-require next time
+  // Ensure there's no important state in there!
+  const watcher = chokidar.watch(path.join(cwd, './server'));
+
+  watcher.on('ready', () => {
+    watcher.on('all', (eventName, filePath) => {
+      Object.keys(require.cache).forEach((id) => {
+        if (/\/server\//.test(id)) {
+          delete require.cache[id];
+        }
+      });
+
+      const shortPath = filePath.replace(cwd, '');
+      // eslint-disable-next-line
+      console.log(`\nServer module cache cleared due to change in:\n${shortPath}\n`);
+    });
+  });
 } else {
   // Proxy static assets to the local static directory and cache them
   app.use('/', express.static(staticDir, {

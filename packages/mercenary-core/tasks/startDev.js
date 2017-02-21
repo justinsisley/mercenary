@@ -1,29 +1,13 @@
 const path = require('path');
-const nodemon = require('nodemon');
+const cp = require('child_process');
 
-const cwd = process.cwd();
 const serverIndex = path.join(__dirname, '../server/index');
 
 const start = () => {
-  nodemon({
-    script: serverIndex,
-    watch: ['server/'],
-    exec: 'NODE_ENV=development node --inspect',
-  });
-
-  nodemon
-  .on('quit', () => {
-    process.exit(0);
-  })
-  .on('restart', (files) => {
-    const fileList = files.map((file) => {
-      const shortPath = file.replace(cwd, '');
-      return `\n${shortPath}`;
-    });
-
-    // eslint-disable-next-line
-    console.log(`\nApp restarted due to change in:${fileList}\n`);
-  });
+  return cp.execSync(
+    `NODE_ENV=development node --inspect ${serverIndex}`,
+    { stdio: 'inherit' }
+  );
 };
 
 module.exports = start;
