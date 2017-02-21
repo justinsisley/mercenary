@@ -24,6 +24,10 @@ function HomeScreen(props) {
   );
 }
 
+HomeScreen.defaultProps = {
+  user: {},
+};
+
 HomeScreen.propTypes = {
   user: React.PropTypes.shape(),
 };

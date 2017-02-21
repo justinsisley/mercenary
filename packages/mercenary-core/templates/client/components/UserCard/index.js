@@ -41,6 +41,10 @@ function UserCard(props) {
   );
 }
 
+UserCard.defaultProps = {
+  user: {},
+};
+
 UserCard.propTypes = {
   user: React.PropTypes.shape(),
 };

@@ -41,7 +41,7 @@ module.exports = {
   },
 
   // Generate a source map
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
 
   // Options affecting the normal modules
   module: {

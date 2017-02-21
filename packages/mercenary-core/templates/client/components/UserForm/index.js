@@ -4,6 +4,11 @@ import validator from 'validator';
 import status from '../../constants/status';
 
 class UserForm extends React.Component {
+  static defaultProps = {
+    user: {},
+    userActions: {},
+  }
+
   static propTypes = {
     user: React.PropTypes.shape(),
     userActions: React.PropTypes.shape(),
