@@ -30,9 +30,10 @@ const copyNpmScripts = () => {
   const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
     start: 'merc --start',
     test: 'merc --test',
-    testwatch: 'merc --testWatch',
+    'test:watch': 'merc --testWatch',
     e2e: 'merc --e2e',
     prod: 'merc --prod',
+    predeploy: 'npm test && npm run e2e',
     deploy: 'merc --deploy',
     clean: 'merc --clean',
   });
