@@ -15,7 +15,7 @@
     "redux": "3.6.0",
     "redux-actions": "1.2.1",
     "redux-thunk": "2.2.0",
-    "semantic-ui-css": "2.2.8",
+    "semantic-ui-css": "2.2.7",
     "semantic-ui-react": "0.65.0",
     "validator": "6.2.1"
   }

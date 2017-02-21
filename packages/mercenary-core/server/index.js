@@ -12,6 +12,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const getIp = require('ip');
 const chokidar = require('chokidar');
+const basicAuth = require('basic-auth-connect');
 const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
@@ -21,6 +22,8 @@ const EXPRESS_PORT = config.get('expressPort');
 const WEBPACK_DEV_SERVER_PORT = config.get('webpackDevServerPort');
 const PROXY_API = config.get('proxyApi');
 const MAX_AGE = config.get('maxAge');
+const NETDATA_USERNAME = config.get('netdata').username;
+const NETDATA_PASSWORD = config.get('netdata').password;
 
 // Dev server hostname
 const devServerDomain = 'http://localhost';
@@ -74,7 +77,6 @@ try {
 // code to throw errors as expected.
 if (localServerExists) {
   // eslint-disable-next-line
-  // let rootRouter = require(localServerIndex);
   app.use('/api', (req, res, next) => {
     // eslint-disable-next-line
     require(localServerIndex)(req, res, next);
@@ -143,6 +145,13 @@ if (ENV === 'development') {
     maxAge: MAX_AGE,
   }));
 
+  // Proxy netdata path to netdata app
+  app.use(
+    '/_netdata',
+    basicAuth(NETDATA_USERNAME, NETDATA_PASSWORD),
+    proxy(url.parse('http://127.0.0.1:19999'))
+  );
+
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
     res.sendFile(path.join(cwd, './static/index.html'));
@@ -153,7 +162,6 @@ if (ENV === 'development') {
 app.listen(EXPRESS_PORT, () => {
   // eslint-disable-next-line
   var message = `\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`;
-
   // eslint-disable-next-line
   console.log(message);
   // eslint-disable-next-line

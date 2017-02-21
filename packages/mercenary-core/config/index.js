@@ -1,10 +1,16 @@
 const path = require('path');
 const marshall = require('marshall/index');
+const generatePassword = require('password-generator');
 
 // Handle config.js overrides
 const cwd = process.cwd();
 const projectConfigPath = path.join(cwd, './config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
+
+// Create difficult-to-guess default credentials for netdata
+const randomInt = (min, max) => Math.floor(Math.random() * (max - (min + 1))) + min;
+const netdataUsername = generatePassword(randomInt(12, 32), false);
+const netdataPassword = generatePassword(randomInt(12, 32), false);
 
 // Configuration schema
 const config = marshall({
@@ -42,6 +48,22 @@ const config = marshall({
     default: 1000 * 60 * 60 * 24 * 60, // 60 days
     env: 'CACHE_MAX_AGE',
     arg: 'cache-max-age',
+  },
+  netdata: {
+    username: {
+      doc: 'The HTTP auth username for the netdata application',
+      format: String,
+      default: projectConfig.netdata.username || netdataUsername,
+      env: 'NETDATA_USERNAME',
+      arg: 'netdata-username',
+    },
+    password: {
+      doc: 'The HTTP auth password for the netdata application',
+      format: String,
+      default: projectConfig.netdata.password || netdataPassword,
+      env: 'NETDATA_PASSWORD',
+      arg: 'netdata-password',
+    },
   },
 });
 

@@ -6,4 +6,9 @@ module.exports = {
   webpack: {
     globals: {},
   },
+
+  netdata: {
+    username: '',
+    password: '',
+  },
 };
