@@ -1,7 +1,3 @@
 # Mercenary
 
-This package includes the global command for [Mercenary](https://github.com/justinsisley/mercenary).  
-Please refer to its documentation:
-
-* [Getting Started](https://github.com/justinsisley/mercenary/blob/master/README.md#getting-started) – How to create a new app.
-* [User Guide](https://github.com/justinsisley/mercenary/blob/master/packages/mercenary/README.md) – How to develop apps bootstrapped with Mercenary.
+This is what makes Mercenary tick. It contains all executable scripts, template files, configurations, and dependencies.
