@@ -1,9 +1,0 @@
-<div class="page-header">
-    <div class="container">
-        <h1>You're Already Using It</h1>
-
-        <small class="center-block">Mercenary has a lot to offer, and these pages are only its public face. Sign up and log in to try out the users-only dashboard.</small>
-
-        <small class="center-block">Authentication is baked-in using Passport, so go ahead, create an account and give it a test drive.</small>
-    </div>
-</div>

@@ -1,9 +1,0 @@
-<div class="wrapper">
-    <div class="sidebar-wrapper" id="sidebar-region"></div>
-
-    <div class="page-content-wrapper">
-        <nav class="navbar navbar-default page-content-header" role="navigation" id="header-region"></nav>
-
-        <div class="page-content" id="main-region"></div>
-    </div>
-</div>
