@@ -11,5 +11,3 @@ tmp
 ehthumbs.db
 Thumbs.db
 node_modules
-static
-coverage
