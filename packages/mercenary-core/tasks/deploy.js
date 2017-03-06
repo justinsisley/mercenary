@@ -22,14 +22,10 @@ const packageData = fs.readFileSync(packagePath, { encoding: 'utf8' });
 const packageJson = JSON.parse(packageData);
 
 // The name to use when creating the application bundle to send to Elastic Beanstalk
-function getAppVersionLabel() {
-  const timestamp = Date.now();
-  const revision = getGitRevision();
-  const semver = packageJson.version;
-  const result = `t-${timestamp}_c-${revision}_v-${semver}`;
-
-  return result;
-}
+const timestamp = Date.now();
+const commit = getGitRevision();
+const semver = packageJson.version;
+const versionLabel = `v${semver}__#${commit}__t${timestamp}`;
 
 // AWS constants
 const accessKeyId = config.iam.accessKeyId;
@@ -82,7 +78,6 @@ cp.execSync(`cp -R "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
 Create the bundle zip
  */
 console.log('Creating application bundle...');
-const versionLabel = getAppVersionLabel();
 const bundleName = `${versionLabel}.zip`;
 cp.execSync(`zip -r ${bundleName} . -x ".git/*" -x "node_modules/*"`);
 const bundleBits = fs.readFileSync(bundleName);
@@ -139,6 +134,28 @@ s3.upload({
       Success
        */
       console.log(`\nVersion ${versionLabel} deployed to ${ebEnvironmentName}\n`);
+
+
+      /*
+      Send message to Slack
+       */
+      if (!config.slackWebHookUrl) {
+        return;
+      }
+
+      const payload = {
+        text: `
+          A new deployment has been initiated.
+          Application: ${ebApplicationName}
+          Environment: ${ebEnvironmentName}
+          Version: ${semver}
+          Commit: ${commit}
+        `,
+      };
+
+      cp.exec(`curl -X POST -H 'Content-type: application/json' \
+      --data '${JSON.stringify(payload)}' \
+      ${config.slackWebHookUrl}`);
     });
   });
 });

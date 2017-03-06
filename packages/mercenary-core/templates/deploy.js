@@ -18,4 +18,7 @@ module.exports = {
   s3: {
     bucket: '',
   },
+
+  // An optional Slack webhook URL to post deployment summaries
+  slackWebHookUrl: '',
 };
