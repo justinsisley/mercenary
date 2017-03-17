@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="https://reacttraining.com/react-router/">
-    <img alt="babel" src="https://image.flaticon.com/icons/svg/206/206879.svg" width="144">
-  </a>
+  <img alt="mercenary" src="https://image.flaticon.com/icons/svg/206/206879.svg" width="144">
 </p>
 
 <h3 align="center">
