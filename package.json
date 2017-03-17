@@ -3,7 +3,7 @@
   "author": "Justin Sisley",
   "dependencies": {
     "babel-eslint": "7.1.1",
-    "eslint": "3.14.1",
-    "eslint-config-mercenary": "1.1.1"
+    "eslint": "3.17.1",
+    "eslint-config-mercenary": "1.2.0"
   }
 }
