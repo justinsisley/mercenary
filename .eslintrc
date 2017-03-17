@@ -1,9 +1,0 @@
-{
-  "extends": "mercenary",
-  "rules": {
-    "comma-dangle": "off",
-    "global-require": "off",
-    "no-console": "off",
-    "import/no-dynamic-require": "off"
-  }
-}
