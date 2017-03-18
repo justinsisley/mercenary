@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -17,7 +17,7 @@
     "babel-core": "6.24.0",
     "babel-istanbul": "0.12.2",
     "babel-loader": "6.4.1",
-    "babel-preset-mercenary": "^2.2.3",
+    "babel-preset-mercenary": "^2.2.5",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "1.17.1",
     "btoa": "1.1.2",
