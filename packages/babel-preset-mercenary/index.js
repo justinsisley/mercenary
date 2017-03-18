@@ -14,12 +14,11 @@ const presets = [
   // eslint-disable-next-line
   [require('babel-preset-env').default, {
     targets: {
-      // Support browsers that have more than 5% market share.
-      browsers: '> 5%',
+      // Support browsers that have more than 1% market share.
+      browsers: '> 1%',
     },
     modules: false,
     useBuiltIns: true,
-    debug: true,
   }],
   require.resolve('babel-preset-stage-0'),
   require.resolve('babel-preset-react'),

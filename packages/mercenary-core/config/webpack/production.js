@@ -45,8 +45,8 @@ module.exports = {
         test: /\.css$/,
         include: /client/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader',
+          fallback: 'style-loader',
+          use: 'css-loader',
         }),
       },
       // Vendor CSS from NPM
@@ -54,8 +54,8 @@ module.exports = {
         test: /\.css$/,
         include: /node_modules/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader',
+          fallback: 'style-loader',
+          use: 'css-loader',
         }),
       },
       // Images
