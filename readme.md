@@ -23,7 +23,7 @@
 
 ## Packages
 
-This repository is a monorepo that we manage using [Lerna](https://github.com/lerna/lerna). That means that we publish [several packages](/packages) to npm from this codebase, including:
+This repository is managed as a monorepo. It contains [several npm packages](/packages). Publishing is managed by [Lerna](https://github.com/lerna/lerna).
 
 | Package | Version | Docs | Description |
 |---------|---------|------|-------------|
