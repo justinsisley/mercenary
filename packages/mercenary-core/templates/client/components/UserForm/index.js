@@ -18,10 +18,13 @@ class UserForm extends React.Component {
     error: false,
   }
 
-  handleSubmit = (e, { formData }) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
-    const validUserId = validator.isInt(formData.userId, { min: 1, max: 9 });
+    const formData = new FormData(e.target);
+    const userId = formData.get('userId');
+
+    const validUserId = validator.isInt(userId, { min: 1, max: 9 });
 
     if (!validUserId) {
       this.setState({ error: true });
@@ -29,7 +32,7 @@ class UserForm extends React.Component {
     }
 
     this.setState({ error: false });
-    this.props.userActions.fetchUserById(formData.userId);
+    this.props.userActions.fetchUserById(userId);
   }
 
   render() {

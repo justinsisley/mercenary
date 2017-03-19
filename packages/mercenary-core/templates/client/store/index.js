@@ -1,19 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { routerMiddleware } from 'react-router-redux';
 import rootReducer from './reducers';
 import api from './api';
 
 // Does nothing now, but could retrive state rendered to the DOM by the server
 const getInitialState = () => {};
 
-export default function configureStore(browserHistory) {
-  const router = routerMiddleware(browserHistory);
+export default function configureStore() {
   const store = createStore(
     rootReducer,
     getInitialState(),
     compose(
-      applyMiddleware(thunk.withExtraArgument(api), router),
+      applyMiddleware(thunk.withExtraArgument(api)),
       window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
   );

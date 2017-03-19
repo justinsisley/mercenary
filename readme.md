@@ -17,9 +17,20 @@
   <a href="https://www.npmjs.com/package/mercenary"><img src="https://img.shields.io/npm/dm/mercenary.svg?style=flat-square"></a>
 </p>
 
-## Docs
+## Quick Start
 
-[View the docs here](/packages/mercenary-core/readme.md)
+Install Mercenary globally:
+
+```bash
+npm install -g mercenary
+```
+
+Create a new Mercenary app:
+
+```bash
+cd ~/my-projects-dir
+mercenary my-new-app
+```
 
 ## Packages
 
