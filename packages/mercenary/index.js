@@ -53,16 +53,34 @@ process.chdir(projectDirectory);
 console.log('Installing mercenary core packages...');
 console.log();
 
-const installCore = (callback) => {
-  const child = spawn('npm', [
-    'install',
-    '--save',
-    '--save-exact',
-    corePackage
-  ], { stdio: 'inherit' });
+function shouldUseYarn() {
+  try {
+    execSync('yarnpkg --version', { stdio: 'ignore' });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function installCore(callback) {
+  let command;
+  let args;
+
+  if (shouldUseYarn()) {
+    command = 'yarnpkg';
+    args = ['add', '--exact'];
+
+    [].push.apply(args, dependencies);
+  } else {
+    checkNpmVersion();
+    command = 'npm';
+    args = ['install', '--save', '--save-exact'].concat(dependencies);
+  }
+
+  const child = spawn(command, args, { stdio: 'inherit' });
 
   child.on('close', callback);
-};
+}
 
 const runSetup = () => {
   const setupPath = path.resolve(
