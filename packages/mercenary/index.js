@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const extfs = require('extfs');
 const spawn = require('cross-spawn');
+const execSync = require('child_process').execSync;
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
@@ -58,6 +59,7 @@ function shouldUseYarn() {
     execSync('yarnpkg --version', { stdio: 'ignore' });
     return true;
   } catch (e) {
+    console.log(e);
     return false;
   }
 }
@@ -68,12 +70,10 @@ function installCore(callback) {
 
   if (shouldUseYarn()) {
     command = 'yarnpkg';
-    args = ['add', '--exact'];
-
-    [].push.apply(args, dependencies);
+    args = ['add', '--exact', corePackage];
   } else {
     command = 'npm';
-    args = ['install', '--save', '--save-exact'].concat(dependencies);
+    args = ['install', '--save', '--save-exact', corePackage];
   }
 
   const child = spawn(command, args, { stdio: 'inherit' });
