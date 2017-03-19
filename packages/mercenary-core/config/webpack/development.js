@@ -1,38 +1,23 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint/lib/formatters/stylish');
 const config = require('../index');
+const shared = require('./shared');
 
 const webpackDevServerPort = config.get('webpackDevServerPort');
-
-// Directories of interest
-const cwd = process.cwd();
-const clientDir = path.join(cwd, './client');
-
-// Developers' custom config.js
-const projectConfigPath = path.join(cwd, './config.js');
-const projectConfig = require(projectConfigPath); // eslint-disable-line
-
-// Globals for webpack
-var javaScriptGlobals = null; // eslint-disable-line
-if (projectConfig.webpack && projectConfig.webpack.globals) {
-  javaScriptGlobals = new webpack.ProvidePlugin(projectConfig.webpack.globals);
-}
 
 module.exports = {
   // The entry point for the bundle
   entry: [
     `webpack-dev-server/client?http://localhost:${webpackDevServerPort}`,
     'webpack/hot/only-dev-server',
-    // JavaScript entry point
-    path.join(cwd, './client/index'),
+    shared.jsEntryPoint,
   ],
 
   // Options affecting the output
   output: {
     // The output directory
-    path: path.join(__dirname, 'static'),
+    path: shared.staticDir,
     // The filename of the entry chunk as relative path inside the
     // output.path directory
     filename: 'js/app.js',
@@ -40,17 +25,14 @@ module.exports = {
     publicPath: '/',
   },
 
-  // Generate a source map
-  devtool: 'cheap-module-eval-source-map',
-
   // Options affecting the normal modules
   module: {
     rules: [
       // ESLint
       {
-        test: /\.jsx?$/,
+        test: shared.regex.javascript,
         enforce: 'pre',
-        include: /client/,
+        include: shared.regex.client,
         loader: 'eslint-loader',
         options: {
           formatter: eslintFormatter,
@@ -58,14 +40,14 @@ module.exports = {
       },
       // JavaScript and JSX
       {
-        test: /\.jsx?$/,
-        include: [/client/, /server/],
+        test: shared.regex.javascript,
+        include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
       // CSS modules
       {
-        test: /\.css$/,
-        include: /client/,
+        test: shared.regex.css,
+        include: shared.regex.client,
         use: [
           {
             loader: 'style-loader',
@@ -82,8 +64,8 @@ module.exports = {
       },
       // Vendor CSS from NPM
       {
-        test: /\.css$/,
-        include: /node_modules/,
+        test: shared.regex.css,
+        include: shared.regex.node_modules,
         use: [
           'style-loader',
           'css-loader',
@@ -91,8 +73,8 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
-        include: [/node_modules/, /clients/],
+        test: shared.regex.images,
+        include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
           name: 'images/[name].[ext]',
@@ -100,8 +82,8 @@ module.exports = {
       },
       // Fonts
       {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
-        include: [/node_modules/, /clients/],
+        test: shared.regex.fonts,
+        include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
           name: 'fonts/[name].[ext]',
@@ -113,7 +95,7 @@ module.exports = {
   // Additional plugins for the compiler
   plugins: [
     // JavaScript runtime globals
-    javaScriptGlobals,
+    shared.javaScriptGlobals,
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
     // prints more readable module names in the browser console on HMR updates
@@ -122,10 +104,13 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     // Inject generated assets into HTML file
     new HtmlWebpackPlugin({
-      template: path.join(clientDir, '/index.html'),
+      template: shared.htmlSource,
     }),
   ],
 
   // Make web variables accessible to webpack, e.g. window
   target: 'web',
+
+  // Generate a source map
+  devtool: 'cheap-module-eval-source-map',
 };

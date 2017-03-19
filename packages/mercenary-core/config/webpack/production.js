@@ -1,32 +1,17 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-// Directories of interest
-const cwd = process.cwd();
-const clientDir = path.join(cwd, './client');
-const staticDir = path.join(cwd, './static');
-
-// Developers' custom config.js
-const projectConfigPath = path.join(cwd, './config.js');
-const projectConfig = require(projectConfigPath); // eslint-disable-line
-
-// Globals for webpack
-var javaScriptGlobals = null; // eslint-disable-line
-if (projectConfig.webpack && projectConfig.webpack.globals) {
-  javaScriptGlobals = new webpack.ProvidePlugin(projectConfig.webpack.globals);
-}
+const shared = require('./shared');
 
 module.exports = {
   // The entry point for the bundle
-  entry: path.join(clientDir, '/index'),
+  entry: shared.jsEntryPoint,
 
   // Options affecting the output
   output: {
     // The output directory
-    path: staticDir,
+    path: shared.staticDir,
     // The filename of the entry chunk as relative path inside the output.path directory
     filename: '/js/[hash].js',
   },
@@ -36,14 +21,14 @@ module.exports = {
     rules: [
       // JavaScript and JSX
       {
-        test: /\.jsx?$/,
-        include: [/client/, /server/],
+        test: shared.regex.javascript,
+        include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
       // CSS modules
       {
-        test: /\.css$/,
-        include: /client/,
+        test: shared.regex.css,
+        include: shared.regex.client,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader',
@@ -51,8 +36,8 @@ module.exports = {
       },
       // Vendor CSS from NPM
       {
-        test: /\.css$/,
-        include: /node_modules/,
+        test: shared.regex.css,
+        include: shared.regex.node_modules,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader',
@@ -60,8 +45,8 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
-        include: [/node_modules/, /clients/],
+        test: shared.regex.images,
+        include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
           name: '/images/[hash].[ext]',
@@ -69,8 +54,8 @@ module.exports = {
       },
       // Fonts
       {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
-        include: [/node_modules/, /clients/],
+        test: shared.regex.fonts,
+        include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
           name: '/fonts/[hash].[ext]',
@@ -82,7 +67,7 @@ module.exports = {
   // Additional plugins for the compiler
   plugins: [
     // JavaScript runtime globals
-    javaScriptGlobals,
+    shared.javaScriptGlobals,
     // Define globals for compilation
     new webpack.DefinePlugin({
       'process.env': {
@@ -110,8 +95,8 @@ module.exports = {
     }),
     // Copy HTML file and inject generated assets
     new HtmlWebpackPlugin({
-      filename: path.join(staticDir, '/index.html'),
-      template: path.join(clientDir, '/index.html'),
+      filename: shared.htmlCompiled,
+      template: shared.htmlSource,
     }),
   ],
 
