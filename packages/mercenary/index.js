@@ -72,7 +72,6 @@ function installCore(callback) {
 
     [].push.apply(args, dependencies);
   } else {
-    checkNpmVersion();
     command = 'npm';
     args = ['install', '--save', '--save-exact'].concat(dependencies);
   }
