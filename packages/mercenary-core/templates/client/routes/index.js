@@ -1,12 +1,12 @@
 import React from 'react';
-import { Route, IndexRoute, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
 import HomeScreen from '../containers/HomeScreen';
 
 export default (
-  <Route path="/">
-    <IndexRoute component={HomeScreen} />
+  <span>
+    <Route path="/" exact component={HomeScreen} />
 
     {/* 404 not possible, we just redirect back to root */}
     <Redirect from="*" to="/" />
-  </Route>
+  </span>
 );
