@@ -17,7 +17,7 @@ const config = marshall({
   env: {
     doc: 'The environment',
     format: String,
-    default: projectConfig.env || 'development',
+    default: projectConfig.app.env || 'development',
     env: 'ENV',
     arg: 'env',
   },
@@ -38,7 +38,7 @@ const config = marshall({
   proxyApi: {
     doc: 'The remote API to proxy to',
     format: String,
-    default: projectConfig.proxyApi || '',
+    default: projectConfig.app.proxyApi || '',
     env: 'PROXY_API',
     arg: 'proxy-api',
   },
@@ -53,14 +53,14 @@ const config = marshall({
     username: {
       doc: 'The HTTP auth username for the netdata application',
       format: String,
-      default: projectConfig.netdata.username || netdataUsername,
+      default: projectConfig.deploy.netdata.username || netdataUsername,
       env: 'NETDATA_USERNAME',
       arg: 'netdata-username',
     },
     password: {
       doc: 'The HTTP auth password for the netdata application',
       format: String,
-      default: projectConfig.netdata.password || netdataPassword,
+      default: projectConfig.deploy.netdata.password || netdataPassword,
       env: 'NETDATA_PASSWORD',
       arg: 'netdata-password',
     },

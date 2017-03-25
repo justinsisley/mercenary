@@ -1,14 +1,45 @@
 module.exports = {
-  env: 'development',
+  app: {
+    // The environment for both client and server
+    env: 'development',
 
-  proxyApi: 'https://jsonplaceholder.typicode.com',
+    proxyApi: 'https://jsonplaceholder.typicode.com',
 
-  webpack: {
-    globals: {},
+    // Webpack-specific configuration
+    webpack: {
+      // Configured exactly the same as webpack.ProvidePlugin
+      globals: {},
+    },
   },
 
-  netdata: {
-    username: '',
-    password: '',
+  deploy: {
+    // AWS credentials from IAM.
+    // This user must have the following policies:
+    // AmazonS3FullAccess, AWSElasticBeanstalkFullAccess
+    iam: {
+      accessKeyId: '',
+      secretAccessKey: '',
+    },
+
+    // Elastic Beanstalk region, application and environment names
+    elasticBeanstalk: {
+      region: '',
+      applicationName: '',
+      environmentName: '',
+    },
+
+    // The S3 bucket to store archived deployments
+    s3: {
+      bucket: '',
+    },
+
+    // An optional Slack webhook URL to post deployment summaries
+    slackWebHookUrl: '',
+
+    // Configure access to netdata dashboard
+    netdata: {
+      username: '',
+      password: '',
+    },
   },
 };

@@ -14,7 +14,7 @@ function getGitRevision() {
 }
 
 // Get the values from the host project's config file
-const config = require(path.join(cwd, 'deploy.js'));
+const config = require(path.join(cwd, 'config.js')).deploy;
 
 // Get the values from the host project's package.json
 const packagePath = path.join(cwd, 'package.json');
