@@ -17,7 +17,7 @@ module.exports = {
   // Options affecting the output
   output: {
     // The output directory
-    path: shared.staticDir,
+    path: shared.publicDir,
     // The filename of the entry chunk as relative path inside the
     // output.path directory
     filename: 'js/app.js',

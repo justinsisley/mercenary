@@ -39,7 +39,7 @@ const localhostNetworkIP = `http://${ip}:${EXPRESS_PORT}`;
 
 // References to important directories
 const cwd = process.cwd();
-const staticDir = path.join(cwd, './static');
+const publicDir = path.join(cwd, './public');
 
 // Create the Express server
 const app = express();
@@ -141,7 +141,7 @@ if (ENV === 'development') {
   });
 } else {
   // Proxy static assets to the local static directory and cache them
-  app.use('/', express.static(staticDir, {
+  app.use('/', express.static(publicDir, {
     maxAge: MAX_AGE,
   }));
 
@@ -154,7 +154,7 @@ if (ENV === 'development') {
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
-    res.sendFile(path.join(cwd, './static/index.html'));
+    res.sendFile(path.join(cwd, './public/index.html'));
   });
 }
 

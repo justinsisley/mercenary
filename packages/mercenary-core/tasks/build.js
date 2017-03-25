@@ -8,7 +8,7 @@ const webpack = require.resolve('.bin/webpack');
 // Production build
 const build = (config = { silent: false }) => {
   cp.execSync(`
-    rm -rf ${cwd}/static &&
+    rm -rf ${cwd}/public &&
     NODE_ENV=production "${webpack}" \
       --display-error-details \
       --config \

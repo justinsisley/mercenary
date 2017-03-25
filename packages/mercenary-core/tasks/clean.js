@@ -5,7 +5,7 @@ const cwd = process.cwd();
 const artifacts = [
   'coverage',
   'reports',
-  'static',
+  'public',
 ];
 
 // Clean up artifacts.

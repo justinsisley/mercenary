@@ -4,12 +4,12 @@ const webpack = require('webpack');
 // Directories of interest
 const cwd = process.cwd();
 const clientDir = path.join(cwd, './client');
-const staticDir = path.join(cwd, './static');
+const publicDir = path.join(cwd, './public');
 
 // Files of interest
 const jsEntryPoint = path.join(clientDir, '/index');
 const htmlSource = path.join(clientDir, '/index.html');
-const htmlCompiled = path.join(staticDir, '/index.html');
+const htmlCompiled = path.join(publicDir, '/index.html');
 
 // Developers' custom config.js
 const projectConfigPath = path.join(cwd, './config.js');
@@ -35,7 +35,7 @@ const regex = {
 module.exports = {
   cwd,
   clientDir,
-  staticDir,
+  publicDir,
   jsEntryPoint,
   htmlSource,
   htmlCompiled,
