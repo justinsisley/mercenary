@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Message, Button } from 'semantic-ui-react';
 import validator from 'validator';
-import status from '../../constants/status';
 
 class UserForm extends React.Component {
   static defaultProps = {
@@ -36,8 +35,6 @@ class UserForm extends React.Component {
   }
 
   render() {
-    const loading = this.props.user._status === status.FETCHING;
-
     return (
       <Form
         error={this.state.error}
@@ -50,6 +47,7 @@ class UserForm extends React.Component {
             name="userId"
             id="input-user-id"
             placeholder="User ID"
+            autoComplete="off"
           />
 
           <Message
@@ -62,7 +60,7 @@ class UserForm extends React.Component {
         <Form.Field>
           <Button
             primary
-            loading={loading}
+            loading={this.props.user._fetching}
           >Fetch User</Button>
         </Form.Field>
       </Form>

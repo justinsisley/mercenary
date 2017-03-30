@@ -1,9 +1,8 @@
 import { handleActions } from 'redux-actions';
-import status from '../../constants/status';
 import * as users from './actions';
 
 const initialState = {
-  _status: status.IDLE,
+  _fetching: false,
 };
 
 export const reducer = handleActions({
@@ -13,14 +12,14 @@ export const reducer = handleActions({
     return {
       ...initialState,
       ...entities.users[result],
-      _status: status.IDLE,
+      _fetching: false,
     };
   },
 
   [users.setIsFetching]: () => {
     return {
       ...initialState,
-      _status: status.FETCHING,
+      _fetching: true,
     };
   },
 }, initialState);

@@ -1,16 +1,9 @@
+import 'semantic-ui-css/semantic.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './store';
-import routes from './routes';
+import App from './components/App';
 
-// Global libraries and styles
-import './utils/global';
+// Global styles
+import './index.css';
 
-// Create store instance
-const store = configureStore();
-
-ReactDOM.render(
-  <Provider store={store}>{routes}</Provider>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<App />, document.getElementById('root'));
