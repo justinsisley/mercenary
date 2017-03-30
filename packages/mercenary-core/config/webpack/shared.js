@@ -36,10 +36,12 @@ const regex = {
 const output = {
   // The output directory
   path: publicDir,
-  // The filename of the entry chunk as relative path inside the output.path directory
-  filename: 'js/[hash].js',
   // The output.path from the view of the Javascript / HTML page
   publicPath: '/',
+  // The filename of the entry chunk as relative path inside the output.path directory
+  filename: 'js/[hash].js',
+  // Determines the name of on-demand loaded chunk files
+  chunkFilename: 'js/[chunkhash].js',
 };
 
 module.exports = {

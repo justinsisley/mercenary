@@ -47,6 +47,7 @@ const dockerIgnore = path.join(cwd, './.dockerignore');
 const dockerAwsJsonDest = path.join(cwd, './Dockerrun.aws.json');
 const ebExtensionsSrc = path.join(templatesDir, './ebextensions');
 const ebExtensionsDest = path.join(cwd, './.ebextensions');
+const publicDir = path.join(cwd, './public');
 
 // AWS SDK
 const s3 = new AWS.S3();
@@ -183,3 +184,4 @@ cp.execSync(`rm "${dockerFile}"`);
 cp.execSync(`rm "${dockerIgnore}"`);
 cp.execSync(`rm "${dockerAwsJsonDest}"`);
 cp.execSync(`rm -rf "${ebExtensionsDest}"`);
+cp.execSync(`rm -rf "${publicDir}"`);

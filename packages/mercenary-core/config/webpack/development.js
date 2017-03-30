@@ -41,17 +41,8 @@ module.exports = {
         test: shared.regex.css,
         include: shared.regex.client,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              localIdentName: '[local]___[hash:base64:7]',
-            },
-          },
+          'style-loader',
+          'css-loader',
         ],
       },
       // Vendor CSS from NPM
