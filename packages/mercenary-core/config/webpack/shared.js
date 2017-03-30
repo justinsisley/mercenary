@@ -32,6 +32,16 @@ const regex = {
   node_modules: /node_modules/,
 };
 
+// Options affecting the webpack output
+const output = {
+  // The output directory
+  path: publicDir,
+  // The filename of the entry chunk as relative path inside the output.path directory
+  filename: 'js/[hash].js',
+  // The output.path from the view of the Javascript / HTML page
+  publicPath: '/',
+};
+
 module.exports = {
   cwd,
   clientDir,
@@ -41,4 +51,5 @@ module.exports = {
   htmlCompiled,
   javaScriptGlobals,
   regex,
+  output,
 };

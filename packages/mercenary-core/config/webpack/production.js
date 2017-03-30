@@ -9,12 +9,7 @@ module.exports = {
   entry: shared.jsEntryPoint,
 
   // Options affecting the output
-  output: {
-    // The output directory
-    path: shared.publicDir,
-    // The filename of the entry chunk as relative path inside the output.path directory
-    filename: '/js/[hash].js',
-  },
+  output: shared.output,
 
   // Options affecting the normal modules
   module: {
@@ -49,7 +44,7 @@ module.exports = {
         include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
-          name: '/images/[hash].[ext]',
+          name: 'images/[hash].[ext]',
         },
       },
       // Fonts
@@ -58,7 +53,7 @@ module.exports = {
         include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
-          name: '/fonts/[hash].[ext]',
+          name: 'fonts/[hash].[ext]',
         },
       },
     ],
@@ -82,7 +77,7 @@ module.exports = {
     }),
     // Extract CSS into a separate file
     new ExtractTextPlugin({
-      filename: '/css/[contenthash].css',
+      filename: 'css/[contenthash].css',
     }),
     // Minify CSS
     new OptimizeCssAssetsPlugin({
@@ -98,7 +93,9 @@ module.exports = {
       filename: shared.htmlCompiled,
       template: shared.htmlSource,
     }),
-  ],
+  // Filter out boolean values, which prevents an error if no JS globals are
+  // defined, meaning `shared.javaScriptGlobals` is falsey.
+  ].filter(Boolean),
 
   // Make web variables accessible to webpack, e.g. window
   target: 'web',

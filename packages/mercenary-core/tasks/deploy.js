@@ -53,6 +53,13 @@ const s3 = new AWS.S3();
 const elasticbeanstalk = new AWS.ElasticBeanstalk();
 
 /*
+Push a new tag to git
+ */
+function gitTag(version) {
+  cp.execSync(`git tag v${version} && git push origin v${version}`);
+}
+
+/*
 Run Invisible Framework's docker task
  */
 console.log('Creating Docker files...');
@@ -137,11 +144,19 @@ s3.upload({
 
 
       /*
+      Push git tag
+       */
+      gitTag(semver);
+
+
+      /*
       Send message to Slack
        */
       if (!config.slackWebHookUrl) {
         return;
       }
+
+      console.log('\nSending Slack notification...');
 
       const payload = {
         text: `

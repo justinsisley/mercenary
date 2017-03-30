@@ -15,15 +15,7 @@ module.exports = {
   ],
 
   // Options affecting the output
-  output: {
-    // The output directory
-    path: shared.publicDir,
-    // The filename of the entry chunk as relative path inside the
-    // output.path directory
-    filename: 'js/app.js',
-    // The output.path from the view of the Javascript / HTML page
-    publicPath: '/',
-  },
+  output: shared.output,
 
   // Options affecting the normal modules
   module: {
@@ -106,7 +98,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: shared.htmlSource,
     }),
-  ],
+  // Filter out boolean values, which prevents an error if no JS globals are
+  // defined, meaning `shared.javaScriptGlobals` is falsey.
+  ].filter(Boolean),
 
   // Make web variables accessible to webpack, e.g. window
   target: 'web',

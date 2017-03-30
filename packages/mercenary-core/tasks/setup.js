@@ -10,23 +10,28 @@ const templatesDir = path.join(packageDirectory, '/templates');
 
 const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
 
+// Host project's package.json
+const packageJson = readFile(`${cwd}/package.json`);
+const parsedPackageJson = JSON.parse(packageJson);
+
 const copyTemplates = () => {
   // Files
   cp.execSync(`cp "${packageDirectory}/.babelrc" "${cwd}/.babelrc"`);
   cp.execSync(`cp "${templatesDir}/.eslintrc" "${cwd}/.eslintrc"`);
   cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
-  cp.execSync(`cp "${templatesDir}/readme.md" "${cwd}/readme.md"`);
   cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
-  cp.execSync(`cp "${templatesDir}/deploy.js" "${cwd}/deploy.js"`);
 
   // Directories
   cp.execSync(`cp -R "${templatesDir}/client" "${cwd}/client"`);
   cp.execSync(`cp -R "${templatesDir}/server" "${cwd}/server"`);
+
+  // Write customized readme.md
+  const readme = readFile(`${templatesDir}/readme.md`);
+  const modifiedReadme = readme.replace('{name}', parsedPackageJson.name);
+  fs.writeFileSync(`${cwd}/readme.md`, modifiedReadme);
 };
 
 const copyNpmScripts = () => {
-  const packageJson = readFile(`${cwd}/package.json`);
-  const parsedPackageJson = JSON.parse(packageJson);
   const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
     start: 'merc --start',
     test: 'merc --test',
@@ -49,9 +54,6 @@ const copyNpmScripts = () => {
 const copyBoilerplateDeps = () => {
   const templatesPackageJson = readFile(`${templatesDir}/package.json`);
   const parsedTemplatesPackageJson = JSON.parse(templatesPackageJson);
-
-  const packageJson = readFile(`${cwd}/package.json`);
-  const parsedPackageJson = JSON.parse(packageJson);
 
   const deps = Object.assign(
     {},
@@ -91,19 +93,19 @@ const setup = () => {
     Inside that directory, you can run several commands:
 
       ${chalk.cyan('npm start')}
-        Starts the development server.
+        Start the development server.
 
       ${chalk.cyan('npm test')}
-        Runs unit tests.
+        Run unit tests.
 
       ${chalk.cyan('npm run testwatch')}
-        Starts the unit test watcher.
+        Start the unit test watcher.
 
       ${chalk.cyan('npm run e2e')}
-        Runs end-to-end tests.
+        Run end-to-end tests.
 
       ${chalk.cyan('npm run prod')}
-        Builds the client and starts the production server.
+        Build the client and start the production server.
 
       ${chalk.cyan('npm run deploy')}
         Deploy the Dockerized application to ElasticBeanstalk.
