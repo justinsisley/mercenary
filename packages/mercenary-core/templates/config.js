@@ -13,24 +13,28 @@ module.exports = {
   },
 
   deploy: {
-    // AWS credentials from IAM.
-    // This user must have the following policies:
-    // AmazonS3FullAccess, AWSElasticBeanstalkFullAccess
-    iam: {
-      accessKeyId: '',
-      secretAccessKey: '',
-    },
+    // AWS settings
+    aws: {
+      // Credentials from IAM.
+      // This user must have the following policies:
+      // AmazonS3FullAccess
+      // AWSElasticBeanstalkFullAccess
+      iam: {
+        accessKeyId: '',
+        secretAccessKey: '',
+      },
 
-    // Elastic Beanstalk region, application and environment names
-    elasticBeanstalk: {
-      region: '',
-      applicationName: '',
-      environmentName: '',
-    },
+      // Elastic Beanstalk application and environment names
+      elasticBeanstalk: {
+        region: '',
+        applicationName: '',
+        environmentName: '',
+      },
 
-    // The S3 bucket to store archived deployments
-    s3: {
-      bucket: '',
+      // S3 bucket to store archived deployments
+      s3: {
+        bucket: '',
+      },
     },
 
     // An optional Slack webhook URL to post deployment summaries

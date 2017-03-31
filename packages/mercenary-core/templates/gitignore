@@ -11,6 +11,6 @@ coverage
 reports
 
 # misc
-.DS_Store
+*.log
 .env
-npm-debug.log
+.DS_Store

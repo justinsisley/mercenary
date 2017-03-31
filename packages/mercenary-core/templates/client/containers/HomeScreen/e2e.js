@@ -8,29 +8,25 @@ const cardMetaSelector = '#root > div > div > div > div:nth-child(2) > div.meta'
 const cardDescriptionSelector = '#root > div > div > div > div:nth-child(2) > div.description';
 const cardLinkSelector = '#root > div > div > div > div:nth-child(3) > a';
 
-function loadAppUrl(browser, path = '') {
-  return browser.url(`http://localhost:3325${path}`);
-}
-
 const userId = '1';
 
 module.exports = {
   'Page title is accurate': function test(browser) {
-    loadAppUrl(browser)
+    browser.url('http://localhost:3325')
     .waitForElementVisible('body', 1000)
     .assert.title('Mercenary | Home')
     .end();
   },
 
   'UserForm is visible': function test(browser) {
-    loadAppUrl(browser)
+    browser.url('http://localhost:3325')
     .waitForElementVisible(formSelector, 1000)
     .assert.visible(formSelector)
     .end();
   },
 
   'Input accepts a value': function test(browser) {
-    loadAppUrl(browser)
+    browser.url('http://localhost:3325')
     .waitForElementVisible(formSelector, 1000)
     .setValue(inputSelector, userId)
     .assert.value(inputSelector, userId)
@@ -38,7 +34,7 @@ module.exports = {
   },
 
   'Button displays loading indicator when clicked': function test(browser) {
-    loadAppUrl(browser)
+    browser.url('http://localhost:3325')
     .waitForElementVisible(formSelector, 1000)
     .setValue(inputSelector, userId)
     .click(buttonSelector)
@@ -47,7 +43,7 @@ module.exports = {
   },
 
   'Renders a card when the button is clicked': function test(browser) {
-    loadAppUrl(browser)
+    browser.url('http://localhost:3325')
     .waitForElementVisible(formSelector, 1000)
     .setValue(inputSelector, userId)
     .click(buttonSelector)

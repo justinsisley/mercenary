@@ -10,6 +10,7 @@ const clean = require('./tasks/clean');
 const build = require('./tasks/build');
 const startDev = require('./tasks/startDev');
 const startProd = require('./tasks/startProd');
+const deploy = require('./tasks/deploy');
 
 if (argv.setup) {
   setup();
@@ -48,4 +49,8 @@ if (argv.start) {
 if (argv.prod) {
   build();
   startProd();
+}
+
+if (argv.deploy) {
+  deploy();
 }

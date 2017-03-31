@@ -38,7 +38,6 @@ const copyNpmScripts = () => {
     'test:watch': 'merc --testWatch',
     e2e: 'merc --e2e',
     prod: 'merc --prod',
-    predeploy: 'npm test && npm run e2e',
     deploy: 'merc --deploy',
     clean: 'merc --clean',
   });
