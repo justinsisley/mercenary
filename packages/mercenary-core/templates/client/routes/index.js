@@ -1,19 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { asyncComponent } from 'react-async-component';
 
-// Enable bundle splitting on routes
-const HomeScreen = asyncComponent({
-  resolve: () => import('../containers/HomeScreen'),
+// Enable bundle splitting by route.
+// This will cause webpack to output a core JS file with an additional file
+// for each route defined here. The code `asyncComponent` calls below are
+// intentionally un-DRY. webpack needs to see the explicit imports for bundle
+// splitting to work.
+const OrdersScreen = asyncComponent({
+  resolve: () => import('../containers/OrdersScreen'),
+});
+const CompaniesScreen = asyncComponent({
+  resolve: () => import('../containers/CompaniesScreen'),
+});
+const UsersScreen = asyncComponent({
+  resolve: () => import('../containers/UsersScreen'),
 });
 
 export default (
-  <BrowserRouter>
-    <Switch>
-      <Route path="/" component={HomeScreen} />
-
-      {/* 404 not possible, we just redirect back to root */}
-      <Redirect from="*" to="/" />
-    </Switch>
-  </BrowserRouter>
+  <div>
+    <Route exact path="/" component={OrdersScreen} />
+    <Route path="/companies" component={CompaniesScreen} />
+    <Route path="/users" component={UsersScreen} />
+  </div>
 );

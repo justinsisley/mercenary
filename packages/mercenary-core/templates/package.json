@@ -3,11 +3,14 @@
   "description": "A react/redux web application built on mercenary",
   "dependencies": {
     "aphrodite": "1.2.0",
-    "axios": "0.15.3",
+    "axios": "0.16.0",
     "classnames": "2.2.5",
+    "faker": "4.1.0",
+    "lodash": "4.17.4",
+    "loglevel": "1.4.1",
     "normalizr": "3.2.2",
     "react": "15.4.2",
-    "react-async-component": "1.0.0-alpha.1",
+    "react-async-component": "1.0.0-alpha.2",
     "react-document-title": "2.0.2",
     "react-dom": "15.4.2",
     "react-redux": "5.0.3",
@@ -18,6 +21,7 @@
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.10",
     "semantic-ui-react": "0.67.2",
+    "timeago-react": "1.0.8",
     "validator": "7.0.0"
   }
 }

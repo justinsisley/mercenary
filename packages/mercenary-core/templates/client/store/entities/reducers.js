@@ -1,17 +1,16 @@
 import { handleActions } from 'redux-actions';
-import * as users from '../user/actions';
+import * as users from '../users/actions';
 
 const initialState = {
   users: {},
 };
 
 export const reducer = handleActions({
-  [users.setUser]: (state, action) => {
+  [users.setUsers]: (state, action) => {
     return {
-      ...initialState,
       users: {
         ...state.users,
-        ...action.payload.entities.users,
+        ...action.payload.normalizedData.entities.users,
       },
     };
   },

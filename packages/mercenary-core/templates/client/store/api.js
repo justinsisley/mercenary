@@ -1,19 +1,34 @@
-import { fetchUserById } from './user/endpoints';
+import log from 'loglevel';
+import { getUsers } from './users/endpoints';
 
 export default {
-  // checkStatus(dispatch) {
-  //   return (response) => {
-  //     console.log('dispatch', dispatch);
-  //     console.log('response', response);
-  //   };
-  // },
+  // Check for authentication and authorization.
+  // NOTE: You may want to pass this function a dispatcher so you can dispatch
+  // some type of error action.
+  checkStatus() {
+    return (response) => {
+      switch (response.status) {
+        case 401: log.warn('User not authorized to take this action', response);
+          break;
+        case 403: log.warn('User not authenticated', response);
+          break;
+        default: // no-op
+      }
 
-  // errorHandler(dispatch) {
-  //   return (response) => {
-  //     console.log('dispatch', dispatch);
-  //     console.log('response', response);
-  //   };
-  // },
+      return response;
+    };
+  },
 
-  fetchUserById,
+  // Handle error status codes
+  // NOTE: Again, you may want to pass this function a dispatcher so you can
+  // dispatch some type of error action.
+  errorHandler() {
+    return (response) => {
+      log.warn('API error', response);
+
+      return response;
+    };
+  },
+
+  getUsers,
 };
