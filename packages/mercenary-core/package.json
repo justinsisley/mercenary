@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.10.1",
+  "version": "2.10.2",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -12,7 +12,7 @@
     "node": ">=6.3.0"
   },
   "dependencies": {
-    "aws-sdk": "2.36.0",
+    "aws-sdk": "2.37.0",
     "babel-core": "6.24.0",
     "babel-istanbul": "0.12.2",
     "babel-loader": "6.4.1",
@@ -29,7 +29,7 @@
     "eslint-config-mercenary": "^2.5.1",
     "eslint-loader": "1.7.1",
     "express": "4.15.2",
-    "express-validator": "3.1.2",
+    "express-validator": "3.1.3",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.11.1",
     "glob": "7.1.1",
@@ -52,7 +52,7 @@
     "react-addons-shallow-compare": "15.4.2",
     "react-dom": "15.4.2",
     "style-loader": "0.16.1",
-    "webpack": "2.3.2",
+    "webpack": "2.3.3",
     "webpack-dev-server": "2.4.2",
     "yargs": "7.0.2"
   }
