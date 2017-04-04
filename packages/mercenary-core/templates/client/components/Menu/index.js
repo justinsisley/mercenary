@@ -42,19 +42,19 @@ class Menu extends React.Component {
             </SUIMenu.Item>
 
             <SUIMenu.Item
-              name="/companies"
-              active={activeItem === '/companies'}
-              onClick={this.handleItemClick}
-            >
-              Companies
-            </SUIMenu.Item>
-
-            <SUIMenu.Item
               name="/users"
               active={activeItem === '/users'}
               onClick={this.handleItemClick}
             >
               Users
+            </SUIMenu.Item>
+
+            <SUIMenu.Item
+              name="/todos"
+              active={activeItem === '/todos'}
+              onClick={this.handleItemClick}
+            >
+              Todos
             </SUIMenu.Item>
           </SUIMenu.Menu>
         </SUIMenu.Item>

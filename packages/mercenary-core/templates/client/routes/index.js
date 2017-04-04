@@ -10,8 +10,8 @@ import { asyncComponent } from 'react-async-component';
 const OrdersScreen = asyncComponent({
   resolve: () => import('../containers/OrdersScreen'),
 });
-const CompaniesScreen = asyncComponent({
-  resolve: () => import('../containers/CompaniesScreen'),
+const TodosScreen = asyncComponent({
+  resolve: () => import('../containers/TodosScreen'),
 });
 const UsersScreen = asyncComponent({
   resolve: () => import('../containers/UsersScreen'),
@@ -20,7 +20,7 @@ const UsersScreen = asyncComponent({
 export default (
   <div>
     <Route exact path="/" component={OrdersScreen} />
-    <Route path="/companies" component={CompaniesScreen} />
+    <Route path="/todos" component={TodosScreen} />
     <Route path="/users" component={UsersScreen} />
   </div>
 );

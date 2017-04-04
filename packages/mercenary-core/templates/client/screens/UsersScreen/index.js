@@ -20,8 +20,9 @@ class UsersScreen extends React.Component {
 
   render() {
     let rows = null;
+    const hasFetchedUsers = !_.isEmpty(this.props.users);
 
-    if (!_.isEmpty(this.props.users)) {
+    if (hasFetchedUsers) {
       const ids = Object.keys(this.props.users);
 
       rows = ids.map((id) => {
@@ -45,12 +46,12 @@ class UsersScreen extends React.Component {
     }
 
     return (
-      <DocumentTitle title="Mercenary | Tasks">
+      <DocumentTitle title="Mercenary | Users">
         <Grid columns={1}>
           <Grid.Column>
             <h1>Users</h1>
 
-            <Table celled definition>
+            <Table celled definition striped>
               <Table.Header fullWidth>
                 <Table.Row>
                   <Table.HeaderCell />
