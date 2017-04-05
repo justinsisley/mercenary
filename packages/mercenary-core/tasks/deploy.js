@@ -2,19 +2,19 @@
 // http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
 
 const fs = require('fs');
-const path = require('path');
-const cp = require('child_process');
-const AWS = require('aws-sdk');
+const join = require('path').join;
+const execSync = require('child_process').execSync;
 const ora = require('ora');
+const AWS = require('aws-sdk');
 const docker = require('./docker');
 
 const cwd = process.cwd();
 
 // Get the values from the host project's config file
-const config = require(path.join(cwd, 'config.js')).deploy;
+const config = require(join(cwd, 'config.js')).deploy;
 
 // Get the values from the host project's package.json
-const packagePath = path.join(cwd, 'package.json');
+const packagePath = join(cwd, 'package.json');
 const packageData = fs.readFileSync(packagePath, { encoding: 'utf8' });
 const packageJson = JSON.parse(packageData);
 
@@ -28,13 +28,13 @@ const s3Bucket = config.aws.s3.bucket;
 const containerPort = 3325;
 
 // File paths
-const templatesDir = path.join(__dirname, '../templates');
-const dockerFile = path.join(cwd, './Dockerfile');
-const dockerIgnore = path.join(cwd, './.dockerignore');
-const dockerAwsJsonDest = path.join(cwd, './Dockerrun.aws.json');
-const ebExtensionsSrc = path.join(templatesDir, './ebextensions');
-const ebExtensionsDest = path.join(cwd, './.ebextensions');
-const publicDir = path.join(cwd, './public');
+const templatesDir = join(__dirname, '../templates');
+const dockerFile = join(cwd, './Dockerfile');
+const dockerIgnore = join(cwd, './.dockerignore');
+const dockerAwsJsonDest = join(cwd, './Dockerrun.aws.json');
+const ebExtensionsSrc = join(templatesDir, './ebextensions');
+const ebExtensionsDest = join(cwd, './.ebextensions');
+const publicDir = join(cwd, './public');
 
 // AWS SDK
 AWS.config.region = region;
@@ -42,22 +42,21 @@ AWS.config.update({ accessKeyId, secretAccessKey });
 const s3 = new AWS.S3();
 const elasticbeanstalk = new AWS.ElasticBeanstalk();
 
-/*
-Push a new tag to git
- */
+// Push a new tag to git
 function pushGitTag(version) {
   try {
-    cp.execSync(`git tag v${version} && git push origin v${version}`, { stdio: 'ignore' });
+    execSync(`git tag v${version} && git push origin v${version}`, { stdio: 'ignore' });
   } catch (error) {
     // no-op
   }
 }
 
+// Get the short hash of the current git revision
 function getCommitHash() {
   let commit = 'no-git';
 
   try {
-    commit = cp.execSync('git rev-parse --short HEAD').toString().trim();
+    commit = execSync('git rev-parse --short HEAD').toString().trim();
   } catch (error) {
     // no-op
   }
@@ -83,13 +82,15 @@ function generateDockerConfig() {
 
 // Configure Elastic Beanstalk to use HTTPS only
 function generateEBConfig() {
-  cp.execSync(`cp -R "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
+  execSync(`cp -R "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
 }
 
 // Create the bundle zip
 function createAppBundle(versionLabel) {
   const bundleName = `${versionLabel}.zip`;
-  cp.execSync(`zip -r ${bundleName} . -x ".git/*" -x "node_modules/*"`);
+
+  execSync(`zip -r ${bundleName} . -x ".git/*" -x "node_modules/*"`);
+
   const bundleBits = fs.readFileSync(bundleName);
 
   return { bundleName, bundleBits };
@@ -167,19 +168,19 @@ function sendSlackMessage({ semver, commitHash }) {
     `,
   };
 
-  cp.exec(`curl -X POST -H 'Content-type: application/json' \
+  execSync(`curl -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
   ${config.slackWebHookUrl}`);
 }
 
 // Clean up the workspace
 function clean(bundleName) {
-  cp.execSync(`rm "${bundleName}"`);
-  cp.execSync(`rm "${dockerFile}"`);
-  cp.execSync(`rm "${dockerIgnore}"`);
-  cp.execSync(`rm "${dockerAwsJsonDest}"`);
-  cp.execSync(`rm -rf "${ebExtensionsDest}"`);
-  cp.execSync(`rm -rf "${publicDir}"`);
+  execSync(`rm "${bundleName}"`);
+  execSync(`rm "${dockerFile}"`);
+  execSync(`rm "${dockerIgnore}"`);
+  execSync(`rm "${dockerAwsJsonDest}"`);
+  execSync(`rm -rf "${ebExtensionsDest}"`);
+  execSync(`rm -rf "${publicDir}"`);
 }
 
 module.exports = async function deploy() {
