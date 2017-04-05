@@ -71,7 +71,7 @@ docker run -p 3325:3325 -d my-app
 
 1. Using S3, create a new bucket. In your `config.js`, enter the name you used for this bucket as the value for the `aws.s3.bucket` property.
 - Using EC2, create a security group that allows all inbound request from HTTP and HTTPS. Copy the name you give it to your clipboard, you'll need it in the next step.
-- Using Elastic Beanstalk, create a new web server application. Choose Docker as the configuration, and choose "Load balancing, auto scaling" as the environment type. Create a new application environment using at least a "t2.small" instance size with auto-scaling enabled (even if you set the maximum instance count to 1). Set the security group for your Beanstalk application to the one you created in step 1.
+- Using Elastic Beanstalk, create a new web server application. Choose Docker as the configuration, and choose "Load balancing, auto scaling" as the environment type. Create a new application environment using at least a "t2.micro" instance size with auto-scaling enabled (even if you set the maximum instance count to 1). Set the security group for your Beanstalk application to the one you created in step 1.
 - Using AWS Certificate Manager, create a certificate for the domain you plan to use. Be sure to include "www" as an additional domain if you plan to use both "domain.com" and "www.domain.com".
 - Using EC2, go to the Load Balancer for your Elastic Beanstalk application and configure the listeners to use both HTTP and HTTPS, with HTTPS configured to use the certificate you created in the previous step.
 - Change the Load Balancer's security group to the one you created in step 2.

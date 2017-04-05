@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 const AWS = require('aws-sdk');
+const ora = require('ora');
 const docker = require('./docker');
 
 const cwd = process.cwd();
@@ -27,7 +28,7 @@ const s3Bucket = config.aws.s3.bucket;
 const containerPort = 3325;
 
 // File paths
-const templatesDir = path.join(__dirname, '../docker');
+const templatesDir = path.join(__dirname, '../templates');
 const dockerFile = path.join(cwd, './Dockerfile');
 const dockerIgnore = path.join(cwd, './.dockerignore');
 const dockerAwsJsonDest = path.join(cwd, './Dockerrun.aws.json');
@@ -35,77 +36,89 @@ const ebExtensionsSrc = path.join(templatesDir, './ebextensions');
 const ebExtensionsDest = path.join(cwd, './.ebextensions');
 const publicDir = path.join(cwd, './public');
 
+// AWS SDK
+AWS.config.region = region;
+AWS.config.update({ accessKeyId, secretAccessKey });
+const s3 = new AWS.S3();
+const elasticbeanstalk = new AWS.ElasticBeanstalk();
+
 /*
 Push a new tag to git
  */
 function pushGitTag(version) {
-  cp.execSync(`git tag v${version} && git push origin v${version}`);
+  try {
+    cp.execSync(`git tag v${version} && git push origin v${version}`, { stdio: 'ignore' });
+  } catch (error) {
+    // no-op
+  }
 }
 
-module.exports = function deploy() {
-  // The name to use when creating the application bundle to send to Elastic Beanstalk
+function getCommitHash() {
+  let commit = 'no-git';
+
+  try {
+    commit = cp.execSync('git rev-parse --short HEAD').toString().trim();
+  } catch (error) {
+    // no-op
+  }
+
+  return commit;
+}
+
+// The name to use when creating the application bundle to send to Elastic Beanstalk
+function getVersionLabel(semver, commitHash) {
   const timestamp = Date.now();
-  const commit = cp.execSync('git rev-parse --short HEAD').toString().trim();
-  const semver = packageJson.version;
-  const versionLabel = `v${semver}__#${commit}__t${timestamp}`;
 
-  // AWS SDK
-  AWS.config.region = region;
-  AWS.config.update({ accessKeyId, secretAccessKey });
-  const s3 = new AWS.S3();
-  const elasticbeanstalk = new AWS.ElasticBeanstalk();
+  return `v${semver}__#${commitHash}__t${timestamp}`;
+}
 
-  /*
-  Run Invisible Framework's docker task
-   */
-  console.log('Creating Docker files...');
-  docker();
-
-  /*
-  Create the AWS docker configuration file
-   */
-  console.log('Setting up AWS Docker configuration file...');
+// Copy the AWS EB docker config template into the host project
+function generateDockerConfig() {
   const dockerAwsJson = {
     AWSEBDockerrunVersion: '1',
     Ports: [{ ContainerPort: `${containerPort}` }],
   };
   fs.writeFileSync(dockerAwsJsonDest, JSON.stringify(dockerAwsJson));
+}
 
-  /*
-  Configure Elastic Beanstalk to use HTTPS only
-   */
-  console.log('Creating Elastic Beanstalk configuration files...');
+// Configure Elastic Beanstalk to use HTTPS only
+function generateEBConfig() {
   cp.execSync(`cp -R "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
+}
 
-  /*
-  Create the bundle zip
-   */
-  console.log('Creating application bundle...');
+// Create the bundle zip
+function createAppBundle(versionLabel) {
   const bundleName = `${versionLabel}.zip`;
   cp.execSync(`zip -r ${bundleName} . -x ".git/*" -x "node_modules/*"`);
   const bundleBits = fs.readFileSync(bundleName);
 
-  /*
-  Upload the bundle zip to S3
-   */
-  console.log('Uploading application bundle to S3...');
-  s3.upload({
-    Bucket: s3Bucket,
-    Key: bundleName,
-    Body: bundleBits,
-  }, (s3Error, s3Response) => {
-    if (s3Error) {
-      console.log(s3Error);
-      return;
-    }
+  return { bundleName, bundleBits };
+}
 
-    const bucket = s3Response.Bucket;
-    const key = s3Response.Key;
+// Upload app bundle zip to S3
+async function uploadToS3({ bucket, key, data }) {
+  return new Promise((resolve, reject) => {
+    s3.upload({
+      Bucket: bucket,
+      Key: key,
+      Body: data,
+    }, (s3Error, s3Response) => {
+      if (s3Error) {
+        reject(s3Error);
+        return;
+      }
 
-    /*
-    Create a new application version in Elastic Beanstalk
-     */
-    console.log('Adding new Elastic Beanstalk application version...');
+      resolve({
+        bucket: s3Response.Bucket,
+        key: s3Response.Key,
+      });
+    });
+  });
+}
+
+// Create a new application version in Elastic Beanstalk
+async function createAppVersion({ bucket, key, versionLabel }) {
+  return new Promise((resolve, reject) => {
     elasticbeanstalk.createApplicationVersion({
       ApplicationName: ebApplicationName,
       Process: true,
@@ -116,68 +129,101 @@ module.exports = function deploy() {
       VersionLabel: `${versionLabel}`, // must be a string
     }, (ebError) => {
       if (ebError) {
-        console.log(ebError);
+        reject(ebError);
         return;
       }
 
-      /*
-      Point the Elastic Beanstalk environment to the new version
-       */
-      console.log('Updating ElasticBeanstalk environment...');
-      elasticbeanstalk.updateEnvironment({
-        EnvironmentName: ebEnvironmentName,
-        VersionLabel: `${versionLabel}`, // must be a string
-      }, (deployError) => {
-        if (deployError) {
-          console.log(deployError);
-          return;
-        }
-
-        /*
-        Success
-         */
-        console.log(`\nVersion ${versionLabel} deployed to ${ebEnvironmentName}\n`);
-
-
-        /*
-        Push git tag
-         */
-        pushGitTag(semver);
-
-
-        /*
-        Send message to Slack
-         */
-        if (!config.slackWebHookUrl) {
-          return;
-        }
-
-        console.log('\nSending Slack notification...');
-
-        const payload = {
-          text: `
-            A new deployment has been initiated.
-            Application: ${ebApplicationName}
-            Environment: ${ebEnvironmentName}
-            Version: ${semver}
-            Commit: ${commit}
-          `,
-        };
-
-        cp.exec(`curl -X POST -H 'Content-type: application/json' \
-        --data '${JSON.stringify(payload)}' \
-        ${config.slackWebHookUrl}`);
-      });
+      resolve();
     });
   });
+}
 
-  /*
-  Clean up the workspace
-   */
+// Point the Elastic Beanstalk environment to the new version
+async function updateEBEnv(versionLabel) {
+  return new Promise((resolve, reject) => {
+    elasticbeanstalk.updateEnvironment({
+      EnvironmentName: ebEnvironmentName,
+      VersionLabel: `${versionLabel}`, // must be a string
+    }, (deployError) => {
+      if (deployError) {
+        reject(deployError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+// Send deployment message to Slack
+function sendSlackMessage({ semver, commitHash }) {
+  const payload = {
+    text: `
+      A new deployment has been initiated.
+      Application: ${ebApplicationName}
+      Environment: ${ebEnvironmentName}
+      Version: ${semver}
+      Commit: ${commitHash}
+    `,
+  };
+
+  cp.exec(`curl -X POST -H 'Content-type: application/json' \
+  --data '${JSON.stringify(payload)}' \
+  ${config.slackWebHookUrl}`);
+}
+
+// Clean up the workspace
+function clean(bundleName) {
   cp.execSync(`rm "${bundleName}"`);
   cp.execSync(`rm "${dockerFile}"`);
   cp.execSync(`rm "${dockerIgnore}"`);
   cp.execSync(`rm "${dockerAwsJsonDest}"`);
   cp.execSync(`rm -rf "${ebExtensionsDest}"`);
   cp.execSync(`rm -rf "${publicDir}"`);
+}
+
+module.exports = async function deploy() {
+  const spinner = ora().start();
+
+  const semver = packageJson.version;
+  const commitHash = getCommitHash();
+  const versionLabel = getVersionLabel(semver, commitHash);
+
+  spinner.text = 'Creating Docker files';
+  docker();
+
+  spinner.text = 'Setting up AWS Docker configuration file';
+  generateDockerConfig();
+
+  spinner.text = 'Creating Elastic Beanstalk configuration files';
+  generateEBConfig();
+
+  spinner.text = 'Creating application bundle';
+  const { bundleName, bundleBits } = createAppBundle(versionLabel);
+
+  spinner.text = 'Uploading application bundle to S3';
+  const { bucket, key } = await uploadToS3({
+    bucket: s3Bucket,
+    key: bundleName,
+    data: bundleBits,
+  });
+
+  spinner.text = 'Adding new Elastic Beanstalk application version';
+  await createAppVersion({ bucket, key, versionLabel });
+
+  spinner.text = 'Updating ElasticBeanstalk environment';
+  await updateEBEnv(versionLabel);
+
+  if (config.slackWebHookUrl) {
+    spinner.text = 'Sending Slack notification';
+    sendSlackMessage({ semver, commitHash });
+  }
+
+  spinner.text = 'Cleaning up workspace';
+  clean(bundleName);
+
+  spinner.text = 'Pushing git tags';
+  pushGitTag(semver);
+
+  spinner.succeed(`Version ${versionLabel} deployed to ${ebEnvironmentName}`);
 };
