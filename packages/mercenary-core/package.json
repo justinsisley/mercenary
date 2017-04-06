@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.10.7",
+  "version": "2.10.8",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -12,7 +12,7 @@
     "node": ">=6.3.0"
   },
   "dependencies": {
-    "aws-sdk": "2.38.0",
+    "aws-sdk": "2.39.0",
     "babel-core": "6.24.0",
     "babel-istanbul": "0.12.2",
     "babel-loader": "6.4.1",
