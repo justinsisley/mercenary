@@ -29,8 +29,51 @@ Create a new Mercenary app:
 
 ```bash
 cd ~/my-projects-dir
-mercenary my-new-app
+mercenary my-new-app && cd my-new-app
 ```
+
+Start the development server:
+
+```bash
+npm start
+```
+
+Run unit tests:
+
+```bash
+npm test
+```
+
+Start the unit test watcher:
+
+```bash
+npm run test:watch
+```
+
+Run end-to-end tests:
+
+```bash
+npm run e2e
+```
+
+Build the client and start the production server:
+
+```bash
+npm run prod
+```
+
+Deploy the Dockerized application to ElasticBeanstalk:
+
+```bash
+npm run deploy
+```
+
+Delete build and test artifacts:
+
+```bash
+npm run clean
+```
+
 
 ## Packages
 
