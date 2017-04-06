@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const shared = require('./shared');
@@ -92,7 +93,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: shared.htmlCompiled,
       template: shared.htmlSource,
+      inlineSource: '.css$',
     }),
+    new HtmlWebpackInlineSourcePlugin(),
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.
   ].filter(Boolean),
