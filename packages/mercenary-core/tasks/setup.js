@@ -24,6 +24,7 @@ const copyTemplates = () => {
   // Directories
   cp.execSync(`cp -R "${templatesDir}/client" "${cwd}/client"`);
   cp.execSync(`cp -R "${templatesDir}/server" "${cwd}/server"`);
+  cp.execSync(`cp -R "${templatesDir}/email" "${cwd}/email"`);
 
   // Write customized readme.md
   const readme = readFile(`${templatesDir}/readme.md`);

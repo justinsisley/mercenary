@@ -32,7 +32,7 @@ const templatesDir = join(__dirname, '../templates');
 const dockerFile = join(cwd, './Dockerfile');
 const dockerIgnore = join(cwd, './.dockerignore');
 const dockerAwsJsonDest = join(cwd, './Dockerrun.aws.json');
-const ebExtensionsSrc = join(templatesDir, './ebextensions');
+const ebExtensionsSrc = join(templatesDir, './ssl_rewrite.config');
 const ebExtensionsDest = join(cwd, './.ebextensions');
 const publicDir = join(cwd, './public');
 
@@ -80,9 +80,10 @@ function generateDockerConfig() {
   fs.writeFileSync(dockerAwsJsonDest, JSON.stringify(dockerAwsJson));
 }
 
-// Configure Elastic Beanstalk to use HTTPS only
+// Configure Elastic Beanstalk's NGINX server to redirect HTTP traffic to HTTPS
 function generateEBConfig() {
-  execSync(`cp -R "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
+  execSync(`mkdir "${ebExtensionsDest}"`);
+  execSync(`cp "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
 }
 
 // Create the bundle zip
