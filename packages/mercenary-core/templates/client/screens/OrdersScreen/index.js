@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
-import DocumentTitle from 'react-document-title';
 import TimeAgo from 'timeago-react';
+import DocumentTitle from 'react-document-title';
 import { Grid, Button, Checkbox, Icon, Table } from 'semantic-ui-react';
 
 class OrdersScreen extends React.Component {
@@ -49,7 +49,7 @@ class OrdersScreen extends React.Component {
     }
 
     return (
-      <DocumentTitle title="Mercenary | Tasks">
+      <DocumentTitle title="Orders">
         <Grid columns={1}>
           <Grid.Column>
             <h1>Orders</h1>

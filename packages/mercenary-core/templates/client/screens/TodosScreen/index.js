@@ -47,7 +47,7 @@ class TodosScreen extends React.Component {
     }
 
     return (
-      <DocumentTitle title="Mercenary | Todos">
+      <DocumentTitle title="Todos">
         <Grid columns={1}>
           <Grid.Column>
             <h1>Todos</h1>

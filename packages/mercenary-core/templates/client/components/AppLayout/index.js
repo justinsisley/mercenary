@@ -1,12 +1,12 @@
 import React from 'react';
 import { css } from 'aphrodite';
 import styles from './styles';
-import Menu from '../Menu';
+import NavMenu from '../NavMenu';
 
-function Layout(props) {
+function AppLayout(props) {
   return (
     <div>
-      <Menu />
+      <NavMenu />
 
       <div className={css(styles.content)}>
         {props.children}
@@ -15,12 +15,12 @@ function Layout(props) {
   );
 }
 
-Layout.propTypes = {
+AppLayout.propTypes = {
   children: React.PropTypes.node,
 };
 
-Layout.defaultProps = {
+AppLayout.defaultProps = {
   children: null,
 };
 
-export default Layout;
+export default AppLayout;

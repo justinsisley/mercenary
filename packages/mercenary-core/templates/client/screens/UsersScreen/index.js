@@ -46,7 +46,7 @@ class UsersScreen extends React.Component {
     }
 
     return (
-      <DocumentTitle title="Mercenary | Users">
+      <DocumentTitle title="Users">
         <Grid columns={1}>
           <Grid.Column>
             <h1>Users</h1>
