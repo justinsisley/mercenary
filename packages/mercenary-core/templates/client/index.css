@@ -1,9 +1,3 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
-
-*,
-html,
-body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+html {
   -webkit-font-smoothing: antialiased;
 }
