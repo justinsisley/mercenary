@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getUsers } from '../../store/users/actions';
 import { getTodos } from '../../store/todos/actions';
-import TodosScreen from '../../screens/TodosScreen/async';
+import TodosScreen from '../../screens/TodosScreen';
 
 // Map application state to component props
 function mapStateToProps(state) {

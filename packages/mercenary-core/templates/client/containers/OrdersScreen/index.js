@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getUsers } from '../../store/users/actions';
-import OrdersScreen from '../../screens/OrdersScreen/async';
+import OrdersScreen from '../../screens/OrdersScreen';
 
 // Map application state to component props
 function mapStateToProps(state) {

@@ -1,8 +1,22 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { css } from 'aphrodite';
-import { navItems, sortByPosition } from '../../routes';
 import styles from './styles';
+
+// Sort an array of objects by their "position" property
+function sortByPosition(a, b) {
+  const positionA = a.position;
+  const positionB = b.position;
+
+  if (positionA > positionB) {
+    return 1;
+  }
+  if (positionA < positionB) {
+    return -1;
+  }
+
+  return 0;
+}
 
 class NavMenu extends React.Component {
   static contextTypes = {
@@ -10,6 +24,23 @@ class NavMenu extends React.Component {
   }
 
   state = {
+    navItems: [
+      {
+        position: 0,
+        path: '/',
+        label: 'Orders',
+      },
+      {
+        position: 1,
+        path: '/users',
+        label: 'Users',
+      },
+      {
+        position: 2,
+        path: '/todos',
+        label: 'Todos',
+      },
+    ],
     activeItem: this.context.router.route.location.pathname,
   }
 
@@ -22,7 +53,7 @@ class NavMenu extends React.Component {
   render() {
     const { activeItem } = this.state;
 
-    const menuItems = navItems.sort(sortByPosition).map((navItem) => {
+    const menuItems = this.state.navItems.sort(sortByPosition).map((navItem) => {
       return (
         <Menu.Item
           key={navItem.path}
