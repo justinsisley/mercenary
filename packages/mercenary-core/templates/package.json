@@ -3,7 +3,7 @@
   "description": "A react/redux web application built on mercenary",
   "dependencies": {
     "aphrodite": "1.2.0",
-    "axios": "0.16.0",
+    "axios": "0.16.1",
     "classnames": "2.2.5",
     "faker": "4.1.0",
     "jsonwebtoken": "7.3.0",
