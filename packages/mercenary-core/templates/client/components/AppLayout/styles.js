@@ -1,6 +1,6 @@
 import { StyleSheet } from 'aphrodite';
 
-export default StyleSheet.create({
+const styles = {
   content: {
     position: 'fixed',
     top: 0,
@@ -11,4 +11,6 @@ export default StyleSheet.create({
     height: '100vh',
     overflow: 'scroll',
   },
-});
+};
+
+export default StyleSheet.create(styles);

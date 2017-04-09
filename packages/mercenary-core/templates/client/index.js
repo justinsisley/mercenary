@@ -10,12 +10,10 @@ import 'semantic-ui-css/components/image.css';
 import 'semantic-ui-css/components/icon.css';
 import 'semantic-ui-css/components/form.css';
 import 'semantic-ui-css/components/segment.css';
+import 'semantic-ui-css/components/message.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-
-// Custom global styles
-import './index.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));

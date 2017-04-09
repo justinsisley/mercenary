@@ -11,7 +11,7 @@ const jsEntryPoint = path.join(clientDir, '/index');
 const htmlSource = path.join(clientDir, '/index.html');
 const htmlCompiled = path.join(publicDir, '/index.html');
 
-// Developers' custom config.js
+// Host project's config.js
 const projectConfigPath = path.join(cwd, './config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
@@ -40,7 +40,8 @@ const output = {
   publicPath: '/',
   // The filename of the entry chunk as relative path inside the output.path directory
   filename: 'js/[hash].js',
-  // Determines the name of on-demand loaded chunk files
+  // Determines the name of on-demand loaded chunk files.
+  // This works in conjunction with the bundle-splitting pattern used in the client.
   chunkFilename: 'js/[chunkhash].js',
 };
 

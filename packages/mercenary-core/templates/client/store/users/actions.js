@@ -3,6 +3,7 @@ import { normalize } from 'normalizr';
 import * as schema from '../schema';
 
 export const setUsers = createAction('set users');
+export const setError = createAction('set users.error');
 export const setIsFetching = createAction('set users.isFetching');
 
 export const getUsers = () => {
@@ -29,7 +30,7 @@ export const getUsers = () => {
 
     // No cached version, get from API
     api.getUsers()
-    .then(api.checkStatus())
+    .then(api.checkStatus(dispatch))
     .then((response) => {
       responseData = response.data;
       return normalize(response.data, schema.userListSchema);
@@ -38,6 +39,6 @@ export const getUsers = () => {
       normalizedData,
       responseData,
     })))
-    .catch(api.errorHandler());
+    .catch(error => dispatch(setError(error)));
   };
 };

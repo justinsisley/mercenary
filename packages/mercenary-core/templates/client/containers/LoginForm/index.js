@@ -1,22 +1,23 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getUsers } from '../../store/users/actions';
-import OrdersScreen from '../../screens/OrdersScreen';
+import { logIn } from '../../store/session/actions';
+import LoginForm from '../../components/LoginForm';
 
 // Map application state to component props
 function mapStateToProps(state) {
   return {
-    users: state.entities.users,
+    token: state.session.token,
+    error: state.session._error,
   };
 }
 
 // Map actions to to props so they can be called directly
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getUsers }, dispatch);
+  return bindActionCreators({ logIn }, dispatch);
 }
 
 // Connect component to store
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(OrdersScreen);
+)(LoginForm);

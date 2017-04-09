@@ -1,7 +1,9 @@
 import { StyleSheet } from 'aphrodite';
 
-export default StyleSheet.create({
+const styles = {
   form: {
     marginTop: '20px',
   },
-});
+};
+
+export default StyleSheet.create(styles);

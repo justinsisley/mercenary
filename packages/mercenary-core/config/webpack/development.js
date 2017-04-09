@@ -79,16 +79,21 @@ module.exports = {
   plugins: [
     // JavaScript runtime globals
     shared.javaScriptGlobals,
+
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
+
     // prints more readable module names in the browser console on HMR updates
     new webpack.NamedModulesPlugin(),
+
     // Skips the emitting phase when there are errors during compilation
     new webpack.NoEmitOnErrorsPlugin(),
+
     // Inject generated assets into HTML file
     new HtmlWebpackPlugin({
       template: shared.htmlSource,
     }),
+
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.
   ].filter(Boolean),

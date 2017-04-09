@@ -20,7 +20,6 @@ const webpackConfig = require('../config/webpack/development');
 const ENV = config.get('env');
 const EXPRESS_PORT = config.get('expressPort');
 const WEBPACK_DEV_SERVER_PORT = config.get('webpackDevServerPort');
-const PROXY_API = config.get('proxyApi');
 const MAX_AGE = config.get('maxAge');
 const NETDATA_USERNAME = config.get('netdata').username;
 const NETDATA_PASSWORD = config.get('netdata').password;
@@ -54,15 +53,6 @@ app.use(compression());
 app.use(bodyParser.json());
 // Validation/sanitization
 app.use(expressValidator());
-
-// Proxy requests to the remote API if one exists
-if (PROXY_API) {
-  // Proxy requests to any remote API
-  const proxyOptions = url.parse(PROXY_API);
-  proxyOptions.route = '/proxy';
-  proxyOptions.rejectUnauthorized = false;
-  app.use(proxy(proxyOptions));
-}
 
 // Determine if a local server exists
 const localServerIndex = path.join(cwd, './server/index.js');

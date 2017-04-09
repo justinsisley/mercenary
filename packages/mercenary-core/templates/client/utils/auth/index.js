@@ -1,50 +1,30 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-
-// NOTE: for dev only
-const loggedIn = false;
+import { instance as store } from '../../store';
 
 // Auth-related higher-order components
 export const hoc = {
   requireAuth(Component) {
-    // eslint-disable-next-line
-    return class extends React.Component {
-      state = {
-        loggedIn: false,
+    return function RequireAuth(props) {
+      const { session } = store.getState();
+
+      if (!session.token) {
+        return <Redirect to="/login" />;
       }
 
-      componentWillMount() {
-        this.setState({ loggedIn });
-      }
-
-      render() {
-        if (!this.state.loggedIn) {
-          return <Redirect to="/login" />;
-        }
-
-        return <Component {...this.props} />;
-      }
+      return <Component {...props} />;
     };
   },
 
   requireNoAuth(Component) {
-    // eslint-disable-next-line
-    return class extends React.Component {
-      state = {
-        loggedIn: false,
+    return function RequireNoAuth(props) {
+      const { session } = store.getState();
+
+      if (session.token) {
+        return <Redirect to="/" />;
       }
 
-      componentWillMount() {
-        this.setState({ loggedIn });
-      }
-
-      render() {
-        if (this.state.loggedIn) {
-          return <Redirect to="/" />;
-        }
-
-        return <Component {...this.props} />;
-      }
+      return <Component {...props} />;
     };
   },
 };

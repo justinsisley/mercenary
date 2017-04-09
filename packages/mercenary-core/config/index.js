@@ -17,7 +17,7 @@ const config = marshall({
   env: {
     doc: 'The environment',
     format: String,
-    default: projectConfig.app.env || 'development',
+    default: 'development',
     env: 'ENV',
     arg: 'env',
   },
@@ -34,13 +34,6 @@ const config = marshall({
     default: 3326,
     env: 'WEBPACK_DEV_SERVER_PORT',
     arg: 'webpackDevServerPort',
-  },
-  proxyApi: {
-    doc: 'The remote API to proxy to',
-    format: String,
-    default: projectConfig.app.proxyApi || '',
-    env: 'PROXY_API',
-    arg: 'proxy-api',
   },
   maxAge: {
     doc: 'Length of time to cache static assets in production mode',

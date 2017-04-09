@@ -3,7 +3,7 @@ import DocumentTitle from 'react-document-title';
 import { Grid } from 'semantic-ui-react';
 import { css } from 'aphrodite';
 import styles from './styles';
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../containers/LoginForm';
 
 function LoginScreen() {
   return (

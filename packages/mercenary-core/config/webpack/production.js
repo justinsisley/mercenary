@@ -64,6 +64,7 @@ module.exports = {
   plugins: [
     // JavaScript runtime globals
     shared.javaScriptGlobals,
+
     // Define globals for compilation
     new webpack.DefinePlugin({
       'process.env': {
@@ -71,31 +72,36 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
+
     // Minify JavaScript
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       mangle: true,
     }),
+
     // Extract CSS into a separate file
     new ExtractTextPlugin({
       filename: 'css/[contenthash].css',
     }),
+
     // Minify CSS
     new OptimizeCssAssetsPlugin({
-      // assetNameRegExp: /\.optimize\.css$/g,
       cssProcessorOptions: {
         discardComments: {
           removeAll: true,
         },
       },
     }),
+
     // Copy HTML file and inject generated assets
     new HtmlWebpackPlugin({
       filename: shared.htmlCompiled,
       template: shared.htmlSource,
       inlineSource: '.css$',
     }),
+    // Inline any CSS modules within the HTML file
     new HtmlWebpackInlineSourcePlugin(),
+
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.
   ].filter(Boolean),

@@ -1,13 +1,14 @@
 import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
+import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import { Grid, Table, Image } from 'semantic-ui-react';
 
 class UsersScreen extends React.Component {
   static propTypes = {
-    getUsers: React.PropTypes.func.isRequired,
-    users: React.PropTypes.shape(),
+    getUsers: propTypes.func.isRequired,
+    users: propTypes.shape(),
   }
 
   static defaultProps = {

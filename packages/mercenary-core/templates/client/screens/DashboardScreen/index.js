@@ -1,14 +1,14 @@
 import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
-import TimeAgo from 'timeago-react';
+import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import { Grid, Button, Checkbox, Icon, Table } from 'semantic-ui-react';
 
-class OrdersScreen extends React.Component {
+class DashboardScreen extends React.Component {
   static propTypes = {
-    getUsers: React.PropTypes.func.isRequired,
-    users: React.PropTypes.shape(),
+    getUsers: propTypes.func.isRequired,
+    users: propTypes.shape(),
   }
 
   static defaultProps = {
@@ -37,7 +37,7 @@ class OrdersScreen extends React.Component {
             <Table.Cell>{user.name}</Table.Cell>
 
             <Table.Cell>
-              <TimeAgo datetime={faker.date.recent()} />
+              {faker.date.recent().toDateString()}
             </Table.Cell>
 
             <Table.Cell>{user.email}</Table.Cell>
@@ -95,4 +95,4 @@ class OrdersScreen extends React.Component {
   }
 }
 
-export default OrdersScreen;
+export default DashboardScreen;

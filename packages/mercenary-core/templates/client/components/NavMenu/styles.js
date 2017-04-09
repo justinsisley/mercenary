@@ -1,6 +1,6 @@
 import { StyleSheet } from 'aphrodite';
 
-export default StyleSheet.create({
+const styles = {
   menu: {
     position: 'fixed',
     zIndex: 1,
@@ -10,4 +10,6 @@ export default StyleSheet.create({
     borderBottom: 'none',
     boxShadow: 'none',
   },
-});
+};
+
+export default StyleSheet.create(styles);

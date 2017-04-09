@@ -1,6 +1,7 @@
 import log from 'loglevel';
 import { getUsers } from './users/endpoints';
 import { getTodos } from './todos/endpoints';
+import { logIn } from './session/endpoints';
 
 export default {
   // Check for authentication and authorization.
@@ -20,17 +21,7 @@ export default {
     };
   },
 
-  // Handle error status codes
-  // NOTE: Again, you may want to pass this function a dispatcher so you can
-  // dispatch some type of error action.
-  errorHandler() {
-    return (response) => {
-      log.warn('API error', response);
-
-      return response;
-    };
-  },
-
   getUsers,
   getTodos,
+  logIn,
 };

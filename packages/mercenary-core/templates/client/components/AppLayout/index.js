@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { css } from 'aphrodite';
 import styles from './styles';
 import NavMenu from '../NavMenu';
@@ -16,7 +17,7 @@ function AppLayout(props) {
 }
 
 AppLayout.propTypes = {
-  children: React.PropTypes.node,
+  children: propTypes.node,
 };
 
 AppLayout.defaultProps = {

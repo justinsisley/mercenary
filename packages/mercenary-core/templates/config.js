@@ -1,15 +1,8 @@
 module.exports = {
-  app: {
-    // The environment for both client and server
-    env: 'development',
-
-    proxyApi: 'https://jsonplaceholder.typicode.com',
-
-    // Webpack-specific configuration
-    webpack: {
-      // Configured exactly the same as webpack.ProvidePlugin
-      globals: {},
-    },
+  // Webpack-specific configuration
+  webpack: {
+    // Configured exactly the same as webpack.ProvidePlugin
+    globals: {},
   },
 
   deploy: {

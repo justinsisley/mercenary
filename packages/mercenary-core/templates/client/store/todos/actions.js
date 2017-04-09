@@ -3,6 +3,7 @@ import { normalize } from 'normalizr';
 import * as schema from '../schema';
 
 export const setTodos = createAction('set todos');
+export const setError = createAction('set todos.error');
 export const setIsFetching = createAction('set todos.isFetching');
 
 export const getTodos = () => {
@@ -29,7 +30,7 @@ export const getTodos = () => {
 
     // No cached version, get from API
     api.getTodos()
-    .then(api.checkStatus())
+    .then(api.checkStatus(dispatch))
     .then((response) => {
       responseData = response.data;
       return normalize(response.data, schema.todoListSchema);
@@ -38,6 +39,6 @@ export const getTodos = () => {
       normalizedData,
       responseData,
     })))
-    .catch(api.errorHandler());
+    .catch(error => dispatch(setError(error)));
   };
 };

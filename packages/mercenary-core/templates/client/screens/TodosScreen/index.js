@@ -1,14 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
+import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import { Grid, Table, Checkbox } from 'semantic-ui-react';
 
 class TodosScreen extends React.Component {
   static propTypes = {
-    getUsers: React.PropTypes.func.isRequired,
-    users: React.PropTypes.shape(),
-    getTodos: React.PropTypes.func.isRequired,
-    todos: React.PropTypes.shape(),
+    getUsers: propTypes.func.isRequired,
+    users: propTypes.shape(),
+    getTodos: propTypes.func.isRequired,
+    todos: propTypes.shape(),
   }
 
   static defaultProps = {

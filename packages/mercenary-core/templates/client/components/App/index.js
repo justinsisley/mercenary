@@ -2,11 +2,8 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import { AsyncComponentProvider } from 'react-async-component';
-import configureStore from '../../store';
+import { instance as store } from '../../store';
 import routes from '../../routes';
-
-// Create store instance
-const store = configureStore();
 
 export default function App() {
   return (

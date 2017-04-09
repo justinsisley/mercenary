@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getUsers } from '../../store/users/actions';
-import LoginScreen from '../../screens/LoginScreen';
+import DashboardScreen from '../../screens/DashboardScreen';
 
 // Map application state to component props
 function mapStateToProps(state) {
@@ -19,4 +19,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginScreen);
+)(DashboardScreen);

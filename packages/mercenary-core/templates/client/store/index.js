@@ -26,3 +26,6 @@ export default function configureStore() {
 
   return store;
 }
+
+// Export an instance of the store for convenience
+export const instance = configureStore();

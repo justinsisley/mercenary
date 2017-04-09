@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 import { css } from 'aphrodite';
 import styles from './styles';
@@ -20,7 +21,7 @@ function sortByPosition(a, b) {
 
 class NavMenu extends React.Component {
   static contextTypes = {
-    router: React.PropTypes.shape().isRequired,
+    router: propTypes.shape().isRequired,
   }
 
   state = {
@@ -28,7 +29,7 @@ class NavMenu extends React.Component {
       {
         position: 0,
         path: '/',
-        label: 'Orders',
+        label: 'Dashboard',
       },
       {
         position: 1,
