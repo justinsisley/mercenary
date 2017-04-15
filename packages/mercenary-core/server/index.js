@@ -126,7 +126,7 @@ if (ENV === 'development') {
 
       const shortPath = filePath.replace(cwd, '');
       // eslint-disable-next-line
-      console.log(`\nServer module cache cleared due to change in:\n${shortPath}\n`);
+      console.log(`\nModule cache cleared due to change in:\n${shortPath}\n`);
     });
   });
 } else {

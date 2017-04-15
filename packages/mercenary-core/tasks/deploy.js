@@ -5,6 +5,7 @@ const fs = require('fs');
 const join = require('path').join;
 const execSync = require('child_process').execSync;
 const ora = require('ora');
+const inquirer = require('inquirer');
 const AWS = require('aws-sdk');
 const docker = require('./docker');
 
@@ -42,10 +43,42 @@ AWS.config.update({ accessKeyId, secretAccessKey });
 const s3 = new AWS.S3();
 const elasticbeanstalk = new AWS.ElasticBeanstalk();
 
+// Bump the package.json version
+async function bumpVersion() {
+  return new Promise((resolve) => {
+    const [major, minor, patch] = packageJson.version.split('.').map(str => +str);
+
+    inquirer.prompt([
+      {
+        type: 'list',
+        name: 'version',
+        message: 'Choose a release type:',
+        default: 1,
+        choices: [
+          {
+            name: `Patch    ${major}.${minor}.${patch}  ->  ${major}.${minor}.${patch + 1}`,
+            value: `${major}.${minor}.${patch + 1}`,
+          },
+          {
+            name: `Minor    ${major}.${minor}.${patch}  ->  ${major}.${minor + 1}.0`,
+            value: `${major}.${minor + 1}.0`,
+          },
+          {
+            name: `Major    ${major}.${minor}.${patch}  ->  ${major + 1}.0.0`,
+            value: `${major + 1}.0.0`,
+          },
+        ],
+      },
+    ]).then(({ version }) => {
+      resolve(version);
+    });
+  });
+}
+
 // Push a new tag to git
 function pushGitTag(version) {
   try {
-    execSync(`git tag v${version} && git push origin v${version}`, { stdio: 'ignore' });
+    execSync(`git add .; git commit -m"v${version}"; git tag v${version}; git push origin v${version}`, { stdio: 'ignore' });
   } catch (error) {
     // no-op
   }
@@ -82,8 +115,12 @@ function generateDockerConfig() {
 
 // Configure Elastic Beanstalk's NGINX server to redirect HTTP traffic to HTTPS
 function generateEBConfig() {
-  execSync(`mkdir "${ebExtensionsDest}"`);
-  execSync(`cp "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
+  try {
+    execSync(`mkdir "${ebExtensionsDest}"`);
+    execSync(`cp "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
+  } catch (error) {
+    // no-op
+  }
 }
 
 // Create the bundle zip
@@ -185,11 +222,11 @@ function clean(bundleName) {
 }
 
 module.exports = async function deploy() {
-  const spinner = ora().start();
-
-  const semver = packageJson.version;
+  const semver = await bumpVersion();
   const commitHash = getCommitHash();
   const versionLabel = getVersionLabel(semver, commitHash);
+
+  const spinner = ora().start();
 
   spinner.text = 'Creating Docker files';
   docker();
@@ -210,11 +247,23 @@ module.exports = async function deploy() {
     data: bundleBits,
   });
 
-  spinner.text = 'Adding new Elastic Beanstalk application version';
-  await createAppVersion({ bucket, key, versionLabel });
+  try {
+    spinner.text = 'Adding new Elastic Beanstalk application version';
+    await createAppVersion({ bucket, key, versionLabel });
 
-  spinner.text = 'Updating ElasticBeanstalk environment';
-  await updateEBEnv(versionLabel);
+    spinner.text = 'Updating ElasticBeanstalk environment';
+    await updateEBEnv(versionLabel);
+  } catch (error) {
+    spinner.text = 'Cleaning up workspace';
+    clean(bundleName);
+
+    spinner.fail(`Failed to deploy version ${versionLabel}`);
+    console.log('');
+    console.log(error.message);
+    console.log('');
+
+    return;
+  }
 
   if (config.slackWebHookUrl) {
     spinner.text = 'Sending Slack notification';

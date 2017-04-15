@@ -35,9 +35,9 @@ schema.statics.findByToken = function findByToken(token) {
 // HACK: Prevents problems with re-creating schemas when "hot-reloading"
 let model;
 try {
-  model = mongoose.model('LoginToken');
+  model = mongoose.model('SignupToken');
 } catch (error) {
-  model = mongoose.model('LoginToken', schema);
+  model = mongoose.model('SignupToken', schema);
 }
 
 module.exports = model;

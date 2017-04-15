@@ -51,11 +51,20 @@ function LoginScreen(props) {
   return <AyncComponent {...props} />;
 }
 
+function SignupScreen(props) {
+  const AyncComponent = asyncComponent({
+    resolve: () => import('../screens/SignupScreen'),
+  });
+
+  return <AyncComponent {...props} />;
+}
+
 export default (
   <div>
     <Route exact path="/" component={hoc.requireAuth(DashboardScreen)} />
     <Route path="/users" component={hoc.requireAuth(UsersScreen)} />
     <Route path="/todos" component={hoc.requireAuth(TodosScreen)} />
     <Route path="/login" component={hoc.requireNoAuth(LoginScreen)} />
+    <Route path="/signup" component={hoc.requireNoAuth(SignupScreen)} />
   </div>
 );

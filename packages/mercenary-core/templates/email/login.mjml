@@ -3,7 +3,9 @@
     <mj-container>
       <mj-section>
         <mj-column>
-          <mj-text>Mercenary</mj-text>
+          <mj-button background-color="#F63A4D" href="{loginURL}">
+            Use this magic button to log in.
+          </mj-button>
         </mj-column>
       </mj-section>
     </mj-container>

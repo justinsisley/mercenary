@@ -4,7 +4,11 @@ const tokenpress = require('tokenpress');
 const roles = require('../constants/roles');
 
 const schema = new mongoose.Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: true,
+  },
+  name: String,
   role: String,
 }, {
   timestamps: true,

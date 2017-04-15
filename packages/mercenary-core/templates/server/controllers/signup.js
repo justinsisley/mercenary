@@ -1,14 +1,15 @@
 const router = require('express').Router;
-const LoginToken = require('../models/LoginToken');
+const User = require('../models/User');
 const mailUtil = require('../utils/mail');
 const errorUtil = require('../utils/error');
 
 // Create a new router
-const authRouter = router();
+const signupRouter = router();
 
-// Handle POST /api/auth/login
-authRouter.post('/auth/login', (req, res) => {
+// Handle POST /api/signup/login
+signupRouter.post('/signup', (req, res) => {
   req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+  req.checkBody('name', 'Invalid name').notEmpty();
 
   req.getValidationResult().then((result) => {
     if (!result.isEmpty()) {
@@ -20,12 +21,13 @@ authRouter.post('/auth/login', (req, res) => {
       return;
     }
 
-    const email = req.body.email;
-    const loginToken = new LoginToken({ email });
+    const { email, name } = req.body;
+    const user = new User({ email, name });
+    const signupToken = new SignupToken({ email });
 
-    loginToken.save()
+    user.save()
     .then(() => {
-      mailUtil.sendLogin(email, loginToken.token)
+      mailUtil.sendLogin(email, signupToken.token)
       .then(() => {
         res.json({});
       })
@@ -39,19 +41,4 @@ authRouter.post('/auth/login', (req, res) => {
   });
 });
 
-// Handle GET /api/auth/token
-// Exchange the loginToken from a login email for an auth token
-authRouter.get('/auth/token', (req, res) => {
-  // NOTE: Security by obscurity:
-  // "t" = "token" (e.g. localhost/api/auth/token?t=12345)
-  const { t } = req.query;
-
-  if (!t) {
-    errorUtil.respond400(res, {}, 'Missing login token');
-    return;
-  }
-
-  res.json({});
-});
-
-module.exports = authRouter;
+module.exports = signupRouter;

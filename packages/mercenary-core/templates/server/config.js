@@ -12,13 +12,13 @@ module.exports = {
     expiresIn: process.env.JWT_EXPIRES_IN || '30 days',
   },
 
-  mail: {
+  email: {
     fromAddress: process.env.MAIL_FROM_ADDRESS || 'mailbot@sisley.io',
 
     ses: {
-      accessKeyId: process.env.SES_ACCESS_KEY_ID || '',
-      secretAccessKey: process.env.SES_SECRET_ACCESS_KEY || '',
-      region: process.env.SES_REGION || '',
+      accessKeyId: process.env.SES_ACCESS_KEY_ID || 'AKIAI6KSJ4BTYSXK7AOA',
+      secretAccessKey: process.env.SES_SECRET_ACCESS_KEY || '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',
+      region: process.env.SES_REGION || 'us-east-1',
     },
   },
 };
