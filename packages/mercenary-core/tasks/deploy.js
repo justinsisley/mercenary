@@ -276,6 +276,6 @@ module.exports = async function deploy() {
   spinner.text = 'Pushing git tags';
   pushGitTag(semver);
 
-  spinner.succeed(`Version ${versionLabel} deployed to ${ebEnvironmentName}`);
+  spinner.succeed(`Version ${versionLabel} deployed to ${ebApplicationName} / ${ebEnvironmentName}`);
   console.log('');
 };
