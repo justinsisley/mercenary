@@ -1,16 +1,21 @@
 import { handleActions } from 'redux-actions';
-import { setIsFetching, setToken, unsetToken, setError } from './actions';
-import { setAccountVerified } from '../userAccount/actions';
+import { setIsFetching, setAccountCreated, setAccountVerified, setError } from './actions';
+import { setToken } from '../session/actions';
+
+const accountStatus = [
+  'new_account',
+  'verified_account',
+];
 
 const initialState = {
-  token: '',
+  status: null,
   _fetching: false,
   _error: null,
 };
 
-const handleToken = (state, action) => {
+const accountVerified = () => {
   return {
-    token: action.payload.token,
+    status: accountStatus[1],
     _fetching: false,
     _error: null,
   };
@@ -25,10 +30,16 @@ export const reducer = handleActions({
     };
   },
 
-  [setToken]: handleToken,
-  [setAccountVerified]: handleToken,
+  [setAccountCreated]: () => {
+    return {
+      status: accountStatus[0],
+      _fetching: false,
+      _error: null,
+    };
+  },
 
-  [unsetToken]: () => initialState,
+  [setAccountVerified]: accountVerified,
+  [setToken]: accountVerified,
 
   [setError]: (state, action) => {
     return {

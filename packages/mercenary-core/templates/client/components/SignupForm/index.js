@@ -5,6 +5,18 @@ import { Segment, Button, Form, Message, Checkbox } from 'semantic-ui-react';
 import validator from 'validator';
 
 class SignupForm extends React.Component {
+  static propTypes = {
+    error: propTypes.shape(),
+    signup: propTypes.func,
+    token: propTypes.string,
+  }
+
+  static defaultProps = {
+    error: null,
+    signup: () => {},
+    token: '',
+  }
+
   state = {
     email: '',
     emailError: false,
@@ -43,7 +55,7 @@ class SignupForm extends React.Component {
       agreeTermsError: false,
     });
 
-    this.props.register({ email, name });
+    this.props.signup({ email, name });
   }
 
   render() {
@@ -116,17 +128,5 @@ class SignupForm extends React.Component {
     );
   }
 }
-
-SignupForm.propTypes = {
-  error: propTypes.shape(),
-  register: propTypes.func,
-  token: propTypes.string,
-};
-
-SignupForm.defaultProps = {
-  error: null,
-  register: () => {},
-  token: '',
-};
 
 export default SignupForm;

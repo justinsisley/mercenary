@@ -2,6 +2,7 @@ import log from 'loglevel';
 import { getUsers } from './users/endpoints';
 import { getTodos } from './todos/endpoints';
 import { logIn } from './session/endpoints';
+import { createUserAccount, verifyUserAccount } from './userAccount/endpoints';
 
 export default {
   // Check for authentication and authorization.
@@ -24,4 +25,6 @@ export default {
   getUsers,
   getTodos,
   logIn,
+  createUserAccount,
+  verifyUserAccount,
 };

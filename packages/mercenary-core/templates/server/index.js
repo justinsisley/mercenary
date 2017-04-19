@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
 const config = require('./config');
 const authController = require('./controllers/auth');
+const accountController = require('./controllers/account');
 
 // Configure MongoDB
 const mlab = config.mlab;
@@ -25,5 +26,6 @@ const rootRouter = router();
 
 // Register controllers
 rootRouter.use(authController);
+rootRouter.use(accountController);
 
 module.exports = rootRouter;

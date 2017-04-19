@@ -3,7 +3,15 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
   email: String,
-  token: String,
+  token: {
+    type: String,
+    unique: true,
+  },
+  createdAt: {
+    type: Date,
+    expires: 60 * 60 * 1, // expires after 1 hour
+    default: Date.now,
+  },
 }, {
   timestamps: true,
 });

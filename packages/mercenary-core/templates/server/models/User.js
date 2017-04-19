@@ -9,17 +9,12 @@ const schema = new mongoose.Schema({
     unique: true,
   },
   name: String,
-  role: String,
+  role: {
+    type: String,
+    default: roles.USER,
+  },
 }, {
   timestamps: true,
-});
-
-schema.pre('save', function preSave(next) {
-  if (!this.role) {
-    this.role = roles.USER;
-  }
-
-  next();
 });
 
 // Hide sensitive data for API responses
@@ -88,4 +83,12 @@ schema.statics.findOrCreate = function findOrCreate(query) {
   });
 };
 
-module.exports = mongoose.model('User', schema);
+// HACK: Prevents problems with re-creating schemas when "hot-reloading"
+let model;
+try {
+  model = mongoose.model('User');
+} catch (error) {
+  model = mongoose.model('User', schema);
+}
+
+module.exports = model;

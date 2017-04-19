@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { css } from 'aphrodite';
+import { css } from 'aphrodite-jss';
 import styles from './styles';
 import NavMenu from '../NavMenu';
 

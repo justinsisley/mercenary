@@ -21,6 +21,22 @@ mjmlUtils.sendmail.config({
   transport: nodemailer.createTransport(ses),
 });
 
+// Send the signup email to the provided email address
+function sendSignup(to, signupToken) {
+  const signupURL = `${config.domain}/verify/${signupToken}`;
+
+  return mjmlUtils.sendmail({
+    to,
+    subject: 'App Signup',
+    text: `Go to ${signupURL} to verify your account.`,
+    template: path.join(emailTemplateDir, 'signup.mjml'),
+    data: { signupURL },
+    onError: (error) => {
+      loglevel.error(error);
+    },
+  });
+}
+
 // Send the login email to the provided email address
 function sendLogin(to, loginToken) {
   const loginURL = `${config.domain}/login/${loginToken}`;
@@ -38,5 +54,6 @@ function sendLogin(to, loginToken) {
 }
 
 module.exports = {
+  sendSignup,
   sendLogin,
 };

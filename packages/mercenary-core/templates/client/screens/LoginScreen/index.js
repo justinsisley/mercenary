@@ -1,7 +1,7 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import { Grid } from 'semantic-ui-react';
-import { css } from 'aphrodite';
+import { css } from 'aphrodite-jss';
 import styles from './styles';
 import LoginForm from '../../containers/LoginForm';
 

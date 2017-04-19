@@ -59,6 +59,14 @@ function SignupScreen(props) {
   return <AyncComponent {...props} />;
 }
 
+function VerifyScreen(props) {
+  const AyncComponent = asyncComponent({
+    resolve: () => import('../containers/VerifyScreen'),
+  });
+
+  return <AyncComponent {...props} />;
+}
+
 export default (
   <div>
     <Route exact path="/" component={hoc.requireAuth(DashboardScreen)} />
@@ -66,5 +74,6 @@ export default (
     <Route path="/todos" component={hoc.requireAuth(TodosScreen)} />
     <Route path="/login" component={hoc.requireNoAuth(LoginScreen)} />
     <Route path="/signup" component={hoc.requireNoAuth(SignupScreen)} />
+    <Route path="/verify/:token" component={hoc.requireNoAuth(VerifyScreen)} />
   </div>
 );

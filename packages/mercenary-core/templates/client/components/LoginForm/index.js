@@ -5,6 +5,18 @@ import { Segment, Button, Form, Message } from 'semantic-ui-react';
 import validator from 'validator';
 
 class LoginForm extends React.Component {
+  static propTypes = {
+    error: propTypes.shape(),
+    logIn: propTypes.func,
+    token: propTypes.string,
+  }
+
+  static defaultProps = {
+    error: null,
+    logIn: () => {},
+    token: '',
+  }
+
   state = {
     email: '',
     emailError: false,
@@ -61,17 +73,5 @@ class LoginForm extends React.Component {
     );
   }
 }
-
-LoginForm.propTypes = {
-  error: propTypes.shape(),
-  logIn: propTypes.func,
-  token: propTypes.string,
-};
-
-LoginForm.defaultProps = {
-  error: null,
-  logIn: () => {},
-  token: '',
-};
 
 export default LoginForm;

@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
-import { css } from 'aphrodite';
+import { css } from 'aphrodite-jss';
 import styles from './styles';
 
 // Sort an array of objects by their "position" property

@@ -1,23 +1,23 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { create } from '../../store/userAccount/actions';
-import SignupForm from '../../components/SignupForm';
+import { verify } from '../../store/userAccount/actions';
+import VerifyScreen from '../../screens/VerifyScreen';
 
 // Map application state to component props
 function mapStateToProps(state) {
   return {
-    token: state.session.token,
-    error: state.session._error,
+    users: state.entities.users,
+    todos: state.entities.todos,
   };
 }
 
 // Map actions to to props so they can be called directly
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ signup: create }, dispatch);
+  return bindActionCreators({ verifyAccount: verify }, dispatch);
 }
 
 // Connect component to store
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SignupForm);
+)(VerifyScreen);

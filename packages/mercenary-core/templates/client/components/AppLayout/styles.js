@@ -1,4 +1,4 @@
-import { StyleSheet } from 'aphrodite';
+import { StyleSheet } from 'aphrodite-jss';
 
 const styles = {
   content: {
