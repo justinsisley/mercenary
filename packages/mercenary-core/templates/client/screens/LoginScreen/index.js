@@ -7,7 +7,7 @@ import LoginForm from '../../containers/LoginForm';
 
 function LoginScreen() {
   return (
-    <DocumentTitle title="Mercenary | Login">
+    <DocumentTitle title="Login">
       <Grid centered columns={12}>
         <Grid.Column width={3}>
           <div className={css(styles.form)}>

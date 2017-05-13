@@ -7,7 +7,7 @@ import SignupForm from '../../containers/SignupForm';
 
 function SignupScreen() {
   return (
-    <DocumentTitle title="Mercenary | Login">
+    <DocumentTitle title="Login">
       <Grid centered columns={12}>
         <Grid.Column width={3}>
           <div className={css(styles.form)}>

@@ -67,13 +67,25 @@ function VerifyScreen(props) {
   return <AyncComponent {...props} />;
 }
 
+function GameScreen(props) {
+  const AyncComponent = asyncComponent({
+    resolve: () => import('../containers/GameScreen'),
+  });
+
+  return <AyncComponent {...props} />;
+}
+
 export default (
   <div>
     <Route exact path="/" component={hoc.requireAuth(DashboardScreen)} />
     <Route path="/users" component={hoc.requireAuth(UsersScreen)} />
     <Route path="/todos" component={hoc.requireAuth(TodosScreen)} />
+
     <Route path="/login" component={hoc.requireNoAuth(LoginScreen)} />
     <Route path="/signup" component={hoc.requireNoAuth(SignupScreen)} />
+
     <Route path="/verify/:token" component={hoc.requireNoAuth(VerifyScreen)} />
+
+    <Route path="/game" component={GameScreen} />
   </div>
 );

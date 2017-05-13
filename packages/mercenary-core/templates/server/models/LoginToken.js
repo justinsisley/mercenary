@@ -1,4 +1,4 @@
-const uuid = require('node-uuid');
+const uuid = require('uuid/v1');
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({

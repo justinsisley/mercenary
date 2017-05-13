@@ -11,6 +11,7 @@ import 'semantic-ui-css/components/icon.css';
 import 'semantic-ui-css/components/form.css';
 import 'semantic-ui-css/components/segment.css';
 import 'semantic-ui-css/components/message.css';
+import 'semantic-ui-css/components/list.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

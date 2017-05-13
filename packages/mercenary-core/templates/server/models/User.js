@@ -1,3 +1,4 @@
+const uuid = require('uuid/v1');
 const loglevel = require('loglevel');
 const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
@@ -13,8 +14,25 @@ const schema = new mongoose.Schema({
     type: String,
     default: roles.USER,
   },
+  verified: {
+    type: Boolean,
+    defult: false,
+  },
+  signupToken: {
+    type: String,
+    unique: true,
+  },
 }, {
   timestamps: true,
+});
+
+schema.path('signupToken').default(() => {
+  const rawToken = `${uuid.v1()}:${Date.now()}`;
+
+  const encodedToken = (new Buffer(rawToken)).toString('base64');
+  const token = encodedToken.replace(/=/g, '');
+
+  return token;
 });
 
 // Hide sensitive data for API responses
@@ -23,13 +41,21 @@ schema.methods.toPublicObject = function toPublicObject() {
 
   delete publicObject.__v;
   delete publicObject._id;
+  delete publicObject.signupToken;
 
   return publicObject;
 };
 
-schema.methods.getAuthToken = function getAuthToken() {
+// Session objects should contain only essential data
+schema.methods.toSessionObject = function toSessionObject() {
+  const { email, role } = this.toObject();
+
+  return { email, role };
+};
+
+schema.methods.getSessionToken = function getSessionToken() {
   return new Promise((resolve, reject) => {
-    tokenpress.jwt.sign(this.toObject())
+    tokenpress.jwt.sign(this.toSessionObject())
     .then((token) => {
       resolve(token);
     })
@@ -42,9 +68,21 @@ schema.methods.getAuthToken = function getAuthToken() {
 
 schema.statics.findByEmail = function findByEmail(email) {
   return new Promise((resolve, reject) => {
-    this.findOne({
-      email,
-    }, (error, data) => {
+    this.findOne({ email }, (error, data) => {
+      if (error) {
+        loglevel.error(error);
+        reject(error);
+        return;
+      }
+
+      resolve(data);
+    });
+  });
+};
+
+schema.statics.findBySignupToken = function findBySignupToken(signupToken) {
+  return new Promise((resolve, reject) => {
+    this.findOne({ signupToken }, (error, data) => {
       if (error) {
         loglevel.error(error);
         reject(error);

@@ -1,7 +1,3 @@
-// Don't create a SignupToken entity, just have a property on the User
-// Also have a "verified" property on the user
-// If the user doesn't verify the account within a certain amount of time, delete the account
-
 import React from 'react';
 import propTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
@@ -37,7 +33,7 @@ class VerifyScreen extends React.Component {
     }
 
     return (
-      <DocumentTitle title="Mercenary | Account Verification">
+      <DocumentTitle title="Account Verification">
         <Grid centered columns={12}>
           <Grid.Column width={3}>
             <div>Verifying account...</div>

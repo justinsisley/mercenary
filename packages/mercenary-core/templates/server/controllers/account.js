@@ -1,11 +1,5 @@
-// Don't create a SignupToken entity, just have a property on the User
-// Also have a "verified" property on the user
-// If the user doesn't verify the account within a certain amount of time, delete the account
-debugger; // Read above
-
 const router = require('express').Router;
 const User = require('../models/User');
-const SignupToken = require('../models/SignupToken');
 const mailUtil = require('../utils/mail');
 const errorUtil = require('../utils/error');
 
@@ -29,11 +23,10 @@ accountRouter.post('/account/create', (req, res) => {
 
     const { email, name } = req.body;
     const user = new User({ email, name });
-    const accountToken = new SignupToken({ email });
 
-    accountToken.save();
+    user.save();
 
-    mailUtil.sendSignup(email, accountToken.token)
+    mailUtil.sendSignup(email, user.signupToken)
     .then(() => {
       res.json({});
     })
@@ -58,25 +51,19 @@ accountRouter.post('/account/verify', (req, res) => {
     }
 
     const { token } = req.body;
-    SignupToken.findByToken(token)
-    .then((email) => {
 
-    });
+    User.findBySignupToken(token)
+    .then((user) => {
+      user.verified = true; // eslint-disable-line
+      user.signupToken = null; // eslint-disable-line
 
-    accountToken.save();
+      // Fire and forget
+      user.save();
 
-    user.save()
-    .then(() => {
-      mailUtil.sendSignup(email, accountToken.token)
-      .then(() => {
-        res.json({});
-      })
-      .catch((error) => {
-        errorUtil.respond500(res, error, 'Unable to send signup email');
-      });
+      res.json({ token: user.getSessionToken() });
     })
     .catch((error) => {
-      errorUtil.respond500(res, error, 'Unable to generate signup token');
+      errorUtil.respond400(res, error, 'Unable to verify account');
     });
   });
 });
