@@ -61,18 +61,18 @@ function oneIn(number) {
   const number1 = getRandomInt(1, number);
   const number2 = getRandomInt(1, number);
 
-  console.log('number1', number1);
-  console.log('number2', number2);
+  // console.log('number1', number1);
+  // console.log('number2', number2);
 
   return number1 === number2;
 }
 
 function featherNumber(number) {
   const feather = getRandomInt(0, 100) * 0.001;
-  console.log('feather', feather);
+  // console.log('feather', feather);
   const amount = number * feather;
   const modifier = oneIn(10) ? 1 : -1;
-  console.log('modifier', modifier);
+  // console.log('modifier', modifier);
 
   return number + (modifier * amount);
 }
@@ -80,9 +80,9 @@ function featherNumber(number) {
 function getProductPrice(minPrice, maxPrice) {
   const median = Math.ceil((maxPrice - minPrice) / 2);
 
-  console.log(median, featherNumber(median));
+  // console.log(median, featherNumber(median));
 
-  return median;
+  return featherNumber(median);
 }
 
 export class Controller {

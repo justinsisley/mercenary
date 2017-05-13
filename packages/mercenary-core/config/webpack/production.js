@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const PrepackWebpackPlugin = require('prepack-webpack-plugin');
 const shared = require('./shared');
 
 module.exports = {
@@ -72,6 +73,9 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
+
+    // Optimize JavaScript
+    new PrepackWebpackPlugin(),
 
     // Minify JavaScript
     new webpack.optimize.UglifyJsPlugin({
