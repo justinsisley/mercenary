@@ -13,8 +13,8 @@ const WebpackDevServer = require('webpack-dev-server');
 const getIp = require('ip');
 const chokidar = require('chokidar');
 const basicAuth = require('basic-auth-connect');
-const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
+const config = require('../config');
 
 // Configurable values
 const ENV = config.env;
