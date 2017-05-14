@@ -1,5 +1,4 @@
 const path = require('path');
-const marshall = require('marshall/index');
 const generatePassword = require('password-generator');
 
 // Handle config.js overrides
@@ -12,52 +11,22 @@ const randomInt = (min, max) => Math.floor(Math.random() * (max - (min + 1))) + 
 const netdataUsername = generatePassword(randomInt(12, 32), false);
 const netdataPassword = generatePassword(randomInt(12, 32), false);
 
-// Configuration schema
-const config = marshall({
-  env: {
-    doc: 'The environment',
-    format: String,
-    default: 'development',
-    env: 'ENV',
-    arg: 'env',
-  },
-  expressPort: {
-    doc: 'The Express server\'s port',
-    format: 'port',
-    default: 3325,
-    env: 'EXPRESS_PORT',
-    arg: 'express-port',
-  },
-  webpackDevServerPort: {
-    doc: 'The webpack dev server\'s port',
-    format: 'port',
-    default: 3326,
-    env: 'WEBPACK_DEV_SERVER_PORT',
-    arg: 'webpackDevServerPort',
-  },
-  maxAge: {
-    doc: 'Length of time to cache static assets in production mode',
-    format: 'nat',
-    default: 1000 * 60 * 60 * 24 * 60, // 60 days
-    env: 'CACHE_MAX_AGE',
-    arg: 'cache-max-age',
-  },
-  netdata: {
-    username: {
-      doc: 'The HTTP auth username for the netdata application',
-      format: String,
-      default: projectConfig.deploy.netdata.username || netdataUsername,
-      env: 'NETDATA_USERNAME',
-      arg: 'netdata-username',
-    },
-    password: {
-      doc: 'The HTTP auth password for the netdata application',
-      format: String,
-      default: projectConfig.deploy.netdata.password || netdataPassword,
-      env: 'NETDATA_PASSWORD',
-      arg: 'netdata-password',
-    },
-  },
-});
+module.exports = {
+  env: process.env.NODE_ENV || 'development',
 
-module.exports = config;
+  // The Express server's port
+  expressPort: process.env.EXPRESS_PORT || 3325,
+
+  // The webpack dev server's port
+  webpackDevServerPort: process.env.WEBPACK_DEV_SERVER_PORT || 3326,
+
+  // Length of time to cache static assets in production mode
+  maxAge: process.env.CACHE_MAX_AGE || 1000 * 60 * 60 * 24 * 60, // 60 days
+
+  netdata: {
+    // eslint-disable-next-line
+    username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,
+    // eslint-disable-next-line
+    password: process.env.NETDATA_PASSWORD || projectConfig.deploy.netdata.password || netdataPassword,
+  },
+};

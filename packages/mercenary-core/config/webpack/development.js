@@ -4,7 +4,7 @@ const eslintFormatter = require('eslint/lib/formatters/stylish');
 const config = require('../index');
 const shared = require('./shared');
 
-const webpackDevServerPort = config.get('webpackDevServerPort');
+const webpackDevServerPort = config.webpackDevServerPort;
 
 module.exports = {
   // The entry point for the bundle

@@ -17,12 +17,12 @@ const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
 // Configurable values
-const ENV = config.get('env');
-const EXPRESS_PORT = config.get('expressPort');
-const WEBPACK_DEV_SERVER_PORT = config.get('webpackDevServerPort');
-const MAX_AGE = config.get('maxAge');
-const NETDATA_USERNAME = config.get('netdata').username;
-const NETDATA_PASSWORD = config.get('netdata').password;
+const ENV = config.env;
+const EXPRESS_PORT = config.expressPort;
+const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
+const MAX_AGE = config.maxAge;
+const NETDATA_USERNAME = config.netdata.username;
+const NETDATA_PASSWORD = config.netdata.password;
 
 // Dev server hostname
 const devServerDomain = 'http://localhost';
@@ -142,6 +142,8 @@ if (ENV === 'development') {
     proxy(url.parse('http://127.0.0.1:19999'))
   );
 
+  console.log(`\nnetdata credentials: ${NETDATA_USERNAME} / ${NETDATA_PASSWORD}`);
+
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
     res.sendFile(path.join(cwd, './public/index.html'));
@@ -154,6 +156,4 @@ app.listen(EXPRESS_PORT, () => {
   var message = `\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`;
   // eslint-disable-next-line
   console.log(message);
-  // eslint-disable-next-line
-  console.log(config.doc());
 });
