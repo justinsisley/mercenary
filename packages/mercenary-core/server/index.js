@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const protect = require('@risingstack/protect');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
@@ -51,6 +52,8 @@ app.use(helmet());
 app.use(compression());
 // Parse JSON in request body
 app.use(bodyParser.json());
+// Protect against XSS attacks
+app.use(protect.express.xss());
 // Validation/sanitization
 app.use(expressValidator());
 
