@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  A web app built with [Mercenary](http://mercenary.io)
+  A web app built with <a href="http://mercenary.io/">Mercenary</a>
 </p>
 
 ## Quick Start
