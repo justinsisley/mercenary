@@ -9,7 +9,7 @@
     "jsonwebtoken": "7.4.0",
     "lodash": "4.17.4",
     "loglevel": "1.4.1",
-    "mjml-utils": "1.4.0",
+    "mjml-utils": "2.0.0",
     "mongoose": "4.9.9",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
