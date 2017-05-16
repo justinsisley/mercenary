@@ -1,10 +1,7 @@
 {
   "name": "mercenary-test",
-  "version": "2.21.2",
+  "version": "2.22.1",
   "description": "The force multiplier web application stack",
-  "bin": {
-    "merc": "./index.js"
-  },
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
