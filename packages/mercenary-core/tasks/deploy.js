@@ -38,8 +38,7 @@ const ebExtensionsDest = join(cwd, './.ebextensions');
 const publicDir = join(cwd, './public');
 
 // AWS SDK
-AWS.config.region = region;
-AWS.config.update({ accessKeyId, secretAccessKey });
+AWS.config.update({ accessKeyId, secretAccessKey, region });
 const s3 = new AWS.S3();
 const elasticbeanstalk = new AWS.ElasticBeanstalk();
 
@@ -210,7 +209,7 @@ function sendSlackMessage({ semver, commitHash }) {
     `,
   };
 
-  execSync(`curl -X POST -H 'Content-type: application/json' \
+  execSync(`curl --silent -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
   ${config.slackWebHookUrl}`);
 }

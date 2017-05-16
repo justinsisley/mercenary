@@ -8,8 +8,8 @@ const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Create difficult-to-guess default credentials for netdata
 const randomInt = (min, max) => Math.floor(Math.random() * (max - (min + 1))) + min;
-const netdataUsername = generatePassword(randomInt(12, 32), false);
-const netdataPassword = generatePassword(randomInt(12, 32), false);
+const netdataUsername = generatePassword(randomInt(18, 32), false);
+const netdataPassword = generatePassword(randomInt(18, 32), false);
 
 module.exports = {
   env: process.env.NODE_ENV || 'development',
