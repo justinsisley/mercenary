@@ -67,17 +67,12 @@ module.exports = {
 
     // Define globals for compilation
     new webpack.DefinePlugin({
-      'process.env': {
-        // Useful to reduce the size of client-side libraries, e.g. react
-        NODE_ENV: JSON.stringify('production'),
-      },
+      // Useful to reduce the size of client-side libraries, e.g. react
+      'process.env.NODE_ENV': '"production"',
     }),
 
     // Minify JavaScript
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      mangle: true,
-    }),
+    new webpack.optimize.UglifyJsPlugin({ comments: false }),
 
     // Extract CSS into a separate file
     new ExtractTextPlugin({

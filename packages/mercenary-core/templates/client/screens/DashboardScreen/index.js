@@ -1,5 +1,6 @@
-import _ from 'lodash';
-import faker from 'faker';
+import isEmpty from 'lodash-es/isEmpty';
+import fakerDate from 'faker/lib/date';
+import fakerRandom from 'faker/lib/random';
 import React from 'react';
 import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
@@ -22,7 +23,7 @@ class DashboardScreen extends React.Component {
   render() {
     let rows = null;
 
-    if (!_.isEmpty(this.props.users)) {
+    if (!isEmpty(this.props.users)) {
       const ids = Object.keys(this.props.users);
 
       rows = ids.map((id) => {
@@ -37,12 +38,12 @@ class DashboardScreen extends React.Component {
             <Table.Cell>{user.name}</Table.Cell>
 
             <Table.Cell>
-              {faker.date.recent().toDateString()}
+              {fakerDate.recent().toDateString()}
             </Table.Cell>
 
             <Table.Cell>{user.email}</Table.Cell>
 
-            <Table.Cell>{faker.random.boolean() ? 'Yes' : 'No'}</Table.Cell>
+            <Table.Cell>{fakerRandom.boolean() ? 'Yes' : 'No'}</Table.Cell>
           </Table.Row>
         );
       });

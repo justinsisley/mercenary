@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isEmpty from 'lodash-es/isEmpty';
 import React from 'react';
 import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
@@ -24,8 +24,8 @@ class TodosScreen extends React.Component {
 
   render() {
     let rows = null;
-    const hasFetchedTodos = !_.isEmpty(this.props.todos);
-    const hasFetchedUsers = !_.isEmpty(this.props.users);
+    const hasFetchedTodos = !isEmpty(this.props.todos);
+    const hasFetchedUsers = !isEmpty(this.props.users);
 
     if (hasFetchedUsers && hasFetchedTodos) {
       const ids = Object.keys(this.props.todos);

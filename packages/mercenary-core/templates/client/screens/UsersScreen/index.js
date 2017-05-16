@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import faker from 'faker';
+import isEmpty from 'lodash-es/isEmpty';
+import fakerRandom from 'faker/lib/random';
 import React from 'react';
 import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
@@ -21,14 +21,14 @@ class UsersScreen extends React.Component {
 
   render() {
     let rows = null;
-    const hasFetchedUsers = !_.isEmpty(this.props.users);
+    const hasFetchedUsers = !isEmpty(this.props.users);
 
     if (hasFetchedUsers) {
       const ids = Object.keys(this.props.users);
 
       rows = ids.map((id) => {
         const user = this.props.users[id];
-        const gender = faker.random.boolean() ? 'men' : 'women';
+        const gender = fakerRandom.boolean() ? 'men' : 'women';
         const avatar = `https://randomuser.me/api/portraits/med/${gender}/${id}.jpg`;
 
         return (
