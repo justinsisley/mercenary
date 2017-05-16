@@ -86,6 +86,7 @@ module.exports = {
           removeAll: true,
         },
       },
+      canPrint: false,
     }),
 
     // Copy HTML file and inject generated assets
@@ -101,8 +102,19 @@ module.exports = {
   // defined, meaning `shared.javaScriptGlobals` is falsey.
   ].filter(Boolean),
 
-  // Supress plugin output
-  stats: { children: false },
+  // Modify logging
+  stats: {
+    // Remove children information
+    children: false,
+    // Remove the hash of the compilation
+    hash: false,
+    // Set the maximum number of modules to be shown
+    maxModules: 0,
+    // Add public path information
+    publicPath: false,
+    // Add webpack version information
+    version: false,
+  },
 
   // Make web variables accessible to webpack, e.g. window
   target: 'web',

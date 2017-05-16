@@ -188,8 +188,6 @@ export class Game {
 
     if (mostDays) {
       this.days.current += 1;
-    } else {
-      console.log('got an extra day!');
     }
   }
 

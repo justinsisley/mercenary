@@ -105,10 +105,29 @@ if (ENV === 'development') {
 
   // Create new webpack dev server with hot reloading enabled
   const webpackDevServer = new WebpackDevServer(webpack(webpackConfig), {
-    stats: 'minimal',
     publicPath: webpackConfig.output.publicPath,
-    hot: true,
     historyApiFallback: true,
+    hot: true,
+    // More minimal logging than the "minimal" setting
+    stats: {
+      assets: false,
+      cached: false,
+      cachedAssets: false,
+      children: false,
+      chunks: false,
+      chunkModules: false,
+      chunkOrigins: false,
+      hash: false,
+      maxModules: 0,
+      modules: false,
+      moduleTrace: false,
+      performance: false,
+      publicPath: false,
+      reasons: false,
+      source: false,
+      timings: false,
+      version: false,
+    },
   });
 
   // Start the webpack dev server
