@@ -21,7 +21,7 @@ WORKDIR /home/app
 ADD . /home/app
 
 # Install dependencies
-RUN yarn
+RUN yarn install --production
 
 # Start the web app in production mode
 CMD /usr/sbin/netdata && yarn run prod

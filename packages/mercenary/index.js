@@ -12,6 +12,7 @@ const pkg = require('./package.json');
 updateNotifier({ pkg }).notify();
 
 const corePackage = 'mercenary-core';
+const testPackage = 'mercenary-test';
 const appName = process.argv[2];
 
 if (!appName) {
@@ -81,6 +82,23 @@ function installCore(callback) {
   child.on('close', callback);
 }
 
+function installTest(callback) {
+  let command;
+  let args;
+
+  if (shouldUseYarn()) {
+    command = 'yarnpkg';
+    args = ['add', '--exact', '--dev', testPackage];
+  } else {
+    command = 'npm';
+    args = ['install', '--save-dev', '--save-exact', testPackage];
+  }
+
+  const child = spawn(command, args, { stdio: 'inherit' });
+
+  child.on('close', callback);
+}
+
 const runSetup = () => {
   const setupPath = path.resolve(
     process.cwd(),
@@ -95,12 +113,20 @@ const runSetup = () => {
   setup();
 };
 
-installCore((code) => {
-  if (code !== 0) {
+installCore((coreExitCode) => {
+  if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
     console.log();
     process.exit(1);
   }
 
-  runSetup();
+  installTest((testExitCode) => {
+    if (coreExitCode !== 0) {
+      console.log(chalk.red(`Failed to install ${testPackage}.`));
+      console.log();
+      process.exit(1);
+    }
+
+    runSetup();
+  });
 });
