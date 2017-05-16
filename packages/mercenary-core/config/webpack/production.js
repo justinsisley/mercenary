@@ -101,6 +101,9 @@ module.exports = {
   // defined, meaning `shared.javaScriptGlobals` is falsey.
   ].filter(Boolean),
 
+  // Supress plugin output
+  stats: { children: false },
+
   // Make web variables accessible to webpack, e.g. window
   target: 'web',
 };
