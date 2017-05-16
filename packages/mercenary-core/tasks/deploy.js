@@ -70,6 +70,10 @@ async function bumpVersion() {
         ],
       },
     ]).then(({ version }) => {
+      packageJson.version = `${version}`;
+
+      fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2));
+
       resolve(version);
     });
   });
