@@ -80,6 +80,12 @@ module.exports = {
     // JavaScript runtime globals
     shared.javaScriptGlobals,
 
+    // Define globals for compilation
+    new webpack.DefinePlugin({
+      // Version from the host projects's package.json
+      __VERSION__: JSON.stringify(shared.semver),
+    }),
+
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
 

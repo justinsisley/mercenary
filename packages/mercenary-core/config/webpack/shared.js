@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -5,6 +6,10 @@ const webpack = require('webpack');
 const cwd = process.cwd();
 const clientDir = path.join(cwd, './client');
 const publicDir = path.join(cwd, './public');
+
+// Get the version from the host projects's package.json
+const packageJson = fs.readFileSync(`${cwd}/package.json`, { encoding: 'utf8' });
+const semver = JSON.parse(packageJson).version;
 
 // Files of interest
 const jsEntryPoint = path.join(clientDir, '/index');
@@ -49,6 +54,7 @@ module.exports = {
   cwd,
   clientDir,
   publicDir,
+  semver,
   jsEntryPoint,
   htmlSource,
   htmlCompiled,

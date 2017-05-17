@@ -14,6 +14,8 @@ module.exports = {
   },
 
   globals: {
+    __VERSION__: true
+
     assert: true,
     expect: true,
   },
