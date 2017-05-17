@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.28.1",
+  "version": "2.28.2",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -26,7 +26,7 @@
     "eslint": "3.19.0",
     "eslint-config-mercenary": "^2.26.1",
     "eslint-loader": "1.7.1",
-    "express": "4.15.2",
+    "express": "4.15.3",
     "express-validator": "3.2.0",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.11.1",
