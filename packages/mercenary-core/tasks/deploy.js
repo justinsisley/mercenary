@@ -211,7 +211,7 @@ function sendSlackMessage({ semver, commitHash }) {
 
   execSync(`curl --silent -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
-  ${config.slackWebHookUrl}`);
+  ${config.deploy.slackWebHookUrl}`);
 }
 
 // Clean up the workspace
@@ -268,7 +268,7 @@ module.exports = async function deploy() {
     return;
   }
 
-  if (config.slackWebHookUrl) {
+  if (config.deploy.slackWebHookUrl) {
     spinner.text = 'Sending Slack notification';
     sendSlackMessage({ semver, commitHash });
   }
