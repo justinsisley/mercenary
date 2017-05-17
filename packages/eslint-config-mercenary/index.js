@@ -24,6 +24,7 @@ module.exports = {
 
   rules: {
     'arrow-body-style': 'off',
+    'max-len': 'off',
     'no-underscore-dangle': 'off',
 
     'import/no-extraneous-dependencies': 'off',

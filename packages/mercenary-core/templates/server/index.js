@@ -5,7 +5,7 @@ const config = require('./config');
 const authController = require('./controllers/auth');
 const accountController = require('./controllers/account');
 
-// Configure MongoDB
+// Initialize MongoDB
 const mlab = config.mlab;
 mongoose.Promise = global.Promise;
 // HACK: Prevents problems with re-creating DB connection when "hot-reloading"
