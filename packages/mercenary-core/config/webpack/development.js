@@ -80,6 +80,12 @@ module.exports = {
     // JavaScript runtime globals
     shared.javaScriptGlobals,
 
+    // Define globals for compilation
+    new webpack.DefinePlugin({
+      // Provide client side JavaScript with the current version
+      'window.SEMVER': `"${shared.semver}"`,
+    }),
+
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
 
