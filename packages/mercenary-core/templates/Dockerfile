@@ -10,7 +10,7 @@ RUN apk --no-cache add curl bash sed git
 
 # Modify and install netdata
 WORKDIR /home
-RUN curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' > /tmp/kickstart.sh && bash /tmp/kickstart.sh -i netdata -y
+RUN curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' > /tmp/kickstart.sh && bash /tmp/kickstart.sh -i netdata-all -y
 RUN git clone https://github.com/firehol/netdata.git --depth=1
 RUN sed -i '6i<base href="/_netdata/">' /home/netdata/web/index.html
 RUN cd netdata && ./netdata-installer.sh
