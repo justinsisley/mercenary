@@ -12,6 +12,8 @@ const packageJson = fs.readFileSync(`${cwd}/package.json`, { encoding: 'utf8' })
 const parsedPackageJson = JSON.parse(packageJson);
 const semver = parsedPackageJson.version;
 
+console.log('semver', semver);
+
 // Files of interest
 const jsEntryPoint = path.join(clientDir, '/index');
 const htmlSource = path.join(clientDir, '/index.html');

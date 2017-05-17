@@ -83,7 +83,7 @@ module.exports = {
     // Define globals for compilation
     new webpack.DefinePlugin({
       // Provide client side JavaScript with the current version
-      'window.SEMVER': `"${shared.semver}"`,
+      SEMVER: `"${shared.semver}"`,
     }),
 
     // Enables Hot Module Replacement

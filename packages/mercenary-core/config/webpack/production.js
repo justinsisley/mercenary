@@ -68,7 +68,7 @@ module.exports = {
     // Define globals for compilation
     new webpack.DefinePlugin({
       // Provide client side JavaScript with the current version
-      'window.SEMVER': `"${shared.semver}"`,
+      SEMVER: `"${shared.semver}"`,
       // Useful to reduce the size of client-side libraries, e.g. react
       'process.env.NODE_ENV': '"production"',
     }),
