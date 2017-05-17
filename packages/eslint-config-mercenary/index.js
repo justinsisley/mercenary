@@ -31,6 +31,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
 
     'jsx-a11y/label-has-for': 'warn',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
 
     'react/jsx-filename-extension': 'off',
   },
