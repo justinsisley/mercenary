@@ -17,12 +17,11 @@ const schema = new mongoose.Schema({
 });
 
 schema.path('token').default(() => {
-  const rawToken = `${uuid.v1()}:${Date.now()}`;
+  const rawToken = new Buffer(uuid());
+  const base64Token = rawToken.toString('base64');
+  const urlSafeToken = base64Token.replace(/=/g, '');
 
-  const encodedToken = (new Buffer(rawToken)).toString('base64');
-  const token = encodedToken.replace(/=/g, '');
-
-  return token;
+  return urlSafeToken;
 });
 
 schema.statics.findByToken = function findByToken(token) {

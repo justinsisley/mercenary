@@ -11,7 +11,11 @@ class VerifyScreen extends React.Component {
   }
 
   static defaultProps = {
-    match: { params: { token: null } },
+    match: {
+      params: {
+        token: null,
+      },
+    },
     verifyAccount: () => {},
   }
 

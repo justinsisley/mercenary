@@ -36,23 +36,11 @@ module.exports = {
         include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
-      // CSS modules
+      // CSS modules, including CSS from node_modules
       {
         test: shared.regex.css,
-        include: shared.regex.client,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
-      // Vendor CSS from NPM
-      {
-        test: shared.regex.css,
-        include: shared.regex.node_modules,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
+        include: [shared.regex.client, shared.regex.node_modules],
+        use: ['style-loader', 'css-loader'],
       },
       // Images
       {

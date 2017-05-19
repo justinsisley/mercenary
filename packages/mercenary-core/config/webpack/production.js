@@ -21,19 +21,10 @@ module.exports = {
         include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
-      // CSS modules
+      // CSS modules, including CSS from node_modules
       {
         test: shared.regex.css,
-        include: shared.regex.client,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        }),
-      },
-      // Vendor CSS from NPM
-      {
-        test: shared.regex.css,
-        include: shared.regex.node_modules,
+        include: [shared.regex.client, shared.regex.node_modules],
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader',
