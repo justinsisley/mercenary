@@ -42,14 +42,20 @@ module.exports = {
         include: [shared.regex.client, shared.regex.node_modules],
         use: ['style-loader', 'css-loader'],
       },
-      // Images
+      // Bitmap images
       {
-        test: shared.regex.images,
+        test: shared.regex.bitmaps,
         include: [shared.regex.node_modules, shared.regex.client],
         loader: 'file-loader',
         options: {
           name: 'images/[name].[ext]',
         },
+      },
+      // SVG images
+      {
+        test: shared.regex.svg,
+        include: [shared.regex.node_modules, shared.regex.client],
+        loader: 'svg-inline-loader?classPrefix',
       },
     ],
   },

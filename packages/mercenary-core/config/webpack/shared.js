@@ -30,7 +30,8 @@ if (projectConfig.webpack && projectConfig.webpack.globals) {
 const regex = {
   javascript: /\.jsx?$/,
   css: /\.css$/,
-  images: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
+  bitmaps: /\.(jpe?g|png|gif)(\?v=[a-z0-9.]+)?$/,
+  svg: /\.svg$/,
   client: /client/,
   server: /server/,
   node_modules: /node_modules/,
