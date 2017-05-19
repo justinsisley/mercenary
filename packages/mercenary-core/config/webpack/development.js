@@ -51,15 +51,6 @@ module.exports = {
           name: 'images/[name].[ext]',
         },
       },
-      // Fonts
-      {
-        test: shared.regex.fonts,
-        include: [shared.regex.node_modules, shared.regex.client],
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-        },
-      },
     ],
   },
 

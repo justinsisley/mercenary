@@ -39,15 +39,6 @@ module.exports = {
           name: 'images/[hash].[ext]',
         },
       },
-      // Fonts
-      {
-        test: shared.regex.fonts,
-        include: [shared.regex.node_modules, shared.regex.client],
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[hash].[ext]',
-        },
-      },
     ],
   },
 

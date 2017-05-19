@@ -31,7 +31,6 @@ const regex = {
   javascript: /\.jsx?$/,
   css: /\.css$/,
   images: /\.(jpe?g|png|gif|svg(2)?)(\?v=[a-z0-9.]+)?$/,
-  fonts: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
   client: /client/,
   server: /server/,
   node_modules: /node_modules/,
