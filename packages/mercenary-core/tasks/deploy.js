@@ -33,7 +33,7 @@ const templatesDir = join(__dirname, '../templates');
 const dockerFile = join(cwd, './Dockerfile');
 const dockerIgnore = join(cwd, './.dockerignore');
 const dockerAwsJsonDest = join(cwd, './Dockerrun.aws.json');
-const ebExtensionsSrc = join(templatesDir, './ssl_rewrite.config');
+const ebExtensionsSrc = join(templatesDir, './nginx.config');
 const ebExtensionsDest = join(cwd, './.ebextensions');
 const publicDir = join(cwd, './public');
 
