@@ -63,7 +63,6 @@ if (ENV !== 'development' && config.redis.port && config.redis.host) {
   app.use(protect.express.rateLimiter({
     db: redis.createClient(config.redis.port, config.redis.host),
     id: request => request.connection.remoteAddress,
-    max: 100, // HACK
   }));
 }
 
