@@ -5,6 +5,7 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const OfflinePlugin = require('offline-plugin');
 const shared = require('./shared');
 
 module.exports = {
@@ -98,6 +99,9 @@ module.exports = {
         destination: 'icons',
       }],
     })),
+
+    // Cache webpack assets for offline capabilities
+    new OfflinePlugin(),
 
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.
