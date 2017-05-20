@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const redis = require('redis');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const protect = require('@risingstack/protect');
@@ -57,14 +56,6 @@ app.use(bodyParser.json());
 app.use(protect.express.xss());
 // Validation/sanitization
 app.use(expressValidator());
-
-// Enable rate limiting for non-development environments
-if (ENV !== 'development' && config.redis.port && config.redis.host) {
-  app.use(protect.express.rateLimiter({
-    db: redis.createClient(config.redis.port, config.redis.host),
-    id: request => request.connection.remoteAddress,
-  }));
-}
 
 // Determine if a local server exists
 const localServerIndex = path.join(cwd, './server/index.js');
