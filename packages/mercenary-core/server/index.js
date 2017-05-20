@@ -89,8 +89,9 @@ if (fileExists('./server/index.js')) {
 // the user to apply any middleware they like without having to modify the
 // server entry point. Again, we're keeping this out of the try/catch (above)
 // so we can maintain standard error behavior.
-if (fileExists('./server/middleware.js')) {
-  const runMiddleware = require(localMiddleware); // eslint-disable-line
+const middlewarePath = './server/middleware.js';
+if (fileExists(middlewarePath)) {
+  const runMiddleware = require(path.join(cwd, middlewarePath)); // eslint-disable-line
 
   if (typeof runMiddleware === 'function') {
     runMiddleware(app);
