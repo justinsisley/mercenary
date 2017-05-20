@@ -29,4 +29,10 @@ module.exports = {
     // eslint-disable-next-line
     password: process.env.NETDATA_PASSWORD || projectConfig.deploy.netdata.password || netdataPassword,
   },
+
+  // Redis configuration for rate limiting
+  redis: {
+    host: process.env.REDIS_HOST || projectConfig.redis.host,
+    port: process.env.REDIS_PORT || projectConfig.redis.port,
+  },
 };
