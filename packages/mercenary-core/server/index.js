@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const protect = require('@risingstack/protect');
+const RateLimit = require('express-rate-limit');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
@@ -29,13 +30,10 @@ const NETDATA_PASSWORD = config.netdata.password;
 const devServerDomain = 'http://localhost';
 const devServerHost = `${devServerDomain}:${WEBPACK_DEV_SERVER_PORT}/`;
 
-// Get local IP address
-const ip = getIp.address();
-
 // Various references to this local server
 const localhost = `http://localhost:${EXPRESS_PORT}`;
 const localhostIP = `http://127.0.0.1:${EXPRESS_PORT}`;
-const localhostNetworkIP = `http://${ip}:${EXPRESS_PORT}`;
+const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 
 // References to important directories
 const cwd = process.cwd();
@@ -43,7 +41,8 @@ const publicDir = path.join(cwd, './public');
 
 // Create the Express server
 const app = express();
-
+// Trust the left-most entry in the X-Forwarded-* header
+app.enable('trust proxy');
 // Logging middleware
 app.use(morgan(ENV === 'development' ? 'dev' : 'combined'));
 // Helmet middleware gives us some basic best-practice security
@@ -57,40 +56,41 @@ app.use(protect.express.xss());
 // Validation/sanitization
 app.use(expressValidator());
 
-// Determine if a local server exists
-const localServerIndex = path.join(cwd, './server/index.js');
-var localServerExists = false; // eslint-disable-line
-try {
-  fs.lstatSync(localServerIndex);
-  localServerExists = true;
-} catch (err) {} // eslint-disable-line
+// Helper that determines if a file relative to the host project's path exists
+function fileExists(pathname) {
+  try {
+    fs.lstatSync(path.join(cwd, pathname));
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
 
 // Proxy requests to the local API if one exists. We're intentionally keeping
 // our routes out of the try/catch, above, because we want developers' server
 // code to throw errors as expected.
-if (localServerExists) {
-  // eslint-disable-next-line
-  app.use('/api', (req, res, next) => {
-    // eslint-disable-next-line
-    require(localServerIndex)(req, res, next);
-  });
-}
+if (fileExists('./server/index.js')) {
+  const apiHandler = (req, res, next) => {
+    require(localServerIndex)(req, res, next); // eslint-disable-line
+  };
 
-// Determine if a local middleware file exists
-const localMiddleware = path.join(cwd, './server/middleware.js');
-var localMiddlewareExists = false; // eslint-disable-line
-try {
-  fs.lstatSync(localMiddleware);
-  localMiddlewareExists = true;
-} catch (err) {} // eslint-disable-line
+  // Only use rate limiting in non-development environments
+  if (ENV !== 'development') {
+    app.use('/api', new RateLimit({
+      max: 50, // 50 requres per `windowMs`
+      windowMs: 60 * 1000, // 1 minute
+    }), apiHandler);
+  } else {
+    app.use('/api', apiHandler);
+  }
+}
 
 // Pass the Express app to the user's custom middleware function. This allows
 // the user to apply any middleware they like without having to modify the
 // server entry point. Again, we're keeping this out of the try/catch (above)
 // so we can maintain standard error behavior.
-if (localMiddlewareExists) {
-  // eslint-disable-next-line
-  const runMiddleware = require(localMiddleware);
+if (fileExists('./server/middleware.js')) {
+  const runMiddleware = require(localMiddleware); // eslint-disable-line
 
   if (typeof runMiddleware === 'function') {
     runMiddleware(app);
@@ -99,6 +99,7 @@ if (localMiddlewareExists) {
   }
 }
 
+// Development environment configuration
 if (ENV === 'development') {
   // Proxy static assets to webpack-dev-server
   app.use('/', proxy(url.parse(devServerHost)));
@@ -147,15 +148,13 @@ if (ENV === 'development') {
       });
 
       const shortPath = filePath.replace(cwd, '');
-      // eslint-disable-next-line
       console.log(`\nModule cache cleared due to change in:\n${shortPath}\n`);
     });
   });
+// Production environment configuration
 } else {
   // Proxy static assets to the local static directory and cache them
-  app.use('/', express.static(publicDir, {
-    maxAge: MAX_AGE,
-  }));
+  app.use('/', express.static(publicDir, { maxAge: MAX_AGE }));
 
   // Proxy netdata path to netdata app
   app.use(
@@ -164,7 +163,7 @@ if (ENV === 'development') {
     proxy(url.parse('http://127.0.0.1:19999'))
   );
 
-  console.log(`\nnetdata credentials: ${NETDATA_USERNAME} / ${NETDATA_PASSWORD}`);
+  console.log(`\nnetdata credentials:\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
@@ -174,8 +173,5 @@ if (ENV === 'development') {
 
 // Start the Express server
 app.listen(EXPRESS_PORT, () => {
-  // eslint-disable-next-line
-  var message = `\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`;
-  // eslint-disable-next-line
-  console.log(message);
+  console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
 });
