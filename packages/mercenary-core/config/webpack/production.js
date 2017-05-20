@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
@@ -90,7 +91,13 @@ module.exports = {
     new HtmlWebpackInlineSourcePlugin(),
 
     // Generates a 'manifest.json'
-    new WebpackPwaManifest(shared.manifest),
+    new WebpackPwaManifest(Object.assign({}, shared.manifest, {
+      icons: [{
+        src: path.resolve(path.join(__dirname, '../../templates/icon.png')),
+        sizes: [48, 72, 96, 144, 168, 192],
+        destination: 'icons',
+      }],
+    })),
 
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.
