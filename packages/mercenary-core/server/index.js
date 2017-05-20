@@ -45,8 +45,6 @@ const publicDir = path.join(cwd, './public');
 const app = express();
 // Trust the left-most entry in the X-Forwarded-* header
 app.enable('trust proxy');
-// Logging middleware
-app.use(morgan(ENV === 'development' ? 'dev' : 'combined'));
 // Helmet middleware gives us some basic best-practice security
 app.use(helmet());
 // Gzip responses
@@ -105,6 +103,9 @@ if (fileExists(middlewarePath)) {
 
 // Development environment configuration
 if (ENV === 'development') {
+  // Logging middleware
+  app.use(morgan('dev'));
+
   // Proxy static assets to webpack-dev-server
   app.use('/', proxy(url.parse(devServerHost)));
 
