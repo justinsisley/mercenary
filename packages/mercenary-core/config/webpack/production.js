@@ -95,7 +95,7 @@ module.exports = {
     new WebpackPwaManifest(Object.assign({}, shared.manifest, {
       icons: [{
         src: path.resolve(path.join(__dirname, '../../templates/icon.png')),
-        sizes: [48, 72, 96, 144, 168, 192],
+        sizes: [48, 72, 96, 144, 168, 192, 512],
         destination: 'icons',
       }],
     })),
