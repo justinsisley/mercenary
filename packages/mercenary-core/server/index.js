@@ -69,9 +69,10 @@ function fileExists(pathname) {
 // Proxy requests to the local API if one exists. We're intentionally keeping
 // our routes out of the try/catch, above, because we want developers' server
 // code to throw errors as expected.
-if (fileExists('./server/index.js')) {
+const localServerPath = './server/index.js';
+if (fileExists(localServerPath)) {
   const apiHandler = (req, res, next) => {
-    require(localServerIndex)(req, res, next); // eslint-disable-line
+    require(path.join(cwd, localServerPath))(req, res, next); // eslint-disable-line
   };
 
   // Only use rate limiting in non-development environments
