@@ -14,6 +14,12 @@ module.exports = {
     theme_color: '#ffffff',
   },
 
+  // Redis configuration for rate limiting
+  redis: {
+    host: null,
+    port: null,
+  },
+
   // Deployment configuration
   deploy: {
     // AWS settings
