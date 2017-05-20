@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
@@ -92,13 +91,7 @@ module.exports = {
     new HtmlWebpackInlineSourcePlugin(),
 
     // Generates a 'manifest.json'
-    new WebpackPwaManifest(Object.assign({}, shared.manifest, {
-      icons: [{
-        src: path.resolve(path.join(__dirname, '../../templates/icon.png')),
-        sizes: [48, 72, 96, 144, 168, 192, 512],
-        destination: 'icons',
-      }],
-    })),
+    new WebpackPwaManifest(shared.manifest),
 
     // Cache webpack assets for offline capabilities
     new OfflinePlugin(),

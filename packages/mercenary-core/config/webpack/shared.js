@@ -15,6 +15,7 @@ const semver = JSON.parse(packageJson).version;
 const jsEntryPoint = path.join(clientDir, '/index');
 const htmlSource = path.join(clientDir, '/index.html');
 const htmlCompiled = path.join(publicDir, '/index.html');
+const manifestIcon = path.join(clientDir, '/icon.png');
 
 // Host project's config.js
 const projectConfigPath = path.join(cwd, './config.js');
@@ -22,6 +23,12 @@ const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Get the manifest settings from the host project's config.js
 const { manifest } = projectConfig;
+// Add the icon from the host project's client directory to the manifest
+manifest.icons = [{
+  src: manifestIcon,
+  sizes: [48, 72, 96, 144, 168, 192, 512],
+  destination: 'icons',
+}];
 
 // Globals for webpack
 var javaScriptGlobals = null; // eslint-disable-line
