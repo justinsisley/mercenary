@@ -78,6 +78,7 @@ if (fileExists(localServerPath)) {
   // Only use rate limiting in non-development environments
   if (ENV !== 'development') {
     app.use('/api', new RateLimit({
+      delayMs: 0, // disable delay
       max: 50, // 50 requres per `windowMs`
       windowMs: 60 * 1000, // 1 minute
     }), apiHandler);
