@@ -23,12 +23,6 @@ module.exports = {
   // Length of time to cache static assets in production mode
   maxAge: process.env.CACHE_MAX_AGE || 1000 * 60 * 60 * 24 * 60, // 60 days
 
-  // Redis configuration for rate limiting
-  redis: {
-    host: process.env.REDIS_HOST || projectConfig.redis.host,
-    port: process.env.REDIS_PORT || projectConfig.redis.port,
-  },
-
   // Configure access to netdata dashboard
   netdata: {
     username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,
