@@ -1,10 +1,20 @@
 module.exports = {
-  // Webpack-specific configuration
+  // Webpack configuration
   webpack: {
     // Configured exactly the same as webpack.ProvidePlugin
     globals: {},
   },
 
+  // manifest.json configuration
+  manifest: {
+    name: 'Mercenary App',
+    short_name: 'Mercenary',
+    description: 'Mercenary App',
+    background_color: '#ffffff',
+    theme_color: '#ffffff',
+  },
+
+  // Deployment configuration
   deploy: {
     // AWS settings
     aws: {

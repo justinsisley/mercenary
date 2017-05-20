@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 const shared = require('./shared');
 
 module.exports = {
@@ -87,6 +88,9 @@ module.exports = {
     }),
     // Inline any CSS modules within the HTML file
     new HtmlWebpackInlineSourcePlugin(),
+
+    // Generates a 'manifest.json'
+    new WebpackPwaManifest(shared.manifest),
 
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.

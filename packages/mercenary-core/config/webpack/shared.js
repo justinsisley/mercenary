@@ -20,6 +20,9 @@ const htmlCompiled = path.join(publicDir, '/index.html');
 const projectConfigPath = path.join(cwd, './config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
+// Get the manifest settings from the host project's config.js
+const { manifest } = projectConfig;
+
 // Globals for webpack
 var javaScriptGlobals = null; // eslint-disable-line
 if (projectConfig.webpack && projectConfig.webpack.globals) {
@@ -59,6 +62,7 @@ module.exports = {
   htmlSource,
   htmlCompiled,
   javaScriptGlobals,
+  manifest,
   regex,
   output,
 };
