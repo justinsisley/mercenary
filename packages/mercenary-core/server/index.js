@@ -169,7 +169,7 @@ if (ENV === 'development') {
     proxy(url.parse('http://127.0.0.1:19999'))
   );
 
-  console.log(`\nnetdata credentials:\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
+  console.log(`\nnetdata credentials\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {

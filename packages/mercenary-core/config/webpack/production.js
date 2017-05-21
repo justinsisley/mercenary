@@ -23,6 +23,13 @@ module.exports = {
         include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
+      // Append the service worker runtime to the JavaScript entry point for
+      // OfflinePlugin to work
+      {
+        test: /client\/index\.js$/,
+        loader: 'webpack-append',
+        query: 'require("offline-plugin/runtime").install();',
+      },
       // CSS modules, including CSS from node_modules
       {
         test: shared.regex.css,

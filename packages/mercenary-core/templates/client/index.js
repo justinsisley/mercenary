@@ -15,13 +15,9 @@ import 'semantic-ui-css/components/list.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import App from './components/App';
 
 // Global custom styles
 import './index.css';
-
-// Enable caching for offline experience
-OfflinePluginRuntime.install();
 
 ReactDOM.render(<App />, document.getElementById('root'));
