@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -86,6 +87,29 @@ module.exports = {
         },
       },
       canPrint: false,
+    }),
+
+    // Generate and inject favicon
+    new FaviconsWebpackPlugin({
+      logo: shared.manifestIcon,
+      // The prefix for all image files
+      prefix: 'icons/',
+      // Inject the html into the html-webpack-plugin
+      inject: true,
+      // Which icons should be generated
+      // (see https://github.com/haydenbleasel/favicons#usage)
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false,
+      },
     }),
 
     // Copy HTML file and inject generated assets

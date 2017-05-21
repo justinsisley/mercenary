@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint/lib/formatters/stylish');
 const config = require('../index');
@@ -79,6 +80,29 @@ module.exports = {
 
     // Skips the emitting phase when there are errors during compilation
     new webpack.NoEmitOnErrorsPlugin(),
+
+    // Generate and inject favicon
+    new FaviconsWebpackPlugin({
+      logo: shared.manifestIcon,
+      // The prefix for all image files
+      prefix: 'icons/',
+      // Inject the html into the html-webpack-plugin
+      inject: true,
+      // Which icons should be generated
+      // (see https://github.com/haydenbleasel/favicons#usage)
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false,
+      },
+    }),
 
     // Inject generated assets into HTML file
     new HtmlWebpackPlugin({

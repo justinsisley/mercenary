@@ -68,6 +68,7 @@ module.exports = {
   jsEntryPoint,
   htmlSource,
   htmlCompiled,
+  manifestIcon,
   javaScriptGlobals,
   manifest,
   regex,
