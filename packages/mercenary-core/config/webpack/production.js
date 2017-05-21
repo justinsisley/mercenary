@@ -126,7 +126,9 @@ module.exports = {
     new WebpackPwaManifest(shared.manifest),
 
     // Cache webpack assets for offline capabilities
-    new OfflinePlugin(),
+    new OfflinePlugin({
+      updateStrategy: 'all',
+    }),
 
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.
