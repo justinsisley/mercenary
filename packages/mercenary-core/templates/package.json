@@ -9,7 +9,7 @@
     "lodash": "4.17.4",
     "loglevel": "1.4.1",
     "mjml-utils": "2.0.0",
-    "mongoose": "4.10.0",
+    "mongoose": "4.10.2",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
     "normalizr": "3.2.3",
@@ -25,7 +25,7 @@
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.10",
     "semantic-ui-react": "0.68.3",
-    "tokenpress": "1.5.0",
+    "tokenpress": "1.5.1",
     "uuid": "3.0.1",
     "validator": "7.0.0"
   }

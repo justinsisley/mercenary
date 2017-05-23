@@ -3,18 +3,13 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import api from './api';
 
-// Does nothing now, but could retrive state rendered to the DOM by the server
-const getInitialState = () => {};
+const middleware = compose(
+  applyMiddleware(thunk.withExtraArgument(api)),
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
+);
 
 export default function configureStore() {
-  const store = createStore(
-    rootReducer,
-    getInitialState(),
-    compose(
-      applyMiddleware(thunk.withExtraArgument(api)),
-      window.devToolsExtension ? window.devToolsExtension() : f => f,
-    ),
-  );
+  const store = createStore(rootReducer, middleware);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
