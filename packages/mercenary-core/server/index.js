@@ -4,7 +4,6 @@ const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 const express = require('express');
 const morgan = require('morgan');
-const helmet = require('helmet');
 const protect = require('@risingstack/protect');
 const RateLimit = require('express-rate-limit');
 const compression = require('compression');
@@ -45,12 +44,12 @@ const publicDir = path.join(cwd, './public');
 const app = express();
 // Trust the left-most entry in the X-Forwarded-* header
 app.enable('trust proxy');
-// Helmet middleware gives us some basic best-practice security
-app.use(helmet());
 // Gzip responses
 app.use(compression());
 // Parse JSON in request body
 app.use(bodyParser.json());
+// Helmet middleware gives us some basic best-practice security
+app.use(protect.express.headers());
 // Protect against XSS attacks
 app.use(protect.express.xss());
 // Validation/sanitization
