@@ -52,7 +52,7 @@ async function bumpVersion() {
         type: 'list',
         name: 'version',
         message: 'Choose a release type:',
-        default: 1,
+        default: 0,
         choices: [
           {
             name: `Patch    ${major}.${minor}.${patch}  ->  ${major}.${minor}.${patch + 1}`,
