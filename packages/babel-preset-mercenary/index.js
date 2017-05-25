@@ -28,6 +28,25 @@ if (env === 'development') {
   presets.push(require.resolve('babel-preset-react-hmre'));
 }
 
+const plugins = [
+  [
+    require.resolve('babel-plugin-transform-runtime'),
+    {
+      helpers: false,
+      polyfill: false,
+      regenerator: true,
+    },
+  ],
+  [
+    require.resolve('babel-plugin-transform-regenerator'),
+    {
+      // Async functions are converted to generators by babel-preset-env
+      async: false,
+    },
+  ],
+];
+
 module.exports = {
   presets,
+  plugins,
 };
