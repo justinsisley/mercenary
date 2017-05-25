@@ -117,7 +117,7 @@ module.exports = {
       filename: shared.htmlCompiled,
       template: shared.htmlSource,
       inlineSource: '.css$',
-      manifest: `<link rel="manifest" href="/manifest.json?version=${shared.semver}">`,
+      manifest: `<link rel="manifest" href="/manifest.json?v=${shared.semver}">`,
     }),
     // Inline any CSS modules within the HTML file
     new HtmlWebpackInlineSourcePlugin(),
