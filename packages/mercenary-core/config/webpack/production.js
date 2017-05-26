@@ -127,7 +127,6 @@ module.exports = {
 
     // Cache webpack assets for offline capabilities
     new OfflinePlugin({
-      responseStrategy: 'network-first',
       updateStrategy: 'all',
       version: shared.semver,
     }),
