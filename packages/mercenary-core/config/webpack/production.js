@@ -117,7 +117,7 @@ module.exports = {
       filename: shared.htmlCompiled,
       template: shared.htmlSource,
       inlineSource: '.css$',
-      manifest: '<link rel="manifest" href="/manifest.json">',
+      manifest: `<link rel="manifest" href="/manifest.json?v=${shared.semver}">`,
     }),
     // Inline any CSS modules within the HTML file
     new HtmlWebpackInlineSourcePlugin(),
@@ -127,9 +127,9 @@ module.exports = {
 
     // Cache webpack assets for offline capabilities
     new OfflinePlugin({
-      autoUpdate: 1000 * 60, // 1 minute
       responseStrategy: 'network-first',
       updateStrategy: 'all',
+      version: shared.semver,
     }),
 
   // Filter out boolean values, which prevents an error if no JS globals are

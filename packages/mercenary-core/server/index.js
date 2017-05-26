@@ -23,7 +23,6 @@ const config = require('../config');
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
 const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
-const MAX_AGE = config.maxAge;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 
@@ -159,7 +158,7 @@ if (ENV === 'development') {
 // Production environment configuration
 } else {
   // Proxy static assets to the local static directory and cache them
-  app.use('/', express.static(publicDir, { maxAge: MAX_AGE }));
+  app.use('/', express.static(publicDir));
 
   // Proxy netdata path to netdata app
   app.use(

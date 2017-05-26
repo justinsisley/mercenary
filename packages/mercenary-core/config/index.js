@@ -20,9 +20,6 @@ module.exports = {
   // The webpack dev server's port
   webpackDevServerPort: process.env.WEBPACK_DEV_SERVER_PORT || 3326,
 
-  // Length of time to cache static assets in production mode
-  maxAge: process.env.CACHE_MAX_AGE || 1000 * 60 * 60 * 24 * 60, // 60 days
-
   // Configure access to netdata dashboard
   netdata: {
     username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,

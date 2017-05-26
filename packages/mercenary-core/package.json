@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.43.5",
+  "version": "2.43.6",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@risingstack/protect": "1.2.0",
-    "aws-sdk": "2.57.0",
+    "aws-sdk": "2.58.0",
     "babel-core": "6.24.1",
     "babel-loader": "7.0.0",
     "babel-preset-mercenary": "^2.43.0",
@@ -22,7 +22,7 @@
     "chalk": "1.1.3",
     "chokidar": "1.7.0",
     "compression": "1.6.2",
-    "css-loader": "0.28.2",
+    "css-loader": "0.28.3",
     "eslint": "3.19.0",
     "eslint-config-mercenary": "^2.41.0",
     "eslint-loader": "1.7.1",
