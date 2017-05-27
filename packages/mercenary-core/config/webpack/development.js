@@ -58,6 +58,15 @@ module.exports = {
         include: [shared.regex.node_modules, shared.regex.client],
         loader: 'svg-inline-loader?classPrefix',
       },
+      // Fonts
+      {
+        test: shared.regex.fonts,
+        include: [shared.regex.node_modules, shared.regex.client],
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]',
+        },
+      },
     ],
   },
 
