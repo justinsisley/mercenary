@@ -1,6 +1,6 @@
 {
   "name": "mercenary-test",
-  "version": "2.41.0",
+  "version": "2.43.8",
   "description": "The force multiplier web application stack",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "babel-istanbul": "0.12.2",
-    "chai": "3.5.0",
+    "chai": "4.0.0",
     "chromedriver": "2.29.0",
     "jsdom": "11.0.0",
     "mocha": "3.4.2",

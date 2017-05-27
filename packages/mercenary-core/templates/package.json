@@ -2,7 +2,7 @@
   "name": "mercenary-react-redux",
   "description": "A react/redux web application built on mercenary",
   "dependencies": {
-    "aphrodite-jss": "1.1.0",
+    "aphrodite-jss": "1.1.1",
     "axios": "0.16.1",
     "classnames": "2.2.5",
     "faker": "4.1.0",
