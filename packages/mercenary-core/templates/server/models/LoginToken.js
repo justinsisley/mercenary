@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
   timestamps: true,
 });
 
-schema.path('token').default(() => getURLSafeToken());
+schema.path('token').default(getURLSafeToken);
 
 schema.statics.findByToken = function findByToken(token) {
   return new Promise((resolve, reject) => {

@@ -9,6 +9,7 @@ export default {
     return axios.post('/api/session/token', { token });
   },
 
+  // NOTE: For example only
   verifySessionToken() {
     return axios.get('/api/session/verify');
   },
