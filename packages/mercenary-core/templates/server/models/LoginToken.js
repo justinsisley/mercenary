@@ -1,5 +1,7 @@
-const uuid = require('uuid/v1');
 const mongoose = require('mongoose');
+const tokenpress = require('tokenpress');
+
+const { getURLSafeToken } = tokenpress.node.string;
 
 const schema = new mongoose.Schema({
   email: String,
@@ -9,20 +11,14 @@ const schema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    expires: 60 * 60 * 1, // expires after 1 hour
+    expires: '5m',
     default: Date.now,
   },
 }, {
   timestamps: true,
 });
 
-schema.path('token').default(() => {
-  const rawToken = new Buffer(uuid());
-  const base64Token = rawToken.toString('base64');
-  const urlSafeToken = base64Token.replace(/=/g, '');
-
-  return urlSafeToken;
-});
+schema.path('token').default(() => getURLSafeToken());
 
 schema.statics.findByToken = function findByToken(token) {
   return new Promise((resolve, reject) => {

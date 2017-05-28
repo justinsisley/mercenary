@@ -3,8 +3,8 @@
     <mj-container>
       <mj-section>
         <mj-column>
-          <mj-button background-color="#F63A4D" href="{loginURL}">
-            Use this magic button to log in.
+          <mj-button background-color="#21BA45" href="{loginURL}">
+            Click Here to Log In
           </mj-button>
         </mj-column>
       </mj-section>

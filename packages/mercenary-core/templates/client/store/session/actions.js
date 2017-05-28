@@ -1,34 +1,66 @@
 import axios from 'axios';
+import tokenpress from 'tokenpress/browser';
 import { createAction } from 'redux-actions';
 
-export const setToken = createAction('set session.token');
-export const unsetToken = createAction('unset session.token');
-export const setError = createAction('set session.error');
-export const setIsFetching = createAction('set session.isFetching');
+export const setLoginEmailRequestSuccess = createAction('set session.request.success');
+export const setLoginEmailRequestFailed = createAction('set session.request.failed');
 
-export const logIn = (email) => {
+export const setVerifyLoginTokenSuccess = createAction('set session.verify.success');
+export const setVerifyLoginTokenFailed = createAction('set session.verify.failed');
+
+export const setVerifySessionTokenSuccess = createAction('set session.token.success');
+export const setVerifySessionTokenFailed = createAction('set session.token.failed');
+
+export function requestLoginEmail(email) {
   return (dispatch, getState, api) => {
-    dispatch(setIsFetching());
-
-    api.logIn(email)
-    .then(api.checkStatus(dispatch))
-    .then((response) => {
-      const { token } = response.data;
-
-      // Side-effects
-      axios.defaults.headers.common.Authorization = token;
-
-      dispatch(setToken({ token }));
+    api.requestLoginEmail(email)
+    .then(() => {
+      dispatch(setLoginEmailRequestSuccess(email));
     })
-    .catch(error => dispatch(setError(error)));
-  };
-};
+    .catch((error) => {
+      api.handleError(error);
 
-export const logOut = () => {
-  return (dispatch) => {
-    // Side-effects
-    axios.defaults.headers.common.Authorization = null;
-
-    dispatch(unsetToken());
+      dispatch(setLoginEmailRequestFailed(error.response.data.message));
+    });
   };
-};
+}
+
+export function verifyLoginToken(loginToken) {
+  return (dispatch, getState, api) => {
+    api.verifyLoginToken(loginToken)
+    .then((response) => {
+      const token = response.data.token;
+
+      /* Begin side-effects */
+      // Save the token to localStorage
+      tokenpress.browser.save(token);
+      // Set the user token in the headers for all subsequent requests
+      axios.defaults.headers.common.Authorization = token;
+      /* End side-effects */
+
+      dispatch(setVerifyLoginTokenSuccess(token));
+    })
+    .catch((error) => {
+      api.handleError(dispatch, error);
+
+      dispatch(setVerifyLoginTokenFailed(error.response.data));
+    });
+  };
+}
+
+// NOTE: For example only
+export function verifySessionToken() {
+  return (dispatch, getState, api) => {
+    api.verifySessionToken()
+    .then((response) => {
+      const jwt = response.data.jwt;
+
+      dispatch(setVerifySessionTokenSuccess(jwt));
+    })
+    .catch((error) => {
+      api.handleError(dispatch, error);
+
+      dispatch(setVerifySessionTokenFailed(error.response));
+    });
+  };
+}

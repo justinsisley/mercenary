@@ -1,30 +1,23 @@
 import log from 'loglevel';
-import { getUsers } from './users/endpoints';
-import { getTodos } from './todos/endpoints';
-import { logIn } from './session/endpoints';
-import { createUserAccount, verifyUserAccount } from './userAccount/endpoints';
+import tokenpress from 'tokenpress/browser';
+import session from './session/endpoints';
 
 export default {
-  // Check for authentication and authorization.
-  // NOTE: You may want to pass this function a dispatcher so you can dispatch
-  // some type of error action.
-  checkStatus() {
-    return (response) => {
-      switch (response.status) {
-        case 401: log.warn('User not authorized to take this action', response);
-          break;
-        case 403: log.warn('User not authenticated', response);
-          break;
-        default: // no-op
-      }
+  // Handle API errors application-wide
+  handleError(dispatch, error) {
+    switch (error.response.status) {
+      case 401:
+        tokenpress.browser.delete();
+        window.location = '/login';
+        break;
 
-      return response;
-    };
+      case 403:
+        log.warn('User not authorized to take this action');
+        break;
+
+      default: // no-op
+    }
   },
 
-  getUsers,
-  getTodos,
-  logIn,
-  createUserAccount,
-  verifyUserAccount,
+  ...session,
 };

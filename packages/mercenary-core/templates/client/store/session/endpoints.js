@@ -1,5 +1,15 @@
 import axios from 'axios';
 
-export const logIn = (email) => {
-  return axios.post('/api/auth/login', { email });
+export default {
+  requestLoginEmail(email) {
+    return axios.post('/api/session', { email });
+  },
+
+  verifyLoginToken(token) {
+    return axios.post('/api/session/token', { token });
+  },
+
+  verifySessionToken() {
+    return axios.get('/api/session/verify');
+  },
 };

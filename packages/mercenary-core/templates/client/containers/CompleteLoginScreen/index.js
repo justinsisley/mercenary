@@ -1,12 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as session from '../../store/session/actions';
-import LoginForm from '../../components/LoginForm';
-
-// Map application state to component props
-function mapStateToProps(state) {
-  return { ...state.session };
-}
+import CompleteLogin from '../../screens/CompleteLogin';
 
 // Map actions to to props so they can be called directly
 function mapDispatchToProps(dispatch) {
@@ -15,6 +10,6 @@ function mapDispatchToProps(dispatch) {
 
 // Connect component to store
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
-)(LoginForm);
+)(CompleteLogin);

@@ -2,8 +2,7 @@ const router = require('express').Router;
 const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
 const config = require('./config');
-const authController = require('./controllers/auth');
-const accountController = require('./controllers/account');
+const sessionController = require('./controllers/session');
 
 // Initialize MongoDB
 const mlab = config.mlab;
@@ -16,7 +15,7 @@ try {
 }
 
 // Configure JWT authentication middleware and utils
-tokenpress.configure({
+tokenpress.node.configure({
   secret: config.jwt.secret,
   expiresIn: config.jwt.expiresIn,
 });
@@ -25,7 +24,6 @@ tokenpress.configure({
 const rootRouter = router();
 
 // Register controllers
-rootRouter.use(authController);
-rootRouter.use(accountController);
+rootRouter.use(sessionController);
 
 module.exports = rootRouter;

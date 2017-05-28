@@ -1,42 +1,81 @@
+import axios from 'axios';
+import tokenpress from 'tokenpress/browser';
 import { handleActions } from 'redux-actions';
-import { setIsFetching, setToken, unsetToken, setError } from './actions';
-import { setAccountVerified } from '../userAccount/actions';
+import {
+  setLoginEmailRequestSuccess,
+  setLoginEmailRequestFailed,
+
+  setVerifyLoginTokenSuccess,
+  setVerifyLoginTokenFailed,
+
+  setVerifySessionTokenSuccess,
+  setVerifySessionTokenFailed,
+} from './actions';
+
+// Attempt to get the token from localStorage when the app bootstraps
+const savedToken = tokenpress.browser.get();
+if (savedToken) {
+  axios.defaults.headers.common.Authorization = savedToken;
+}
 
 const initialState = {
-  token: '',
-  _fetching: false,
-  _error: null,
+  requestSuccess: false,
+  requestFailed: false,
+  requestFailedMessage: '',
+
+  verifyFailed: false,
+
+  token: savedToken,
+
+  // NOTE: For example only
+  jwt: {},
+  jwtError: '',
 };
 
-const handleToken = (state, action) => {
-  return {
-    token: action.payload.token,
-    _fetching: false,
-    _error: null,
-  };
-};
-
-export const reducer = handleActions({
-  [setIsFetching]: (state) => {
+export default handleActions({
+  [setLoginEmailRequestSuccess]: () => {
     return {
-      ...state,
-      _fetching: true,
-      _error: null,
+      ...initialState,
+      requestSuccess: true,
     };
   },
 
-  [setToken]: handleToken,
-  [setAccountVerified]: handleToken,
+  [setLoginEmailRequestFailed]: (state, action) => {
+    return {
+      ...initialState,
+      requestFailed: true,
+      requestFailedMessage: action.payload,
+    };
+  },
 
-  [unsetToken]: () => initialState,
+  [setVerifyLoginTokenSuccess]: (state, action) => {
+    return {
+      ...initialState,
+      token: action.payload,
+    };
+  },
 
-  [setError]: (state, action) => {
+  [setVerifyLoginTokenFailed]: () => {
+    return {
+      ...initialState,
+      verifyFailed: true,
+    };
+  },
+
+  // NOTE: For example only
+  [setVerifySessionTokenSuccess]: (state, action) => {
     return {
       ...state,
-      _fetching: false,
-      _error: action.payload.response,
+      jwt: action.payload,
+    };
+  },
+
+  // NOTE: For example only
+  // Test token failure by modifying the localStorage token, or by letting it expire
+  [setVerifySessionTokenFailed]: (state, action) => {
+    return {
+      ...state,
+      jwtError: action.payload,
     };
   },
 }, initialState);
-
-export default reducer;

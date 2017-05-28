@@ -1,25 +1,26 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import { Segment, Button, Form, Message } from 'semantic-ui-react';
 import validator from 'validator';
 
 class LoginForm extends React.Component {
   static propTypes = {
-    error: propTypes.shape(),
-    logIn: propTypes.func,
-    token: propTypes.string,
+    requestSuccess: propTypes.bool,
+    requestFailedMessage: propTypes.string,
+
+    requestLoginEmail: propTypes.func,
   }
 
   static defaultProps = {
-    error: null,
-    logIn: () => {},
-    token: '',
+    requestSuccess: false,
+    requestFailedMessage: '',
+
+    requestLoginEmail() {},
   }
 
   state = {
     email: '',
-    emailError: false,
+    validationError: '',
   }
 
   handleSubmit = (e) => {
@@ -29,46 +30,63 @@ class LoginForm extends React.Component {
     const isEmail = validator.isEmail(email);
 
     if (!email || !isEmail) {
-      this.setState({ emailError: true });
+      this.setState({
+        validationError: 'Invalid email',
+      });
+
       return;
     }
 
-    this.setState({ emailError: false });
+    this.setState({
+      email,
+      validationError: '',
+    });
 
-    this.props.logIn(email);
+    this.props.requestLoginEmail(email);
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      email: e.target.value,
+      validationError: '',
+    });
   }
 
   render() {
-    if (this.props.token) {
-      return <Redirect to="/" />;
-    }
-
-    const hasError = !!this.props.error || this.state.emailError;
+    const error = this.state.validationError || this.props.requestFailedMessage;
 
     return (
       <Segment>
         <h2>Log In</h2>
 
-        <Form error={hasError}>
-          <Form.Field>
-            <label htmlFor="email">Email Address</label>
+        {(() => {
+          if (this.props.requestSuccess) {
+            return (
+              <Message success>
+                A magic login link was sent to <b>{this.state.email}</b>
+              </Message>
+            );
+          }
 
-            <input
-              id="email"
-              placeholder="you@domain.com"
-              onChange={(e) => {
-                this.setState({
-                  email: e.target.value,
-                  emailError: false,
-                });
-              }}
-            />
-          </Form.Field>
+          return (
+            <Form error={!!error}>
+              <Form.Field>
+                <label htmlFor="email">Email Address</label>
 
-          <Message error content="Invalid email address" />
+                <input
+                  id="email"
+                  placeholder="you@domain.com"
+                  onChange={this.handleInputChange}
+                  value={this.state.email}
+                />
+              </Form.Field>
 
-          <Button onClick={this.handleSubmit}>Continue</Button>
-        </Form>
+              <Message error content={error} />
+
+              <Button onClick={this.handleSubmit}>Continue</Button>
+            </Form>
+          );
+        })()}
       </Segment>
     );
   }

@@ -5,14 +5,11 @@
     "aphrodite-jss": "1.1.1",
     "axios": "0.16.1",
     "classnames": "2.2.5",
-    "faker": "4.1.0",
-    "lodash": "4.17.4",
     "loglevel": "1.4.1",
-    "mjml-utils": "2.0.0",
-    "mongoose": "4.10.2",
+    "mjml-utils": "2.0.2",
+    "mongoose": "4.10.3",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
-    "normalizr": "3.2.3",
     "prop-types": "15.5.10",
     "react": "15.5.4",
     "react-async-component": "1.0.0-beta.3",
@@ -24,9 +21,8 @@
     "redux-actions": "2.0.3",
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.10",
-    "semantic-ui-react": "0.68.3",
-    "tokenpress": "1.5.1",
-    "uuid": "3.0.1",
+    "semantic-ui-react": "0.68.4",
+    "tokenpress": "1.6.0",
     "validator": "7.0.0"
   }
 }

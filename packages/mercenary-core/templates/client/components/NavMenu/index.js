@@ -31,16 +31,6 @@ class NavMenu extends React.Component {
         path: '/',
         label: 'Dashboard',
       },
-      {
-        position: 1,
-        path: '/users',
-        label: 'Users',
-      },
-      {
-        position: 2,
-        path: '/todos',
-        label: 'Todos',
-      },
     ],
     activeItem: this.context.router.route.location.pathname,
   }
