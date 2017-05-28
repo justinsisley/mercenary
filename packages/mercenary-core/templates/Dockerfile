@@ -1,5 +1,5 @@
 # Base image
-FROM node:7.7-alpine
+FROM node:7.10-alpine
 
 # Update system
 RUN apk update
@@ -21,7 +21,7 @@ WORKDIR /home/app
 ADD . /home/app
 
 # Install dependencies
-RUN yarn install --production
+RUN yarn install --production --no-progress
 
 # Start the web app in production mode
 CMD /usr/sbin/netdata && yarn run prod
