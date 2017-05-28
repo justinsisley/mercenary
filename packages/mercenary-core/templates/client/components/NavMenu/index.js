@@ -31,6 +31,11 @@ class NavMenu extends React.Component {
         path: '/',
         label: 'Dashboard',
       },
+      {
+        position: 1,
+        path: '/logout',
+        label: 'Log Out',
+      },
     ],
     activeItem: this.context.router.route.location.pathname,
   }

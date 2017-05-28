@@ -4,6 +4,7 @@ import { asyncComponent } from 'react-async-component';
 import AppLayout from '../components/AppLayout';
 import RequireAuth from '../containers/RequireAuth';
 import RequireNoAuth from '../containers/RequireNoAuth';
+import logout from '../utils/logout';
 
 const loadAsync = resolve => asyncComponent({ resolve });
 
@@ -45,6 +46,7 @@ export default (
 
     <Route exact path="/login" component={LoginScreen} />
     <Route exact path="/login/:token" component={CompleteLogin} />
+    <Route exact path="/logout" render={logout} />
 
     {/* 404 not possible, we just redirect back to root */}
     <Redirect to="/" />

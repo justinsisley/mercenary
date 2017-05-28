@@ -1,14 +1,13 @@
 import log from 'loglevel';
-import tokenpress from 'tokenpress/browser';
 import session from './session/endpoints';
+import logout from '../utils/logout';
 
 export default {
   // Handle API errors application-wide
   handleError(dispatch, error) {
     switch (error.response.status) {
       case 401:
-        tokenpress.browser.delete();
-        window.location = '/login';
+        logout();
         break;
 
       case 403:
