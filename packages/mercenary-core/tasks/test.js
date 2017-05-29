@@ -4,14 +4,18 @@ const glob = require('glob');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
-const npmBin = path.join(cwd, './node_modules/.bin');
+
+const nodeModulesPath = path.join(cwd, './node_modules/');
+const eslintPath = path.join(nodeModulesPath, './eslint/bin/eslint.js');
+const babelIstanbulPath = path.join(nodeModulesPath, './babel-istanbul/lib/cli.js');
+const mochaPath = path.join(nodeModulesPath, './mocha/bin/_mocha');
 
 // Run eslint and execute Mocha tests
 const test = () => {
   // Keep the output from eslint pure by catching errors thrown by execSync.
   try {
     cp.execSync(`
-      "${npmBin}/eslint" \
+      "${eslintPath}" \
         "${cwd}/client/**/*.js" \
         "${cwd}/server/**/*.js"
     `, { stdio: 'inherit' });
@@ -29,8 +33,8 @@ const test = () => {
     // Keep the output from mocha pure by catching errors thrown by execSync.
     try {
       cp.execSync(`
-        NODE_ENV=test "${npmBin}/babel-istanbul" \
-          cover "${npmBin}/_mocha" -- \
+        NODE_ENV=test "${babelIstanbulPath}" \
+          cover "${mochaPath}" -- \
           --compilers .:"${configDir}/tests/unit/compiler.js" \
           --require "${configDir}/tests/unit/setup.js" \
           "${cwd}/?(client|server)/**/unit.js"

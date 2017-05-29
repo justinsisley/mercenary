@@ -5,10 +5,15 @@ const styles = {
     position: 'fixed',
     zIndex: 1,
     height: '100vh',
-    borderRadius: 0,
-    borderTop: 'none',
-    borderBottom: 'none',
-    boxShadow: 'none',
+
+    '&.ui.vertical.menu': {
+      borderTop: 'none',
+      borderRight: '1px solid #ddd',
+      borderBottom: 'none',
+      borderLeft: 'none',
+      borderRadius: 0,
+      boxShadow: 'none',
+    },
   },
 };
 

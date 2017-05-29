@@ -1,11 +1,14 @@
-const jsdom = require('jsdom');
+const JSDOM = require('jsdom').JSDOM;
 const mocha = require('mocha');
 const chai = require('chai');
 const localStorage = require('node-localstorage');
 
-// Configure fake DOM
+// Create fake DOM
+const dom = new JSDOM('<body></body>');
+
+// Extend Node with fake dom properties
 global.navigator = { userAgent: 'node.js' };
-global.document = jsdom.jsdom('<body></body>');
+global.document = dom.window.document;
 global.window = document.defaultView;
 global.window.localStorage = localStorage;
 

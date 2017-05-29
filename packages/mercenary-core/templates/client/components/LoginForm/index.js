@@ -2,6 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Segment, Button, Form, Message } from 'semantic-ui-react';
 import validator from 'validator';
+import { css } from 'aphrodite-jss';
+import styles from './styles';
 
 class LoginForm extends React.Component {
   static propTypes = {
@@ -56,7 +58,7 @@ class LoginForm extends React.Component {
     const error = this.state.validationError || this.props.requestFailedMessage;
 
     return (
-      <Segment>
+      <Segment className={css(styles.form)}>
         <h2>Log In</h2>
 
         {(() => {
