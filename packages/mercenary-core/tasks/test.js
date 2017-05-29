@@ -7,8 +7,7 @@ const configDir = path.join(__dirname, '../config');
 
 const nodeModulesPath = path.join(cwd, './node_modules/');
 const eslintPath = path.join(nodeModulesPath, './eslint/bin/eslint.js');
-const babelIstanbulPath = path.join(nodeModulesPath, './babel-istanbul/lib/cli.js');
-const mochaPath = path.join(nodeModulesPath, './mocha/bin/_mocha');
+const mochaPath = path.join(nodeModulesPath, './mocha/bin/mocha');
 
 // Run eslint and execute Mocha tests
 const test = () => {
@@ -33,8 +32,7 @@ const test = () => {
     // Keep the output from mocha pure by catching errors thrown by execSync.
     try {
       cp.execSync(`
-        NODE_ENV=test "${babelIstanbulPath}" \
-          cover "${mochaPath}" -- \
+        NODE_ENV=test "${mochaPath}" \
           --compilers .:"${configDir}/tests/unit/compiler.js" \
           --require "${configDir}/tests/unit/setup.js" \
           "${cwd}/?(client|server)/**/unit.js"
