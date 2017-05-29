@@ -1,6 +1,9 @@
 {
   "private": true,
   "author": "Justin Sisley",
+  "scripts": {
+    "ncu": "./ncu.sh"
+  },
   "devDependencies": {
     "lerna": "2.0.0-rc.5"
   }
