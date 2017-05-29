@@ -9,7 +9,6 @@
     "node": ">=6.3.0"
   },
   "dependencies": {
-    "babel-istanbul": "0.12.2",
     "chai": "4.0.0",
     "chromedriver": "2.29.0",
     "jsdom": "11.0.0",

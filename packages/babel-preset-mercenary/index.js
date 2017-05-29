@@ -17,7 +17,8 @@ const presets = [
       // Support browsers that have more than 1% market share.
       browsers: '> 1%',
     },
-    modules: false,
+    // Test environment needs Babel to compile modules
+    modules: env === 'test' ? 'commonjs' : false,
     useBuiltIns: true,
   }],
   require.resolve('babel-preset-stage-0'),

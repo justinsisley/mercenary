@@ -7,7 +7,6 @@ node_modules
 public
 
 # testing
-coverage
 reports
 
 # misc
