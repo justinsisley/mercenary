@@ -14,9 +14,7 @@ import {
 
 // Attempt to get the token from localStorage when the app bootstraps
 const savedToken = tokenpress.browser.get();
-if (savedToken) {
-  axios.defaults.headers.common.Authorization = savedToken;
-}
+axios.defaults.headers.common.Authorization = savedToken;
 
 const initialState = {
   requestSuccess: false,

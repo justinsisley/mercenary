@@ -68,13 +68,6 @@ Deploy the Dockerized application to ElasticBeanstalk:
 npm run deploy
 ```
 
-Delete build and test artifacts:
-
-```bash
-npm run clean
-```
-
-
 ## Packages
 
 This repository is managed as a monorepo. It contains [several npm packages](/packages). Publishing is managed by [Lerna](https://github.com/lerna/lerna).

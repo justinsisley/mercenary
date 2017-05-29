@@ -6,11 +6,11 @@ const lint = require('./tasks/lint');
 const test = require('./tasks/test');
 const testWatch = require('./tasks/testWatch');
 const e2e = require('./tasks/e2e');
-const clean = require('./tasks/clean');
 const build = require('./tasks/build');
 const startDev = require('./tasks/startDev');
 const startProd = require('./tasks/startProd');
 const deploy = require('./tasks/deploy');
+const deployInit = require('./tasks/deployInit');
 
 if (argv.setup) {
   setup();
@@ -34,10 +34,6 @@ if (argv.e2e) {
   e2e({ serverProcess: prod });
 }
 
-if (argv.clean) {
-  clean();
-}
-
 if (argv.build) {
   build();
 }
@@ -53,4 +49,8 @@ if (argv.prod) {
 
 if (argv.deploy) {
   deploy();
+}
+
+if (argv.deployInit) {
+  deployInit();
 }

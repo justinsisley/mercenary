@@ -55,9 +55,3 @@ Deploy the Dockerized application to ElasticBeanstalk:
 ```bash
 npm run deploy
 ```
-
-Delete build and test artifacts:
-
-```bash
-npm run clean
-```

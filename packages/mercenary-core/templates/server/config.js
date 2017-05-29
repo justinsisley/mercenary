@@ -13,7 +13,7 @@ module.exports = {
   },
 
   email: {
-    fromAddress: process.env.EMAIL_FROM_ADDRESS || 'name <noreply@domain.tld>',
+    fromAddress: process.env.EMAIL_FROM_ADDRESS || 'mercenary <noreply@domain.tld>',
 
     ses: {
       accessKeyId: process.env.SES_ACCESS_KEY_ID || 'AWS_SES_ACCESS_KEY_ID',

@@ -18,7 +18,7 @@ export function requestLoginEmail(email) {
       dispatch(setLoginEmailRequestSuccess(email));
     })
     .catch((error) => {
-      api.handleError(error);
+      api.handleError(dispatch, error);
 
       dispatch(setLoginEmailRequestFailed(error.response.data.message));
     });
@@ -31,12 +31,10 @@ export function verifyLoginToken(loginToken) {
     .then((response) => {
       const token = response.data.token;
 
-      /* Begin side-effects */
       // Save the token to localStorage
       tokenpress.browser.save(token);
       // Set the user token in the headers for all subsequent requests
       axios.defaults.headers.common.Authorization = token;
-      /* End side-effects */
 
       dispatch(setVerifyLoginTokenSuccess(token));
     })
@@ -53,9 +51,7 @@ export function verifySessionToken() {
   return (dispatch, getState, api) => {
     api.verifySessionToken()
     .then((response) => {
-      const jwt = response.data.jwt;
-
-      dispatch(setVerifySessionTokenSuccess(jwt));
+      dispatch(setVerifySessionTokenSuccess(response.data.jwt));
     })
     .catch((error) => {
       api.handleError(dispatch, error);

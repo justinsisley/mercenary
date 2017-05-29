@@ -21,18 +21,7 @@ const schema = new mongoose.Schema({
 schema.path('token').default(getURLSafeToken);
 
 schema.statics.findByToken = function findByToken(token) {
-  return new Promise((resolve, reject) => {
-    this.findOne({
-      token,
-    }, (error, data) => {
-      if (error) {
-        reject(error);
-        return;
-      }
-
-      resolve(data);
-    });
-  });
+  return this.findOne({ token });
 };
 
 // HACK: Prevents problems with re-creating schemas when "hot-reloading"

@@ -40,7 +40,7 @@ const copyNpmScripts = () => {
     e2e: 'merc --e2e',
     prod: 'merc --prod',
     deploy: 'merc --deploy',
-    clean: 'merc --clean',
+    'deploy:init': 'merc --deployInit',
   });
 
   parsedPackageJson.scripts = packageJsonScripts;
@@ -98,7 +98,7 @@ const setup = () => {
       ${chalk.cyan('npm test')}
         Run unit tests.
 
-      ${chalk.cyan('npm run testwatch')}
+      ${chalk.cyan('npm run test:watch')}
         Start the unit test watcher.
 
       ${chalk.cyan('npm run e2e')}
@@ -110,8 +110,8 @@ const setup = () => {
       ${chalk.cyan('npm run deploy')}
         Deploy the Dockerized application to ElasticBeanstalk.
 
-      ${chalk.cyan('npm run clean')}
-        Delete build and test artifacts.
+      ${chalk.cyan('npm run deploy:init')}
+        Configure an AWS account for the deploy task.
 
 
     But first, you should run:

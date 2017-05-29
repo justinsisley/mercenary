@@ -3,8 +3,6 @@ import propTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { Grid } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import LoginForm from '../../containers/LoginForm';
 
 function LoginScreen(props) {
@@ -16,9 +14,7 @@ function LoginScreen(props) {
     <DocumentTitle title="Login">
       <Grid centered columns={12}>
         <Grid.Column width={3}>
-          <div className={css(styles.form)}>
-            <LoginForm />
-          </div>
+          <LoginForm />
         </Grid.Column>
       </Grid>
     </DocumentTitle>

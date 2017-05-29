@@ -1,16 +1,6 @@
 module.exports = {
   respondWithErrorCode(errorCode, res, error, message) {
-    const payload = {};
-
-    if (error) {
-      payload.error = error;
-    }
-
-    if (message) {
-      payload.message = message;
-    }
-
-    res.status(errorCode).json(payload);
+    res.status(errorCode).json({ error, message });
   },
 
   // Bad request

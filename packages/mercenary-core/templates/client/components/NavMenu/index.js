@@ -21,7 +21,13 @@ function sortByPosition(a, b) {
 
 class NavMenu extends React.Component {
   static contextTypes = {
-    router: propTypes.shape().isRequired,
+    router: propTypes.shape({
+      route: propTypes.shape({
+        location: propTypes.shape({
+          pathname: propTypes.string,
+        }),
+      }),
+    }).isRequired,
   }
 
   state = {
@@ -64,10 +70,14 @@ class NavMenu extends React.Component {
 
     return (
       <Menu vertical className={css(styles.menu)}>
-        <Menu.Item header>Mercenary</Menu.Item>
+        <Menu.Item header>
+          Mercenary
+        </Menu.Item>
 
         <Menu.Item>
-          <Menu.Menu>{menuItems}</Menu.Menu>
+          <Menu.Menu>
+            {menuItems}
+          </Menu.Menu>
         </Menu.Item>
       </Menu>
     );

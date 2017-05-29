@@ -4,50 +4,44 @@ import { Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { Grid } from 'semantic-ui-react';
 
-class CompleteLogin extends React.Component {
-  static propTypes = {
-    match: propTypes.shape({
-      params: propTypes.shape({
-        token: propTypes.string,
-      }),
-    }),
+function CompleteLogin(props) {
+  const { token } = props.match.params;
 
-    verifyLoginToken: propTypes.func,
+  if (!token) {
+    return <Redirect to="/login" />;
   }
 
-  static defaultProps = {
-    match: {
-      params: {
-        token: '',
-      },
-    },
+  props.verifyLoginToken(token);
 
-    verifyLoginToken: () => {},
-  }
-
-  state = {
-    token: null,
-  }
-
-  render() {
-    const { token } = this.props.match.params;
-
-    if (!token) {
-      return <Redirect to="/login" />;
-    }
-
-    this.props.verifyLoginToken(token);
-
-    return (
-      <DocumentTitle title="Account Verification">
-        <Grid centered columns={12}>
-          <Grid.Column width={3}>
-            <div>Verifying account...</div>
-          </Grid.Column>
-        </Grid>
-      </DocumentTitle>
-    );
-  }
+  return (
+    <DocumentTitle title="Account Verification">
+      <Grid centered columns={12}>
+        <Grid.Column width={3}>
+          <div>Verifying account...</div>
+        </Grid.Column>
+      </Grid>
+    </DocumentTitle>
+  );
 }
+
+CompleteLogin.propTypes = {
+  match: propTypes.shape({
+    params: propTypes.shape({
+      token: propTypes.string,
+    }),
+  }),
+
+  verifyLoginToken: propTypes.func,
+};
+
+CompleteLogin.defaultProps = {
+  match: {
+    params: {
+      token: '',
+    },
+  },
+
+  verifyLoginToken: () => {},
+};
 
 export default CompleteLogin;

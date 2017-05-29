@@ -1,4 +1,4 @@
-const router = require('express').Router;
+const router = require('express').Router();
 const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
 const config = require('./config');
@@ -20,10 +20,7 @@ tokenpress.node.configure({
   expiresIn: config.jwt.expiresIn,
 });
 
-// Create main application router
-const rootRouter = router();
+// Register controllers with the root router
+router.use(sessionController);
 
-// Register controllers
-rootRouter.use(sessionController);
-
-module.exports = rootRouter;
+module.exports = router;
