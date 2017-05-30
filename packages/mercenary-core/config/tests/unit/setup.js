@@ -1,7 +1,7 @@
 const JSDOM = require('jsdom').JSDOM;
 const mocha = require('mocha');
 const chai = require('chai');
-const localStorage = require('node-localstorage');
+const Storage = require('dom-storage');
 
 // Create fake DOM
 const dom = new JSDOM('<body></body>');
@@ -9,8 +9,8 @@ const dom = new JSDOM('<body></body>');
 // Extend Node with fake dom properties
 global.navigator = { userAgent: 'node.js' };
 global.document = dom.window.document;
-global.window = document.defaultView;
-global.window.localStorage = localStorage;
+global.window = dom.window;
+global.window.localStorage = new Storage();
 
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
