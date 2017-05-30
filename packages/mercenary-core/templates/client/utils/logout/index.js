@@ -5,5 +5,5 @@ export default () => {
   tokenpress.browser.delete();
 
   // Full reload to clear the store
-  window.location = '/login';
+  window.location.pathname = '/login';
 };
