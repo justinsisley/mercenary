@@ -21,7 +21,7 @@
     "redux-actions": "2.0.3",
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.10",
-    "semantic-ui-react": "0.68.4",
+    "semantic-ui-react": "0.68.5",
     "tokenpress": "1.6.0",
     "validator": "7.0.0"
   }
