@@ -29,13 +29,18 @@ const s3Bucket = config.aws.s3.bucket;
 const containerPort = 3325;
 
 // File paths
+const publicDir = join(cwd, './public');
 const templatesDir = join(__dirname, '../templates');
 const dockerFile = join(cwd, './Dockerfile');
 const dockerIgnore = join(cwd, './.dockerignore');
 const dockerAwsJsonDest = join(cwd, './Dockerrun.aws.json');
-const ebExtensionsSrc = join(templatesDir, './nginx.config');
 const ebExtensionsDest = join(cwd, './.ebextensions');
-const publicDir = join(cwd, './public');
+
+// Determine which nginx config to use
+let ebExtensionsSrc = join(templatesDir, './nginx.no-www.config');
+if (config.nginx.www) {
+  ebExtensionsSrc = join(templatesDir, './nginx.www.config');
+}
 
 // AWS SDK
 AWS.config.update({ accessKeyId, secretAccessKey, region });

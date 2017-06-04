@@ -16,6 +16,12 @@ module.exports = {
 
   // Deployment configuration
   deploy: {
+    // nginx load balancer settings
+    nginx: {
+      // Force www or non-www
+      www: false,
+    },
+
     // AWS settings
     aws: {
       // Credentials from IAM.
