@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.48.0",
+  "version": "2.48.1",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@risingstack/protect": "1.2.0",
-    "aws-sdk": "2.62.0",
+    "aws-sdk": "2.63.0",
     "babel-core": "6.24.1",
     "babel-loader": "7.0.0",
     "babel-preset-mercenary": "2.47.1",
@@ -31,7 +31,7 @@
     "express-validator": "3.2.0",
     "extract-text-webpack-plugin": "2.1.0",
     "favicons-webpack-plugin": "0.0.7",
-    "file-loader": "0.11.1",
+    "file-loader": "0.11.2",
     "glob": "7.1.2",
     "html-webpack-inline-source-plugin": "0.0.9",
     "html-webpack-plugin": "2.28.0",
@@ -50,7 +50,7 @@
     "react": "15.5.4",
     "react-addons-shallow-compare": "15.5.2",
     "react-dom": "15.5.4",
-    "style-loader": "0.18.1",
+    "style-loader": "0.18.2",
     "svg-inline-loader": "0.7.1",
     "webpack": "2.6.1",
     "webpack-append": "0.1.2",

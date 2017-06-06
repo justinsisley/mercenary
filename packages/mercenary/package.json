@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "2.44.0",
+  "version": "2.48.1",
   "description": "The force multiplier web application stack",
   "bin": {
     "mercenary": "./index.js"
@@ -19,6 +19,6 @@
     "cross-spawn": "5.1.0",
     "extfs": "0.0.7",
     "fs-extra": "3.0.1",
-    "update-notifier": "2.1.0"
+    "update-notifier": "2.2.0"
   }
 }
