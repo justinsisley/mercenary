@@ -136,6 +136,7 @@ module.exports = {
 
     // Cache webpack assets for offline capabilities
     new OfflinePlugin({
+      autoUpdate: true,
       updateStrategy: 'all',
       version: shared.semver,
     }),

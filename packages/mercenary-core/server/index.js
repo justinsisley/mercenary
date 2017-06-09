@@ -157,7 +157,7 @@ if (ENV === 'development') {
   });
 // Production environment configuration
 } else {
-  // Proxy static assets to the local static directory and cache them
+  // Proxy static assets to the public directory
   app.use('/', express.static(publicDir));
 
   // Proxy netdata path to netdata app
