@@ -1,7 +1,7 @@
 const execSync = require('child_process').execSync;
 
 const install = () => {
-  execSync('npm', ['install'], { stdio: 'inherit' });
+  execSync('npm install', { stdio: 'inherit' });
 };
 
 module.exports = install;
