@@ -1,5 +1,5 @@
 # Base image
-FROM node:8.1-alpine
+FROM node:7.10-alpine
 
 # Update system
 RUN apk update
@@ -21,10 +21,10 @@ WORKDIR /home/app
 ADD . /home/app
 
 # Install dependencies
-RUN npm install --only=production
+RUN yarn install --production --no-progress
 
 # Start the web app in production mode
-CMD /usr/sbin/netdata && npm run prod
+CMD /usr/sbin/netdata && yarn run prod
 
 # Expose the application port
 EXPOSE 3325
