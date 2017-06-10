@@ -56,19 +56,15 @@ console.log('Installing mercenary core packages...');
 console.log();
 
 function installCore(callback) {
-  const command = 'npm';
   const args = ['install', '--save', '--save-exact', corePackage];
-
-  const child = spawn(command, args, { stdio: 'inherit' });
+  const child = spawn('npm', args, { stdio: 'inherit' });
 
   child.on('close', callback);
 }
 
 function installTest(callback) {
-  const command = 'npm';
   const args = ['install', '--save-dev', '--save-exact', testPackage];
-
-  const child = spawn(command, args, { stdio: 'inherit' });
+  const child = spawn('npm', args, { stdio: 'inherit' });
 
   child.on('close', callback);
 }
