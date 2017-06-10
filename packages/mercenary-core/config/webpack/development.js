@@ -55,7 +55,7 @@ module.exports = {
       // SVG images
       {
         test: shared.regex.svg,
-        include: [shared.regex.node_modules, shared.regex.client],
+        include: shared.regex.client,
         loader: 'svg-inline-loader?classPrefix',
       },
       // Fonts
@@ -126,5 +126,5 @@ module.exports = {
   target: 'web',
 
   // Generate a source map
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
 };

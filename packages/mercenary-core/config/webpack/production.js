@@ -52,7 +52,7 @@ module.exports = {
       // SVG images
       {
         test: shared.regex.svg,
-        include: [shared.regex.node_modules, shared.regex.client],
+        include: shared.regex.client,
         loader: 'svg-inline-loader?classPrefix',
       },
       // Fonts
