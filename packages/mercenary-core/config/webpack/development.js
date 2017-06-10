@@ -126,5 +126,5 @@ module.exports = {
   target: 'web',
 
   // Generate a source map
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval',
 };
