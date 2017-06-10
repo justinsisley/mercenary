@@ -4,6 +4,7 @@ import { Segment, Button, Form, Message } from 'semantic-ui-react';
 import validator from 'validator';
 import { css } from 'aphrodite-jss';
 import styles from './styles';
+import Conditional from '../Conditional';
 
 class LoginForm extends React.Component {
   static propTypes = {
@@ -61,16 +62,14 @@ class LoginForm extends React.Component {
       <Segment className={css(styles.form)}>
         <h2>Log In</h2>
 
-        {(() => {
-          if (this.props.requestSuccess) {
-            return (
-              <Message success>
-                A magic login link was sent to <b>{this.state.email}</b>
-              </Message>
-            );
-          }
-
-          return (
+        <Conditional
+          if={this.props.requestSuccess}
+          then={(
+            <Message success>
+              A magic login link was sent to <b>{this.state.email}</b>
+            </Message>
+          )}
+          else={(
             <Form error={!!error}>
               <Form.Field>
                 <label htmlFor="email">Email Address</label>
@@ -87,8 +86,8 @@ class LoginForm extends React.Component {
 
               <Button onClick={this.handleSubmit}>Continue</Button>
             </Form>
-          );
-        })()}
+          )}
+        />
       </Segment>
     );
   }

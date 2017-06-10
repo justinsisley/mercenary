@@ -53,6 +53,8 @@ app.use(protect.express.headers());
 app.use(protect.express.xss());
 // Validation/sanitization
 app.use(expressValidator());
+// Logging middleware
+app.use(morgan(ENV === 'development' ? 'dev' : 'combined'));
 
 // Helper that determines if a file relative to the host project's path exists
 function fileExists(pathname) {
@@ -102,9 +104,6 @@ if (fileExists(middlewarePath)) {
 
 // Development environment configuration
 if (ENV === 'development') {
-  // Logging middleware
-  app.use(morgan('dev'));
-
   // Proxy static assets to webpack-dev-server
   app.use('/', proxy(url.parse(devServerHost)));
 
