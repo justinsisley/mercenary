@@ -4,7 +4,7 @@ const glob = require('glob');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
-const npmBin = path.join(cwd, './node_modules/.bin');
+const nightwatch = path.join(cwd, './node_modules/nightwatch/bin/nightwatch');
 
 const e2e = (options = { serverProcess: null }) => {
   // Check for existence of test files before attempting to execute
@@ -26,7 +26,7 @@ const e2e = (options = { serverProcess: null }) => {
       // Always exit with 0 code to avoid NPM errors when linting fails.
       try {
         cp.execSync(`
-          "${npmBin}/nightwatch" \
+          "${nightwatch}" \
             --config "${configDir}/tests/e2e/config.js" || exit 0
         `, { stdio: 'inherit' });
       } catch (err) { // eslint-disable-line
