@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "2.50.1",
+  "version": "2.50.4",
   "description": "The force multiplier web application stack",
   "bin": {
     "mercenary": "./index.js"
@@ -12,7 +12,7 @@
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
   "engines": {
-    "node": ">=6.3.0"
+    "node": ">=7.10"
   },
   "dependencies": {
     "chalk": "1.1.3",

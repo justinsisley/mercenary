@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.50.3",
+  "version": "2.50.4",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -9,7 +9,7 @@
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
   "engines": {
-    "node": ">=6.3.0"
+    "node": ">=7.10"
   },
   "dependencies": {
     "@risingstack/protect": "1.2.0",
