@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.50.6",
+  "version": "2.51.0",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -43,9 +43,6 @@
     "optimize-css-assets-webpack-plugin": "2.0.0",
     "ora": "1.2.0",
     "password-generator": "2.1.0",
-    "postcss-loader": "2.0.5",
-    "postcss-scss": "1.0.0",
-    "precss": "1.4.0",
     "proxy-middleware": "0.15.0",
     "react": "15.5.4",
     "react-addons-shallow-compare": "15.5.2",
