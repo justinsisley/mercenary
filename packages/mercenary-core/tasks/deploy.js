@@ -30,17 +30,10 @@ const containerPort = 3325;
 
 // File paths
 const publicDir = join(cwd, './public');
-const templatesDir = join(__dirname, '../templates');
 const dockerFile = join(cwd, './Dockerfile');
 const dockerIgnore = join(cwd, './.dockerignore');
 const dockerAwsJsonDest = join(cwd, './Dockerrun.aws.json');
 const ebExtensionsDest = join(cwd, './.ebextensions');
-
-// Determine which nginx config to use
-let ebExtensionsSrc = join(templatesDir, './nginx.no-www.config');
-if (config.nginx.www) {
-  ebExtensionsSrc = join(templatesDir, './nginx.www.config');
-}
 
 // AWS SDK
 AWS.config.update({ accessKeyId, secretAccessKey, region });
@@ -119,16 +112,6 @@ function generateDockerConfig() {
     Ports: [{ ContainerPort: `${containerPort}` }],
   };
   fs.writeFileSync(dockerAwsJsonDest, JSON.stringify(dockerAwsJson));
-}
-
-// Configure Elastic Beanstalk's NGINX server to redirect HTTP traffic to HTTPS
-function generateEBConfig() {
-  try {
-    execSync(`mkdir "${ebExtensionsDest}"`);
-    execSync(`cp "${ebExtensionsSrc}" "${ebExtensionsDest}"`);
-  } catch (error) {
-    // no-op
-  }
 }
 
 // Create the bundle zip
@@ -241,9 +224,6 @@ module.exports = async function deploy() {
 
   spinner.text = 'Setting up AWS Docker configuration file';
   generateDockerConfig();
-
-  spinner.text = 'Creating Elastic Beanstalk configuration files';
-  generateEBConfig();
 
   spinner.text = 'Creating application bundle';
   const { bundleName, bundleBits } = createAppBundle(versionLabel);
