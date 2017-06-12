@@ -7,6 +7,7 @@ const execSync = require('child_process').execSync;
 const ora = require('ora');
 const inquirer = require('inquirer');
 const AWS = require('aws-sdk');
+const build = require('./build');
 const docker = require('./docker');
 
 const cwd = process.cwd();
@@ -218,6 +219,9 @@ module.exports = async function deploy() {
   const versionLabel = getVersionLabel(semver, commitHash);
 
   const spinner = ora().start();
+
+  spinner.text = 'Building client application';
+  build({ silent: true });
 
   spinner.text = 'Creating Docker files';
   docker();

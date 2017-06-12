@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.51.5",
+  "version": "2.52.0",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
