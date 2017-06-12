@@ -38,6 +38,7 @@ const copyNpmScripts = () => {
     test: 'merc --test',
     'test:watch': 'merc --testWatch',
     e2e: 'merc --e2e',
+    build: 'merc --build',
     prod: 'merc --prod',
     deploy: 'merc --deploy',
     'deploy:init': 'merc --deployInit',

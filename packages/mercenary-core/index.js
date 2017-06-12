@@ -38,7 +38,6 @@ if (argv.start) {
 }
 
 if (argv.prod) {
-  // build();
   startProd();
 }
 

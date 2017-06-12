@@ -7,13 +7,19 @@ const webpack = require.resolve('.bin/webpack');
 
 // Production build
 const build = (config = { silent: false }) => {
+  let output = '';
+
+  if (config.silent) {
+    output = '>/dev/null';
+  }
+
   cp.execSync(`
     rm -rf ${cwd}/public &&
     NODE_ENV=production "${webpack}" \
       --display-error-details \
       --config \
-      "${configDir}/webpack/production.js"
-  `, { stdio: config.silent ? 'ignore' : 'inherit' });
+      "${configDir}/webpack/production.js" ${output}
+  `, { stdio: 'inherit' });
 };
 
 module.exports = build;
