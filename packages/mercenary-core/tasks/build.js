@@ -9,7 +9,7 @@ const webpack = require.resolve('.bin/webpack');
 const build = (config = { silent: false }) => {
   cp.execSync(`
     rm -rf ${cwd}/public &&
-    NODE_ENV=production --max_old_space_size=256 "${webpack}" \
+    NODE_ENV=production node --max_old_space_size=449 "${webpack}" \
       --display-error-details \
       --config \
       "${configDir}/webpack/production.js"
