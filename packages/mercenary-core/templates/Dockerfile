@@ -6,7 +6,8 @@ RUN apk update
 RUN apk upgrade
 
 # Add software we need
-RUN apk --no-cache add curl bash sed git libvips
+RUN apk --no-cache add curl bash sed git
+RUN apk add libvips --repository https://s3.amazonaws.com/wjordan-apk --allow-untrusted
 
 # Modify and install netdata
 WORKDIR /home
