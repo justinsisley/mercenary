@@ -7,7 +7,7 @@
     "classnames": "2.2.5",
     "loglevel": "1.4.1",
     "mjml-utils": "2.0.3",
-    "mongoose": "4.10.5",
+    "mongoose": "4.10.6",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.5.10",
