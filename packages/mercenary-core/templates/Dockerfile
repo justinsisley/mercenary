@@ -6,7 +6,7 @@ RUN apk update
 RUN apk upgrade
 
 # Add software we need
-RUN apk --no-cache add curl bash sed git
+RUN apk --no-cache add curl bash sed git libvips
 
 # Modify and install netdata
 WORKDIR /home
