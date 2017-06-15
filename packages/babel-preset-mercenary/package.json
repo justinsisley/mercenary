@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-mercenary",
-  "version": "2.52.3",
+  "version": "2.53.2",
   "description": "Babel preset used by mercenary",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
@@ -14,7 +14,7 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.24.1",
-    "react": "15.6.0",
-    "react-dom": "15.6.0"
+    "react": "15.6.1",
+    "react-dom": "15.6.1"
   }
 }
