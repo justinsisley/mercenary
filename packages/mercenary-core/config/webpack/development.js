@@ -43,30 +43,9 @@ module.exports = {
         include: [shared.regex.client, shared.regex.node_modules],
         use: ['style-loader', 'css-loader'],
       },
-      // Bitmap images
-      {
-        test: shared.regex.bitmaps,
-        include: [shared.regex.node_modules, shared.regex.client],
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name].[ext]',
-        },
-      },
-      // SVG images
-      {
-        test: shared.regex.svg,
-        include: shared.regex.client,
-        loader: 'svg-inline-loader?classPrefix',
-      },
-      // Fonts
-      {
-        test: shared.regex.fonts,
-        include: [shared.regex.node_modules, shared.regex.client],
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-        },
-      },
+      shared.loaders.bitmapImages,
+      shared.loaders.svgImages,
+      shared.loaders.fonts,
     ],
   },
 

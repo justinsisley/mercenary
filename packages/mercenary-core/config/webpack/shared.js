@@ -61,6 +61,33 @@ const output = {
   chunkFilename: 'js/[chunkhash].js',
 };
 
+const loaders = {
+  // Bitmap images
+  bitmapImages: {
+    test: regex.bitmaps,
+    include: [regex.node_modules, regex.client],
+    loader: 'file-loader',
+    options: {
+      name: 'images/[hash].[ext]',
+    },
+  },
+  // Inlined SVG images
+  svgImages: {
+    test: regex.svg,
+    include: regex.client,
+    loader: 'svg-inline-loader?classPrefix',
+  },
+  // Fonts
+  fonts: {
+    test: regex.fonts,
+    include: regex.node_modules,
+    loader: 'file-loader',
+    options: {
+      name: 'fonts/[name].[ext]',
+    },
+  },
+};
+
 module.exports = {
   cwd,
   clientDir,
@@ -74,4 +101,5 @@ module.exports = {
   manifest,
   regex,
   output,
+  loaders,
 };

@@ -40,30 +40,9 @@ module.exports = {
           use: 'css-loader',
         }),
       },
-      // Bitmap images
-      {
-        test: shared.regex.bitmaps,
-        include: [shared.regex.node_modules, shared.regex.client],
-        loader: 'file-loader',
-        options: {
-          name: 'images/[hash].[ext]',
-        },
-      },
-      // SVG images
-      {
-        test: shared.regex.svg,
-        include: shared.regex.client,
-        loader: 'svg-inline-loader?classPrefix',
-      },
-      // Fonts
-      {
-        test: shared.regex.fonts,
-        include: [shared.regex.node_modules, shared.regex.client],
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-        },
-      },
+      shared.loaders.bitmapImages,
+      shared.loaders.svgImages,
+      shared.loaders.fonts,
     ],
   },
 
