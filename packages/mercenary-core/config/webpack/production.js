@@ -59,6 +59,9 @@ module.exports = {
       'process.env.NODE_ENV': '"production"',
     }),
 
+    // Enable scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
+
     // Minify JavaScript
     new webpack.optimize.UglifyJsPlugin({ comments: false }),
 
