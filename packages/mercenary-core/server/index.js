@@ -22,6 +22,7 @@ const config = require('../config');
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
+const FORCE_WWW = config.www;
 const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
@@ -66,18 +67,22 @@ function fileExists(pathname) {
   }
 }
 
-// In non-development environments, force HTTPS
-app.use('*', (req, res, next) => {
-  console.log();
-  console.log('req.hostname', req.hostname);
-  console.log();
+// In non-development environments, force HTTPS, and optionally www
+if (ENV !== 'development') {
+  app.use('*', (req, res, next) => {
+    if (FORCE_WWW && req.hostname.indexOf('www.') !== 0) {
+      res.redirect(301, `https://www.${req.hostname}${req.originalUrl}`);
+      return;
+    }
 
-  if (req.secure && req.headers['x-forwarded-proto'] === 'https') {
-    next();
-  } else {
+    if (req.secure && req.headers['x-forwarded-proto'] === 'https') {
+      next();
+      return;
+    }
+
     res.redirect(301, `https://${req.hostname}${req.originalUrl}`);
-  }
-});
+  });
+}
 
 // Proxy requests to the local API if one exists. We're intentionally keeping
 // our routes out of the try/catch, above, because we want developers' server

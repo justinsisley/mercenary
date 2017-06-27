@@ -20,6 +20,9 @@ module.exports = {
   // The webpack dev server's port
   webpackDevServerPort: process.env.WEBPACK_DEV_SERVER_PORT || 3326,
 
+  // Force www
+  www: process.env.WWW || projectConfig.deploy.www,
+
   // Configure access to netdata dashboard
   netdata: {
     username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,

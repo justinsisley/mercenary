@@ -16,6 +16,9 @@ module.exports = {
 
   // Deployment configuration
   deploy: {
+    // Force www
+    www: true,
+
     // AWS settings
     aws: {
       // Credentials from IAM.
