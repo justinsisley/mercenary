@@ -66,6 +66,17 @@ function fileExists(pathname) {
   }
 }
 
+// In non-development environments, force HTTPS
+app.use('*', (req, res, next) => {
+  console.log();
+  console.log('req.secure', req.secure);
+  console.log('req.protocol', req.protocol);
+  console.log('req.headers[x-forwarded-proto]', req.headers['x-forwarded-proto']);
+  console.log(`https://${req.hostname}${req.originalUrl}`);
+  console.log();
+  next();
+});
+
 // Proxy requests to the local API if one exists. We're intentionally keeping
 // our routes out of the try/catch, above, because we want developers' server
 // code to throw errors as expected.
