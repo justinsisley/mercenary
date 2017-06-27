@@ -69,12 +69,14 @@ function fileExists(pathname) {
 // In non-development environments, force HTTPS
 app.use('*', (req, res, next) => {
   console.log();
-  console.log('req.secure', req.secure);
-  console.log('req.protocol', req.protocol);
-  console.log('req.headers[x-forwarded-proto]', req.headers['x-forwarded-proto']);
-  console.log(`https://${req.hostname}${req.originalUrl}`);
+  console.log('req.hostname', req.hostname);
   console.log();
-  next();
+
+  if (req.secure && req.headers['x-forwarded-proto'] === 'https') {
+    next();
+  } else {
+    res.redirect(301, `https://${req.hostname}${req.originalUrl}`);
+  }
 });
 
 // Proxy requests to the local API if one exists. We're intentionally keeping

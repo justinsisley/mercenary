@@ -7,7 +7,7 @@
     "classnames": "2.2.5",
     "loglevel": "1.4.1",
     "mjml-utils": "2.1.0",
-    "mongoose": "4.10.8",
+    "mongoose": "4.11.0",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.5.10",
@@ -17,12 +17,12 @@
     "react-dom": "15.6.1",
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",
-    "redux": "3.7.0",
+    "redux": "3.7.1",
     "redux-actions": "2.0.3",
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.10",
     "semantic-ui-react": "0.70.0",
-    "tokenpress": "1.6.1",
+    "tokenpress": "1.7.0",
     "validator": "7.1.0"
   }
 }
