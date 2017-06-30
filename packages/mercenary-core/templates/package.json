@@ -22,7 +22,7 @@
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.10",
     "semantic-ui-react": "0.70.0",
-    "tokenpress": "1.7.1",
-    "validator": "7.1.0"
+    "tokenpress": "1.7.2",
+    "validator": "7.2.0"
   }
 }
