@@ -54,7 +54,7 @@ class NavMenu extends React.Component {
     });
 
     return (
-      <Menu vertical className={css(styles.menu)}>
+      <Menu className={css(styles.menu)} vertical inverted>
         <Menu.Item header>Mercenary</Menu.Item>
 
         <Menu.Item>

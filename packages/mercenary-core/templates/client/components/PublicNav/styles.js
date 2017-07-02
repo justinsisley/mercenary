@@ -1,9 +1,9 @@
 import { StyleSheet } from 'aphrodite-jss';
 
 const styles = {
-  form: {
-    '&.ui.segment': {
-      marginTop: '50%',
+  nav: {
+    '& .ui.menu .ui.button': {
+      marginLeft: '.5em',
     },
   },
 };

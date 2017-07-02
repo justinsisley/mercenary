@@ -1,8 +1,4 @@
 import React from 'react';
-// import propTypes from 'prop-types';
-// import classnames from 'classnames';
-// import { css } from 'aphrodite-jss';
-// import styles from './styles';
 
 function PublicHomeContent() {
   return (
@@ -74,9 +70,5 @@ function PublicHomeContent() {
     </div>
   );
 }
-
-PublicHomeContent.propTypes = {};
-
-PublicHomeContent.defaultProps = {};
 
 export default PublicHomeContent;

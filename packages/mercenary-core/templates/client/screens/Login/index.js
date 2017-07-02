@@ -2,8 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
-import { Grid } from 'semantic-ui-react';
-import LoginForm from '../../containers/LoginForm';
+import LoginHero from '../../components/LoginHero';
+import PublicFooter from '../../components/PublicFooter';
 
 function LoginScreen(props) {
   if (props.token) {
@@ -12,11 +12,10 @@ function LoginScreen(props) {
 
   return (
     <DocumentTitle title="Mercenary: Login">
-      <Grid centered columns={12}>
-        <Grid.Column width={3}>
-          <LoginForm />
-        </Grid.Column>
-      </Grid>
+      <div>
+        <LoginHero />
+        <PublicFooter />
+      </div>
     </DocumentTitle>
   );
 }

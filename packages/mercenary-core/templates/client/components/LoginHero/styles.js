@@ -1,10 +1,10 @@
 import { StyleSheet } from 'aphrodite-jss';
 
 const styles = {
-  form: {
-    '&.ui.segment': {
-      marginTop: '50%',
-    },
+  hero: {
+    padding: '1em 0em',
+    height: 'calc(100vh - 200)',
+    minHeight: 700,
   },
 };
 

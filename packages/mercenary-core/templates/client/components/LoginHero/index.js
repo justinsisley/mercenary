@@ -1,8 +1,9 @@
 import React from 'react';
-import { Segment, Container, Header, Button, Icon } from 'semantic-ui-react';
+import { Segment, Container, Grid } from 'semantic-ui-react';
 import { css } from 'aphrodite-jss';
 import styles from './styles';
 import PublicNav from '../PublicNav';
+import LoginForm from '../../containers/LoginForm';
 
 function PublicHomeHero() {
   return (
@@ -10,13 +11,11 @@ function PublicHomeHero() {
       <PublicNav />
 
       <Container text>
-        <Header as="h1" inverted>Mercenary</Header>
-
-        <h2>Do whatever you want when you want to.</h2>
-
-        <Button size="huge" primary>
-          Get Started <Icon name="arrow right" />
-        </Button>
+        <Grid centered columns={12}>
+          <Grid.Column width={7}>
+            <LoginForm />
+          </Grid.Column>
+        </Grid>
       </Container>
     </Segment>
   );

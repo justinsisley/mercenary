@@ -59,24 +59,24 @@ class LoginForm extends React.Component {
     const error = this.state.validationError || this.props.requestFailedMessage;
 
     return (
-      <Segment className={css(styles.form)}>
+      <Segment className={css(styles.form)} textAlign="center" inverted>
         <h2>Log In</h2>
 
         <Conditional
           if={this.props.requestSuccess}
           then={(
-            <Message success>
+            <Message color="black">
               A magic login link was sent to <b>{this.state.email}</b>
             </Message>
           )}
           else={(
-            <Form error={!!error}>
+            <Form error={!!error} inverted>
               <Form.Field>
-                <label htmlFor="email">Email Address</label>
-
-                <input
-                  id="email"
+                <Form.Input
+                  name="email"
                   placeholder="you@domain.com"
+                  icon="mail outline"
+                  iconPosition="left"
                   onChange={this.handleInputChange}
                   value={this.state.email}
                 />
@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
 
               <Message error content={error} />
 
-              <Button onClick={this.handleSubmit}>Continue</Button>
+              <Button onClick={this.handleSubmit} primary fluid>Send Magic Login Link</Button>
             </Form>
           )}
         />

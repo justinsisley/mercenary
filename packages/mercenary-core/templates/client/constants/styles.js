@@ -1,1 +1,1 @@
-export const navMenuWidth = 200;
+export const navMenuWidth = 250;
