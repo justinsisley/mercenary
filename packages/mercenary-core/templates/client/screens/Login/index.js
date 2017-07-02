@@ -11,7 +11,7 @@ function LoginScreen(props) {
   }
 
   return (
-    <DocumentTitle title="Login">
+    <DocumentTitle title="Mercenary: Login">
       <Grid centered columns={12}>
         <Grid.Column width={3}>
           <LoginForm />

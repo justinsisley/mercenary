@@ -1,5 +1,6 @@
 import log from 'loglevel';
 import session from './session/endpoints';
+import users from './users/endpoints';
 import logout from '../utils/logout';
 
 export default {
@@ -19,4 +20,5 @@ export default {
   },
 
   ...session,
+  ...users,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Loader } from 'semantic-ui-react';
 
 function CompleteLogin(props) {
   const { token } = props.match.params;
@@ -14,10 +14,12 @@ function CompleteLogin(props) {
   props.verifyLoginToken(token);
 
   return (
-    <DocumentTitle title="Account Verification">
+    <DocumentTitle title="Mercenary: Login">
       <Grid centered columns={12}>
         <Grid.Column width={3}>
-          <div>Verifying account...</div>
+          <div style={{ marginTop: 200 }}>
+            <Loader size="large" active>Logging in...</Loader>
+          </div>
         </Grid.Column>
       </Grid>
     </DocumentTitle>

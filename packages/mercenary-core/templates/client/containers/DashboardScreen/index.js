@@ -5,7 +5,9 @@ import DashboardScreen from '../../screens/Dashboard';
 
 // Map application state to component props
 function mapStateToProps(state) {
-  return { ...state.session };
+  return {
+    jwt: state.session.jwt,
+  };
 }
 
 // Map actions to to props so they can be called directly

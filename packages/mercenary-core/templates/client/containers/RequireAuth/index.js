@@ -3,7 +3,9 @@ import RequireAuth from '../../components/RequireAuth';
 
 // Map application state to component props
 function mapStateToProps(state) {
-  return { ...state.session };
+  return {
+    token: state.session.token,
+  };
 }
 
 // Connect component to store

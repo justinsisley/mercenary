@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import LoginScreen from '../../screens/Login';
+import Root from '../../screens/Root';
 
 // Map application state to component props
 function mapStateToProps(state) {
@@ -9,6 +9,4 @@ function mapStateToProps(state) {
 }
 
 // Connect component to store
-export default connect(
-  mapStateToProps,
-)(LoginScreen);
+export default connect(mapStateToProps)(Root);

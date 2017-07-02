@@ -3,7 +3,9 @@ import RequireNoAuth from '../../components/RequireNoAuth';
 
 // Map application state to component props
 function mapStateToProps(state) {
-  return { ...state.session };
+  return {
+    token: state.session.token,
+  };
 }
 
 // Connect component to store
