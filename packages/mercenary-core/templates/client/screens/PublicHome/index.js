@@ -1,18 +1,19 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
+import PublicHomeHero from '../../components/PublicHomeHero';
+import PublicHomeContent from '../../components/PublicHomeContent';
+import PublicFooter from '../../components/PublicFooter';
 
-class PublicHomeScreen extends React.Component {
-  static propTypes = {}
-
-  static defaultProps = {}
-
-  render() {
-    return (
-      <DocumentTitle title="Mercenary">
-        <h1>Mercenary</h1>
-      </DocumentTitle>
-    );
-  }
+function PublicHomeScreen() {
+  return (
+    <DocumentTitle title="Mercenary">
+      <div>
+        <PublicHomeHero />
+        <PublicHomeContent />
+        <PublicFooter />
+      </div>
+    </DocumentTitle>
+  );
 }
 
 export default PublicHomeScreen;
