@@ -17,6 +17,7 @@ import 'semantic-ui-css/components/menu.css';
 import 'semantic-ui-css/components/message.css';
 import 'semantic-ui-css/components/segment.css';
 import 'semantic-ui-css/components/table.css';
+import 'animate.css/animate.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

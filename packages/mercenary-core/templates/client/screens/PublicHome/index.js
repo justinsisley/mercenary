@@ -1,6 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import PublicHomeHero from '../../components/PublicHomeHero';
+import PublicHomeHero from '../../containers/PublicHomeHero';
 import PublicHomeContent from '../../components/PublicHomeContent';
 import PublicFooter from '../../components/PublicFooter';
 
