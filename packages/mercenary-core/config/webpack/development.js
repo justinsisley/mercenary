@@ -58,6 +58,7 @@ module.exports = {
     new webpack.DefinePlugin({
       // Version from the host projects's package.json
       __VERSION__: JSON.stringify(shared.semver),
+      'process.env.NODE_ENV': '"development"',
     }),
 
     // Enables Hot Module Replacement
