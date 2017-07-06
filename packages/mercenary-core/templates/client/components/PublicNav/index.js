@@ -46,9 +46,9 @@ class PublicNav extends React.Component {
     return (
       <div>
         <Menu
+          className={classnames('animated', css(styles.stickyNav), this.state.visibility)}
           size="large"
           fixed="top"
-          className={classnames('animated', css(styles.stickyNav), this.state.visibility)}
         >
           <Container>
             {menuItems}
