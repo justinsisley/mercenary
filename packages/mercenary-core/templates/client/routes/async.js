@@ -14,6 +14,26 @@ import RequireNoAuth from '../containers/RequireNoAuth';
 
 const loadAsync = resolve => asyncComponent({ resolve });
 
+export function FeaturesScreen(props) {
+  const AsyncComponent = loadAsync(() => import('../screens/Features'));
+
+  return (
+    <RequireNoAuth>
+      <AsyncComponent {...props} />
+    </RequireNoAuth>
+  );
+}
+
+export function PricingScreen(props) {
+  const AsyncComponent = loadAsync(() => import('../screens/Pricing'));
+
+  return (
+    <RequireNoAuth>
+      <AsyncComponent {...props} />
+    </RequireNoAuth>
+  );
+}
+
 export function UsersScreen(props) {
   const AsyncComponent = loadAsync(() => import('../containers/UsersScreen'));
 
@@ -50,6 +70,26 @@ export function LoginScreen(props) {
 
 export function CompleteLogin(props) {
   const AsyncComponent = loadAsync(() => import('../containers/CompleteLoginScreen'));
+
+  return (
+    <RequireNoAuth>
+      <AsyncComponent {...props} />
+    </RequireNoAuth>
+  );
+}
+
+export function SignupScreen(props) {
+  const AsyncComponent = loadAsync(() => import('../screens/Signup'));
+
+  return (
+    <RequireNoAuth>
+      <AsyncComponent {...props} />
+    </RequireNoAuth>
+  );
+}
+
+export function PrivacyScreen(props) {
+  const AsyncComponent = loadAsync(() => import('../screens/Privacy'));
 
   return (
     <RequireNoAuth>

@@ -1,3 +1,3 @@
 export default function Conditional(props) {
-  return props.if ? props.then : props.else;
+  return props.if ? (props.then || null) : (props.else || null);
 }

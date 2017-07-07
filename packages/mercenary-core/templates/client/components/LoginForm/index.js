@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Segment, Button, Form, Message } from 'semantic-ui-react';
+import { Segment, Form, Message, Button, Input } from 'semantic-ui-react';
 import validator from 'validator';
 import { css } from 'aphrodite-jss';
 import styles from './styles';
@@ -59,33 +59,49 @@ class LoginForm extends React.Component {
     const error = this.state.validationError || this.props.requestFailedMessage;
 
     return (
-      <Segment className={css(styles.form)} textAlign="center" inverted>
-        <h2>Log In</h2>
-
+      <Segment
+        className={css(styles.form)}
+        textAlign="center"
+        vertical
+      >
         <Conditional
           if={this.props.requestSuccess}
           then={(
-            <Message color="black">
-              A magic login link was sent to <b>{this.state.email}</b>
-            </Message>
+            <div>
+              <h2>Check your email</h2>
+
+              <Message>
+                A magic login link was sent to <b>{this.state.email}</b>
+              </Message>
+            </div>
           )}
           else={(
-            <Form error={!!error} inverted>
-              <Form.Field>
-                <Form.Input
-                  name="email"
-                  placeholder="you@domain.com"
-                  icon="mail outline"
-                  iconPosition="left"
-                  onChange={this.handleInputChange}
-                  value={this.state.email}
-                />
-              </Form.Field>
+            <div>
+              <h2>Welcome back</h2>
 
-              <Message error content={error} />
+              <Form error={!!error}>
+                <Form.Field>
+                  <Input
+                    name="email"
+                    placeholder="you@domain.com"
+                    icon="mail outline"
+                    iconPosition="left"
+                    size="big"
+                    onChange={this.handleInputChange}
+                    value={this.state.email}
+                  />
+                </Form.Field>
 
-              <Button onClick={this.handleSubmit} primary fluid>Send Magic Login Link</Button>
-            </Form>
+                <Message error content={error} />
+
+                <Button
+                  onClick={this.handleSubmit}
+                  size="big"
+                  primary
+                  fluid
+                >Send Magic Login Link</Button>
+              </Form>
+            </div>
           )}
         />
       </Segment>

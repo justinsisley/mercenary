@@ -6,14 +6,16 @@ const styles = {
     minHeight: 700,
 
     '& h1.ui.header': {
-      marginTop: '3em',
-      marginBottom: '0em',
-      fontSize: '4em',
+      marginTop: 160,
+      marginBottom: 0,
+      fontSize: 60,
       fontWeight: 'normal',
+      lineHeight: '60px',
     },
 
     '& h2': {
-      fontSize: '1.7em',
+      marginBottom: 25,
+      fontSize: 24,
       fontWeight: 'normal',
     },
   },

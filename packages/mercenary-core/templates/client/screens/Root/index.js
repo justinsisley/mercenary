@@ -15,8 +15,8 @@ function DashboardScreen(props) {
   );
 }
 
-function PublicHomeScreen(props) {
-  const AsyncComponent = loadAsync(() => import('../PublicHome'));
+function HomeScreen(props) {
+  const AsyncComponent = loadAsync(() => import('../Home'));
   return <AsyncComponent {...props} />;
 }
 
@@ -25,7 +25,7 @@ function Root(props) {
     return <DashboardScreen {...props} />;
   }
 
-  return <PublicHomeScreen {...props} />;
+  return <HomeScreen {...props} />;
 }
 
 Root.propTypes = {

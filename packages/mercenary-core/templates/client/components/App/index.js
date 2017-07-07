@@ -9,7 +9,9 @@ export default function App() {
   return (
     <AsyncComponentProvider>
       <ReduxProvider store={store}>
-        <BrowserRouter>{routes}</BrowserRouter>
+        <BrowserRouter>
+          {routes}
+        </BrowserRouter>
       </ReduxProvider>
     </AsyncComponentProvider>
   );

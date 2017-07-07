@@ -1,17 +1,17 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import LoginHero from '../../components/LoginHero';
+import PrivacyHero from '../../components/PrivacyHero';
 import PublicFooter from '../../components/PublicFooter';
 
-function LoginScreen() {
+function PrivacyScreen() {
   return (
-    <DocumentTitle title="Mercenary: Login">
+    <DocumentTitle title="Mercenary: Privacy Policy and Terms of Service">
       <div>
-        <LoginHero />
+        <PrivacyHero />
         <PublicFooter />
       </div>
     </DocumentTitle>
   );
 }
 
-export default LoginScreen;
+export default PrivacyScreen;

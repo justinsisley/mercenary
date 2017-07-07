@@ -1,12 +1,16 @@
 import { StyleSheet } from 'aphrodite-jss';
 
 const styles = {
+  pricingContent: {
+    marginTop: -400,
+  },
+
   stripe: {
     '&.ui.vertical': {
       padding: '8em 0em',
 
       '& h3': {
-        fontSize: '2em',
+        fontSize: '1.9em',
       },
 
       '& .button + h3, & p + h3': {

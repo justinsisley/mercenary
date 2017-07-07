@@ -1,9 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
-// import classnames from 'classnames';
-// import { css } from 'aphrodite-jss';
-// import styles from './styles';
 import Map from '../Map';
 
 function UserDetail(props) {

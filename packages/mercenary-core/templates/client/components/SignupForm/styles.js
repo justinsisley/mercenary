@@ -1,16 +1,31 @@
 import { StyleSheet } from 'aphrodite-jss';
 
 const styles = {
-  form: {
+  content: {
+    '&.ui.grid > .row': {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+  },
+
+  titles: {
     '&.ui.segment': {
-      marginTop: '50%',
+      paddingBottom: 0,
+      marginTop: '15%',
 
       '& h2': {
-        marginBottom: 30,
+        marginBottom: 10,
         fontSize: 32,
       },
-    },
 
+      '& h3': {
+        marginTop: 10,
+        marginBottom: 30,
+      },
+    },
+  },
+
+  form: {
     '& .ui.message': {
       padding: 0,
       fontSize: 18,

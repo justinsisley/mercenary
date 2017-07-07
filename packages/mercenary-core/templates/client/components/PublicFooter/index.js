@@ -10,31 +10,29 @@ function PublicFooter() {
       <Container>
         <Grid stackable inverted divided>
           <Grid.Column width="3">
-            <Header as="h4" inverted>About</Header>
+            <Header as="h4" inverted>Resources</Header>
 
             <List inverted link>
-              <List.Item as={Link} to="/">Sitemap</List.Item>
-              <List.Item as={Link} to="/">Contact Us</List.Item>
-              <List.Item as={Link} to="/">Religious Ceremonies</List.Item>
-              <List.Item as={Link} to="/">Gazebo Plans</List.Item>
+              <List.Item as={Link} to="/features">Features</List.Item>
+              <List.Item as={Link} to="/pricing">Pricing</List.Item>
+              <List.Item as={Link} to="/privacy">Privacy and Terms</List.Item>
             </List>
           </Grid.Column>
 
           <Grid.Column width="3">
-            <Header as="h4" inverted>Services</Header>
+            <Header as="h4" inverted>Solutions</Header>
 
             <List inverted link>
-              <List.Item as={Link} to="/">Banana Pre-Order</List.Item>
-              <List.Item as={Link} to="/">DNA FAQ</List.Item>
-              <List.Item as={Link} to="/">How To Access</List.Item>
-              <List.Item as={Link} to="/">Favorite X-Men</List.Item>
+              <List.Item as={Link} to="/features#contracts">Contract Management</List.Item>
+              <List.Item as={Link} to="/features#revenue">Revenue Management</List.Item>
+              <List.Item as={Link} to="/features#reminders">Automatic Reminders</List.Item>
             </List>
           </Grid.Column>
 
           <Grid.Column width="7">
             <Header as="h4" inverted>Mercenary</Header>
 
-            <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            <p>Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress.</p>
           </Grid.Column>
         </Grid>
       </Container>

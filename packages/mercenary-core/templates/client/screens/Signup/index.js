@@ -1,17 +1,17 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import LoginHero from '../../components/LoginHero';
+import SignupHero from '../../components/SignupHero';
 import PublicFooter from '../../components/PublicFooter';
 
-function LoginScreen() {
+function SignupScreen() {
   return (
-    <DocumentTitle title="Mercenary: Login">
+    <DocumentTitle title="Mercenary: Signup">
       <div>
-        <LoginHero />
+        <SignupHero />
         <PublicFooter />
       </div>
     </DocumentTitle>
   );
 }
 
-export default LoginScreen;
+export default SignupScreen;

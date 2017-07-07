@@ -5,10 +5,14 @@ import styles from './styles';
 import PublicNav from '../PublicNav';
 import LoginForm from '../../containers/LoginForm';
 
-function PublicHomeHero() {
+function LoginHero() {
   return (
-    <Segment className={css(styles.hero)} textAlign="center" inverted vertical>
-      <PublicNav />
+    <Segment
+      className={css(styles.hero)}
+      textAlign="center"
+      vertical
+    >
+      <PublicNav dark />
 
       <Container text>
         <Grid centered columns={12}>
@@ -21,4 +25,4 @@ function PublicHomeHero() {
   );
 }
 
-export default PublicHomeHero;
+export default LoginHero;
