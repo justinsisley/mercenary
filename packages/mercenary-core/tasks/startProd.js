@@ -1,7 +1,8 @@
 const path = require('path');
 const cp = require('child_process');
 
-const serverIndex = path.join(__dirname, '../server/index');
+const pm2 = require.resolve('.bin/pm2');
+const serverIndex = path.join(__dirname, '../server/index.js');
 
 const prod = (options = { async: false }) => {
   let exec = cp.execSync;
@@ -11,7 +12,7 @@ const prod = (options = { async: false }) => {
   }
 
   return exec(
-    `NODE_ENV=production node "${serverIndex}" --env="production"`,
+    `NODE_ENV=production ${pm2} start "${serverIndex}" -i 0 --env="production"`,
     { stdio: 'inherit' }
   );
 };

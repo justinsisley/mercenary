@@ -1,7 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
 const express = require('express');
 const morgan = require('morgan');
 const protect = require('@risingstack/protect');
@@ -192,19 +190,7 @@ if (ENV === 'development') {
   });
 }
 
-// Only use clustering in non-development environments
-if (ENV !== 'development' && cluster.isMaster) {
-  // eslint-disable-next-line
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-
-  cluster.on('exit', (worker) => {
-    console.log(`worker ${worker.process.pid} died`);
-  });
-} else {
-  // Start the Express server
-  app.listen(EXPRESS_PORT, () => {
-    console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
-  });
-}
+// Start the Express server
+app.listen(EXPRESS_PORT, () => {
+  console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
+});
