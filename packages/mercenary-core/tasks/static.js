@@ -11,10 +11,11 @@ const destination = join(cwd, '/public/static');
 const args = '--headless --disable-gpu --dump-dom';
 const host = 'http://localhost:3325';
 const command = `"${chrome}" ${args} ${host}`;
-const baseHTML = fs.readFileSync('./public/index.html', { encoding: 'utf8' });
 
 const buildStatic = () => {
   if (staticPaths && staticPaths.length) {
+    const baseHTML = fs.readFileSync('./public/index.html', { encoding: 'utf8' });
+
     fs.mkdirSync(destination);
 
     staticPaths.forEach((path) => {
