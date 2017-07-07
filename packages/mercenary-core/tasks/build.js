@@ -1,5 +1,7 @@
 const path = require('path');
 const cp = require('child_process');
+const startProd = require('./startProd');
+const buildStatic = require('./static');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
@@ -20,6 +22,10 @@ const build = (config = { silent: false }) => {
       --config \
       "${configDir}/webpack/production.js" ${output}
   `, { stdio: 'inherit' });
+
+  const prod = startProd({ async: true });
+  buildStatic();
+  prod.kill('SIGINT');
 };
 
 module.exports = build;

@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.63.0",
+  "version": "2.64.0",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -21,6 +21,7 @@
     "body-parser": "1.17.2",
     "chalk": "2.0.1",
     "chokidar": "1.7.0",
+    "chrome-location": "1.2.1",
     "compression": "1.6.2",
     "css-loader": "0.28.4",
     "eslint": "3.19.0",
