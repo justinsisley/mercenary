@@ -15,7 +15,7 @@ function PricingContent() {
         >
           <Grid.Row>
             <Grid.Column width="8">
-              <Header as="h3">This product is the best.</Header>
+              <Header as="h3">Drumstick capicola kielbasa.</Header>
 
               <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut.</p>
 
@@ -47,7 +47,7 @@ function PricingContent() {
             </Grid.Column>
 
             <Grid.Column width="8">
-              <Header as="h3">This product is the best.</Header>
+              <Header as="h3">Tail venison jerky, landjaeger.</Header>
 
               <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut.</p>
 
@@ -63,7 +63,7 @@ function PricingContent() {
 
           <Grid.Row>
             <Grid.Column width="8">
-              <Header as="h3">This product is the best.</Header>
+              <Header as="h3">Beef ribs picanha turducken.</Header>
 
               <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut.</p>
 

@@ -11,6 +11,7 @@ const styles = {
       fontSize: 60,
       fontWeight: 'normal',
       lineHeight: '60px',
+      textTransform: 'capitalize',
     },
 
     '& h2': {

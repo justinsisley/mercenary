@@ -1,11 +1,108 @@
 <mjml>
+  <mj-head>
+    <mj-font
+      name="Lato"
+      href="https://fonts.googleapis.com/css?family=Lato"
+    />
+
+    <mj-attributes>
+      <mj-all font-family="Lato, Helvetica, Arial, sans-serif" />
+
+      <mj-text
+        font-size="16"
+        color="#000000"
+        line-height="24px"
+      />
+    </mj-attributes>
+  </mj-head>
+
   <mj-body>
-    <mj-container>
-      <mj-section>
+    <mj-container background-color="#F2F2F2">
+      <mj-section padding="10px 0 20px 0"></mj-section>
+
+      <mj-section
+        padding="20px 20px 0 20px"
+        background-color="#1B1C1D"
+      >
         <mj-column>
-          <mj-button background-color="#21BA45" href="{loginURL}">
-            Click Here to Log In
+          <mj-text
+            align="left"
+            font-size="14"
+            color="#fff"
+          >
+            Mercenary
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section
+        padding="0 20px 0 20px"
+        background-color="#1B1C1D"
+      >
+        <mj-column>
+          <mj-text
+            align="center"
+            padding="40px 40px 0 40px"
+            font-size="38px"
+            line-height="40px"
+            color="#fff"
+          >
+            You're almost logged in!
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section
+        padding="0 20px 80px 20px"
+        background-color="#1B1C1D"
+      >
+        <mj-column width="80%">
+          <mj-text
+            align="center"
+            padding-top="10px"
+            padding="0"
+            color="#fff"
+          >
+            Use the magic button below to log in to Mercenary.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section
+        padding="60px 20px 60px 20px"
+        background-color="#FFFFFF"
+        vertical-align="middle"
+        background-size="cover"
+        background-repeat="no-repeat"
+      >
+        <mj-column width="100%">
+          <mj-button
+            href="{loginURL}"
+            align="center"
+            background-color="#2185D0"
+            color="#FFFFFF"
+            border-radius="4px"
+            inner-padding="15px 30px"
+          >
+            Log In to Mercenary
           </mj-button>
+        </mj-column>
+      </mj-section>
+
+      <mj-section
+        padding="0 20px 0 20px"
+        background-color="#1B1C1D"
+      >
+        <mj-column>
+          <mj-text
+            align="left"
+            padding="20px 40px 20px 40px"
+            font-size="14px"
+            line-height="40px"
+            color="rgba(255, 255, 255, 0.7)"
+          >
+            &copy; 2017 Mercenary
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-container>

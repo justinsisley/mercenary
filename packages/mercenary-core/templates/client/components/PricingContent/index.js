@@ -61,17 +61,17 @@ function PricingContent() {
         >
           <Grid.Row textAlign="center">
             <Grid.Column>
-              <h3>&#34;Mercenary is a game changer for our team!&#34;</h3>
+              <h3>&#34;Spare ribs salami ground round meatball!&#34;</h3>
 
               <p>
                 <Image src="https://semantic-ui.com/images/avatar/large/elliot.jpg" avatar />
                 &nbsp;
-                <b>Billy Barou</b>, Director of Sales, Acme Toys
+                <b>Billy Tutall</b>, CEO, Consolidated Metal
               </p>
             </Grid.Column>
 
             <Grid.Column>
-              <h3>&#34;We&rsquo;re used to paying so much more for this.&#34;</h3>
+              <h3>&#34;Fatback pig pastrami, leberkas beef pancetta.&#34;</h3>
 
               <p>
                 <Image src="https://semantic-ui.com/images/avatar/large/elliot.jpg" avatar />
@@ -85,7 +85,7 @@ function PricingContent() {
 
       <Segment className={css(styles.stripe)} vertical>
         <Container text>
-          <Header as="h3">No more mistakes or forgotten dates</Header>
+          <Header as="h3">Tail venison jerky, landjaeger tongue</Header>
 
           <p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout.</p>
 
@@ -101,7 +101,7 @@ function PricingContent() {
             <h4><Link to="/features">See More Features</Link></h4>
           </Divider>
 
-          <Header as="h3">Always accurate and up-to-date</Header>
+          <Header as="h3">Short ribs ham hock chuck beef</Header>
 
           <p>Soko radicchio bunya nuts gram dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels sprout cabbage. Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage.</p>
 

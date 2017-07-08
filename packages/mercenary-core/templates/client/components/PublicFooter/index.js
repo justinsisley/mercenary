@@ -23,9 +23,9 @@ function PublicFooter() {
             <Header as="h4" inverted>Solutions</Header>
 
             <List inverted link>
-              <List.Item as={Link} to="/features#contracts">Contract Management</List.Item>
-              <List.Item as={Link} to="/features#revenue">Revenue Management</List.Item>
-              <List.Item as={Link} to="/features#reminders">Automatic Reminders</List.Item>
+              <List.Item as={Link} to="/features">For Developers</List.Item>
+              <List.Item as={Link} to="/features">For Designers</List.Item>
+              <List.Item as={Link} to="/features">For Investors</List.Item>
             </List>
           </Grid.Column>
 

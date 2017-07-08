@@ -15,11 +15,11 @@ function HomeContent() {
         >
           <Grid.Row>
             <Grid.Column width="8">
-              <Header as="h3">Ditch the spreadsheets.</Header>
+              <Header as="h3">Venison shank sausage ball.</Header>
 
               <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut.</p>
 
-              <Header as="h3">Save your team, your time, and your money.</Header>
+              <Header as="h3">Bacon fatback hamburger capicola.</Header>
 
               <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean. Okra pea winter purslane coriander yarrow.</p>
             </Grid.Column>
@@ -55,17 +55,17 @@ function HomeContent() {
         >
           <Grid.Row textAlign="center">
             <Grid.Column>
-              <h3>&#34;Tracto is a game changer for our team!&#34;</h3>
+              <h3>&#34;Spare ribs salami ground round meatball!&#34;</h3>
 
               <p>
                 <Image src="https://semantic-ui.com/images/avatar/large/elliot.jpg" avatar />
                 &nbsp;
-                <b>Carmen Cerrelli</b>, Vice President of Finance, <a href="https://www.vera.com" target="_blank" rel="noopener noreferrer">Vera Security</a>
+                <b>Billy Tutall</b>, CEO, Consolidated Metal
               </p>
             </Grid.Column>
 
             <Grid.Column>
-              <h3>&#34;We&rsquo;re used to paying so much more for this.&#34;</h3>
+              <h3>&#34;Fatback pig pastrami, leberkas beef pancetta.&#34;</h3>
 
               <p>
                 <Image src="https://semantic-ui.com/images/avatar/large/elliot.jpg" avatar />
@@ -79,7 +79,7 @@ function HomeContent() {
 
       <Segment className={css(styles.stripe)} vertical>
         <Container text>
-          <Header as="h3">No more mistakes or forgotten dates</Header>
+          <Header as="h3">Tail venison jerky, landjaeger tongue</Header>
 
           <p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout.</p>
 
@@ -95,7 +95,7 @@ function HomeContent() {
             <h4><Link to="/features">See More Features</Link></h4>
           </Divider>
 
-          <Header as="h3">Always accurate and up-to-date</Header>
+          <Header as="h3">Short ribs ham hock chuck beef</Header>
 
           <p>Soko radicchio bunya nuts gram dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels sprout cabbage. Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage.</p>
 
