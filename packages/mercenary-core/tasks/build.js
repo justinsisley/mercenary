@@ -31,11 +31,14 @@ const build = (config = { silent: false, static: false }) => {
       mode: 'static',
     });
 
-    // Run the static builder
-    buildStatic();
+    // Give the server a moment to start
+    setTimeout(() => {
+      // Run the static builder
+      buildStatic();
 
-    // Kill the server
-    prod.kill('SIGINT');
+      // Kill the server
+      prod.kill('SIGINT');
+    }, 2000);
   }
 };
 
