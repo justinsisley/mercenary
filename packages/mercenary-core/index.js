@@ -30,7 +30,7 @@ if (argv.e2e) {
 }
 
 if (argv.build) {
-  build();
+  build({ static: true });
 }
 
 if (argv.start) {

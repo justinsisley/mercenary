@@ -14,6 +14,17 @@ module.exports = {
     theme_color: '#ffffff',
   },
 
+  // Paths to be rendered as static HTML.
+  // These must be non-authenticated paths.
+  static: [
+    '/',
+    '/features',
+    '/login',
+    '/pricing',
+    '/privacy',
+    '/signup',
+  ],
+
   // Deployment configuration
   deploy: {
     // Force www

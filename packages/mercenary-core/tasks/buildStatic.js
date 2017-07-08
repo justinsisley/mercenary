@@ -5,7 +5,7 @@ const chrome = require('chrome-location');
 
 const cwd = process.cwd();
 
-const staticPaths = require(join(cwd, 'config.js')).staticPaths;
+const staticPaths = require(join(cwd, 'config.js')).static;
 const destination = join(cwd, '/public/static');
 
 const args = '--headless --disable-gpu --dump-dom';

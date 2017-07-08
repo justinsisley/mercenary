@@ -221,7 +221,10 @@ module.exports = async function deploy() {
   const spinner = ora().start();
 
   spinner.text = 'Building client application';
-  build({ silent: true });
+  build({
+    silent: true,
+    static: true,
+  });
 
   spinner.text = 'Creating Docker files';
   docker();

@@ -37,6 +37,7 @@ const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 // References to important directories
 const cwd = process.cwd();
 const publicDir = path.join(cwd, './public');
+const staticPaths = require(path.join(cwd, 'config.js')).static;
 
 // Create the Express server
 const app = express();
@@ -65,8 +66,8 @@ function fileExists(pathname) {
   }
 }
 
-// In non-development environments, force HTTPS, and optionally www
-if (ENV !== 'development') {
+// In production environment, force HTTPS, and optionally www
+if (ENV === 'production') {
   app.use('*', (req, res, next) => {
     if (FORCE_WWW && req.hostname.indexOf('www.') !== 0) {
       res.redirect(301, `https://www.${req.hostname}${req.originalUrl}`);
@@ -91,8 +92,8 @@ if (fileExists(localServerPath)) {
     require(path.join(cwd, localServerPath))(req, res, next); // eslint-disable-line
   };
 
-  // Only use rate limiting in non-development environments
-  if (ENV !== 'development') {
+  // Only use rate limiting in production environment
+  if (ENV === 'production') {
     app.use('/api', new RateLimit({
       delayMs: 0, // disable delay
       max: 1000, // requests per `windowMs`
@@ -170,8 +171,19 @@ if (ENV === 'development') {
       console.log(`\nModule cache cleared due to change in:\n${shortPath}\n`);
     });
   });
-// Production environment configuration
+// Non-development environment configuration
 } else {
+  // If in production mode, and the index page is a static path, send the static version
+  if (
+    ENV === 'production' &&
+    staticPaths &&
+    staticPaths.indexOf('/') > -1
+  ) {
+    app.get('/', (req, res) => {
+      res.sendFile(path.join(cwd, './public/static/index.html'));
+    });
+  }
+
   // Proxy static assets to the public directory
   app.use('/', express.static(publicDir));
 
@@ -186,7 +198,18 @@ if (ENV === 'development') {
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
-    res.sendFile(path.join(cwd, './public/index.html'));
+    // If in production mode, and the index page is a static path, send the static version
+    if (
+      ENV === 'production' &&
+      staticPaths &&
+      staticPaths.indexOf(req.url) > -1
+    ) {
+      const fileName = req.url.replace('/', '');
+
+      res.sendFile(path.join(cwd, `./public/static/${fileName}.html`));
+    } else {
+      res.sendFile(path.join(cwd, './public/index.html'));
+    }
   });
 }
 
