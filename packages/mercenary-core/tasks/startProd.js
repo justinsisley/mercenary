@@ -1,7 +1,7 @@
 const path = require('path');
 const cp = require('child_process');
 
-const pm2 = require.resolve('.bin/pm2');
+const pm2 = require.resolve('.bin/pm2-docker');
 const serverIndex = path.join(__dirname, '../server/index.js');
 
 const prod = (options = { async: false, mode: 'production' }) => {
@@ -12,16 +12,15 @@ const prod = (options = { async: false, mode: 'production' }) => {
   }
 
   let command = `${pm2} start`;
-  let args = '-i 0';
+  let args = '-i 0 -- -env production';
 
-  // FIXME: should be !== 'production'
-  if (options.mode) {
+  if (options.mode !== 'production') {
     command = 'node';
-    args = '';
+    args = `--env="${options.mode}"`;
   }
 
   return exec(
-    `NODE_ENV=${options.mode} ${command} "${serverIndex}" ${args} --env="${options.mode}"`,
+    `NODE_ENV=${options.mode} ${command} "${serverIndex}" ${args}`,
     { stdio: 'inherit' }
   );
 };
