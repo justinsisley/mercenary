@@ -14,7 +14,8 @@ const prod = (options = { async: false, mode: 'production' }) => {
   let command = `${pm2} start`;
   let args = '-i 0';
 
-  if (options.mode === 'production') {
+  // FIXME: should be !== 'production'
+  if (options.mode) {
     command = 'node';
     args = '';
   }
