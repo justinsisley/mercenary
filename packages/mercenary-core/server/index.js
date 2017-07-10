@@ -83,6 +83,21 @@ if (ENV === 'production') {
   });
 }
 
+// Pass the Express app to the user's custom middleware function. This allows
+// the user to apply any middleware they like without having to modify the
+// server entry point. Again, we're keeping this out of the try/catch (above)
+// so we can maintain standard error behavior.
+const middlewarePath = './server/middleware.js';
+if (fileExists(middlewarePath)) {
+  const runMiddleware = require(path.join(cwd, middlewarePath)); // eslint-disable-line
+
+  if (typeof runMiddleware === 'function') {
+    runMiddleware(app);
+  } else {
+    throw new Error('Custom middleware file must export a single function.');
+  }
+}
+
 // Proxy requests to the local API if one exists. We're intentionally keeping
 // our routes out of the try/catch, above, because we want developers' server
 // code to throw errors as expected.
@@ -101,21 +116,6 @@ if (fileExists(localServerPath)) {
     }), apiHandler);
   } else {
     app.use('/api', apiHandler);
-  }
-}
-
-// Pass the Express app to the user's custom middleware function. This allows
-// the user to apply any middleware they like without having to modify the
-// server entry point. Again, we're keeping this out of the try/catch (above)
-// so we can maintain standard error behavior.
-const middlewarePath = './server/middleware.js';
-if (fileExists(middlewarePath)) {
-  const runMiddleware = require(path.join(cwd, middlewarePath)); // eslint-disable-line
-
-  if (typeof runMiddleware === 'function') {
-    runMiddleware(app);
-  } else {
-    throw new Error('Custom middleware file must export a single function.');
   }
 }
 
