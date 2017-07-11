@@ -60,7 +60,7 @@ module.exports = {
     }),
 
     // Enable scope hoisting
-    // new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
 
     // Minify JavaScript
     new webpack.optimize.UglifyJsPlugin({ comments: false }),
