@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite-jss';
-import { navMenuWidth } from '../../constants/styles';
+import { appNavWidth } from '../../constants/styles';
 
 const contentSidePadding = 20;
 
@@ -10,7 +10,7 @@ const styles = {
     paddingTop: 10,
     paddingRight: contentSidePadding,
     paddingBottom: 50,
-    paddingLeft: navMenuWidth + contentSidePadding,
+    paddingLeft: appNavWidth + contentSidePadding,
     width: '100%',
     height: '100vh',
     overflow: 'scroll',

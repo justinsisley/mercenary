@@ -11,7 +11,7 @@ const navItems = [
   { path: '/logout', label: 'Log Out' },
 ];
 
-function NavMenu(props) {
+function AppNav(props) {
   const { pathname } = props.location;
   const { push } = props.history;
 
@@ -39,14 +39,14 @@ function NavMenu(props) {
   );
 }
 
-NavMenu.propTypes = {
+AppNav.propTypes = {
   location: propTypes.shape(),
   history: propTypes.shape(),
 };
 
-NavMenu.defaultProps = {
+AppNav.defaultProps = {
   location: {},
   history: {},
 };
 
-export default withRouter(NavMenu);
+export default withRouter(AppNav);

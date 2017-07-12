@@ -2,12 +2,12 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { css } from 'aphrodite-jss';
 import styles from './styles';
-import NavMenu from '../NavMenu';
+import AppNav from '../AppNav';
 
 function AppLayout(props) {
   return (
     <div>
-      <NavMenu />
+      <AppNav />
 
       <div className={css(styles.content)}>
         {props.children}

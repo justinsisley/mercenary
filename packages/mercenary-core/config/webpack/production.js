@@ -63,7 +63,7 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
 
     // Minify JavaScript
-    new webpack.optimize.UglifyJsPlugin({ comments: false }),
+    new webpack.optimize.UglifyJsPlugin(),
 
     // Extract CSS into a separate file
     new ExtractTextPlugin({

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite-jss';
-import { navMenuWidth } from '../../constants/styles';
+import { appNavWidth } from '../../constants/styles';
 
 const styles = {
   menu: {
@@ -8,7 +8,7 @@ const styles = {
     height: '100vh',
 
     '&.ui.vertical.menu': {
-      width: navMenuWidth,
+      width: appNavWidth,
       borderTop: 'none',
       borderRight: '1px solid #eee',
       borderBottom: 'none',
