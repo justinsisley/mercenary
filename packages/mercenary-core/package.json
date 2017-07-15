@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.66.2",
+  "version": "2.66.3",
   "description": "The force multiplier web application stack",
   "bin": {
     "merc": "./index.js"
@@ -53,6 +53,7 @@
     "svg-inline-loader": "0.7.1",
     "webpack": "3.2.0",
     "webpack-append": "0.1.2",
+    "webpack-common-shake": "1.5.3",
     "webpack-dev-server": "2.5.1",
     "webpack-pwa-manifest": "3.1.2",
     "yargs": "8.0.2"

@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
+const ShakePlugin = require('webpack-common-shake').Plugin;
 const shared = require('./shared');
 
 module.exports = {
@@ -58,6 +59,9 @@ module.exports = {
       // Useful to reduce the size of client-side libraries, e.g. react
       'process.env.NODE_ENV': '"production"',
     }),
+
+    // Remove unused assignments to exports property
+    new ShakePlugin(),
 
     // Enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
