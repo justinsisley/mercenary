@@ -2,14 +2,14 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
 const config = require('./config');
-const sessionController = require('./controllers/session');
+const routes = require('./routes');
 
 // Initialize MongoDB
-const mlab = config.mlab;
+const { username, password, server } = config.mlab;
 mongoose.Promise = global.Promise;
 // HACK: Prevents problems with re-creating DB connection when "hot-reloading"
 try {
-  mongoose.connect(`mongodb://${mlab.username}:${mlab.password}@${mlab.server}`);
+  mongoose.connect(`mongodb://${username}:${password}@${server}`);
 } catch (error) {
   // no-op
 }
@@ -20,10 +20,7 @@ tokenpress.node.configure({
   expiresIn: config.jwt.expiresIn,
 });
 
-// Register controllers with the root router
-router.use(sessionController);
-
-// 404 for all unmatched API paths
-router.use('/*', (req, res) => { res.status(404).json({}); });
+// Register routes
+router.use(routes);
 
 module.exports = router;
