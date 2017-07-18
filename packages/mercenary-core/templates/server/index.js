@@ -23,4 +23,7 @@ tokenpress.node.configure({
 // Register controllers with the root router
 router.use(sessionController);
 
+// 404 for all unmatched API paths
+router.use('/*', (req, res) => { res.status(404).json({}); });
+
 module.exports = router;
