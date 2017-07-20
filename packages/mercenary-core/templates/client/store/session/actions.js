@@ -12,23 +12,23 @@ export const setVerifySessionTokenSuccess = createAction('set session.token.succ
 export const setVerifySessionTokenFailed = createAction('set session.token.failed');
 
 export function requestLoginEmail(email) {
-  return (dispatch, getState, api) => {
-    api.requestLoginEmail(email)
-    .then(() => {
+  return async (dispatch, getState, api) => {
+    try {
+      await api.requestLoginEmail(email);
+
       dispatch(setLoginEmailRequestSuccess(email));
-    })
-    .catch((error) => {
+    } catch (error) {
       api.handleError(dispatch, error);
 
       dispatch(setLoginEmailRequestFailed(error.response.data.message));
-    });
+    }
   };
 }
 
 export function verifyLoginToken(loginToken) {
-  return (dispatch, getState, api) => {
-    api.verifyLoginToken(loginToken)
-    .then((response) => {
+  return async (dispatch, getState, api) => {
+    try {
+      const response = await api.verifyLoginToken(loginToken);
       const token = response.data.token;
 
       // Save the token to localStorage
@@ -37,26 +37,25 @@ export function verifyLoginToken(loginToken) {
       axios.defaults.headers.common.Authorization = token;
 
       dispatch(setVerifyLoginTokenSuccess(token));
-    })
-    .catch((error) => {
+    } catch (error) {
       api.handleError(dispatch, error);
 
       dispatch(setVerifyLoginTokenFailed(error.response.data));
-    });
+    }
   };
 }
 
 // NOTE: For example only
 export function verifySessionToken() {
-  return (dispatch, getState, api) => {
-    api.verifySessionToken()
-    .then((response) => {
+  return async (dispatch, getState, api) => {
+    try {
+      const response = await api.verifySessionToken();
+
       dispatch(setVerifySessionTokenSuccess(response.data.jwt));
-    })
-    .catch((error) => {
+    } catch (error) {
       api.handleError(dispatch, error);
 
       dispatch(setVerifySessionTokenFailed(error.response));
-    });
+    }
   };
 }

@@ -1,28 +1,34 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Table from '../../components/Table';
 
 class UsersScreen extends React.Component {
   static propTypes = {
-    users: propTypes.shape(),
+    filteredUsers: propTypes.shape(),
     getUsers: propTypes.func,
+    setUserFilter: propTypes.func,
   }
 
   static defaultProps = {
-    users: {},
+    filteredUsers: {},
     getUsers() {},
+    setUserFilter() {},
   }
 
   componentWillMount() {
     this.props.getUsers();
   }
 
+  handleFilter = (event, data) => {
+    this.props.setUserFilter(data.value);
+  }
+
   render() {
-    const data = Object.keys(this.props.users).map((userId) => {
-      const user = this.props.users[userId];
+    const data = Object.keys(this.props.filteredUsers).map((userId) => {
+      const user = this.props.filteredUsers[userId];
 
       return {
         Name: <Link to={`/users/${userId}`}>{user.name}</Link>,
@@ -36,6 +42,8 @@ class UsersScreen extends React.Component {
         <Grid columns={1}>
           <Grid.Column>
             <h1>Users</h1>
+
+            <Input placeholder="Filter..." onChange={this.handleFilter} />
 
             <Table data={data} />
           </Grid.Column>

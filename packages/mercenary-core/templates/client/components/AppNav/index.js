@@ -28,7 +28,7 @@ function AppNav(props) {
 
   return (
     <Menu className={css(styles.menu)} vertical inverted>
-      <Menu.Item header>Tracto</Menu.Item>
+      <Menu.Item header>Mercenary</Menu.Item>
 
       <Menu.Item>
         <Menu.Menu>

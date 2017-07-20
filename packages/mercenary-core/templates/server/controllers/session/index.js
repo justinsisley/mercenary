@@ -1,49 +1,43 @@
-const router = require('express').Router();
 const tokenpress = require('tokenpress');
 const LoginToken = require('../../models/LoginToken');
 const mailUtil = require('../../utils/mail');
 const errorUtil = require('../../utils/error');
 
-const { requireAuth } = tokenpress.node.middleware;
-
-// Handle POST /api/session
 // Request an email containing a loginToken
-router.post('/session', (req, res) => {
-  req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+async function loginTokenRequestHandler(req, res) {
+  try {
+    req.checkBody('email', 'Invalid email').notEmpty().isEmail();
 
-  req.getValidationResult().then((result) => {
-    if (!result.isEmpty()) {
-      errorUtil.respond400(res, result.array(), 'Invalid email');
+    const validationResult = await req.getValidationResult();
+    const hasValidationError = !validationResult.isEmpty();
+
+    if (hasValidationError) {
+      errorUtil.respond400(res, validationResult.array(), 'Invalid email');
       return;
     }
 
     const email = req.body.email;
     const loginToken = new LoginToken({ email });
 
-    loginToken.save()
-    .then(() => {
-      mailUtil.sendLogin(email, loginToken.token)
-      .then(() => {
-        res.json({});
-      })
-      .catch((error) => {
-        errorUtil.respond500(res, error, 'Unable to send login email');
-      });
-    })
-    .catch((error) => {
-      errorUtil.respond500(res, error, 'Unable to generate login token');
-    });
-  });
-});
+    await loginToken.save();
+    await mailUtil.sendLogin(email, loginToken.token);
 
-// Handle POST /api/session/token
+    res.json({});
+  } catch (error) {
+    errorUtil.respond500(res, error, 'Unable to generate login token');
+  }
+}
+
 // Exchange the loginToken from a login email for an session token
-router.post('/session/token', (req, res) => {
-  req.checkBody('token', 'Invalid token').notEmpty();
+async function sessionTokenRequestHandler(req, res) {
+  try {
+    req.checkBody('token', 'Invalid token').notEmpty();
 
-  req.getValidationResult().then((result) => {
-    if (!result.isEmpty()) {
-      errorUtil.respond400(res, result.array(), 'Invalid token');
+    const validationResult = await req.getValidationResult();
+    const hasValidationError = !validationResult.isEmpty();
+
+    if (hasValidationError) {
+      errorUtil.respond400(res, validationResult.array(), 'Invalid token');
       return;
     }
 
@@ -54,40 +48,40 @@ router.post('/session/token', (req, res) => {
       return;
     }
 
-    LoginToken.findByToken(token)
-    .then((data) => {
-      if (!data) {
-        errorUtil.respond400(res, null, 'Unable to find token');
-        return;
-      }
+    const loginToken = await LoginToken.findByToken(token);
 
-      // Remove the token from the DB after it's been used
-      data.remove();
+    if (!loginToken) {
+      errorUtil.respond400(res, null, 'Unable to find token');
+      return;
+    }
 
-      // Create a JWT using the email as the payload
-      tokenpress.node.jwt.sign({
-        email: data.email,
-      })
-      .then((jwt) => {
-        res.json({
-          token: jwt,
-        });
-      })
-      .catch((error) => {
-        errorUtil.respond500(res, error, 'Unable to generate session token');
-      });
+    // Remove the token from the DB after it's been used
+    loginToken.remove();
+
+    // Create a JWT using the email as the payload
+    const jwt = await tokenpress.node.jwt.sign({
+      email: loginToken.email,
     });
-  });
-});
 
-// Handle GET /api/session/verify
-// Example router that verifies a JWT from the client
+    res.json({
+      token: jwt,
+    });
+  } catch (error) {
+    errorUtil.respond500(res, error, 'Unable to generate session token');
+  }
+}
+
+// Example handler that verifies a JWT from the client.
 // If the JWT is not valid, this request will fail with a 401 response code
-// NOTE: For example only
-router.get('/session/verify', requireAuth, (req, res) => {
+// NOTE: This is here as an example only, and should be removed.
+function verifySessionTokenHandler(req, res) {
   res.json({
     jwt: req.jwt,
   });
-});
+}
 
-module.exports = router;
+module.exports = {
+  loginTokenRequestHandler,
+  sessionTokenRequestHandler,
+  verifySessionTokenHandler,
+};
