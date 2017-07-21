@@ -41,7 +41,8 @@ const copyNpmScripts = () => {
     build: 'merc --build',
     prod: 'merc --prod',
     deploy: 'merc --deploy',
-    'deploy:init': 'merc --deployInit',
+    // 'deploy:init': 'merc --deployInit',
+    precommit: 'merc --test',
   });
 
   parsedPackageJson.scripts = packageJsonScripts;
