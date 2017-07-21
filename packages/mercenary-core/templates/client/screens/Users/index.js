@@ -7,13 +7,13 @@ import Table from '../../components/Table';
 
 class UsersScreen extends React.Component {
   static propTypes = {
-    filteredUsers: propTypes.shape(),
+    users: propTypes.shape(),
     getUsers: propTypes.func,
     setUserFilter: propTypes.func,
   }
 
   static defaultProps = {
-    filteredUsers: {},
+    users: {},
     getUsers() {},
     setUserFilter() {},
   }
@@ -27,8 +27,8 @@ class UsersScreen extends React.Component {
   }
 
   render() {
-    const data = Object.keys(this.props.filteredUsers).map((userId) => {
-      const user = this.props.filteredUsers[userId];
+    const data = Object.keys(this.props.users).map((userId) => {
+      const user = this.props.users[userId];
 
       return {
         Name: <Link to={`/users/${userId}`}>{user.name}</Link>,

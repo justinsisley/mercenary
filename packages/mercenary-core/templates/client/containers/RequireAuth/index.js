@@ -9,5 +9,7 @@ function mapStateToProps(state) {
 }
 
 // Connect component to store
-export default connect(mapStateToProps)(RequireAuth);
+export default connect(
+  mapStateToProps,
+)(RequireAuth);
 

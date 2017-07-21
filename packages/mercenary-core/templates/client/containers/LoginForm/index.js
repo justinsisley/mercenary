@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as session from '../../store/session/actions';
+import { requestLoginEmail } from '../../store/session/actions';
 import LoginForm from '../../components/LoginForm';
 
 // Map application state to component props
@@ -13,7 +13,9 @@ function mapStateToProps(state) {
 
 // Map actions to to props so they can be called directly
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...session }, dispatch);
+  return bindActionCreators({
+    requestLoginEmail,
+  }, dispatch);
 }
 
 // Connect component to store
