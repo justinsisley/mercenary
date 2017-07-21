@@ -87,6 +87,8 @@ function runSetup() {
   setup();
 };
 
+initializeGit();
+
 installCore((coreExitCode) => {
   if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
@@ -100,8 +102,6 @@ installCore((coreExitCode) => {
       console.log();
       process.exit(1);
     }
-
-    initializeGit();
 
     runSetup();
   });

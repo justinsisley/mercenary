@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "2.68.3",
+  "version": "2.68.4",
   "description": "The force multiplier web application stack",
   "bin": {
     "mercenary": "./index.js"
