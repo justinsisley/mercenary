@@ -4,7 +4,6 @@ const express = require('express');
 const morgan = require('morgan');
 const protect = require('@risingstack/protect');
 const RateLimit = require('express-rate-limit');
-const compression = require('compression');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const proxy = require('proxy-middleware');
@@ -43,8 +42,6 @@ const staticPaths = require(path.join(cwd, 'config.js')).static;
 const app = express();
 // Trust the left-most entry in the X-Forwarded-* header
 app.enable('trust proxy');
-// Gzip responses
-app.use(compression());
 // Parse JSON in request body
 app.use(bodyParser.json());
 // Helmet middleware gives us some basic best-practice security
