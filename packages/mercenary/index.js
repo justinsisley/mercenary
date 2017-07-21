@@ -69,7 +69,11 @@ function installTest(callback) {
   child.on('close', callback);
 }
 
-const runSetup = () => {
+function initializeGit() {
+  execSync(`git init "${projectDirectory}"`);
+};
+
+function runSetup() {
   const setupPath = path.resolve(
     process.cwd(),
     'node_modules',
@@ -96,6 +100,8 @@ installCore((coreExitCode) => {
       console.log();
       process.exit(1);
     }
+
+    initializeGit();
 
     runSetup();
   });
