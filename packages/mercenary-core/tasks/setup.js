@@ -80,10 +80,15 @@ const copyBoilerplateDeps = () => {
   install();
 };
 
+const initializeGit = () => {
+  cp.execSync(`git init "${cwd}"`);
+};
+
 const setup = () => {
   copyTemplates();
   copyNpmScripts();
   copyBoilerplateDeps();
+  initializeGit();
 
   const paths = cwd.split('/');
   const appName = paths[paths.length - 1];
