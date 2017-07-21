@@ -50,6 +50,11 @@ fs.writeFileSync(
   JSON.stringify(packageJson, null, 2)
 );
 
+console.log('Initializing new Git repository...');
+console.log();
+
+initializeGit();
+
 process.chdir(projectDirectory);
 
 console.log('Installing mercenary core packages...');
@@ -86,8 +91,6 @@ function runSetup() {
 
   setup();
 };
-
-initializeGit();
 
 installCore((coreExitCode) => {
   if (coreExitCode !== 0) {
