@@ -21,7 +21,7 @@ module.exports = {
   webpackDevServerPort: process.env.WEBPACK_DEV_SERVER_PORT || 3326,
 
   // Hostname
-  hostname: process.env.HOSTNAME || projectConfig.deploy.hostname,
+  hostname: process.env.APP_HOSTNAME || projectConfig.deploy.hostname,
 
   // Force www
   www: process.env.WWW || projectConfig.deploy.www,

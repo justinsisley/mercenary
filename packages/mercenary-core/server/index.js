@@ -63,12 +63,12 @@ if (ENV === 'production') {
 
     // Prevent hostname spoofing
     if (req.hostname.indexOf(hostname) === -1) {
-      console.log('');
-      console.log('');
+      console.log('------------------------------------------------------------');
+      console.log('------------------------------------------------------------');
       console.log(req.hostname);
       console.log(hostname);
-      console.log('');
-      console.log('');
+      console.log('------------------------------------------------------------');
+      console.log('------------------------------------------------------------');
       res.sendStatus(403);
       return;
     }
