@@ -56,19 +56,24 @@ function fileExists(pathname) {
   }
 }
 
+const loudLog = (message) => {
+  console.log('------------------------------------------------------------');
+  console.log('------------------------------------------------------------');
+  console.log(message);
+  console.log('------------------------------------------------------------');
+  console.log('------------------------------------------------------------');
+};
+
 // In production environment, force HTTPS, and optionally www
 if (ENV === 'production') {
   app.use('*', (req, res, next) => {
     let hostname = HOSTNAME;
+    loudLog(`hostname: ${hostname}`);
 
     // Prevent hostname spoofing
     if (req.hostname.indexOf(hostname) === -1) {
-      console.log('------------------------------------------------------------');
-      console.log('------------------------------------------------------------');
-      console.log(req.hostname);
-      console.log(hostname);
-      console.log('------------------------------------------------------------');
-      console.log('------------------------------------------------------------');
+      loudLog(`preventing spoofing as ${req.hostname}`);
+
       res.sendStatus(403);
       return;
     }
@@ -83,21 +88,28 @@ if (ENV === 'production') {
 
     // Force www subdomain
     if (WWW.force && !hasWWW) {
+      loudLog('forcing WWW');
+
       res.redirect(301, finalUrl);
       return;
     }
 
     // Strip www subdomain
     if (!WWW.force && hasWWW) {
+      loudLog('stripping WWW');
       res.redirect(301, finalUrl);
       return;
     }
 
     // Redirect HTTP to HTTPS
     if (!isSecure) {
+      loudLog('redirecting to HTTPS');
+
       res.redirect(301, finalUrl);
       return;
     }
+
+    loudLog('everything is OK');
 
     next();
   });
