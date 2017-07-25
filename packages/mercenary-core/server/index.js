@@ -72,9 +72,13 @@ if (ENV === 'production') {
       return;
     }
 
+    console.log(WWW.force, WWW.strip, req.hostname);
+
     // Strip www subdomain
     if (!WWW.force && WWW.strip && req.hostname.indexOf('www.') === 0) {
       const strippedHostname = req.hostname.replace(/^www\./, '');
+      console.log(strippedHostname);
+      console.log(`https://${strippedHostname}${req.originalUrl}`);
       res.redirect(301, `https://${strippedHostname}${req.originalUrl}`);
       return;
     }
