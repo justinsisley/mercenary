@@ -19,6 +19,7 @@ const config = require('../config');
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
+const HOSTNAME = config.hostname;
 const WWW = config.www;
 const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
 const NETDATA_USERNAME = config.netdata.username;
@@ -64,33 +65,45 @@ function fileExists(pathname) {
 }
 
 // In production environment, force HTTPS, and optionally www
-// if (ENV === 'production') {
-//   app.use('*', (req, res, next) => {
-//     // Force www subdomain
-//     if (WWW.force && req.hostname.indexOf('www.') !== 0) {
-//       res.redirect(301, `https://www.${req.hostname}${req.originalUrl}`);
-//       return;
-//     }
-//
-//     console.log(WWW.force, WWW.strip, req.hostname);
-//
-//     // Strip www subdomain
-//     if (!WWW.force && WWW.strip && req.hostname.indexOf('www.') === 0) {
-//       const strippedHostname = req.hostname.replace(/^www\./, '');
-//       console.log(strippedHostname);
-//       console.log(`https://${strippedHostname}${req.originalUrl}`);
-//       res.redirect(301, `https://${strippedHostname}${req.originalUrl}`);
-//       return;
-//     }
-//
-//     if (req.secure && req.headers['x-forwarded-proto'] === 'https') {
-//       next();
-//       return;
-//     }
-//
-//     res.redirect(301, `https://${req.hostname}${req.originalUrl}`);
-//   });
-// }
+if (ENV === 'production') {
+  app.use('*', (req, res, next) => {
+    let hostname = HOSTNAME;
+
+    // Prevent hostname spoofing
+    if (req.hostname.indexOf(hostname) === -1) {
+      res.sendStatus(403);
+      return;
+    }
+
+    if (WWW.force) {
+      hostname = `www.${hostname}`;
+    }
+
+    const finalUrl = `https://${hostname}${req.originalUrl}`;
+    const hasWWW = req.hostname.indexOf('www.') === 0;
+    const isSecure = req.secure && req.headers['x-forwarded-proto'] === 'https';
+
+    // Force www subdomain
+    if (WWW.force && !hasWWW) {
+      res.redirect(301, finalUrl);
+      return;
+    }
+
+    // Strip www subdomain
+    if (!WWW.force && hasWWW) {
+      res.redirect(301, finalUrl);
+      return;
+    }
+
+    // Redirect HTTP to HTTPS
+    if (!isSecure) {
+      res.redirect(301, finalUrl);
+      return;
+    }
+
+    next();
+  });
+}
 
 // Pass the Express app to the user's custom middleware function. This allows
 // the user to apply any middleware they like without having to modify the
