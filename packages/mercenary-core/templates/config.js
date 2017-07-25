@@ -27,6 +27,9 @@ module.exports = {
 
   // Deployment configuration
   deploy: {
+    // The hostname to use when deployed
+    hostname: '',
+
     // Settings for the www subdomain
     www: {
       force: true,
