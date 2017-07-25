@@ -27,8 +27,11 @@ module.exports = {
 
   // Deployment configuration
   deploy: {
-    // Force www
-    www: true,
+    // Settings for the www subdomain
+    www: {
+      force: true,
+      strip: false,
+    },
 
     // AWS settings
     aws: {

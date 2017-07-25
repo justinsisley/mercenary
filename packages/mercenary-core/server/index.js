@@ -19,7 +19,7 @@ const config = require('../config');
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
-const FORCE_WWW = config.www;
+const WWW = config.www;
 const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
@@ -66,8 +66,16 @@ function fileExists(pathname) {
 // In production environment, force HTTPS, and optionally www
 if (ENV === 'production') {
   app.use('*', (req, res, next) => {
-    if (FORCE_WWW && req.hostname.indexOf('www.') !== 0) {
+    // Force www subdomain
+    if (WWW.force && req.hostname.indexOf('www.') !== 0) {
       res.redirect(301, `https://www.${req.hostname}${req.originalUrl}`);
+      return;
+    }
+
+    // Strip www subdomain
+    if (!WWW.force && WWW.strip && req.hostname.indexOf('www.') === 0) {
+      const strippedHostname = req.hostname.replace(/^www\./, '');
+      res.redirect(301, `https://${strippedHostname}${req.originalUrl}`);
       return;
     }
 
