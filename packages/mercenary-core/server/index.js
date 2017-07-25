@@ -56,24 +56,13 @@ function fileExists(pathname) {
   }
 }
 
-const loudLog = (message) => {
-  console.log('------------------------------------------------------------');
-  console.log('------------------------------------------------------------');
-  console.log(message);
-  console.log('------------------------------------------------------------');
-  console.log('------------------------------------------------------------');
-};
-
 // In production environment, force HTTPS, and optionally www
 if (ENV === 'production') {
   app.use('*', (req, res, next) => {
     let hostname = HOSTNAME;
-    loudLog(`hostname: ${hostname}`);
 
     // Prevent hostname spoofing
     if (req.hostname.indexOf(hostname) === -1) {
-      loudLog(`preventing spoofing as ${req.hostname}`);
-
       res.sendStatus(403);
       return;
     }
@@ -86,34 +75,23 @@ if (ENV === 'production') {
     const hasWWW = req.hostname.indexOf('www.') === 0;
     const isSecure = req.secure && req.headers['x-forwarded-proto'] === 'https';
 
-    loudLog(`req.secure: ${req.secure}`);
-    loudLog(`req.headers['x-forwarded-proto']: ${req.headers['x-forwarded-proto']}`);
-
     // Force www subdomain
     if (WWW.force && !hasWWW) {
-      loudLog('forcing WWW');
-
       res.redirect(301, finalUrl);
       return;
     }
 
     // Strip www subdomain
     if (!WWW.force && hasWWW) {
-      loudLog('stripping WWW');
       res.redirect(301, finalUrl);
       return;
     }
 
     // Redirect HTTP to HTTPS
     if (!isSecure) {
-      loudLog('redirecting to HTTPS');
-      console.log(req.headers);
-
       res.redirect(301, finalUrl);
       return;
     }
-
-    loudLog('everything is OK');
 
     next();
   });
