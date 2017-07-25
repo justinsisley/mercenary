@@ -221,7 +221,7 @@ module.exports = async function deploy() {
   const spinner = ora().start();
 
   spinner.text = 'Building client application';
-  build({
+  await build({
     silent: true,
     static: true,
   });
