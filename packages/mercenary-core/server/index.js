@@ -86,6 +86,9 @@ if (ENV === 'production') {
     const hasWWW = req.hostname.indexOf('www.') === 0;
     const isSecure = req.secure && req.headers['x-forwarded-proto'] === 'https';
 
+    loudLog(`req.secure: ${req.secure}`);
+    loudLog(`req.headers['x-forwarded-proto']: ${req.headers['x-forwarded-proto']}`);
+
     // Force www subdomain
     if (WWW.force && !hasWWW) {
       loudLog('forcing WWW');
