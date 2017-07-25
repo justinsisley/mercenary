@@ -107,6 +107,7 @@ if (ENV === 'production') {
     // Redirect HTTP to HTTPS
     if (!isSecure) {
       loudLog('redirecting to HTTPS');
+      console.log(req.headers);
 
       res.redirect(301, finalUrl);
       return;
