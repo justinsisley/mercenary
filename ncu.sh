@@ -16,8 +16,11 @@ cd ../mercenary-core; ncu
 # Check templates
 cd ./templates; ncu
 
+# Check dev
+cd ../../mercenary-dev; ncu
+
 # Check test
-cd ../../mercenary-test; ncu
+cd ../mercenary-test; ncu
 
 # Go back to root project directory
 cd ../../

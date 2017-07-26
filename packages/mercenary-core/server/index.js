@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const url = require('url');
 const express = require('express');
 const morgan = require('morgan');
 const protect = require('@risingstack/protect');
@@ -7,11 +8,9 @@ const RateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const proxy = require('proxy-middleware');
-const url = require('url');
 const getIp = require('ip');
 const basicAuth = require('basic-auth-connect');
 const config = require('../config');
-const devServer = require('./dev');
 
 // Configurable values
 const ENV = config.env;
@@ -134,6 +133,11 @@ if (fileExists(localServerPath)) {
 }
 
 if (ENV === 'development') {
+  // requiring this only if it's a dev environment means production environments
+  // do not need to depend on webpack at all.
+  // eslint-disable-next-line
+  const devServer = require('./dev');
+
   // Initialize development server
   devServer(app);
 // Non-development environment configuration

@@ -12,7 +12,9 @@ const pkg = require('./package.json');
 updateNotifier({ pkg }).notify();
 
 const corePackage = 'mercenary-core';
+const devPackage = 'mercenary-dev';
 const testPackage = 'mercenary-test';
+
 const appName = process.argv[2];
 
 if (!appName) {
@@ -60,15 +62,8 @@ process.chdir(projectDirectory);
 console.log('Installing mercenary core packages...');
 console.log();
 
-function installCore(callback) {
-  const args = ['install', '--save-exact', corePackage];
-  const child = spawn('npm', args, { stdio: 'inherit' });
-
-  child.on('close', callback);
-}
-
-function installTest(callback) {
-  const args = ['install', '--save-exact', testPackage];
+function installPackage(package, callback) {
+  const args = ['install', '--save-exact', package];
   const child = spawn('npm', args, { stdio: 'inherit' });
 
   child.on('close', callback);
@@ -92,20 +87,28 @@ function runSetup() {
   setup();
 };
 
-installCore((coreExitCode) => {
+installPackage(corePackage, (coreExitCode) => {
   if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
     console.log();
     process.exit(1);
   }
 
-  installTest((testExitCode) => {
-    if (coreExitCode !== 0) {
-      console.log(chalk.red(`Failed to install ${testPackage}.`));
+  installPackage(devPackage, (devExitCode) => {
+    if (devExitCode !== 0) {
+      console.log(chalk.red(`Failed to install ${devPackage}.`));
       console.log();
       process.exit(1);
     }
 
-    runSetup();
+    installPackage(testPackage, (testExitCode) => {
+      if (coreExitCode !== 0) {
+        console.log(chalk.red(`Failed to install ${testPackage}.`));
+        console.log();
+        process.exit(1);
+      }
+
+      runSetup();
+    });
   });
 });

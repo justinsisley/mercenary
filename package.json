@@ -5,6 +5,6 @@
     "ncu": "./ncu.sh"
   },
   "devDependencies": {
-    "lerna": "2.0.0"
+    "lerna": "^2.0.0"
   }
 }
