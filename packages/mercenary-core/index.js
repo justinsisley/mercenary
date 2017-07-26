@@ -39,3 +39,7 @@ if (argv.deploy) {
 if (argv.deployInit) {
   require('./tasks/deployInit')(); // eslint-disable-line
 }
+
+if (argv.clean) {
+  require('./tasks/clean')(); // eslint-disable-line
+}
