@@ -1,6 +1,9 @@
 module.exports = {
   respondWithErrorCode(errorCode, res, error, message) {
-    res.status(errorCode).json({ error, message });
+    res.status(errorCode).json({
+      error: error && error.message,
+      message,
+    });
   },
 
   // Bad request

@@ -1,4 +1,4 @@
-import jss from 'jss';
+import jss from '../../utils/jss';
 import { appNavWidth } from '../../constants/styles';
 
 const contentSidePadding = 20;
