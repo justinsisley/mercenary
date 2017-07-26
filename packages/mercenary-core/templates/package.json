@@ -2,11 +2,12 @@
   "name": "mercenary-react-redux",
   "description": "A react/redux web application built on mercenary",
   "dependencies": {
-    "aphrodite-jss": "1.1.1",
     "axios": "0.16.2",
     "card-validator": "4.1.0",
     "chart.js": "2.6.0",
     "classnames": "2.2.5",
+    "jss": "8.1.0",
+    "jss-preset-default": "3.0.0",
     "loglevel": "1.4.1",
     "mjml-utils": "2.1.0",
     "mongoose": "4.11.4",

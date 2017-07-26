@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Grid, Header, Image, Container, Divider, Button } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
+import classnames from 'classnames';
 import PriceCard from '../PriceCard';
 import styles from './styles';
 
 function PricingContent() {
   return (
-    <div className={css(styles.pricingContent)}>
-      <Segment className={css(styles.stripe)} vertical>
+    <div className={styles.pricingContent}>
+      <Segment className={styles.stripe} vertical>
         <Grid
           container
           stackable
@@ -53,7 +53,7 @@ function PricingContent() {
         </Grid>
       </Segment>
 
-      <Segment className={css(styles.stripe, styles.quote)} vertical>
+      <Segment className={classnames(styles.stripe, styles.quote)} vertical>
         <Grid
           celled="internally"
           columns="equal"
@@ -83,7 +83,7 @@ function PricingContent() {
         </Grid>
       </Segment>
 
-      <Segment className={css(styles.stripe)} vertical>
+      <Segment className={styles.stripe} vertical>
         <Container text>
           <Header as="h3">Tail venison jerky, landjaeger tongue</Header>
 

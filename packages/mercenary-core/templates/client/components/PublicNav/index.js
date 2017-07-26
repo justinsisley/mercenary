@@ -2,7 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Menu, Button } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
 import Conditional from '../Conditional';
 import styles from './styles';
 
@@ -28,7 +27,7 @@ function PublicNav(props) {
 
   return (
     <div>
-      <Container className={css(styles.nav)}>
+      <Container className={styles.nav}>
         <Menu
           size="large"
           inverted={!props.dark}

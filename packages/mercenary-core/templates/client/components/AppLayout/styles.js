@@ -1,4 +1,4 @@
-import { StyleSheet } from 'aphrodite-jss';
+import jss from 'jss';
 import { appNavWidth } from '../../constants/styles';
 
 const contentSidePadding = 20;
@@ -17,4 +17,4 @@ const styles = {
   },
 };
 
-export default StyleSheet.create(styles);
+export default jss.createStyleSheet(styles).attach().classes;

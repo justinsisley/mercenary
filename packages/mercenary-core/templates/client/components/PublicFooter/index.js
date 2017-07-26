@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Container, Grid, Header, List } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
 import styles from './styles';
 
 function PublicFooter() {
   return (
-    <Segment className={css(styles.footer)} vertical inverted>
+    <Segment className={styles.footer} vertical inverted>
       <Container>
         <Grid stackable inverted divided>
           <Grid.Column width="3">

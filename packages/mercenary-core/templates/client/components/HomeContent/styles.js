@@ -1,4 +1,4 @@
-import { StyleSheet } from 'aphrodite-jss';
+import jss from 'jss';
 
 const styles = {
   stripe: {
@@ -39,4 +39,4 @@ const styles = {
   },
 };
 
-export default StyleSheet.create(styles);
+export default jss.createStyleSheet(styles).attach().classes;

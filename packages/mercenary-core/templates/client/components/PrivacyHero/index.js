@@ -1,13 +1,12 @@
 import React from 'react';
 import { Segment, Container, Header } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import PublicNav from '../PublicNav';
+import styles from './styles';
 
 function PrivacyHero() {
   return (
     <Segment
-      className={css(styles.hero)}
+      className={styles.hero}
       textAlign="center"
       vertical
     >
@@ -18,7 +17,7 @@ function PrivacyHero() {
       </Container>
 
       <Container
-        className={css(styles.content)}
+        className={styles.content}
         textAlign="left"
         text
       >

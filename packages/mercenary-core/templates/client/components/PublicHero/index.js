@@ -2,15 +2,14 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Segment, Container, Button, Header } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import PublicNav from '../PublicNav';
 import Conditional from '../Conditional';
+import styles from './styles';
 
 function PublicHero(props) {
   return (
     <Segment
-      className={css(styles.hero)}
+      className={styles.hero}
       textAlign="center"
       inverted
       vertical

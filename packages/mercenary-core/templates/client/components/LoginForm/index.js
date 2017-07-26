@@ -2,9 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Segment, Form, Message, Button, Input } from 'semantic-ui-react';
 import validator from 'validator';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import Conditional from '../Conditional';
+import styles from './styles';
 
 class LoginForm extends React.Component {
   static propTypes = {
@@ -60,7 +59,7 @@ class LoginForm extends React.Component {
 
     return (
       <Segment
-        className={css(styles.form)}
+        className={styles.form}
         textAlign="center"
         vertical
       >

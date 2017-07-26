@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { Card, Statistic, Divider, Label, Icon, Button } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import Conditional from '../Conditional';
+import styles from './styles';
 
 class PriceCard extends React.Component {
   state = {}
@@ -21,7 +20,7 @@ class PriceCard extends React.Component {
     }
 
     return (
-      <Card className={css(styles.card)} fluid>
+      <Card className={styles.card} fluid>
         {label}
 
         <Card.Content header={this.props.title} />
@@ -29,7 +28,7 @@ class PriceCard extends React.Component {
         <Card.Content>
           <Statistic>
             <Statistic.Value>
-              <span className={css(styles.currency)}>$</span>
+              <span className={styles.currency}>$</span>
               {this.props.price}
             </Statistic.Value>
 

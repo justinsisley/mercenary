@@ -3,10 +3,9 @@ import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Container, Segment, Grid, Form, Checkbox, Input, Button, Dropdown } from 'semantic-ui-react';
 import cardValidator from 'card-validator';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import PriceCard from '../PriceCard';
 import Conditional from '../Conditional';
+import styles from './styles';
 
 const planOptions = [
   { text: 'Startup Plan ($25/month)', value: 'startup' },
@@ -69,14 +68,14 @@ class SignupForm extends React.Component {
       <div>
         <Container text>
           <Grid
-            className={css(styles.content)}
+            className={styles.content}
             columns={16}
             centered
           >
             <Grid.Row>
               <Grid.Column width={7}>
                 <Segment
-                  className={css(styles.titles)}
+                  className={styles.titles}
                   textAlign="center"
                   vertical
                 >
@@ -131,14 +130,14 @@ class SignupForm extends React.Component {
           then={(
             <Container text>
               <Grid
-                className={css(styles.content)}
+                className={styles.content}
                 columns={16}
                 centered
               >
                 <Grid.Row>
                   <Grid.Column width={7}>
                     <Segment
-                      className={css(styles.form)}
+                      className={styles.form}
                       textAlign="center"
                       vertical
                     >

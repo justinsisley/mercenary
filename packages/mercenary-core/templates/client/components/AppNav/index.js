@@ -2,7 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
 import styles from './styles';
 
 const navItems = [
@@ -27,7 +26,7 @@ function AppNav(props) {
   });
 
   return (
-    <Menu className={css(styles.menu)} vertical inverted>
+    <Menu className={styles.menu} vertical inverted>
       <Menu.Item header>Mercenary</Menu.Item>
 
       <Menu.Item>

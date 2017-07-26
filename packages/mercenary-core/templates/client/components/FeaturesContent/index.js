@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Grid, Header, Button, Image } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
 import styles from './styles';
 
 function PricingContent() {
   return (
     <div>
-      <Segment className={css(styles.stripe)} vertical>
+      <Segment className={styles.stripe} vertical>
         <Grid
           verticalAlign="middle"
           container

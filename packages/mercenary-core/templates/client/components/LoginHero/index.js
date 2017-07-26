@@ -1,14 +1,13 @@
 import React from 'react';
 import { Segment, Container, Grid } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
-import styles from './styles';
 import PublicNav from '../PublicNav';
 import LoginForm from '../../containers/LoginForm';
+import styles from './styles';
 
 function LoginHero() {
   return (
     <Segment
-      className={css(styles.hero)}
+      className={styles.hero}
       textAlign="center"
       vertical
     >

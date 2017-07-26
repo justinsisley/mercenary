@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Grid, Header, Image, Button, Container, Divider } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
+import classnames from 'classnames';
 import styles from './styles';
 
 function HomeContent() {
   return (
     <div>
-      <Segment className={css(styles.stripe)} vertical>
+      <Segment className={styles.stripe} vertical>
         <Grid
           verticalAlign="middle"
           container
@@ -47,7 +47,7 @@ function HomeContent() {
         </Grid>
       </Segment>
 
-      <Segment className={css(styles.stripe, styles.quote)} vertical>
+      <Segment className={classnames(styles.stripe, styles.quote)} vertical>
         <Grid
           celled="internally"
           columns="equal"
@@ -77,7 +77,7 @@ function HomeContent() {
         </Grid>
       </Segment>
 
-      <Segment className={css(styles.stripe)} vertical>
+      <Segment className={styles.stripe} vertical>
         <Container text>
           <Header as="h3">Tail venison jerky, landjaeger tongue</Header>
 

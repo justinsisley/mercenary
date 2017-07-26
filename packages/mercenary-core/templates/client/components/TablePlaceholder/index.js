@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import { css } from 'aphrodite-jss';
 import styles from './styles';
 
 export default class TablePlaceholder extends React.Component {
@@ -8,7 +7,7 @@ export default class TablePlaceholder extends React.Component {
     const width = Math.floor(Math.random() * 70) + 20;
 
     return (
-      <div className={css(styles.placeholder)} style={{ width: `${width}%` }} />
+      <div className={styles.placeholder} style={{ width: `${width}%` }} />
     );
   }
 
