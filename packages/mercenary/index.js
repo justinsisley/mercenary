@@ -69,6 +69,13 @@ function installPackage(package, callback) {
   child.on('close', callback);
 }
 
+function installDevPackage(package, callback) {
+  const args = ['install', '--save-exact', '--save-dev', package];
+  const child = spawn('npm', args, { stdio: 'inherit' });
+
+  child.on('close', callback);
+}
+
 function initializeGit() {
   execSync(`git init "${projectDirectory}"`);
 };
@@ -94,14 +101,14 @@ installPackage(corePackage, (coreExitCode) => {
     process.exit(1);
   }
 
-  installPackage(devPackage, (devExitCode) => {
+  installDevPackage(devPackage, (devExitCode) => {
     if (devExitCode !== 0) {
       console.log(chalk.red(`Failed to install ${devPackage}.`));
       console.log();
       process.exit(1);
     }
 
-    installPackage(testPackage, (testExitCode) => {
+    installDevPackage(testPackage, (testExitCode) => {
       if (coreExitCode !== 0) {
         console.log(chalk.red(`Failed to install ${testPackage}.`));
         console.log();

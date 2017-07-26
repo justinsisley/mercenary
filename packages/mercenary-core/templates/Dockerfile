@@ -21,10 +21,10 @@ WORKDIR /home/app
 ADD . /home/app
 
 # Install dependencies
-RUN yarn install --production --no-progress
+RUN npm install --only=production
 
 # Start the web app in production mode
-CMD /usr/sbin/netdata && yarn run prod
+CMD /usr/sbin/netdata && npm run prod
 
 # Expose the application port
 EXPOSE 3325

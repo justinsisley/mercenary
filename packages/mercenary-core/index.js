@@ -1,50 +1,41 @@
 #!/usr/bin/env node
 
 const argv = require('yargs').argv;
-const setup = require('./tasks/setup');
-const test = require('./tasks/test');
-const testWatch = require('./tasks/testWatch');
-const e2e = require('./tasks/e2e');
-const build = require('./tasks/build');
-const startDev = require('./tasks/startDev');
-const startProd = require('./tasks/startProd');
-const deploy = require('./tasks/deploy');
-const deployInit = require('./tasks/deployInit');
 
 if (argv.setup) {
-  setup();
+  require('./tasks/setup')(); // eslint-disable-line
 }
 
 if (argv.test) {
-  test();
+  require('./tasks/test')(); // eslint-disable-line
 }
 
 if (argv.testWatch) {
-  testWatch();
+  require('./tasks/testWatch')(); // eslint-disable-line
 }
 
 if (argv.e2e) {
-  build({ silent: true });
-  const prod = startProd({ async: true });
-  e2e({ serverProcess: prod });
+  require('./tasks/build')({ silent: true }); // eslint-disable-line
+  const prod = require('./tasks/startProd')({ async: true }); // eslint-disable-line
+  require('./tasks/e2e')({ serverProcess: prod }); // eslint-disable-line
 }
 
 if (argv.build) {
-  build({ static: true });
+  require('./tasks/build')({ static: true }); // eslint-disable-line
 }
 
 if (argv.start) {
-  startDev();
+  require('./tasks/startDev')(); // eslint-disable-line
 }
 
 if (argv.prod) {
-  startProd();
+  require('./tasks/startProd')(); // eslint-disable-line
 }
 
 if (argv.deploy) {
-  deploy();
+  require('./tasks/deploy')(); // eslint-disable-line
 }
 
 if (argv.deployInit) {
-  deployInit();
+  require('./tasks/deployInit')(); // eslint-disable-line
 }
