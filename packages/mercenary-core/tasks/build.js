@@ -42,12 +42,12 @@ const build = (config = { silent: false, static: false }) => {
       // Give the server a moment to start
       setTimeout(() => {
         // Run the static builder
-        buildStatic();
+        buildStatic().then(() => {
+          // Kill the server
+          prod.kill('SIGINT');
 
-        // Kill the server
-        prod.kill('SIGINT');
-
-        resolve();
+          resolve();
+        });
       }, 2000);
     });
   }

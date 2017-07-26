@@ -1,33 +1,41 @@
 const join = require('path').join;
-const cp = require('child_process');
 const fs = require('fs');
-const chrome = require('chrome-location');
+const Chromy = require('chromy');
 
 const cwd = process.cwd();
 
 const staticPaths = require(join(cwd, 'config.js')).static;
 const destination = join(cwd, '/public/static');
 
-const args = '--headless --disable-gpu --dump-dom';
 const host = 'http://localhost:3325';
-const command = `"${chrome}" ${args} ${host}`;
+let chromePort = 9222;
 
-const buildStatic = () => {
+async function renderPage(path) {
+  const chromy = new Chromy({ port: chromePort += 1 });
+  await chromy.goto(`${host}${path}`);
+
+  const html = await chromy.evaluate(() => {
+    return document.documentElement.outerHTML;
+  });
+
+  await chromy.close();
+
+  return { path, html };
+}
+
+async function buildStatic() {
   if (staticPaths && staticPaths.length) {
-    const baseHTML = fs.readFileSync('./public/index.html', { encoding: 'utf8' });
-
     fs.mkdirSync(destination);
 
-    staticPaths.forEach((path) => {
-      const rendered = cp.execSync(`${command}${path}`).toString();
-      const page = baseHTML.replace(/<body>([\s\S]*)<\/body>/, rendered);
+    const renderedPages = await Promise.all(staticPaths.map(await renderPage));
 
+    renderedPages.forEach(({ path, html }) => {
       let name = path.replace('/', '');
       if (!name) { name = 'index'; }
 
-      fs.writeFileSync(join(destination, `/${name}.html`), page);
+      fs.writeFileSync(join(destination, `/${name}.html`), `<!DOCTYPE html>\n${html}`);
     });
   }
-};
+}
 
 module.exports = buildStatic;
