@@ -36,6 +36,12 @@ module.exports = {
       strip: false,
     },
 
+    // Secure the app behind HTTP auth
+    auth: {
+      username: '',
+      password: '',
+    },
+
     // AWS settings
     aws: {
       // Credentials from IAM.

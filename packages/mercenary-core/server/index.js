@@ -17,6 +17,7 @@ const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
 const HOSTNAME = config.hostname;
 const WWW = config.www;
+const AUTH = config.auth;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 
@@ -55,8 +56,9 @@ function fileExists(pathname) {
   }
 }
 
-// In production environment, force HTTPS, and optionally www
+// Production middleware
 if (ENV === 'production') {
+  // Force HTTPS, and optionally www
   app.use('*', (req, res, next) => {
     let hostname = HOSTNAME;
 
@@ -94,6 +96,18 @@ if (ENV === 'production') {
 
     next();
   });
+
+  // Rate limiting
+  app.use(new RateLimit({
+    delayMs: 0, // disable delay
+    max: 1000, // requests per `windowMs`
+    windowMs: 60 * 1000, // 1 minute
+  }));
+
+  // Optional HTTP auth
+  if (AUTH.username && AUTH.password) {
+    app.use(basicAuth(AUTH.username, AUTH.password));
+  }
 }
 
 // Pass the Express app to the user's custom middleware function. This allows
@@ -120,16 +134,7 @@ if (fileExists(localServerPath)) {
     require(path.join(cwd, localServerPath))(req, res, next); // eslint-disable-line
   };
 
-  // Only use rate limiting in production environment
-  if (ENV === 'production') {
-    app.use('/api', new RateLimit({
-      delayMs: 0, // disable delay
-      max: 1000, // requests per `windowMs`
-      windowMs: 60 * 1000, // 1 minute
-    }), apiHandler);
-  } else {
-    app.use('/api', apiHandler);
-  }
+  app.use('/api', apiHandler);
 }
 
 if (ENV === 'development') {
