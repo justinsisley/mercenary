@@ -1,7 +1,7 @@
 {
   "name": "mercenary-core",
-  "version": "2.75.0",
-  "description": "The force multiplier web application stack",
+  "version": "2.75.1",
+  "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
   },

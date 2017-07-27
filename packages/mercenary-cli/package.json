@@ -1,7 +1,7 @@
 {
   "name": "mercenary",
-  "version": "2.75.0",
-  "description": "The force multiplier web application stack",
+  "version": "2.75.1",
+  "description": "CLI for mercenary",
   "bin": {
     "mercenary": "./index.js"
   },

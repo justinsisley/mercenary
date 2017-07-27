@@ -1,7 +1,7 @@
 {
   "name": "mercenary-dev",
-  "version": "2.75.0",
-  "description": "The force multiplier web application stack",
+  "version": "2.75.1",
+  "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
