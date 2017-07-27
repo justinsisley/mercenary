@@ -17,7 +17,6 @@ const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
 const HOSTNAME = config.hostname;
 const WWW = config.www;
-const AUTH = config.auth;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 
@@ -53,16 +52,6 @@ function fileExists(pathname) {
     return true;
   } catch (err) {
     return false;
-  }
-}
-
-// Basic auth middleware
-function authMiddleware(req, res, next) {
-  // Optional HTTP auth
-  if (ENV === 'production' && AUTH.username && AUTH.password) {
-    basicAuth(AUTH.username, AUTH.password)(req, res, next);
-  } else {
-    next();
   }
 }
 
@@ -158,7 +147,7 @@ if (ENV === 'development') {
     staticPaths &&
     staticPaths.indexOf('/') > -1
   ) {
-    app.get('/', authMiddleware, (req, res) => {
+    app.get('/', (req, res) => {
       res.sendFile(path.join(cwd, './public/static/index.html'));
     });
   }
@@ -176,7 +165,7 @@ if (ENV === 'development') {
   console.log(`\nnetdata credentials\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
 
   // All unhandled routes are served the static index.html file
-  app.get('*', authMiddleware, (req, res) => {
+  app.get('*', (req, res) => {
     // If in production mode, and the index page is a static path, send the static version
     if (
       ENV === 'production' &&

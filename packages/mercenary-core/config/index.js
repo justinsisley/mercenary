@@ -26,12 +26,6 @@ module.exports = {
   // Force www
   www: process.env.WWW || projectConfig.deploy.www,
 
-  // Secure the app behind HTTP auth
-  auth: {
-    username: process.env.AUTH_USERNAME || projectConfig.deploy.auth.username,
-    password: process.env.AUTH_PASSWORD || projectConfig.deploy.auth.password,
-  },
-
   // Configure access to netdata dashboard
   netdata: {
     username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,
