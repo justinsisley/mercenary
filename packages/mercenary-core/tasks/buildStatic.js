@@ -21,6 +21,12 @@ async function renderPage(path) {
       headScripts[i].parentNode.removeChild(headScripts[i]);
     }
 
+    const serverStyles = document.querySelectorAll('[data-jss]');
+
+    for (let i = 0; i < serverStyles.length; i += 1) {
+      serverStyles[i].className = 'static-styles';
+    }
+
     return document.documentElement.outerHTML;
   });
 
