@@ -5,7 +5,6 @@ const express = require('express');
 const morgan = require('morgan');
 const protect = require('@risingstack/protect');
 const RateLimit = require('express-rate-limit');
-const ipFilter = require('express-ipfilter').IpFilter;
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const proxy = require('proxy-middleware');
@@ -18,7 +17,6 @@ const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
 const HOSTNAME = config.hostname;
 const WWW = config.www;
-const IP_WHITELIST = config.ipWhitelist;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 
@@ -59,14 +57,6 @@ function fileExists(pathname) {
 
 // Production middleware
 if (ENV === 'production') {
-  // Allow only specified IPs if configured
-  if (IP_WHITELIST) {
-    app.use(ipFilter(IP_WHITELIST.split(','), {
-      mode: 'allow',
-      allowedHeaders: ['X-Forwarded-For', 'Cf-Connecting-IP'],
-    }));
-  }
-
   // Force HTTPS, and optionally www
   app.use('*', (req, res, next) => {
     let hostname = HOSTNAME;

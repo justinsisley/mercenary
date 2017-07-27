@@ -26,9 +26,6 @@ module.exports = {
   // Force www
   www: process.env.WWW || projectConfig.deploy.www,
 
-  // Comma separated list of IPs to whitelist; all other blocked
-  ipWhitelist: process.env.IP_WHITELIST || projectConfig.deploy.ipWhitelist,
-
   // Configure access to netdata dashboard
   netdata: {
     username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,

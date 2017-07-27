@@ -13,7 +13,6 @@ updateNotifier({ pkg }).notify();
 
 const corePackage = 'mercenary-core';
 const devPackage = 'mercenary-dev';
-const testPackage = 'mercenary-test';
 
 const appName = process.argv[2];
 
@@ -55,30 +54,28 @@ fs.writeFileSync(
 console.log('Initializing new Git repository...');
 console.log();
 
-initializeGit();
+// Initialize git repository
+execSync(`git init "${projectDirectory}"`);
 
+// Move into the project directory
 process.chdir(projectDirectory);
 
 console.log('Installing mercenary core packages...');
 console.log();
 
-function installPackage(package, callback) {
-  const args = ['install', '--save-exact', package];
+function installCorePackage(callback) {
+  const args = ['install', '--save-exact', corePackage];
   const child = spawn('npm', args, { stdio: 'inherit' });
 
   child.on('close', callback);
 }
 
-function installDevPackage(package, callback) {
-  const args = ['install', '--save-exact', '--save-dev', package];
+function installDevPackage(callback) {
+  const args = ['install', '--save-exact', '--save-dev', devPackage];
   const child = spawn('npm', args, { stdio: 'inherit' });
 
   child.on('close', callback);
 }
-
-function initializeGit() {
-  execSync(`git init "${projectDirectory}"`);
-};
 
 function runSetup() {
   const setupPath = path.resolve(
@@ -89,33 +86,24 @@ function runSetup() {
     'setup.js'
   );
 
-  const setup = require(setupPath);
+  // Run the setup task
+  require(setupPath)(); // eslint-disable-line
+}
 
-  setup();
-};
-
-installPackage(corePackage, (coreExitCode) => {
+installCorePackage((coreExitCode) => {
   if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
     console.log();
     process.exit(1);
   }
 
-  installDevPackage(devPackage, (devExitCode) => {
+  installDevPackage((devExitCode) => {
     if (devExitCode !== 0) {
       console.log(chalk.red(`Failed to install ${devPackage}.`));
       console.log();
       process.exit(1);
     }
 
-    installDevPackage(testPackage, (testExitCode) => {
-      if (coreExitCode !== 0) {
-        console.log(chalk.red(`Failed to install ${testPackage}.`));
-        console.log();
-        process.exit(1);
-      }
-
-      runSetup();
-    });
+    runSetup();
   });
 });
