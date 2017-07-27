@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.76.1",
+  "version": "2.76.2",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -25,6 +25,6 @@
     "pm2": "2.6.1",
     "proxy-middleware": "0.15.0",
     "winston": "2.3.1",
-    "winston-loggly": "1.3.1"
+    "winston-loggly-bulk": "2.0.0"
   }
 }

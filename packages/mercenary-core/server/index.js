@@ -14,7 +14,7 @@ const basicAuth = require('basic-auth-connect');
 const config = require('../config');
 
 // Expose winston.transports.Loggly
-require('winston-loggly');
+require('winston-loggly-bulk');
 
 // Configurable values
 const ENV = config.env;
