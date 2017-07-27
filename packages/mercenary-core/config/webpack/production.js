@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -114,11 +113,6 @@ module.exports = {
       template: shared.htmlSource,
       inject: 'head',
       inlineSource: '.css$',
-    }),
-
-    // Inject bundle with 'async' attribute
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'async'
     }),
 
     // Inline any CSS modules within the HTML file
