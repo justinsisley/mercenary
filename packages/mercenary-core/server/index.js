@@ -37,16 +37,13 @@ const staticPaths = require(path.join(cwd, 'config.js')).static;
 
 // Configure logging transports
 const winstonTransports = [
-  new winston.transports.Console({
-    json: true,
-    colorize: true
-  }),
+  new winston.transports.Console({ colorize: true }),
 ];
 
 // Add Loggly transport in production if configured
 if (ENV === 'production' && LOGGLY.token && LOGGLY.subdomain) {
   winstonTransports.push(
-    winston.transports.Loggly({
+    new winston.transports.Loggly({
       token: LOGGLY.token,
       subdomain: LOGGLY.subdomain,
       json: true,
