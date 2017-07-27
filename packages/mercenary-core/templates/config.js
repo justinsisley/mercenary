@@ -36,6 +36,12 @@ module.exports = {
       strip: false,
     },
 
+    // Configure Loggly for production server logs
+    loggly: {
+      token: '',
+      subdomain: '',
+    },
+
     // AWS settings
     aws: {
       // Credentials from IAM.

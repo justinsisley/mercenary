@@ -20,11 +20,17 @@ module.exports = {
   // The webpack dev server's port
   webpackDevServerPort: process.env.WEBPACK_DEV_SERVER_PORT || 3326,
 
-  // Hostname
+  // The hostname to use when deployed
   hostname: process.env.APP_HOSTNAME || projectConfig.deploy.hostname,
 
-  // Force www
+  // Settings for the www subdomain
   www: process.env.WWW || projectConfig.deploy.www,
+
+  // Configure Loggly for production server logs
+  loggly: {
+    token: process.env.LOGGLY_TOKEN || projectConfig.deploy.loggly.token,
+    subdomain: process.env.LOGGLY_SUBDOMAIN || projectConfig.deploy.loggly.subdomain,
+  },
 
   // Configure access to netdata dashboard
   netdata: {

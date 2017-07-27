@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const express = require('express');
-const morgan = require('morgan');
+const winston = require('winston');
+const expressWinston = require('express-winston');
 const protect = require('@risingstack/protect');
 const RateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
@@ -12,11 +13,15 @@ const getIp = require('ip');
 const basicAuth = require('basic-auth-connect');
 const config = require('../config');
 
+// Expose winston.transports.Loggly
+require('winston-loggly');
+
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
 const HOSTNAME = config.hostname;
 const WWW = config.www;
+const LOGGLY = config.loggly;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 
@@ -30,6 +35,25 @@ const cwd = process.cwd();
 const publicDir = path.join(cwd, './public');
 const staticPaths = require(path.join(cwd, 'config.js')).static;
 
+// Configure logging transports
+const winstonTransports = [
+  new winston.transports.Console({
+    json: true,
+    colorize: true
+  }),
+];
+
+// Add Loggly transport in production if configured
+if (ENV === 'production' && LOGGLY.token && LOGGLY.subdomain) {
+  winstonTransports.push(
+    winston.transports.Loggly({
+      token: LOGGLY.token,
+      subdomain: LOGGLY.subdomain,
+      json: true,
+    }),
+  );
+}
+
 // Create the Express server
 const app = express();
 // Trust the left-most entry in the X-Forwarded-* header
@@ -42,8 +66,8 @@ app.use(protect.express.headers());
 app.use(protect.express.xss());
 // Validation/sanitization
 app.use(expressValidator());
-// Logging middleware
-app.use(morgan(ENV === 'development' ? 'dev' : 'combined'));
+// Request logging
+app.use(expressWinston.logger({ transports: winstonTransports }));
 
 // Helper that determines if a file relative to the host project's path exists
 function fileExists(pathname) {
@@ -180,6 +204,9 @@ if (ENV === 'development') {
     }
   });
 }
+
+// Error logging
+app.use(expressWinston.errorLogger({ transports: winstonTransports }));
 
 // Start the Express server
 app.listen(EXPRESS_PORT, () => {
