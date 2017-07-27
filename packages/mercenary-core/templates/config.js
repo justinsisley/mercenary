@@ -36,6 +36,10 @@ module.exports = {
       strip: false,
     },
 
+    // Comma separated list of IPs to whitelist; all other blocked
+    // Useful for locking down production app
+    ipWhitelist: '',
+
     // AWS settings
     aws: {
       // Credentials from IAM.

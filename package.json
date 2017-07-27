@@ -5,6 +5,8 @@
     "ncu": "./ncu.sh"
   },
   "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-mercenary": "2.69.3",
     "lerna": "^2.0.0"
   }
 }
