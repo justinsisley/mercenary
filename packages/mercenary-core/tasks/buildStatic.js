@@ -15,11 +15,12 @@ async function renderPage(path) {
   await chromy.goto(`${host}${path}`);
 
   const html = await chromy.evaluate(() => {
-    // const headScripts = document.head.getElementsByTagName('script');
-    //
-    // for (let i = 0; i < headScripts.length; i += 1) {
-    //   headScripts[i].parentNode.removeChild(headScripts[i]);
-    // }
+    const headScripts = document.head.getElementsByTagName('script');
+
+    for (let i = 0; i < headScripts.length; i += 1) {
+      const removedScript = headScripts[i].parentNode.removeChild(headScripts[i]);
+      document.body.appendChild(removedScript);
+    }
 
     return document.documentElement.outerHTML;
   });

@@ -111,7 +111,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: shared.htmlCompiled,
       template: shared.htmlSource,
-      inject: 'head',
       inlineSource: '.css$',
     }),
 
