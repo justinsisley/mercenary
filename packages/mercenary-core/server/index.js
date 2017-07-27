@@ -56,6 +56,16 @@ function fileExists(pathname) {
   }
 }
 
+// Basic auth middleware
+function authMiddleware(req, res, next) {
+  // Optional HTTP auth
+  if (ENV === 'production' && AUTH.username && AUTH.password) {
+    basicAuth(AUTH.username, AUTH.password)(req, res, next);
+  } else {
+    next();
+  }
+}
+
 // Production middleware
 if (ENV === 'production') {
   // Force HTTPS, and optionally www
@@ -148,7 +158,7 @@ if (ENV === 'development') {
     staticPaths &&
     staticPaths.indexOf('/') > -1
   ) {
-    app.get('/', (req, res) => {
+    app.get('/', authMiddleware, (req, res) => {
       res.sendFile(path.join(cwd, './public/static/index.html'));
     });
   }
@@ -165,13 +175,8 @@ if (ENV === 'development') {
 
   console.log(`\nnetdata credentials\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
 
-  // Optional HTTP auth
-  if (ENV === 'production' && AUTH.username && AUTH.password) {
-    app.use(basicAuth(AUTH.username, AUTH.password));
-  }
-
   // All unhandled routes are served the static index.html file
-  app.get('*', (req, res) => {
+  app.get('*', authMiddleware, (req, res) => {
     // If in production mode, and the index page is a static path, send the static version
     if (
       ENV === 'production' &&
