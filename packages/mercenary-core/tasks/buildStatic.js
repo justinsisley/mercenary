@@ -15,12 +15,6 @@ async function renderPage(path) {
   await chromy.goto(`${host}${path}`);
 
   const html = await chromy.evaluate(() => {
-    const headScripts = document.head.getElementsByTagName('script');
-
-    for (let i = 0; i < headScripts.length; i += 1) {
-      headScripts[i].parentNode.removeChild(headScripts[i]);
-    }
-
     return document.documentElement.outerHTML;
   });
 
