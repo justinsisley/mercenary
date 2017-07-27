@@ -103,11 +103,6 @@ if (ENV === 'production') {
     max: 1000, // requests per `windowMs`
     windowMs: 60 * 1000, // 1 minute
   }));
-
-  // Optional HTTP auth
-  if (AUTH.username && AUTH.password) {
-    app.use(basicAuth(AUTH.username, AUTH.password));
-  }
 }
 
 // Pass the Express app to the user's custom middleware function. This allows
@@ -169,6 +164,11 @@ if (ENV === 'development') {
   );
 
   console.log(`\nnetdata credentials\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
+
+  // Optional HTTP auth
+  if (ENV === 'production' && AUTH.username && AUTH.password) {
+    app.use(basicAuth(AUTH.username, AUTH.password));
+  }
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
