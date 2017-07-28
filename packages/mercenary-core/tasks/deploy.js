@@ -13,7 +13,9 @@ const docker = require('./docker');
 const cwd = process.cwd();
 
 // Get the values from the host project's config file
-const config = require(join(cwd, 'config.js')).deploy;
+const config = require(join(cwd, 'config.js'));
+const deploy = config.deploy;
+const staticPaths = config.static;
 
 // Get the values from the host project's package.json
 const packagePath = join(cwd, 'package.json');
@@ -21,12 +23,12 @@ const packageData = fs.readFileSync(packagePath, { encoding: 'utf8' });
 const packageJson = JSON.parse(packageData);
 
 // AWS constants
-const accessKeyId = config.aws.iam.accessKeyId;
-const secretAccessKey = config.aws.iam.secretAccessKey;
-const region = config.aws.elasticBeanstalk.region;
-const ebApplicationName = config.aws.elasticBeanstalk.applicationName;
-const ebEnvironmentName = config.aws.elasticBeanstalk.environmentName;
-const s3Bucket = config.aws.s3.bucket;
+const accessKeyId = deploy.aws.iam.accessKeyId;
+const secretAccessKey = deploy.aws.iam.secretAccessKey;
+const region = deploy.aws.elasticBeanstalk.region;
+const ebApplicationName = deploy.aws.elasticBeanstalk.applicationName;
+const ebEnvironmentName = deploy.aws.elasticBeanstalk.environmentName;
+const s3Bucket = deploy.aws.s3.bucket;
 const containerPort = 3325;
 
 // File paths
@@ -200,7 +202,7 @@ function sendSlackMessage({ semver, commitHash }) {
 
   execSync(`curl --silent -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
-  ${config.slackWebHookUrl}`);
+  ${deploy.slackWebHookUrl}`);
 }
 
 // Clean up the workspace
@@ -213,7 +215,7 @@ function clean(bundleName) {
   execSync(`rm -rf "${publicDir}"`);
 }
 
-module.exports = async function deploy() {
+module.exports = async () => {
   const semver = await bumpVersion();
   const commitHash = getCommitHash();
   const versionLabel = getVersionLabel(semver, commitHash);
@@ -221,10 +223,14 @@ module.exports = async function deploy() {
   const spinner = ora().start();
 
   spinner.text = 'Building client application';
-  await build({
-    silent: true,
-    static: true,
-  });
+  if (staticPaths && staticPaths.length) {
+    await build({
+      silent: true,
+      static: true,
+    });
+  } else {
+    build({ silent: true });
+  }
 
   spinner.text = 'Creating Docker files';
   docker();
@@ -260,7 +266,7 @@ module.exports = async function deploy() {
     return;
   }
 
-  if (config.slackWebHookUrl) {
+  if (deploy.slackWebHookUrl) {
     spinner.text = 'Sending Slack notification';
     sendSlackMessage({ semver, commitHash });
   }
