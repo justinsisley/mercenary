@@ -64,7 +64,13 @@ app.use(protect.express.xss());
 // Validation/sanitization
 app.use(expressValidator());
 // Request logging
-app.use(expressWinston.logger({ transports: winstonTransports }));
+app.use(expressWinston.logger({
+  transports: winstonTransports,
+  msg: '{{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
+  colorize: true,
+  meta: ENV === 'production',
+  expressFormat: ENV === 'production',
+}));
 
 // Helper that determines if a file relative to the host project's path exists
 function fileExists(pathname) {
