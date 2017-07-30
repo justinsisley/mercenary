@@ -26,13 +26,9 @@ import 'semantic-ui-css/components/transition.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import jss from '../../utils/jss';
-import preset from 'jss-preset-default';
 import App from './components/App';
 
 // Global custom styles
 import './index.css';
-
-jss.setup(preset());
 
 ReactDOM.render(<App />, document.getElementById('root'));
