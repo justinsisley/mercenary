@@ -10,7 +10,7 @@
     "jss-preset-default": "3.0.0",
     "loglevel": "1.4.1",
     "mjml-utils": "2.1.0",
-    "mongoose": "4.11.4",
+    "mongoose": "4.11.5",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.5.10",
