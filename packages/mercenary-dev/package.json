@@ -1,6 +1,6 @@
 {
   "name": "mercenary-dev",
-  "version": "2.76.12",
+  "version": "2.76.13",
   "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -12,7 +12,7 @@
     "aws-sdk": "2.94.0",
     "babel-core": "6.25.0",
     "babel-loader": "7.1.1",
-    "babel-preset-mercenary": "^2.76.12",
+    "babel-preset-mercenary": "^2.76.13",
     "chai": "4.1.1",
     "chalk": "2.1.0",
     "chromedriver": "2.31.0",
