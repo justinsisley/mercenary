@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
 
-const { getURLSafeToken } = tokenpress.node.string;
+const { getURLSafeToken } = tokenpress.node.utils;
 
 const schema = new mongoose.Schema({
   email: String,

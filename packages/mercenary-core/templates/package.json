@@ -20,15 +20,15 @@
     "react-document-title": "2.0.3",
     "react-dom": "15.6.1",
     "react-google-maps": "7.2.0",
-    "react-redux": "5.0.5",
+    "react-redux": "5.0.6",
     "react-router-dom": "4.1.2",
     "redux": "3.7.2",
     "redux-actions": "2.2.1",
     "redux-thunk": "2.2.0",
     "reselect": "3.0.1",
     "semantic-ui-css": "2.2.12",
-    "semantic-ui-react": "0.71.3",
-    "tokenpress": "1.7.2",
+    "semantic-ui-react": "0.71.4",
+    "tokenpress": "1.8.0",
     "validator": "8.0.0"
   }
 }

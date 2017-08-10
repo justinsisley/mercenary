@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const express = require('express');
@@ -11,7 +10,10 @@ const expressValidator = require('express-validator');
 const proxy = require('proxy-middleware');
 const getIp = require('ip');
 const basicAuth = require('basic-auth-connect');
+const toobusy = require('toobusy-js');
 const config = require('../config');
+const middleware = require('./middleware');
+const utils = require('./utils');
 
 // Expose winston.transports.Loggly
 require('winston-loggly-bulk');
@@ -19,8 +21,6 @@ require('winston-loggly-bulk');
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
-const HOSTNAME = config.hostname;
-const WWW = config.www;
 const LOGGLY = config.loggly;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
@@ -30,10 +30,25 @@ const localhost = `http://localhost:${EXPRESS_PORT}`;
 const localhostIP = `http://127.0.0.1:${EXPRESS_PORT}`;
 const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 
-// References to important directories
+// References to important files and directories
 const cwd = process.cwd();
 const publicDir = path.join(cwd, './public');
 const staticPaths = require(path.join(cwd, 'config.js')).static;
+const publicIndexPath = path.join(cwd, './public/index.html');
+const staticPublicIndexPath = path.join(cwd, './public/static/index.html');
+
+// Create a lookup for static page paths so we don't have to do it at response time
+const staticPathLookup = {};
+if (staticPaths) {
+  staticPaths.forEach((staticPath) => {
+    // root path is handled separately
+    if (staticPath !== '/') {
+      const fileName = staticPath.replace('/', '');
+
+      staticPathLookup[staticPath] = path.join(cwd, `./public/static/${fileName}.html`);
+    }
+  });
+}
 
 // Configure logging transports
 const winstonTransports = [
@@ -72,63 +87,20 @@ app.use(expressWinston.logger({
   expressFormat: ENV === 'production',
 }));
 
-// Helper that determines if a file relative to the host project's path exists
-function fileExists(pathname) {
-  try {
-    fs.lstatSync(path.join(cwd, pathname));
-    return true;
-  } catch (err) {
-    return false;
-  }
-}
-
 // Production middleware
 if (ENV === 'production') {
-  // Force HTTPS, and optionally www
-  app.use('*', (req, res, next) => {
-    let hostname = HOSTNAME;
-
-    // Prevent hostname spoofing
-    if (req.hostname.indexOf(hostname) === -1) {
-      res.sendStatus(403);
-      return;
-    }
-
-    if (WWW.force) {
-      hostname = `www.${hostname}`;
-    }
-
-    const finalUrl = `https://${hostname}${req.originalUrl}`;
-    const hasWWW = req.hostname.indexOf('www.') === 0;
-    const isSecure = req.secure && req.headers['x-forwarded-proto'] === 'https';
-
-    // Force www subdomain
-    if (WWW.force && !hasWWW) {
-      res.redirect(301, finalUrl);
-      return;
-    }
-
-    // Strip www subdomain
-    if (!WWW.force && hasWWW) {
-      res.redirect(301, finalUrl);
-      return;
-    }
-
-    // Redirect HTTP to HTTPS
-    if (!isSecure) {
-      res.redirect(301, finalUrl);
-      return;
-    }
-
-    next();
-  });
-
   // Rate limiting
   app.use(new RateLimit({
     delayMs: 0, // disable delay
     max: 1000, // requests per `windowMs`
     windowMs: 60 * 1000, // 1 minute
   }));
+
+  // Gracefully handle server overload
+  app.use(middleware.checkIfTooBusy);
+
+  // Force HTTPS, and optionally force www
+  app.use(middleware.enforceHTTPS);
 }
 
 // Pass the Express app to the user's custom middleware function. This allows
@@ -136,7 +108,7 @@ if (ENV === 'production') {
 // server entry point. Again, we're keeping this out of the try/catch (above)
 // so we can maintain standard error behavior.
 const middlewarePath = './server/middleware.js';
-if (fileExists(middlewarePath)) {
+if (utils.fileExists(middlewarePath)) {
   const runMiddleware = require(path.join(cwd, middlewarePath)); // eslint-disable-line
 
   if (typeof runMiddleware === 'function') {
@@ -150,7 +122,7 @@ if (fileExists(middlewarePath)) {
 // our routes out of the try/catch, above, because we want developers' server
 // code to throw errors as expected.
 const localServerPath = './server/index.js';
-if (fileExists(localServerPath)) {
+if (utils.fileExists(localServerPath)) {
   const apiHandler = (req, res, next) => {
     require(path.join(cwd, localServerPath))(req, res, next); // eslint-disable-line
   };
@@ -175,7 +147,7 @@ if (ENV === 'development') {
     staticPaths.indexOf('/') > -1
   ) {
     app.get('/', (req, res) => {
-      res.sendFile(path.join(cwd, './public/static/index.html'));
+      res.sendFile(staticPublicIndexPath);
     });
   }
 
@@ -193,17 +165,11 @@ if (ENV === 'development') {
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
-    // If in production mode, and the index page is a static path, send the static version
-    if (
-      ENV === 'production' &&
-      staticPaths &&
-      staticPaths.indexOf(req.url) > -1
-    ) {
-      const fileName = req.url.replace('/', '');
-
-      res.sendFile(path.join(cwd, `./public/static/${fileName}.html`));
+    // If in production mode, and the page is a static path, send the static version
+    if (ENV === 'production' && staticPathLookup[req.url]) {
+      res.sendFile(staticPathLookup[req.url]);
     } else {
-      res.sendFile(path.join(cwd, './public/index.html'));
+      res.sendFile(publicIndexPath);
     }
   });
 }
@@ -212,6 +178,13 @@ if (ENV === 'development') {
 app.use(expressWinston.errorLogger({ transports: winstonTransports }));
 
 // Start the Express server
-app.listen(EXPRESS_PORT, () => {
+const server = app.listen(EXPRESS_PORT, () => {
   console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
+});
+
+// Handle exit signal
+process.on('SIGINT', () => {
+  server.close();
+  toobusy.shutdown();
+  process.exit();
 });
