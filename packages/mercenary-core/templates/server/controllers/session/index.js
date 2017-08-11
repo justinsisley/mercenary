@@ -48,7 +48,7 @@ async function sessionTokenRequestHandler(req, res) {
       return;
     }
 
-    const loginToken = await LoginToken.findByToken(token);
+    const loginToken = await LoginToken.findOne({ token });
 
     if (!loginToken) {
       errorUtil.respond400(res, null, 'Unable to find token');

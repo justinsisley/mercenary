@@ -1,5 +1,5 @@
 # Base image
-FROM node:8.1-alpine
+FROM node:8.3-alpine
 
 # Update system
 RUN apk update

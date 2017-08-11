@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const tokenpress = require('tokenpress');
 
-const { getURLSafeToken } = tokenpress.node.utils;
-
 const schema = new mongoose.Schema({
   email: String,
   token: {
@@ -18,11 +16,11 @@ const schema = new mongoose.Schema({
   timestamps: true,
 });
 
-schema.path('token').default(getURLSafeToken);
-
-schema.statics.findByToken = function findByToken(token) {
-  return this.findOne({ token });
-};
+// This is a credential, and should be encrypted at rest
+schema.pre('save', async function preSave(next) {
+  this.token = await tokenpress.node.utils.getURLSafeToken();
+  next();
+});
 
 // HACK: Prevents problems with re-creating schemas when "hot-reloading"
 let model;
