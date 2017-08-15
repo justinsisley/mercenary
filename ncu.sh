@@ -13,11 +13,11 @@ cd ../mercenary-cli; ncu
 # Check core
 cd ../mercenary-core; ncu
 
-# Check templates
-cd ./templates; ncu
-
 # Check dev
-cd ../../mercenary-dev; ncu
+cd ../mercenary-dev; ncu
+
+# Check starter
+cd ../mercenary-starter; ncu
 
 # Go back to root project directory
 cd ../../

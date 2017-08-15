@@ -2,12 +2,17 @@ const path = require('path');
 const cp = require('child_process');
 
 const cwd = process.cwd();
-const templatesDir = path.join(__dirname, '../templates');
+
+const dockerFileSource = path.join(__dirname, '../Dockerfile');
+const dockerIgnoreSource = path.join(__dirname, '../dockerignore');
+
+const dockerFileDest = `${cwd}/Dockerfile`;
+const dockerIgnoreDest = `${cwd}/.dockerignore`;
 
 // Add Docker-related files
 const docker = () => {
-  cp.execSync(`cp "${templatesDir}/Dockerfile" "${cwd}/Dockerfile"`);
-  cp.execSync(`cp "${templatesDir}/dockerignore" "${cwd}/.dockerignore"`);
+  cp.execSync(`cp "${dockerFileSource}" "${dockerFileDest}"`);
+  cp.execSync(`cp "${dockerIgnoreSource}" "${dockerIgnoreDest}"`);
 };
 
 module.exports = docker;

@@ -1,6 +1,13 @@
 {
-  "name": "mercenary-react-redux",
-  "description": "A react/redux web application built on mercenary",
+  "name": "mercenary-starter",
+  "version": "2.79.0",
+  "description": "starter project files for mercenary",
+  "author": "Justin Sisley",
+  "repository": "https://github.com/justinsisley/mercenary",
+  "license": "ISC",
+  "engines": {
+    "node": ">=8"
+  },
   "dependencies": {
     "axios": "0.16.2",
     "card-validator": "4.1.0",
@@ -10,13 +17,13 @@
     "jss-preset-default": "3.0.0",
     "loglevel": "1.4.1",
     "mjml-utils": "2.1.0",
-    "mongoose": "4.11.6",
+    "mongoose": "4.11.7",
     "nodemailer": "4.0.1",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-async-component": "1.0.0-beta.3",
-    "react-chartjs-2": "2.5.6",
+    "react-chartjs-2": "2.5.7",
     "react-document-title": "2.0.3",
     "react-dom": "15.6.1",
     "react-google-maps": "7.2.0",

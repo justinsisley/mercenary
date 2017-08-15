@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.78.0",
+  "version": "2.79.0",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -9,7 +9,7 @@
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
   "engines": {
-    "node": ">=7.10"
+    "node": ">=8"
   },
   "dependencies": {
     "@risingstack/protect": "1.2.0",
