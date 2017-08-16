@@ -8,8 +8,7 @@ const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
 const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
-const devServerDomain = 'http://localhost';
-const devServerHost = `${devServerDomain}:${WEBPACK_DEV_SERVER_PORT}/`;
+const devServerHost = `http://localhost:${WEBPACK_DEV_SERVER_PORT}/`;
 const cwd = process.cwd();
 
 module.exports = (app) => {

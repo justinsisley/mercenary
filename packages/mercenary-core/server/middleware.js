@@ -7,6 +7,10 @@ const cwd = process.cwd();
 
 const HOSTNAME = config.hostname;
 const WWW = config.www;
+const FAILOVER = config.failover;
+
+toobusy.maxLag(FAILOVER.maxLag);
+toobusy.interval(FAILOVER.interval);
 
 const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');

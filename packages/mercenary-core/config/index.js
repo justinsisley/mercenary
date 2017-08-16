@@ -26,6 +26,12 @@ module.exports = {
   // Settings for the www subdomain
   www: process.env.WWW || projectConfig.deploy.www,
 
+  // Configure node-toobusy values for graceful server failover
+  failover: {
+    maxLag: process.env.FAILOVER_MAX_LAG || projectConfig.failover.maxLag,
+    interval: process.env.FAILOVER_INTERVAL || projectConfig.failover.interval,
+  },
+
   // Configure Loggly for production server logs
   loggly: {
     token: process.env.LOGGLY_TOKEN || projectConfig.deploy.loggly.token,

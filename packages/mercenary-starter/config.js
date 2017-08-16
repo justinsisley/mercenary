@@ -36,6 +36,14 @@ module.exports = {
       strip: false,
     },
 
+    // Configure node-toobusy values for graceful server failover
+    failover: {
+      // How long a request is waiting in the event loop in ms
+      maxLag: 70,
+      // How often to check the event loop for lag
+      interval: 500,
+    },
+
     // Configure Loggly for production server logs
     loggly: {
       token: '',
