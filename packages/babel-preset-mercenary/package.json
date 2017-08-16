@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-mercenary",
-  "version": "2.76.13",
+  "version": "2.79.8",
   "description": "Babel preset used by mercenary",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "babel-plugin-transform-react-remove-prop-types": "0.4.8",
-    "babel-plugin-transform-regenerator": "6.24.1",
+    "babel-plugin-transform-regenerator": "6.26.0",
     "babel-plugin-transform-runtime": "6.23.0",
     "babel-preset-env": "1.6.0",
     "babel-preset-react": "6.24.1",
