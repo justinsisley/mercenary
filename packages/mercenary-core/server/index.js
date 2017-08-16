@@ -100,7 +100,7 @@ if (ENV === 'production') {
   // app.use(middleware.checkIfTooBusy);
 
   // Force HTTPS, and optionally force www
-  app.use(middleware.enforceHTTPS);
+  // app.use(middleware.enforceHTTPS);
 }
 
 // Pass the Express app to the user's custom middleware function. This allows

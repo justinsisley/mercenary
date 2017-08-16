@@ -16,10 +16,10 @@ function enforceHTTPS(req, res, next) {
   let hostname = HOSTNAME;
 
   // Prevent hostname spoofing
-  // if (req.hostname.indexOf(hostname) === -1) {
-    // res.sendStatus(403);
-    // return;
-  // }
+  if (req.hostname.indexOf(hostname) === -1) {
+    res.sendStatus(403);
+    return;
+  }
 
   // Configure hostname if forcing www subdomain
   if (WWW.force) {
