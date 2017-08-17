@@ -41,8 +41,9 @@ const copyNpmScripts = () => {
     build: 'merc --build',
     prod: 'merc --prod',
     deploy: 'merc --deploy',
+    'docker:build': 'merc --dockerBuild',
+    'docker:run': 'merc --dockerRun',
     clean: 'merc --clean',
-    // 'deploy:init': 'merc --deployInit',
     precommit: 'merc --test',
     predeploy: 'merc --test',
   });

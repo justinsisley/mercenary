@@ -8,7 +8,7 @@ const ora = require('ora');
 const inquirer = require('inquirer');
 const AWS = require('aws-sdk');
 const build = require('./build');
-const docker = require('./docker');
+const docker = require('./docker').dockerFiles;
 
 const cwd = process.cwd();
 

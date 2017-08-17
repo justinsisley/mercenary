@@ -9,10 +9,31 @@ const dockerIgnoreSource = path.join(__dirname, '../dockerignore');
 const dockerFileDest = `${cwd}/Dockerfile`;
 const dockerIgnoreDest = `${cwd}/.dockerignore`;
 
+// Clean up the workspace
+function clean() {
+  cp.execSync(`rm "${dockerFileDest}"`);
+  cp.execSync(`rm "${dockerIgnoreDest}"`);
+}
+
 // Add Docker-related files
-const docker = () => {
+function dockerFiles() {
   cp.execSync(`cp "${dockerFileSource}" "${dockerFileDest}"`);
   cp.execSync(`cp "${dockerIgnoreSource}" "${dockerIgnoreDest}"`);
-};
+}
 
-module.exports = docker;
+function dockerBuild() {
+  dockerFiles();
+  clean();
+}
+
+function dockerRun() {
+  dockerFiles();
+  dockerBuild();
+  clean();
+}
+
+module.exports = {
+  dockerFiles,
+  dockerBuild,
+  dockerRun,
+};

@@ -40,6 +40,14 @@ if (argv.deployInit) {
   require('./tasks/deployInit')(); // eslint-disable-line
 }
 
+if (argv.dockerBuild) {
+  require('./tasks/docker').dockerBuild(); // eslint-disable-line
+}
+
+if (argv.dockerRun) {
+  require('./tasks/docker').dockerRun(); // eslint-disable-line
+}
+
 if (argv.clean) {
   require('./tasks/clean')(); // eslint-disable-line
 }
