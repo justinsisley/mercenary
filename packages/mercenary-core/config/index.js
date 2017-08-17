@@ -28,8 +28,8 @@ module.exports = {
 
   // Configure node-toobusy values for graceful server failover
   failover: {
-    maxLag: process.env.FAILOVER_MAX_LAG || projectConfig.failover.maxLag,
-    interval: process.env.FAILOVER_INTERVAL || projectConfig.failover.interval,
+    maxLag: process.env.FAILOVER_MAX_LAG || projectConfig.deploy.failover.maxLag,
+    interval: process.env.FAILOVER_INTERVAL || projectConfig.deploy.failover.interval,
   },
 
   // Configure Loggly for production server logs
