@@ -78,7 +78,7 @@ const copyBoilerplateDeps = () => {
     JSON.stringify(parsedPackageJson, null, 2)
   );
 
-  console.log('Installing boilerplate packages...');
+  console.log('Installing starter kit dependencies...');
   console.log();
 
   install();
