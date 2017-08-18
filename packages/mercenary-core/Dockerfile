@@ -24,7 +24,7 @@ ADD . /home/app
 RUN npm install --only=production
 
 # Start the web app in production mode
-CMD /usr/sbin/netdata && npm run prod
+CMD /usr/sbin/netdata && {{command}}
 
 # Expose the application port
 EXPOSE 3325

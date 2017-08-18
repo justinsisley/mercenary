@@ -25,28 +25,36 @@ function clean() {
   cp.execSync(`rm "${dockerIgnoreDest}"`);
 }
 
-// Add Docker-related files
-function dockerFiles() {
-  cp.execSync(`cp "${dockerFileSource}" "${dockerFileDest}"`);
+// Add Docker files to host project's root
+function dockerFiles(command = 'npm run prod') {
+  let dockerFile = readFile(dockerFileSource);
+  dockerFile = dockerFile.replace('{{command}}', command);
+
+  fs.writeFileSync(dockerFileDest, dockerFile);
+
   cp.execSync(`cp "${dockerIgnoreSource}" "${dockerIgnoreDest}"`);
 }
 
+// Build a Docker image
 function build() {
   cp.execSync(`docker build -t ${buildTag} .`, { stdio: 'inherit' });
 }
 
+// Run an existing Docker image
 function run() {
   cp.execSync(`docker run -p 3325:3325 -d ${buildTag}`, { stdio: 'inherit' });
 }
 
+// Perform local build
 function dockerBuild() {
-  dockerFiles();
+  dockerFiles('npm run prod:local');
   build();
   clean();
 }
 
+// Run Docker container locally
 function dockerRun() {
-  dockerFiles();
+  dockerFiles('npm run prod:local');
   build();
   run();
   clean();

@@ -32,6 +32,10 @@ if (argv.prod) {
   require('./tasks/startProd')(); // eslint-disable-line
 }
 
+if (argv.prodLocal) {
+  require('./tasks/startProd')({ mode: 'local' }); // eslint-disable-line
+}
+
 if (argv.deploy) {
   require('./tasks/deploy')(); // eslint-disable-line
 }
