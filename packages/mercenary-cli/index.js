@@ -6,6 +6,7 @@ const extfs = require('extfs');
 const spawn = require('cross-spawn');
 const execSync = require('child_process').execSync;
 const chalk = require('chalk');
+const ora = require('ora');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
 
@@ -62,9 +63,6 @@ execSync(`git init "${projectDirectory}"`);
 process.chdir(projectDirectory);
 
 function installCorePackage() {
-  console.log('Installing mercenary core package...');
-  console.log();
-
   return new Promise((resolve) => {
     const args = ['install', '--save-exact', corePackage];
     const child = spawn('npm', args);
@@ -74,9 +72,6 @@ function installCorePackage() {
 }
 
 function installDevPackage() {
-  console.log('Installing mercenary dev package...');
-  console.log();
-
   return new Promise((resolve) => {
     const args = ['install', '--save-exact', '--save-dev', devPackage];
     const child = spawn('npm', args);
@@ -86,9 +81,6 @@ function installDevPackage() {
 }
 
 function installStarterPackage() {
-  console.log('Installing mercenary starter package...');
-  console.log();
-
   return new Promise((resolve) => {
     const args = ['install', '--no-save', starterPackage];
     const child = spawn('npm', args);
@@ -111,6 +103,9 @@ function runSetup() {
 }
 
 (async function start() {
+  const spinner = ora().start();
+
+  spinner.text = 'Installing mercenary core package';
   const coreExitCode = await installCorePackage();
   if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
@@ -118,6 +113,7 @@ function runSetup() {
     process.exit(1);
   }
 
+  spinner.text = 'Installing mercenary dev package';
   const devExitCode = await installDevPackage();
   if (devExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${devPackage}.`));
@@ -125,6 +121,7 @@ function runSetup() {
     process.exit(1);
   }
 
+  spinner.text = 'Installing mercenary starter package';
   const starterExitCode = await installStarterPackage();
   if (starterExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${starterPackage}.`));
@@ -132,5 +129,6 @@ function runSetup() {
     process.exit(1);
   }
 
+  spinner.succeed('Installation complete');
   runSetup();
 }());
