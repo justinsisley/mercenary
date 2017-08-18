@@ -13,6 +13,7 @@ updateNotifier({ pkg }).notify();
 
 const corePackage = 'mercenary-core';
 const devPackage = 'mercenary-dev';
+const starterPackage = 'mercenary-starter';
 
 const appName = process.argv[2];
 
@@ -60,21 +61,40 @@ execSync(`git init "${projectDirectory}"`);
 // Move into the project directory
 process.chdir(projectDirectory);
 
-console.log('Installing mercenary core packages...');
-console.log();
+function installCorePackage() {
+  console.log('Installing mercenary core package...');
+  console.log();
 
-function installCorePackage(callback) {
-  const args = ['install', '--save-exact', corePackage];
-  const child = spawn('npm', args, { stdio: 'inherit' });
+  return new Promise((resolve) => {
+    const args = ['install', '--save-exact', corePackage];
+    const child = spawn('npm', args);
 
-  child.on('close', callback);
+    child.on('close', resolve);
+  });
 }
 
-function installDevPackage(callback) {
-  const args = ['install', '--save-exact', '--save-dev', devPackage];
-  const child = spawn('npm', args, { stdio: 'inherit' });
+function installDevPackage() {
+  console.log('Installing mercenary dev package...');
+  console.log();
 
-  child.on('close', callback);
+  return new Promise((resolve) => {
+    const args = ['install', '--save-exact', '--save-dev', devPackage];
+    const child = spawn('npm', args);
+
+    child.on('close', resolve);
+  });
+}
+
+function installStarterPackage() {
+  console.log('Installing mercenary starter package...');
+  console.log();
+
+  return new Promise((resolve) => {
+    const args = ['install', '--no-save', starterPackage];
+    const child = spawn('npm', args);
+
+    child.on('close', resolve);
+  });
 }
 
 function runSetup() {
@@ -90,20 +110,27 @@ function runSetup() {
   require(setupPath)(); // eslint-disable-line
 }
 
-installCorePackage((coreExitCode) => {
+(async function start() {
+  const coreExitCode = await installCorePackage();
   if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
     console.log();
     process.exit(1);
   }
 
-  installDevPackage((devExitCode) => {
-    if (devExitCode !== 0) {
-      console.log(chalk.red(`Failed to install ${devPackage}.`));
-      console.log();
-      process.exit(1);
-    }
+  const devExitCode = await installDevPackage();
+  if (devExitCode !== 0) {
+    console.log(chalk.red(`Failed to install ${devPackage}.`));
+    console.log();
+    process.exit(1);
+  }
 
-    runSetup();
-  });
-});
+  const starterExitCode = await installStarterPackage();
+  if (starterExitCode !== 0) {
+    console.log(chalk.red(`Failed to install ${starterPackage}.`));
+    console.log();
+    process.exit(1);
+  }
+
+  runSetup();
+}());
