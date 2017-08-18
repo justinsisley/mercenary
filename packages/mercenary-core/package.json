@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "2.82.0",
+  "version": "2.82.1",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@risingstack/protect": "1.2.0",
-    "@std/esm": "0.5.1",
     "basic-auth-connect": "1.0.0",
     "body-parser": "1.17.2",
     "chokidar": "1.7.0",
@@ -28,8 +27,5 @@
     "toobusy-js": "0.5.1",
     "winston": "2.3.1",
     "winston-loggly-bulk": "2.0.0"
-  },
-  "@std/esm": {
-    "esm": "js"
   }
 }

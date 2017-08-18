@@ -1,6 +1,3 @@
-// Enable ES6 modules on server
-require('@std/esm');
-
 const path = require('path');
 const url = require('url');
 const express = require('express');
