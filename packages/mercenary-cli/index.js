@@ -53,8 +53,8 @@ fs.writeFileSync(
   JSON.stringify(packageJson, null, 2)
 );
 
-console.log('Initializing new Git repository...');
-console.log();
+const spinner = ora().start();
+spinner.text = 'Initializing new Git repository';
 
 // Initialize git repository
 execSync(`git init "${projectDirectory}"`);
@@ -103,9 +103,7 @@ function runSetup() {
 }
 
 (async function start() {
-  const spinner = ora().start();
-
-  spinner.text = 'Installing mercenary core package';
+  spinner.text = 'Installing mercenary core dependencies';
   const coreExitCode = await installCorePackage();
   if (coreExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${corePackage}.`));
@@ -113,7 +111,7 @@ function runSetup() {
     process.exit(1);
   }
 
-  spinner.text = 'Installing mercenary dev package';
+  spinner.text = 'Installing mercenary dev dependencies';
   const devExitCode = await installDevPackage();
   if (devExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${devPackage}.`));
@@ -121,7 +119,7 @@ function runSetup() {
     process.exit(1);
   }
 
-  spinner.text = 'Installing mercenary starter package';
+  spinner.text = 'Installing mercenary starter kit';
   const starterExitCode = await installStarterPackage();
   if (starterExitCode !== 0) {
     console.log(chalk.red(`Failed to install ${starterPackage}.`));
