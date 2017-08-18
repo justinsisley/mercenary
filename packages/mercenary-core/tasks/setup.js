@@ -5,8 +5,7 @@ const chalk = require('chalk');
 const install = require('./install');
 
 const cwd = process.cwd();
-const packageDirectory = path.join(__dirname, '..');
-const templatesDir = path.join(packageDirectory, '/templates');
+const templatesDir = path.join(cwd, '/node_modules/mercenary-starter');
 
 const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
 
