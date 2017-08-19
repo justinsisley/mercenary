@@ -140,9 +140,10 @@ if (ENV === 'development') {
   devServer(app);
 // Non-development environment configuration
 } else {
-  // If in production mode, and the index page is a static path, send the static version
+  // If in production or local mode, and the index page is a static path,
+  // send the static version
   if (
-    ENV === 'production' &&
+    (ENV === 'production' || ENV === 'local') &&
     staticPaths &&
     staticPaths.indexOf('/') > -1
   ) {

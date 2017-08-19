@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "2.81.0",
+  "version": "2.82.2",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -23,7 +23,7 @@
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-async-component": "1.0.0-beta.3",
-    "react-chartjs-2": "2.5.7",
+    "react-chartjs-2": "2.5.8",
     "react-document-title": "2.0.3",
     "react-dom": "15.6.1",
     "react-google-maps": "7.2.0",
