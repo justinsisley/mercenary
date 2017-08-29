@@ -27,11 +27,11 @@ module.exports = {
       },
       // Append the service worker runtime to the JavaScript entry point for
       // OfflinePlugin to work
-      {
-        test: /client\/index\.js$/,
-        loader: 'webpack-append',
-        query: 'require("offline-plugin/runtime").install();',
-      },
+      // {
+        // test: /client\/index\.js$/,
+        // loader: 'webpack-append',
+        // query: 'require("offline-plugin/runtime").install();',
+      // },
       // CSS modules, including CSS from node_modules
       {
         test: shared.regex.css,
@@ -118,14 +118,14 @@ module.exports = {
     new HtmlWebpackInlineSourcePlugin(),
 
     // Generates a 'manifest.json'
-    new WebpackPwaManifest(shared.manifest),
+    // new WebpackPwaManifest(shared.manifest),
 
     // Cache webpack assets for offline capabilities
-    new OfflinePlugin({
-      autoUpdate: true,
-      updateStrategy: 'all',
-      version: shared.semver,
-    }),
+    // new OfflinePlugin({
+      // autoUpdate: true,
+      // updateStrategy: 'all',
+      // version: shared.semver,
+    // }),
 
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.

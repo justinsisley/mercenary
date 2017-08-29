@@ -7,6 +7,6 @@
   "devDependencies": {
     "eslint": "3.19.0",
     "eslint-config-mercenary": "2.79.0",
-    "lerna": "2.0.0"
+    "lerna": "2.1.1"
   }
 }
