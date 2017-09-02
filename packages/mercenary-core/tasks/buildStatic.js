@@ -1,6 +1,6 @@
 const join = require('path').join;
 const fs = require('fs');
-const Chromy = require('chromy');
+const puppeteer = require('puppeteer');
 
 const cwd = process.cwd();
 
@@ -8,13 +8,13 @@ const staticPaths = require(join(cwd, 'config.js')).static;
 const destination = join(cwd, '/public/static');
 
 const host = 'http://localhost:3325';
-let chromePort = 9222;
 
 async function renderPage(path) {
-  const chromy = new Chromy({ port: chromePort += 1 });
-  await chromy.goto(`${host}${path}`);
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(`${host}${path}`);
 
-  const html = await chromy.evaluate(() => {
+  const html = await page.evaluate(() => {
     const headScripts = document.head.getElementsByTagName('script');
 
     for (let i = 0; i < headScripts.length; i += 1) {
@@ -25,7 +25,7 @@ async function renderPage(path) {
     return document.documentElement.outerHTML;
   });
 
-  await chromy.close();
+  await browser.close();
 
   return { path, html };
 }
