@@ -2,22 +2,22 @@
 ncu;
 
 # Check babel preset
-cd ./packages/babel-preset-mercenary; ncu
+cd ./packages/babel-preset; ncu
 
 # Check eslint config
-cd ../eslint-config-mercenary; ncu
+cd ../eslint-config; ncu
 
 # Check CLI
-cd ../mercenary-cli; ncu
+cd ../cli; ncu
 
 # Check core
-cd ../mercenary-core; ncu
+cd ../core; ncu
 
 # Check dev
-cd ../mercenary-dev; ncu
+cd ../dev; ncu
 
 # Check starter
-cd ../mercenary-starter; ncu
+cd ../starter; ncu
 
 # Go back to root project directory
 cd ../../

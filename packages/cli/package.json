@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "2.81.3",
+  "version": "3.0.0",
   "description": "CLI for mercenary",
   "bin": {
     "mercenary": "./index.js"
