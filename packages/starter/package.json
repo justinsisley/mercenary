@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -10,23 +10,23 @@
   },
   "dependencies": {
     "axios": "0.16.2",
-    "card-validator": "4.1.0",
-    "chart.js": "2.6.0",
+    "cardy": "0.7.0",
+    "chart.js": "2.7.0",
     "classnames": "2.2.5",
     "jss": "8.1.0",
     "jss-preset-default": "3.0.0",
-    "loglevel": "1.4.1",
+    "loglevel": "1.5.0",
     "mjml-utils": "2.1.0",
-    "mongoose": "4.11.9",
+    "mongoose": "4.11.12",
     "nodemailer": "4.1.0",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-async-component": "1.0.0-beta.3",
-    "react-chartjs-2": "2.6.1",
+    "react-chartjs-2": "2.6.2",
     "react-document-title": "2.0.3",
     "react-dom": "15.6.1",
-    "react-google-maps": "7.2.0",
+    "react-google-maps": "8.2.0",
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
@@ -34,8 +34,8 @@
     "redux-thunk": "2.2.0",
     "reselect": "3.0.1",
     "semantic-ui-css": "2.2.12",
-    "semantic-ui-react": "0.72.0",
+    "semantic-ui-react": "0.73.1",
     "tokenpress": "1.8.0",
-    "validator": "8.1.0"
+    "validator": "8.2.0"
   }
 }

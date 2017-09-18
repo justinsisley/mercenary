@@ -4,7 +4,7 @@ module.exports = {
   mlab: {
     username: process.env.MLAB_USERNAME || 'MLAB_DB_USERNAME',
     password: process.env.MLAB_PASSWORD || 'MLAB_DB_PASSWORD',
-    server: process.env.MLAB_SERVER || 'MLAB_DB_SERVER',
+    server: process.env.MLAB_SERVER || 'ds######.mlab.com:#####/db-name',
   },
 
   jwt: {
