@@ -14,7 +14,7 @@ toobusy.interval(FAILOVER.interval);
 
 const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');
-const default503Response = 'Service Unavailable: Too Much Traffic';
+const default503Response = 'Service Unavailable';
 
 function enforceHTTPS(req, res, next) {
   let hostname = HOSTNAME;
@@ -62,13 +62,13 @@ function checkIfTooBusy(req, res, next) {
   if (toobusy()) {
     // API responses should be JSON
     if (req.url.indexOf('/api') === 0) {
-      res.status(503).json({});
+      res.status(503).json({ message: 'unavailable' });
       return;
     }
 
     // Allow custom 503 page
     if (custom503Exists) {
-      res.sendFile(custom503Path);
+      res.status(503).sendFile(custom503Path);
       return;
     }
 
@@ -80,7 +80,24 @@ function checkIfTooBusy(req, res, next) {
   next();
 }
 
+function maintenanceApiResponse(req, res) {
+  res.status(503).json({ message: 'maintenance' });
+}
+
+function maintenancePageResponse(req, res) {
+  // Allow custom 503 page
+  if (custom503Exists) {
+    res.status(503).sendFile(custom503Path);
+    return;
+  }
+
+  // Default response
+  res.status(503).send(default503Response);
+}
+
 module.exports = {
   enforceHTTPS,
   checkIfTooBusy,
+  maintenanceApiResponse,
+  maintenancePageResponse,
 };

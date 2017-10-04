@@ -103,6 +103,12 @@ if (ENV === 'production') {
   app.use(middleware.enforceHTTPS);
 }
 
+// Maintenance mode
+if (process.env.MAINTENANCE) {
+  app.use('/api/*', middleware.maintenanceApiResponse);
+  app.use('*', middleware.maintenancePageResponse);
+}
+
 // Pass the Express app to the user's custom middleware function. This allows
 // the user to apply any middleware they like without having to modify the
 // server entry point. Again, we're keeping this out of the try/catch (above)
