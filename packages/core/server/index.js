@@ -106,7 +106,7 @@ if (ENV === 'production') {
 // Maintenance mode
 if (process.env.MAINTENANCE) {
   app.use('/api/*', middleware.maintenanceApiResponse);
-  app.use('*', middleware.maintenancePageResponse);
+  app.use(/^\/(?!(js|css|images|fonts|icons)).*$/, middleware.maintenancePageResponse);
 }
 
 // Pass the Express app to the user's custom middleware function. This allows
