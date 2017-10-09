@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -21,7 +21,7 @@
     "express-validator": "4.2.1",
     "express-winston": "2.4.0",
     "ip": "1.1.5",
-    "password-generator": "2.1.0",
+    "password-generator": "2.2.0",
     "pm2": "2.7.1",
     "proxy-middleware": "0.15.0",
     "toobusy-js": "0.5.1",
