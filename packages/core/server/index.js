@@ -61,19 +61,17 @@ if (
   CLOUDWATCH.secretAccessKey &&
   CLOUDWATCH.logGroupName
 ) {
-  // Capture a server start time to separate log streams by server start date
-  const serverStartTime = new Date().toISOString();
-
   winstonTransports.push(
     new WinstonCloudwatch({
       logGroupName: CLOUDWATCH.logGroupName,
       logStreamName() {
         // Spread log streams across dates as the server stays up
         const date = new Date().toISOString().split('T')[0];
-
-        return `${serverStartTime}__${date}`;
+        return date;
       },
       awsRegion: CLOUDWATCH.region,
+      awsAccessKeyId: CLOUDWATCH.accessKeyId,
+      awsSecretKey: CLOUDWATCH.secretAccessKey,
       jsonMessage: true,
     }),
   );

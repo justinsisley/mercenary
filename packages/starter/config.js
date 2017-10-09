@@ -67,12 +67,14 @@ module.exports = {
         bucket: '',
       },
 
-      // Configure CloudWatch for production server logs
+      // Configure CloudWatch for production server logs.
+      // This IAM user must have the following policies:
+      // CloudWatchFullAccess
       cloudwatch: {
-        region: '',
-        accessKeyId: '',
-        secretAccessKey: '',
-        logGroupName: '',
+        region: '', // CLOUDWATCH_REGION
+        accessKeyId: '', // CLOUDWATCH_ACCESS_KEY_ID
+        secretAccessKey: '', // CLOUDWATCH_SECRET_ACCESS_KEY
+        logGroupName: '', // CLOUDWATCH_LOG_GROUP_NAME
       },
     },
 
@@ -81,8 +83,8 @@ module.exports = {
 
     // Configure access to netdata dashboard
     netdata: {
-      username: '',
-      password: '',
+      username: '', // NETDATA_USERNAME
+      password: '', // NETDATA_PASSWORD
     },
   },
 };
