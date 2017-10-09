@@ -33,9 +33,11 @@ module.exports = {
   },
 
   // Configure Loggly for production server logs
-  loggly: {
-    token: process.env.LOGGLY_TOKEN || projectConfig.deploy.loggly.token,
-    subdomain: process.env.LOGGLY_SUBDOMAIN || projectConfig.deploy.loggly.subdomain,
+  cloudwatch: {
+    region: process.env.CLOUDWATCH_REGION || projectConfig.aws.cloudwatch.region,
+    accessKeyId: process.env.CLOUDWATCH_ACCESS_KEY_ID || projectConfig.aws.cloudwatch.accessKeyId,
+    secretAccessKey: process.env.CLOUDWATCH_SECRET_ACCESS_KEY || projectConfig.aws.cloudwatch.secretAccessKey,
+    logGroupName: process.env.CLOUDWATCH_LOG_GROUP_NAME || projectConfig.aws.cloudwatch.logGroupName,
   },
 
   // Configure access to netdata dashboard

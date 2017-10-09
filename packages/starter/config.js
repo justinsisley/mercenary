@@ -44,12 +44,6 @@ module.exports = {
       interval: 500,
     },
 
-    // Configure Loggly for production server logs
-    loggly: {
-      token: '',
-      subdomain: '',
-    },
-
     // AWS settings
     aws: {
       // Credentials from IAM.
@@ -71,6 +65,14 @@ module.exports = {
       // S3 bucket to store archived deployments
       s3: {
         bucket: '',
+      },
+
+      // Configure CloudWatch for production server logs
+      cloudwatch: {
+        region: '',
+        accessKeyId: '',
+        secretAccessKey: '',
+        logGroupName: '',
       },
     },
 

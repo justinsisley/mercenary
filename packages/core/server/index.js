@@ -3,6 +3,7 @@ const url = require('url');
 const express = require('express');
 const winston = require('winston');
 const expressWinston = require('express-winston');
+const WinstonCloudwatch = require('winston-cloudwatch');
 const protect = require('@risingstack/protect');
 const RateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
@@ -15,13 +16,10 @@ const config = require('../config');
 const middleware = require('./middleware');
 const utils = require('./utils');
 
-// Expose winston.transports.Loggly
-require('winston-loggly-bulk');
-
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
-const LOGGLY = config.loggly;
+const CLOUDWATCH = config.cloudwatch;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 
@@ -55,13 +53,28 @@ const winstonTransports = [
   new winston.transports.Console({ colorize: true }),
 ];
 
-// Add Loggly transport in production if configured
-if (ENV === 'production' && LOGGLY.token && LOGGLY.subdomain) {
+// Add CloudWatch transport in production if configured
+if (
+  ENV === 'production' &&
+  CLOUDWATCH.region &&
+  CLOUDWATCH.accessKeyId &&
+  CLOUDWATCH.secretAccessKey &&
+  CLOUDWATCH.logGroupName
+) {
+  // Capture a server start time to separate log streams by server start date
+  const serverStartTime = new Date().toISOString();
+
   winstonTransports.push(
-    new winston.transports.Loggly({
-      token: LOGGLY.token,
-      subdomain: LOGGLY.subdomain,
-      json: true,
+    new WinstonCloudwatch({
+      logGroupName: CLOUDWATCH.logGroupName,
+      logStreamName() {
+        // Spread log streams across dates as the server stays up
+        const date = new Date().toISOString().split('T')[0];
+
+        return `${serverStartTime}__${date}`;
+      },
+      awsRegion: CLOUDWATCH.region,
+      jsonMessage: true,
     }),
   );
 }
