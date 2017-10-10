@@ -27,14 +27,17 @@ module.exports = {
   rules: {
     'arrow-body-style': 'off',
     'max-len': 'off',
+    'prefer-destructuring': 'off',
     'no-underscore-dangle': 'off',
 
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
 
-    'jsx-a11y/label-has-for': 'warn',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/label-has-for': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
 
     'react/jsx-filename-extension': 'off',
+    'react/no-unused-state': 'warn',
   },
 };
