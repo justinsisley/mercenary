@@ -38,7 +38,6 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
 
     'react/jsx-filename-extension': 'off',
-    'react/no-typos': 'off',
     'react/no-unused-state': 'warn',
   },
 };
