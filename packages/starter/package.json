@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -9,7 +9,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "axios": "0.16.2",
+    "axios": "0.17.0",
     "cardy": "0.7.0",
     "chart.js": "2.7.0",
     "classnames": "2.2.5",
@@ -17,7 +17,7 @@
     "jss-preset-default": "4.0.1",
     "loglevel": "1.5.1",
     "mjml-utils": "2.2.0",
-    "mongoose": "4.12.3",
+    "mongoose": "4.12.4",
     "nodemailer": "4.2.0",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.6.0",
