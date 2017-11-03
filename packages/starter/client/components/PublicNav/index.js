@@ -21,7 +21,8 @@ function PublicNav(props) {
         to={link.to}
         active={pathname === link.to}
         key={`link-${link.label}-${link.to}`}
-      >{link.label}</Menu.Item>
+      >{link.label}
+      </Menu.Item>
     );
   });
 
@@ -46,7 +47,8 @@ function PublicNav(props) {
                   to="/login"
                   inverted={!props.dark}
                   basic={props.dark}
-                >Log In</Button>
+                >Log In
+                </Button>
               )}
             />
 
@@ -57,7 +59,8 @@ function PublicNav(props) {
                   as={Link}
                   to="/signup"
                   primary
-                >Start a Free Trial</Button>
+                >Start a Free Trial
+                </Button>
               )}
             />
           </Menu.Item>
@@ -68,7 +71,7 @@ function PublicNav(props) {
 }
 
 PublicNav.propTypes = {
-  location: propTypes.shape(),
+  location: propTypes.shape({}),
   dark: propTypes.bool,
 };
 

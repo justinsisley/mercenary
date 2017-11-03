@@ -15,7 +15,9 @@ class ScrollToTop extends React.Component {
 }
 
 ScrollToTop.propTypes = {
-  location: propTypes.shape(),
+  location: propTypes.shape({
+    pathname: propTypes.string,
+  }),
   children: propTypes.node,
 };
 

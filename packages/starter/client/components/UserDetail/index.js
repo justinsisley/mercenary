@@ -54,7 +54,21 @@ function UserDetail(props) {
 }
 
 UserDetail.propTypes = {
-  user: propTypes.shape(),
+  user: propTypes.shape({
+    address: propTypes.shape({
+      city: propTypes.string,
+      geo: propTypes.shape({
+        lat: propTypes.string,
+        lng: propTypes.string,
+      }),
+      street: propTypes.string,
+      zipcode: propTypes.string,
+    }),
+    email: propTypes.string,
+    name: propTypes.string,
+    phone: propTypes.string,
+    username: propTypes.string,
+  }),
 };
 
 UserDetail.defaultProps = {

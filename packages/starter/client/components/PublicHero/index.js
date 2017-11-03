@@ -32,7 +32,8 @@ function PublicHero(props) {
               as={Link}
               to={props.buttonLink}
               primary
-            >{props.buttonText}</Button>
+            >{props.buttonText}
+            </Button>
           )}
         />
       </Container>

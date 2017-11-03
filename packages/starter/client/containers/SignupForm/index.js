@@ -10,6 +10,4 @@ function mapStateToProps(state) {
 }
 
 // Connect component to store
-export default connect(
-  mapStateToProps,
-)(SignupForm);
+export default connect(mapStateToProps)(SignupForm);

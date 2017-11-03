@@ -41,7 +41,8 @@ function HomeContent() {
                 to="/signup"
                 primary
                 basic
-              >Start a Free Trial</Button>
+              >Start a Free Trial
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -89,7 +90,8 @@ function HomeContent() {
             to="/features"
             primary
             basic
-          >Learn More</Button>
+          >Learn More
+          </Button>
 
           <Divider as="header" horizontal>
             <h4><Link to="/features">See More Features</Link></h4>
@@ -105,7 +107,8 @@ function HomeContent() {
             to="/signup"
             primary
             basic
-          >Start a Free Trial</Button>
+          >Start a Free Trial
+          </Button>
         </Container>
       </Segment>
     </div>

@@ -21,7 +21,8 @@ function AppNav(props) {
         name={navItem.path}
         active={pathname === navItem.path}
         onClick={(e, { name }) => { push(name); }}
-      >{navItem.label}</Menu.Item>
+      >{navItem.label}
+      </Menu.Item>
     );
   });
 
@@ -39,8 +40,8 @@ function AppNav(props) {
 }
 
 AppNav.propTypes = {
-  location: propTypes.shape(),
-  history: propTypes.shape(),
+  location: propTypes.shape({}),
+  history: propTypes.shape({}),
 };
 
 AppNav.defaultProps = {

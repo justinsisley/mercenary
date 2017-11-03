@@ -97,7 +97,7 @@ class SignupForm extends React.Component {
                   price="25"
                   keyFeature="10 Contracts"
                   buttonText="Select Plan"
-                  link={'/signup#startup'}
+                  link="/signup#startup"
                 />
               </Grid.Column>
 
@@ -107,7 +107,7 @@ class SignupForm extends React.Component {
                   price="50"
                   keyFeature="50 Contracts"
                   buttonText="Select Plan"
-                  link={'/signup#smb'}
+                  link="/signup#smb"
                   highlight
                 />
               </Grid.Column>
@@ -118,7 +118,7 @@ class SignupForm extends React.Component {
                   price="100"
                   keyFeature="Unlimited Contracts"
                   buttonText="Select Plan"
-                  link={'/signup#enterprise'}
+                  link="/signup#enterprise"
                 />
               </Grid.Column>
             </Grid>
@@ -216,7 +216,8 @@ class SignupForm extends React.Component {
                           size="big"
                           primary
                           fluid
-                        >Sign Up</Button>
+                        >Sign Up
+                        </Button>
                       </Form>
                     </Segment>
                   </Grid.Column>

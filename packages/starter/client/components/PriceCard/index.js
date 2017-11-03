@@ -60,7 +60,8 @@ class PriceCard extends React.Component {
             to={this.props.link}
             primary
             basic
-          >{this.props.buttonText}</Button>
+          >{this.props.buttonText}
+          </Button>
         </Card.Content>
       </Card>
     );

@@ -24,7 +24,8 @@ function PricingContent() {
                 to="/signup"
                 primary
                 basic
-              >Start a Free Trial</Button>
+              >Start a Free Trial
+              </Button>
             </Grid.Column>
 
             <Grid.Column width="6" floated="right">
@@ -56,7 +57,8 @@ function PricingContent() {
                 to="/signup"
                 primary
                 basic
-              >Start a Free Trial</Button>
+              >Start a Free Trial
+              </Button>
             </Grid.Column>
           </Grid.Row>
 
@@ -72,7 +74,8 @@ function PricingContent() {
                 to="/signup"
                 primary
                 basic
-              >Start a Free Trial</Button>
+              >Start a Free Trial
+              </Button>
             </Grid.Column>
 
             <Grid.Column width="6" floated="right">

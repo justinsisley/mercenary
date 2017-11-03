@@ -98,7 +98,8 @@ class LoginForm extends React.Component {
                   size="big"
                   primary
                   fluid
-                >Send Magic Login Link</Button>
+                >Send Magic Login Link
+                </Button>
               </Form>
             </div>
           )}

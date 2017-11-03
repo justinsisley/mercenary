@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const OfflinePlugin = require('offline-plugin');
+// const WebpackPwaManifest = require('webpack-pwa-manifest');
+// const OfflinePlugin = require('offline-plugin');
 const ShakePlugin = require('webpack-common-shake').Plugin;
 const shared = require('./shared');
 

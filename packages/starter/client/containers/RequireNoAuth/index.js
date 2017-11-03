@@ -9,7 +9,5 @@ function mapStateToProps(state) {
 }
 
 // Connect component to store
-export default connect(
-  mapStateToProps,
-)(RequireNoAuth);
+export default connect(mapStateToProps)(RequireNoAuth);
 

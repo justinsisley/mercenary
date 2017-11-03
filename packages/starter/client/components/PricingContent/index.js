@@ -23,7 +23,7 @@ function PricingContent() {
                 keyFeature="10 Contracts"
                 description="Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed."
                 buttonText="Get Started"
-                link={'/signup#startup'}
+                link="/signup#startup"
               />
             </Grid.Column>
 
@@ -34,7 +34,7 @@ function PricingContent() {
                 keyFeature="50 Contracts"
                 description="Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed."
                 buttonText="Get Started"
-                link={'/signup#smb'}
+                link="/signup#smb"
                 highlight
               />
             </Grid.Column>
@@ -46,7 +46,7 @@ function PricingContent() {
                 keyFeature="Unlimited Contracts"
                 description="Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed."
                 buttonText="Get Started"
-                link={'/signup#enterprise'}
+                link="/signup#enterprise"
               />
             </Grid.Column>
           </Grid.Row>
@@ -95,7 +95,8 @@ function PricingContent() {
             to="/features"
             primary
             basic
-          >Learn More</Button>
+          >Learn More
+          </Button>
 
           <Divider as="header" horizontal>
             <h4><Link to="/features">See More Features</Link></h4>
@@ -111,7 +112,8 @@ function PricingContent() {
             to="/signup"
             primary
             basic
-          >Start a Free Trial</Button>
+          >Start a Free Trial
+          </Button>
         </Container>
       </Segment>
     </div>
