@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -13,7 +13,7 @@
     "cardy": "0.7.0",
     "chart.js": "2.7.1",
     "classnames": "2.2.5",
-    "jss": "9.1.0",
+    "jss": "9.2.0",
     "jss-preset-default": "4.0.1",
     "loglevel": "1.5.1",
     "mjml-utils": "2.2.0",
@@ -34,7 +34,7 @@
     "redux-thunk": "2.2.0",
     "reselect": "3.0.1",
     "semantic-ui-css": "2.2.12",
-    "semantic-ui-react": "0.75.1",
+    "semantic-ui-react": "0.76.0",
     "tokenpress": "1.8.0",
     "validator": "9.1.1"
   }
