@@ -2,11 +2,12 @@
   "private": true,
   "author": "Justin Sisley",
   "scripts": {
-    "ncu": "./ncu.sh"
+    "ncu": "./ncu.sh",
+    "ncu-u": "./ncu-u.sh"
   },
   "devDependencies": {
-    "eslint": "4.10.0",
-    "eslint-config-mercenary": "3.5.1",
+    "eslint": "4.11.0",
+    "eslint-config-mercenary": "3.6.2",
     "lerna": "2.5.1"
   }
 }
