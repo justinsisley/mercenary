@@ -3,6 +3,7 @@
 const join = require('path').join;
 const fs = require('fs');
 const puppeteer = require('puppeteer');
+const minify = require('html-minifier').minify;
 
 const cwd = process.cwd();
 
@@ -42,7 +43,14 @@ async function buildStatic() {
       let name = path.replace('/', '');
       if (!name) { name = 'index'; }
 
-      fs.writeFileSync(join(destination, `/${name}.html`), `<!DOCTYPE html>\n${html}`);
+      // Minify the HTML
+      const minified = minify(`<!DOCTYPE html>${html}`, {
+        minifyCSS: true,
+        minifyJS: true,
+        collapseWhitespace: true,
+      });
+
+      fs.writeFileSync(join(destination, `/${name}.html`), minified);
     });
   }
 }
