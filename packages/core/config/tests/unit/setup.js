@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 const JSDOM = require('jsdom').JSDOM;
 const mocha = require('mocha');
 const chai = require('chai');

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const chromedriver = require('chromedriver');
 
 const cwd = process.cwd();

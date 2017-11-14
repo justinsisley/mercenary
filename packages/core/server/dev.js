@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const path = require('path');
 const proxy = require('proxy-middleware');
 const url = require('url');

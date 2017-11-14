@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const express = require('express');
@@ -32,19 +34,31 @@ const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 const cwd = process.cwd();
 const publicDir = path.join(cwd, './public');
 const staticPaths = require(path.join(cwd, 'config.js')).static;
-const publicIndexPath = path.join(cwd, './public/index.html');
-const staticPublicIndexPath = path.join(cwd, './public/static/index.html');
 
-// Create a lookup for static page paths so we don't have to do it at response time
-const staticPathLookup = {};
+// Keep the public index page in memory to prevent re-reading it from disk
+// on each request
+const publicIndexFile = fs.readFileSync(
+  path.join(cwd, './public/index.html'),
+  { encoding: 'utf8' }
+);
+
+// Create a lookup for static pages so we don't have to read them from disk
+// on each request
+const staticPageLookup = {};
 if (staticPaths) {
   staticPaths.forEach((staticPath) => {
-    // root path is handled separately
-    if (staticPath !== '/') {
-      const fileName = staticPath.replace('/', '');
+    let pathName = staticPath;
+    let fileName = staticPath.replace('/', '');
 
-      staticPathLookup[staticPath] = path.join(cwd, `./public/static/${fileName}.html`);
+    if (staticPath === '/') {
+      pathName = 'index';
+      fileName = 'index';
     }
+
+    staticPageLookup[pathName] = fs.readFileSync(
+      path.join(cwd, `./public/static/${fileName}.html`),
+      { encoding: 'utf8' }
+    );
   });
 }
 
@@ -92,7 +106,7 @@ app.use(expressValidator());
 // Request logging
 app.use(expressWinston.logger({
   transports: winstonTransports,
-  msg: '{{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
+  msg: '{{req.method}} {{req.originalUrl}} {{res.statusCode}} {{res.responseTime}}ms',
   colorize: true,
   meta: ENV === 'production',
   expressFormat: ENV === 'production',
@@ -165,7 +179,7 @@ if (ENV === 'development') {
     staticPaths.indexOf('/') > -1
   ) {
     app.get('/', (req, res) => {
-      res.sendFile(staticPublicIndexPath);
+      res.send(staticPageLookup.index);
     });
   }
 
@@ -184,10 +198,10 @@ if (ENV === 'development') {
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
     // If in production mode, and the page is a static path, send the static version
-    if (ENV === 'production' && staticPathLookup[req.url]) {
-      res.sendFile(staticPathLookup[req.url]);
+    if (ENV === 'production' && staticPageLookup[req.originalUrl]) {
+      res.send(staticPageLookup[req.originalUrl]);
     } else {
-      res.sendFile(publicIndexPath);
+      res.send(publicIndexFile);
     }
   });
 }

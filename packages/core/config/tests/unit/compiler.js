@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 // Compile JavaScript on the fly
 require('babel-register');
 

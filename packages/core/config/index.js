@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const path = require('path');
 const generatePassword = require('password-generator');
 
