@@ -28,7 +28,7 @@ const { manifest } = projectConfig;
 manifest.icons = [{
   src: manifestIcon,
   sizes: [48, 72, 96, 144, 168, 192, 512],
-  destination: 'icons',
+  destination: 'static/icons',
 }];
 
 // Globals for webpack
@@ -56,10 +56,10 @@ const output = {
   // The output.path from the view of the Javascript / HTML page
   publicPath: '/',
   // The filename of the entry chunk as relative path inside the output.path directory
-  filename: 'js/[hash].js',
+  filename: 'static/js/[hash].js',
   // Determines the name of on-demand loaded chunk files.
   // This works in conjunction with the bundle-splitting pattern used in the client.
-  chunkFilename: 'js/[chunkhash].js',
+  chunkFilename: 'static/js/[chunkhash].js',
 };
 
 const loaders = {
@@ -69,7 +69,7 @@ const loaders = {
     include: [regex.node_modules, regex.client],
     loader: 'file-loader',
     options: {
-      name: 'images/[hash].[ext]',
+      name: 'static/images/[hash].[ext]',
     },
   },
   // Inlined SVG images
@@ -84,7 +84,7 @@ const loaders = {
     include: regex.node_modules,
     loader: 'file-loader',
     options: {
-      name: 'fonts/[name].[ext]',
+      name: 'static/fonts/[name].[ext]',
     },
   },
 };

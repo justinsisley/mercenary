@@ -28,6 +28,3 @@ CMD /usr/sbin/netdata && {{command}}
 
 # Expose the application port
 EXPOSE 3325
-
-# Run the container as an unprivileged user
-# USER node

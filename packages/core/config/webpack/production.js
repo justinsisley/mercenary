@@ -72,7 +72,7 @@ module.exports = {
 
     // Extract CSS into a separate file
     new ExtractTextPlugin({
-      filename: 'css/[contenthash].css',
+      filename: 'static/css/[contenthash].css',
     }),
 
     // Minify CSS
@@ -89,7 +89,7 @@ module.exports = {
     new FaviconsWebpackPlugin({
       logo: shared.manifestIcon,
       // The prefix for all image files
-      prefix: 'icons/',
+      prefix: 'static/icons/',
       // Inject the html into the html-webpack-plugin
       inject: true,
       // Which icons should be generated

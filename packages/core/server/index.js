@@ -32,7 +32,7 @@ const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 
 // References to important files and directories
 const cwd = process.cwd();
-const publicDir = path.join(cwd, './public');
+const staticDir = path.join(cwd, './public/static');
 const staticPaths = require(path.join(cwd, 'config.js')).static;
 
 // Create a lookup for static pages so we don't have to read them from disk
@@ -164,6 +164,9 @@ if (ENV === 'development') {
   devServer(app);
 // Non-development environment configuration
 } else {
+  // Proxy static assets to the public/static directory
+  app.use('/static', express.static(staticDir));
+
   // Keep the public index page in memory to prevent re-reading it from disk
   // on each request
   const publicIndexFile = fs.readFileSync(
@@ -182,9 +185,6 @@ if (ENV === 'development') {
       res.send(staticPageLookup.index);
     });
   }
-
-  // Proxy static assets to the public directory
-  app.use('/', express.static(publicDir));
 
   // Proxy netdata path to netdata app
   app.use(
