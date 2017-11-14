@@ -19,7 +19,9 @@ const testWatch = () => {
       cp.execSync(`
         NODE_ENV=test "${npmBin}/_mocha" \
           --watch \
-          --compilers .:"${configDir}/tests/unit/compiler.js" \
+          --watch-extensions js \
+          --require babel-register \
+          --require "${configDir}/tests/unit/compiler.js" \
           --require "${configDir}/tests/unit/setup.js" \
           "${cwd}/?(client|server)/**/unit.js"
       `, { stdio: 'inherit' });

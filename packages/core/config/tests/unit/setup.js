@@ -4,6 +4,7 @@ const JSDOM = require('jsdom').JSDOM;
 const mocha = require('mocha');
 const chai = require('chai');
 const Storage = require('dom-storage');
+const raf = require('raf');
 
 // Create fake DOM
 const dom = new JSDOM('<body></body>');
@@ -13,6 +14,9 @@ global.navigator = { userAgent: 'node.js' };
 global.document = dom.window.document;
 global.window = dom.window;
 global.window.localStorage = new Storage();
+
+// Polyfill requestAnimationFrame
+raf.polyfill(global.window);
 
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
