@@ -31,6 +31,7 @@ const build = (config = { silent: false, static: false }) => {
     // Minify the index.html file
     const indexFile = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
     const minifiedIndexFile = minify(indexFile, {
+      minifyCSS: true,
       minifyJS: true,
       collapseWhitespace: true,
     });

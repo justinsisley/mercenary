@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
@@ -38,7 +39,10 @@ const staticPaths = require(path.join(cwd, 'config.js')).static;
 // Create a lookup for static pages so we don't have to read them from disk
 // on each request
 const staticPageLookup = {};
-if (ENV === 'production' && staticPaths) {
+if (
+  (ENV === 'production' || ENV === 'local') &&
+  staticPaths
+) {
   staticPaths.forEach((staticPath) => {
     let pathName = staticPath;
     let fileName = staticPath.replace('/', '');
