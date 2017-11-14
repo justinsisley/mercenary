@@ -5,6 +5,7 @@ const mocha = require('mocha');
 const chai = require('chai');
 const Storage = require('dom-storage');
 const raf = require('raf');
+const cssEscape = require('css.escape');
 
 // Create fake DOM
 const dom = new JSDOM('<body></body>');
@@ -17,6 +18,9 @@ global.window.localStorage = new Storage();
 
 // Polyfill requestAnimationFrame
 raf.polyfill(global.window);
+
+// Polyfill CSS.escape
+cssEscape(global.window);
 
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
