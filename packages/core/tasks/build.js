@@ -1,5 +1,9 @@
+/* eslint-disable import/no-unresolved */
+
+const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
+const minify = require('html-minifier').minify;
 const startProd = require('./startProd');
 const buildStatic = require('./buildStatic');
 
@@ -23,6 +27,15 @@ const build = (config = { silent: false, static: false }) => {
         --config \
         "${configDir}/webpack/production.js" ${output}
     `, { stdio: 'inherit' });
+
+    // Minify the index.html file
+    const indexFile = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
+    const minifiedIndexFile = minify(indexFile, {
+      minifyJS: true,
+      collapseWhitespace: true,
+    });
+
+    fs.writeFileSync(`${cwd}/public/index.html`, minifiedIndexFile);
   };
 
   if (config.static) {

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/top-level-namespace.html
 // http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
 

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 const join = require('path').join;
 const fs = require('fs');
 const puppeteer = require('puppeteer');
@@ -5,7 +7,7 @@ const puppeteer = require('puppeteer');
 const cwd = process.cwd();
 
 const staticPaths = require(join(cwd, 'config.js')).static;
-const destination = join(cwd, '/public/static');
+const destination = join(cwd, '/public/pages');
 
 const host = 'http://localhost:3325';
 

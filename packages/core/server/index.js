@@ -38,7 +38,7 @@ const staticPaths = require(path.join(cwd, 'config.js')).static;
 // Create a lookup for static pages so we don't have to read them from disk
 // on each request
 const staticPageLookup = {};
-if (staticPaths) {
+if (ENV === 'production' && staticPaths) {
   staticPaths.forEach((staticPath) => {
     let pathName = staticPath;
     let fileName = staticPath.replace('/', '');
@@ -49,7 +49,7 @@ if (staticPaths) {
     }
 
     staticPageLookup[pathName] = fs.readFileSync(
-      path.join(cwd, `./public/static/${fileName}.html`),
+      path.join(cwd, `./public/pages/${fileName}.html`),
       { encoding: 'utf8' }
     );
   });
