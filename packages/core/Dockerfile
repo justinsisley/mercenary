@@ -30,4 +30,4 @@ CMD /usr/sbin/netdata && {{command}}
 EXPOSE 3325
 
 # Run the container as an unprivileged user
-USER node
+# USER node
