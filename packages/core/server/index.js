@@ -35,13 +35,6 @@ const cwd = process.cwd();
 const publicDir = path.join(cwd, './public');
 const staticPaths = require(path.join(cwd, 'config.js')).static;
 
-// Keep the public index page in memory to prevent re-reading it from disk
-// on each request
-const publicIndexFile = fs.readFileSync(
-  path.join(cwd, './public/index.html'),
-  { encoding: 'utf8' }
-);
-
 // Create a lookup for static pages so we don't have to read them from disk
 // on each request
 const staticPageLookup = {};
@@ -171,6 +164,13 @@ if (ENV === 'development') {
   devServer(app);
 // Non-development environment configuration
 } else {
+  // Keep the public index page in memory to prevent re-reading it from disk
+  // on each request
+  const publicIndexFile = fs.readFileSync(
+    path.join(cwd, './public/index.html'),
+    { encoding: 'utf8' }
+  );
+
   // If in production or local mode, and the index page is a static path,
   // send the static version
   if (
