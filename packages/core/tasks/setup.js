@@ -40,6 +40,7 @@ const copyNpmScripts = () => {
     build: 'merc --build',
     prod: 'merc --prod',
     'prod:local': 'merc --prodLocal',
+    release: 'merc --release',
     deploy: 'merc --deploy',
     'docker:build': 'merc --dockerBuild',
     'docker:run': 'merc --dockerRun',

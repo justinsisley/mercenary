@@ -1,13 +1,10 @@
 /* eslint-disable import/no-unresolved */
-
 // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/top-level-namespace.html
 // http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
-
 const fs = require('fs');
 const join = require('path').join;
 const execSync = require('child_process').execSync;
 const ora = require('ora');
-const inquirer = require('inquirer');
 const AWS = require('aws-sdk');
 const build = require('./build');
 const docker = require('./docker').dockerFiles;
@@ -44,51 +41,6 @@ const ebExtensionsDest = join(cwd, './.ebextensions');
 AWS.config.update({ accessKeyId, secretAccessKey, region });
 const s3 = new AWS.S3();
 const elasticbeanstalk = new AWS.ElasticBeanstalk();
-
-// Bump the package.json version
-async function bumpVersion() {
-  return new Promise((resolve) => {
-    const [major, minor, patch] = packageJson.version.split('.').map(str => +str);
-
-    inquirer.prompt([
-      {
-        type: 'list',
-        name: 'version',
-        message: 'Choose a release type:',
-        default: 0,
-        choices: [
-          {
-            name: `Patch    ${major}.${minor}.${patch}  ->  ${major}.${minor}.${patch + 1}`,
-            value: `${major}.${minor}.${patch + 1}`,
-          },
-          {
-            name: `Minor    ${major}.${minor}.${patch}  ->  ${major}.${minor + 1}.0`,
-            value: `${major}.${minor + 1}.0`,
-          },
-          {
-            name: `Major    ${major}.${minor}.${patch}  ->  ${major + 1}.0.0`,
-            value: `${major + 1}.0.0`,
-          },
-        ],
-      },
-    ]).then(({ version }) => {
-      packageJson.version = `${version}`;
-
-      fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2));
-
-      resolve(version);
-    });
-  });
-}
-
-// Push a new tag to git
-function pushGitTag(version) {
-  try {
-    execSync(`git add .; git commit -m"v${version}"; git tag v${version}; git push origin v${version}`, { stdio: 'ignore' });
-  } catch (error) {
-    // no-op
-  }
-}
 
 // Get the short hash of the current git revision
 function getCommitHash() {
@@ -218,7 +170,7 @@ function clean(bundleName) {
 }
 
 module.exports = async () => {
-  const semver = await bumpVersion();
+  const semver = packageJson.version;
   const commitHash = getCommitHash();
   const versionLabel = getVersionLabel(semver, commitHash);
 
@@ -275,9 +227,6 @@ module.exports = async () => {
 
   spinner.text = 'Cleaning up workspace';
   clean(bundleName);
-
-  spinner.text = 'Pushing git tags';
-  pushGitTag(semver);
 
   spinner.succeed(`Version ${versionLabel} deployed to ${ebApplicationName} / ${ebEnvironmentName}`);
   console.log('');
