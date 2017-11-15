@@ -15,9 +15,7 @@ if (argv.testWatch) {
 }
 
 if (argv.e2e) {
-  require('./tasks/build')({ silent: true }); // eslint-disable-line
-  const prod = require('./tasks/startProd')({ async: true }); // eslint-disable-line
-  require('./tasks/e2e')({ serverProcess: prod }); // eslint-disable-line
+  require('./tasks/e2e')(); // eslint-disable-line
 }
 
 if (argv.build) {

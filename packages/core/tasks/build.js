@@ -62,7 +62,7 @@ const build = (config = { silent: false, static: false }) => {
 
           resolve();
         });
-      }, 2000);
+      }, 3000);
     });
   }
 
