@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.7.0",
+  "version": "3.7.3",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -13,7 +13,7 @@
     "cardy": "0.7.0",
     "chart.js": "2.7.1",
     "classnames": "2.2.5",
-    "jss": "9.3.2",
+    "jss": "9.3.3",
     "jss-preset-default": "4.0.1",
     "loglevel": "1.6.0",
     "mjml-utils": "2.2.0",
