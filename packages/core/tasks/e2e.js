@@ -34,7 +34,9 @@ const e2e = () => {
       let browser;
       let page;
 
-      before(async () => {
+      before(async function() {
+        this.timeout(5000);
+
         browser = await puppeteer.launch();
         page = await browser.newPage();
       });
