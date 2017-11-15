@@ -60,12 +60,18 @@ const e2e = () => {
       // Keep the output pure by wrapping in try/catch
       try {
         cp.execSync(`mocha ${testFile}`, { stdio: 'inherit' });
-      } catch (error) {} // eslint-disable-line
+      } catch (error) { // eslint-disable-line
+        // Exit the process with non-0 code
+        process.exit(1);
+      }
 
       fs.unlinkSync(testFile);
 
       // Kill the server
       prod.kill('SIGINT');
+
+      // Exit the process
+      process.exit(0);
     }, 3000);
   });
 };
