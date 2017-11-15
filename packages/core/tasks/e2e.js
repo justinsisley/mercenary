@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 const glob = require('glob');
@@ -5,8 +6,7 @@ const build = require('./build');
 const startProd = require('./startProd');
 
 const cwd = process.cwd();
-const configDir = path.join(__dirname, '../config');
-const nightwatch = path.join(cwd, './node_modules/nightwatch/bin/nightwatch');
+const testFile = path.join(__dirname, 'e2e.tmp.js');
 
 const e2e = () => {
   // Check for existence of test files before attempting to execute
@@ -26,22 +26,43 @@ const e2e = () => {
       mode: 'static',
     });
 
-    // Give the express server a few seconds to start
-    // FIXME: there must be a better way...
-    setTimeout(() => {
-      // Keep the output from Nightwatch pure by catching errors thrown by execSync.
-      // Always exit with 0 code to avoid NPM errors when linting fails.
-      try {
-        cp.execSync(`
-          "${nightwatch}" \
-            --config "${configDir}/tests/e2e/config.js" || exit 0
-        `, { stdio: 'inherit' });
-      } catch (err) { // eslint-disable-line
-        // Kill the server
-        prod.kill('SIGINT');
+    let testContent = `
+      const puppeteer = require('puppeteer');
+      const { describe, before, after, it } = require('mocha');
+      const { assert } = require('chai');
 
-        process.exit(1);
-      }
+      let browser;
+      let page;
+
+      before(async () => {
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
+      });
+    `;
+
+    files.forEach((filePath) => {
+      const content = fs.readFileSync(filePath, { encoding: 'utf8' });
+
+      testContent += `\n\n${content}`;
+    });
+
+    testContent += `
+      after(() => {
+        browser.close();
+      });
+    `;
+
+    // Write the temporary test file
+    fs.writeFileSync(testFile, testContent);
+
+    // Give the server a moment to start
+    setTimeout(() => {
+      // Keep the output pure by wrapping in try/catch
+      try {
+        cp.execSync(`mocha ${testFile}`, { stdio: 'inherit' });
+      } catch (error) {} // eslint-disable-line
+
+      fs.unlinkSync(testFile);
 
       // Kill the server
       prod.kill('SIGINT');
