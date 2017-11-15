@@ -33,7 +33,7 @@ const plugins = [
   require.resolve('babel-plugin-transform-react-remove-prop-types'),
   [require.resolve('babel-plugin-transform-runtime'), {
     helpers: false,
-    polyfill: true,
+    polyfill: false,
     regenerator: true,
   }],
   [require.resolve('babel-plugin-transform-regenerator'), {
