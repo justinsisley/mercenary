@@ -62,6 +62,12 @@ Build the client and start the production server:
 npm run prod
 ```
 
+Create a release tag in Git:
+
+```bash
+npm run release
+```
+
 Deploy the Dockerized application to ElasticBeanstalk:
 
 ```bash
