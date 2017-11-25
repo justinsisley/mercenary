@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.7.8",
+  "version": "3.7.9",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -16,8 +16,8 @@
     "jss": "9.3.3",
     "jss-preset-default": "4.0.1",
     "loglevel": "1.6.0",
-    "mjml-utils": "2.2.0",
-    "mongoose": "4.13.4",
+    "mjml-utils": "2.2.1",
+    "mongoose": "4.13.5",
     "nodemailer": "4.4.0",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.6.0",
@@ -26,7 +26,7 @@
     "react-chartjs-2": "2.6.4",
     "react-document-title": "2.0.3",
     "react-dom": "16.1.1",
-    "react-google-maps": "9.2.2",
+    "react-google-maps": "9.3.0",
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
@@ -36,6 +36,6 @@
     "semantic-ui-css": "2.2.12",
     "semantic-ui-react": "0.76.0",
     "tokenpress": "1.9.1",
-    "validator": "9.1.1"
+    "validator": "9.1.2"
   }
 }

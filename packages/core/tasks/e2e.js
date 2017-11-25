@@ -16,6 +16,40 @@ const e2e = () => {
       return;
     }
 
+    // Write the setup into the temporary test file
+    let testContent = `
+      const puppeteer = require('puppeteer');
+      const { describe, before, after, it } = require('mocha');
+      const { assert } = require('chai');
+
+      let browser;
+      let page;
+
+      before(async function() {
+        this.timeout(0);
+
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
+      });
+    `;
+
+    // Write each test to the test file
+    files.forEach((filePath) => {
+      const content = fs.readFileSync(filePath, { encoding: 'utf8' });
+
+      testContent += `\n\n${content}`;
+    });
+
+    // Write the teardown to the test file
+    testContent += `
+      after(() => {
+        browser.close();
+      });
+    `;
+
+    // Write the temporary test file to disk
+    fs.writeFileSync(testFile, testContent);
+
     // Build the client
     build({ silent: true });
 
@@ -26,37 +60,6 @@ const e2e = () => {
       mode: 'static',
     });
 
-    let testContent = `
-      const puppeteer = require('puppeteer');
-      const { describe, before, after, it } = require('mocha');
-      const { assert } = require('chai');
-
-      let browser;
-      let page;
-
-      before(async function() {
-        this.timeout(5000);
-
-        browser = await puppeteer.launch();
-        page = await browser.newPage();
-      });
-    `;
-
-    files.forEach((filePath) => {
-      const content = fs.readFileSync(filePath, { encoding: 'utf8' });
-
-      testContent += `\n\n${content}`;
-    });
-
-    testContent += `
-      after(() => {
-        browser.close();
-      });
-    `;
-
-    // Write the temporary test file
-    fs.writeFileSync(testFile, testContent);
-
     // Give the server a moment to start
     setTimeout(() => {
       // Keep the output pure by wrapping in try/catch
@@ -64,16 +67,17 @@ const e2e = () => {
         cp.execSync(`mocha ${testFile}`, { stdio: 'inherit' });
       } catch (error) { // eslint-disable-line
         // Exit the process with non-0 code
-        process.exit(1);
+        process.exitCode = 1;
       }
 
+      // Delete the temporary test file
       fs.unlinkSync(testFile);
 
       // Kill the server
       prod.kill('SIGINT');
 
       // Exit the process
-      process.exit(0);
+      process.exit();
     }, 3000);
   });
 };

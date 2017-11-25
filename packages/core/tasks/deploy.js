@@ -35,7 +35,6 @@ const publicDir = join(cwd, './public');
 const dockerFile = join(cwd, './Dockerfile');
 const dockerIgnore = join(cwd, './.dockerignore');
 const dockerAwsJsonDest = join(cwd, './Dockerrun.aws.json');
-const ebExtensionsDest = join(cwd, './.ebextensions');
 
 // AWS SDK
 AWS.config.update({ accessKeyId, secretAccessKey, region });
@@ -68,6 +67,7 @@ function generateDockerConfig() {
     AWSEBDockerrunVersion: '1',
     Ports: [{ ContainerPort: `${containerPort}` }],
   };
+
   fs.writeFileSync(dockerAwsJsonDest, JSON.stringify(dockerAwsJson));
 }
 
@@ -165,7 +165,6 @@ function clean(bundleName) {
   execSync(`rm "${dockerFile}"`);
   execSync(`rm "${dockerIgnore}"`);
   execSync(`rm "${dockerAwsJsonDest}"`);
-  execSync(`rm -rf "${ebExtensionsDest}"`);
   execSync(`rm -rf "${publicDir}"`);
 }
 
