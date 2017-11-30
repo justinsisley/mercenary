@@ -218,7 +218,7 @@ const errorHandlerPath = './server/errorHandler.js';
 if (utils.fileExists(errorHandlerPath)) {
   const errorHandler = require(path.join(cwd, errorHandlerPath)); // eslint-disable-line
 
-  if (typeof runMiddleware === 'function') {
+  if (typeof errorHandler === 'function') {
     app.use(errorHandler);
   } else {
     throw new Error('Custom error handler file must export a single function.');
