@@ -213,6 +213,18 @@ if (ENV === 'development') {
 // Error logging
 app.use(expressWinston.errorLogger({ transports: winstonTransports }));
 
+// Pass the Express app to the user's custom error handler function.
+const errorHandlerPath = './server/errorHandler.js';
+if (utils.fileExists(errorHandlerPath)) {
+  const errorHandler = require(path.join(cwd, errorHandlerPath)); // eslint-disable-line
+
+  if (typeof runMiddleware === 'function') {
+    app.use(errorHandler);
+  } else {
+    throw new Error('Custom error handler file must export a single function.');
+  }
+}
+
 // Start the Express server
 const server = app.listen(EXPRESS_PORT, () => {
   console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
