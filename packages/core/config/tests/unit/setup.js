@@ -3,6 +3,7 @@
 const JSDOM = require('jsdom').JSDOM;
 const mocha = require('mocha');
 const chai = require('chai');
+const sinon = require('sinon');
 const Storage = require('dom-storage');
 const raf = require('raf');
 
@@ -34,3 +35,5 @@ Object.keys(document.defaultView).forEach((property) => {
 global.describe = mocha.describe;
 global.it = mocha.it;
 global.assert = chai.assert;
+global.spy = sinon.spy;
+global.stub = sinon.stub;

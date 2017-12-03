@@ -22,7 +22,9 @@ const build = (config = { silent: false, static: false }) => {
 
     cp.execSync(`
       rm -rf ${cwd}/public &&
-      NODE_ENV=production "${webpack}" \
+      NODE_ENV=production \
+      BABEL_ENV=production \
+      "${webpack}" \
         --display-error-details \
         --config \
         "${configDir}/webpack/production.js" ${output}
