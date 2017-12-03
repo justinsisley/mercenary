@@ -17,6 +17,8 @@ module.exports = {
     __VERSION__: true,
     assert: true,
     expect: true,
+    spy: true,
+    stub: true,
     page: true,
   },
 
