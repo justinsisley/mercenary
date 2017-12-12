@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.8.2",
+  "version": "3.8.6",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -17,7 +17,7 @@
     "body-parser": "1.18.2",
     "chokidar": "1.7.0",
     "express": "4.16.2",
-    "express-rate-limit": "2.9.0",
+    "express-rate-limit": "2.11.0",
     "express-validator": "4.3.0",
     "express-winston": "2.4.0",
     "ip": "1.1.5",
