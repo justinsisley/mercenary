@@ -83,8 +83,6 @@ function createRelease({ semver, releaseNotes }) {
     return;
   }
 
-  console.log(releaseNotes);
-
   const payload = {
     tag_name: `v${semver}`,
     name: `v${semver}`,
