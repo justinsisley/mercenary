@@ -25,10 +25,23 @@ import 'semantic-ui-css/components/table.css';
 import 'semantic-ui-css/components/transition.css';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate, render } from 'react-dom';
+import { loadComponents } from 'loadable-components';
+import { getState } from 'loadable-components/snap';
 import App from './components/App';
 
 // Global custom styles
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Prevent flash of loading component for static pages
+window.staticState = () => getState();
+
+const rootElement = document.getElementById('root');
+if (rootElement.hasChildNodes()) {
+  loadComponents().then(() => {
+    hydrate(<App />, rootElement);
+  });
+} else {
+  render(<App />, rootElement);
+}
+

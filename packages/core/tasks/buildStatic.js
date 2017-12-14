@@ -34,6 +34,43 @@ async function renderPage(path) {
       document.body.appendChild(removedScript);
     }
 
+    const staticEscape = (() => {
+      const UNSAFE_CHARS_REGEXP = /[<>\/\u2028\u2029]/g; // eslint-disable-line
+      // Mapping of unsafe HTML and invalid JavaScript line terminator chars to their
+      // Unicode char counterparts which are safe to use in JavaScript strings.
+      const ESCAPED_CHARS = {
+        '<': '\\u003C',
+        '>': '\\u003E',
+        '/': '\\u002F',
+        '\u2028': '\\u2028',
+        '\u2029': '\\u2029'
+      };
+      const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
+      return str => str.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+    })();
+
+    const stringify = obj => staticEscape(JSON.stringify(obj));
+
+    let scriptTagText = '';
+    let state;
+
+    if (window.staticState) {
+      state = window.staticState();
+    }
+
+    if (state && Object.keys(state).length !== 0) {
+      scriptTagText += Object.keys(state)
+        .map(key => `window["${key}"]=${stringify(state[key])};`)
+        .join('');
+    }
+    if (scriptTagText !== '') {
+      const scriptTag = document.createElement('script');
+      scriptTag.type = 'text/javascript';
+      scriptTag.text = scriptTagText;
+      const firstScript = Array.from(document.scripts)[0];
+      firstScript.parentNode.insertBefore(scriptTag, firstScript);
+    }
+
     return document.documentElement.outerHTML;
   });
 
