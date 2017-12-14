@@ -25,6 +25,13 @@ module.exports = {
     '/signup',
   ],
 
+  // Settings for automatic release management in Github
+  github: {
+    owner: '', // repository owner name
+    repo: '', // repository name
+    token: '', // personal access token (OAUTH)
+  },
+
   // Deployment configuration
   deploy: {
     // The hostname to use when deployed
