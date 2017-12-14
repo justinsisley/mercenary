@@ -16,12 +16,21 @@ async function renderPage(path) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(`${host}${path}`);
+  await page.waitForNavigation({ timeout: 0, waitUntil: 'networkidle0' });
 
   const html = await page.evaluate(() => {
-    const headScripts = document.head.getElementsByTagName('script');
+    // We need to move all JavaScript in the head of the document to the body.
+    // This prevents errors related to static rendering async routes, which
+    // are injected into the head of the document dynamically. When the page
+    // is statically rendered, this means the async route is loaded before the
+    // main JavaScript bundle.
+    const headScripts = Array.prototype.slice.call(
+      document.head.getElementsByTagName('script')
+    );
 
     for (let i = 0; i < headScripts.length; i += 1) {
       const removedScript = headScripts[i].parentNode.removeChild(headScripts[i]);
+
       document.body.appendChild(removedScript);
     }
 

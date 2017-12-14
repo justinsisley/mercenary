@@ -1,12 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { asyncComponent } from 'react-async-component';
+import loadable from 'loadable-components';
 import AppLayout from '../../components/AppLayout';
 
-const loadAsync = resolve => asyncComponent({ resolve });
-
 function DashboardScreen(props) {
-  const AsyncComponent = loadAsync(() => import('../../containers/DashboardScreen'));
+  const AsyncComponent = loadable(() => import('../../containers/DashboardScreen'));
 
   return (
     <AppLayout>
@@ -16,7 +14,7 @@ function DashboardScreen(props) {
 }
 
 function HomeScreen(props) {
-  const AsyncComponent = loadAsync(() => import('../Home'));
+  const AsyncComponent = loadable(() => import('../Home'));
   return <AsyncComponent {...props} />;
 }
 

@@ -201,8 +201,11 @@ if (ENV === 'development') {
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
-    // If in production mode, and the page is a static path, send the static version
-    if (ENV === 'production' && staticPageLookup[req.originalUrl]) {
+    // If in production or local mode, and the page is a static path, send the static version
+    if (
+      (ENV === 'production' || ENV === 'local') &&
+      staticPageLookup[req.originalUrl]
+    ) {
       res.send(staticPageLookup[req.originalUrl]);
     } else {
       res.send(publicIndexFile);
