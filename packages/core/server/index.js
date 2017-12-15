@@ -61,7 +61,10 @@ if (
 
 // Configure logging transports
 const winstonTransports = [
-  new winston.transports.Console({ colorize: true }),
+  new winston.transports.Console({
+    level: 'error',
+    json: true,
+  }),
 ];
 
 // Add CloudWatch transport in production if configured
