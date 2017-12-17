@@ -16,9 +16,8 @@ async function renderPage(path) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(`${host}${path}`);
-  await page.waitForNavigation({ timeout: 0, waitUntil: 'networkidle0' });
 
-  const html = await page.evaluate(() => {
+  let html = await page.evaluate(() => {
     // We need to move all JavaScript in the head of the document to the body.
     // This prevents errors related to static rendering async routes, which
     // are injected into the head of the document dynamically. When the page
@@ -63,6 +62,7 @@ async function renderPage(path) {
         .map(key => `window["${key}"]=${stringify(state[key])};`)
         .join('');
     }
+
     if (scriptTagText !== '') {
       const scriptTag = document.createElement('script');
       scriptTag.type = 'text/javascript';
@@ -75,6 +75,9 @@ async function renderPage(path) {
   });
 
   await browser.close();
+
+  // Remove STATIC_RENDER boolean from the final code
+  html = html.replace('<script>window.STATIC_RENDER = true;</script>', '');
 
   return { path, html };
 }

@@ -48,6 +48,13 @@ const build = (config = { silent: false, static: false }) => {
     return new Promise((resolve) => {
       runBuild();
 
+      // Add STATIC_RENDER boolean to window as a UI helper. This allows the UI to
+      // make decisions based on whether or not this is a static render. This is
+      // especially useful for animations that shouldn't be pre-rendered.
+      let content = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
+      content = content.replace('</head>', '<script>window.STATIC_RENDER = true;</script></head>');
+      fs.writeFileSync(`${cwd}/public/index.html`, content);
+
       // Start the production server in "static" mode, which bypasses some of the
       // standard production settings (force WWW, etc.)
       const prod = startProd({
@@ -61,6 +68,11 @@ const build = (config = { silent: false, static: false }) => {
         buildStatic().then(() => {
           // Kill the server
           prod.kill('SIGINT');
+
+          // Remove STATIC_RENDER boolean from the final code
+          content = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
+          content = content.replace('<script>window.STATIC_RENDER = true;</script>', '');
+          fs.writeFileSync(`${cwd}/public/index.html`, content);
 
           resolve();
         });
