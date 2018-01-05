@@ -63,7 +63,14 @@ if (
 const winstonTransports = [
   new winston.transports.Console({
     level: 'error',
-    json: true,
+    json: false,
+    formatter(data) {
+      const { date, req, stack } = data.meta;
+
+      return JSON.stringify({
+        date, req, stack,
+      }, null, 4);
+    },
   }),
 ];
 
