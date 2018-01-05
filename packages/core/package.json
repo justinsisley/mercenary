@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.11.1",
+  "version": "3.11.2",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -15,7 +15,7 @@
     "@risingstack/protect": "1.2.0",
     "basic-auth-connect": "1.0.0",
     "body-parser": "1.18.2",
-    "chokidar": "1.7.0",
+    "chokidar": "2.0.0",
     "express": "4.16.2",
     "express-rate-limit": "2.11.0",
     "express-validator": "4.3.0",
