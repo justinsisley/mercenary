@@ -7,17 +7,27 @@ const configDir = path.join(__dirname, '../config');
 
 const nodeModulesPath = path.join(cwd, './node_modules/');
 const eslintPath = path.join(nodeModulesPath, './eslint/bin/eslint.js');
+const flowPath = path.join(nodeModulesPath, './flow-bin/cli.js');
 const mochaPath = path.join(nodeModulesPath, './mocha/bin/mocha');
 
-// Run eslint and execute Mocha tests
+// Run eslint, flow, and unit tests
 const test = () => {
-  // Keep the output from eslint pure by catching errors thrown by execSync.
+  // Keep the output pure by catching errors thrown by execSync
+  console.log('Running ESLint...');
   try {
     cp.execSync(`
       "${eslintPath}" \
         "${cwd}/client/**/*.js" \
         "${cwd}/server/**/*.js"
     `, { stdio: 'inherit' });
+  } catch (err) { // eslint-disable-line
+    process.exit(1);
+  }
+
+  // Keep the output pure by catching errors thrown by execSync
+  console.log('Running flow...\n');
+  try {
+    cp.execSync(`"${flowPath}" check`, { stdio: 'inherit' });
   } catch (err) { // eslint-disable-line
     process.exit(1);
   }
@@ -29,7 +39,8 @@ const test = () => {
       return;
     }
 
-    // Keep the output from mocha pure by catching errors thrown by execSync.
+    // Keep the output pure by catching errors thrown by execSync
+    console.log('\nRunning Mocha...');
     try {
       cp.execSync(`
         NODE_ENV=test "${mochaPath}" \

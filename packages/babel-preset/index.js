@@ -27,6 +27,7 @@ const presets = [
 
 if (env === 'development') {
   presets.push(require.resolve('babel-preset-react-hmre'));
+  presets.push(require.resolve('babel-preset-flow'));
 }
 
 const plugins = [
