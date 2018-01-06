@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.12.0",
+  "version": "3.12.2",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"

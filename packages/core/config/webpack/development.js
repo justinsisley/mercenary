@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint/lib/formatters/stylish');
-const FlowWebpackPlugin = require('flow-webpack-plugin');
+const FlowStatusWebpackPlugin = require('flow-status-webpack-plugin');
 const config = require('../index');
 const shared = require('./shared');
 
@@ -64,7 +64,13 @@ module.exports = {
     }),
 
     // Log flow errors
-    new FlowWebpackPlugin(),
+    new FlowStatusWebpackPlugin({
+      onError(stdout) {
+        console.log(stdout);
+      },
+      // eslint-disable-next-line
+      binaryPath: require('flow-bin'),
+    }),
 
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
