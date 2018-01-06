@@ -1,5 +1,4 @@
 [ignore]
-.*/node_modules/.*
 
 [include]
 
@@ -8,5 +7,7 @@
 [lints]
 
 [options]
+module.file_ext=.js
+module.file_ext=.jsx
 
 [strict]
