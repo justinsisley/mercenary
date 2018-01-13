@@ -15,6 +15,7 @@ const proxy = require('proxy-middleware');
 const getIp = require('ip');
 const basicAuth = require('basic-auth-connect');
 const toobusy = require('toobusy-js');
+const gracefulExit = require('express-graceful-exit');
 const config = require('../config');
 const middleware = require('./middleware');
 const utils = require('./utils');
@@ -100,8 +101,12 @@ if (
 
 // Create the Express server
 const app = express();
+
 // Trust the left-most entry in the X-Forwarded-* header
 app.enable('trust proxy');
+
+// Graceful shutdown
+app.use(gracefulExit.middleware(app));
 // Parse JSON in request body
 app.use(bodyParser.json());
 // Helmet middleware gives us some basic best-practice security
@@ -243,9 +248,12 @@ const server = app.listen(EXPRESS_PORT, () => {
   console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
 });
 
-// Handle exit signal
-process.on('SIGINT', () => {
-  server.close();
+// Graceful shutdown
+function handleExit() {
   toobusy.shutdown();
-  process.exit();
-});
+
+  gracefulExit.gracefulExitHandler(app, server);
+}
+
+process.on('SIGINT', handleExit);
+process.on('SIGTERM', handleExit);
