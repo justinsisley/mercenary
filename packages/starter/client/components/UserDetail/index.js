@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
 import Map from '../Map';
@@ -11,7 +11,7 @@ function UserDetail(props) {
   }
 
   return (
-    <div>
+    <Fragment>
       <Item.Group>
         <Item>
           <Item.Image
@@ -49,7 +49,7 @@ function UserDetail(props) {
         ]}
         height={700}
       />
-    </div>
+    </Fragment>
   );
 }
 

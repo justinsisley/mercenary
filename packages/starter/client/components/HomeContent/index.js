@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Grid, Header, Image, Button, Container, Divider } from 'semantic-ui-react';
 import classnames from 'classnames';
@@ -6,7 +6,7 @@ import styles from './styles';
 
 function HomeContent() {
   return (
-    <div>
+    <Fragment>
       <Segment className={styles.stripe} vertical>
         <Grid
           verticalAlign="middle"
@@ -111,7 +111,7 @@ function HomeContent() {
           </Button>
         </Container>
       </Segment>
-    </div>
+    </Fragment>
   );
 }
 

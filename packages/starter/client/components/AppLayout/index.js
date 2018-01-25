@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import AppNav from '../AppNav';
 import styles from './styles';
 
 function AppLayout(props) {
   return (
-    <div>
+    <Fragment>
       <AppNav />
 
       <div className={styles.content}>
         {props.children}
       </div>
-    </div>
+    </Fragment>
   );
 }
 

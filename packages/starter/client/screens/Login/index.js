@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import DocumentTitle from 'react-document-title';
 import LoginHero from '../../components/LoginHero';
 import PublicFooter from '../../components/PublicFooter';
@@ -6,10 +6,10 @@ import PublicFooter from '../../components/PublicFooter';
 function LoginScreen() {
   return (
     <DocumentTitle title="Mercenary: Login">
-      <div>
+      <Fragment>
         <LoginHero />
         <PublicFooter />
-      </div>
+      </Fragment>
     </DocumentTitle>
   );
 }

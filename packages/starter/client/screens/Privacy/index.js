@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import DocumentTitle from 'react-document-title';
 import PrivacyHero from '../../components/PrivacyHero';
 import PublicFooter from '../../components/PublicFooter';
@@ -6,10 +6,10 @@ import PublicFooter from '../../components/PublicFooter';
 function PrivacyScreen() {
   return (
     <DocumentTitle title="Mercenary: Privacy Policy and Terms of Service">
-      <div>
+      <Fragment>
         <PrivacyHero />
         <PublicFooter />
-      </div>
+      </Fragment>
     </DocumentTitle>
   );
 }

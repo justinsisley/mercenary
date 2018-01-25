@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { Container, Segment, Grid, Form, Checkbox, Input, Button, Dropdown } from 'semantic-ui-react';
+import {
+  Button,
+  Checkbox,
+  Container,
+  Dropdown,
+  Form,
+  Grid,
+  Input,
+  Segment,
+} from 'semantic-ui-react';
 import cardValidator from 'card-validator';
 import PriceCard from '../PriceCard';
 import Conditional from '../Conditional';
@@ -65,7 +74,7 @@ class SignupForm extends React.Component {
     }
 
     return (
-      <div>
+      <Fragment>
         <Container text>
           <Grid
             className={styles.content}
@@ -226,7 +235,7 @@ class SignupForm extends React.Component {
             </Container>
           )}
         />
-      </div>
+      </Fragment>
     );
   }
 }

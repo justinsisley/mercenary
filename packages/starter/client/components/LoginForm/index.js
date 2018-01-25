@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Segment, Form, Message, Button, Input } from 'semantic-ui-react';
 import validator from 'validator';
@@ -66,16 +66,16 @@ class LoginForm extends React.Component {
         <Conditional
           if={this.props.requestSuccess}
           then={(
-            <div>
+            <Fragment>
               <h2>Check your email</h2>
 
               <Message>
                 A magic login link was sent to <b>{this.state.email}</b>
               </Message>
-            </div>
+            </Fragment>
           )}
           else={(
-            <div>
+            <Fragment>
               <h2>Welcome back</h2>
 
               <Form error={!!error}>
@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
                 >Send Magic Login Link
                 </Button>
               </Form>
-            </div>
+            </Fragment>
           )}
         />
       </Segment>

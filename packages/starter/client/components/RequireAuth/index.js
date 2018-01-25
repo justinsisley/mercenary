@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ function RequireAuth(props) {
     return <Redirect to="/login" />;
   }
 
-  return <div>{props.children}</div>;
+  return <Fragment>{props.children}</Fragment>;
 }
 
 RequireAuth.propTypes = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import DocumentTitle from 'react-document-title';
 import SignupHero from '../../components/SignupHero';
 import PublicFooter from '../../components/PublicFooter';
@@ -6,10 +6,10 @@ import PublicFooter from '../../components/PublicFooter';
 function SignupScreen() {
   return (
     <DocumentTitle title="Mercenary: Signup">
-      <div>
+      <Fragment>
         <SignupHero />
         <PublicFooter />
-      </div>
+      </Fragment>
     </DocumentTitle>
   );
 }

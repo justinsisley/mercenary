@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ function RequireNoAuth(props) {
     return <Redirect to="/" />;
   }
 
-  return <div>{props.children}</div>;
+  return <Fragment>{props.children}</Fragment>;
 }
 
 RequireNoAuth.propTypes = {

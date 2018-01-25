@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ class ScrollToTop extends React.Component {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return <Fragment>{this.props.children}</Fragment>;
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Menu, Button } from 'semantic-ui-react';
@@ -27,7 +27,7 @@ function PublicNav(props) {
   });
 
   return (
-    <div>
+    <Fragment>
       <Container className={styles.nav}>
         <Menu
           size="large"
@@ -66,7 +66,7 @@ function PublicNav(props) {
           </Menu.Item>
         </Menu>
       </Container>
-    </div>
+    </Fragment>
   );
 }
 

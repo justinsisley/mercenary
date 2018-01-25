@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Segment, Grid, Header, Button, Image } from 'semantic-ui-react';
 import styles from './styles';
 
 function PricingContent() {
   return (
-    <div>
+    <Fragment>
       <Segment className={styles.stripe} vertical>
         <Grid
           verticalAlign="middle"
@@ -88,7 +88,7 @@ function PricingContent() {
           </Grid.Row>
         </Grid>
       </Segment>
-    </div>
+    </Fragment>
   );
 }
 

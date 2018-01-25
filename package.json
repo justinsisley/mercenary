@@ -7,8 +7,8 @@
     "nsp": "./scripts/nsp.sh"
   },
   "devDependencies": {
-    "eslint": "4.15.0",
-    "eslint-config-mercenary": "3.11.2",
-    "lerna": "2.7.0"
+    "eslint": "4.16.0",
+    "eslint-config-mercenary": "3.12.3",
+    "lerna": "2.8.0"
   }
 }
