@@ -64,8 +64,9 @@ async function bumpVersion() {
 // Push a new tag to git
 function pushGitTag(version) {
   try {
-    execSync(`git add .; git commit -m"v${version}"; git tag v${version}; git push origin v${version}`, { stdio: 'ignore' });
+    execSync(`git add .; git commit -m"v${version}" --no-verify; git tag v${version}; git push origin v${version} --no-verify; git push --no-verify`, { stdio: 'ignore' });
   } catch (error) {
+    console.log(error);
     // no-op
   }
 }
