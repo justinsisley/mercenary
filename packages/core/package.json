@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.12.4",
+  "version": "3.13.0",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -12,7 +12,6 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@risingstack/protect": "1.2.0",
     "basic-auth-connect": "1.0.0",
     "body-parser": "1.18.2",
     "chokidar": "2.0.0",
@@ -21,6 +20,7 @@
     "express-rate-limit": "2.11.0",
     "express-validator": "4.3.0",
     "express-winston": "2.4.0",
+    "helmet": "3.10.0",
     "ip": "1.1.5",
     "password-generator": "2.2.0",
     "pm2": "2.9.3",

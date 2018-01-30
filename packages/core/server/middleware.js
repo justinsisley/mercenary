@@ -30,6 +30,7 @@ function enforceHTTPS(req, res, next) {
     hostname = `www.${hostname}`;
   }
 
+  // Construct the "true" request URL
   const finalUrl = `https://${hostname}${req.originalUrl}`;
   const hasWWW = req.hostname.indexOf('www.') === 0;
 

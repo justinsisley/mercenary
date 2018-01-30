@@ -7,7 +7,7 @@ const express = require('express');
 const winston = require('winston');
 const expressWinston = require('express-winston');
 const WinstonCloudwatch = require('winston-cloudwatch');
-const protect = require('@risingstack/protect');
+const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
@@ -88,8 +88,7 @@ if (
       logGroupName: CLOUDWATCH.logGroupName,
       logStreamName() {
         // Spread log streams across dates as the server stays up
-        const date = new Date().toISOString().split('T')[0];
-        return date;
+        return new Date().toISOString().split('T')[0];
       },
       awsRegion: CLOUDWATCH.region,
       awsAccessKeyId: CLOUDWATCH.accessKeyId,
@@ -107,14 +106,16 @@ app.enable('trust proxy');
 
 // Graceful shutdown
 app.use(gracefulExit.middleware(app));
+
 // Parse JSON in request body
 app.use(bodyParser.json());
+
 // Helmet middleware gives us some basic best-practice security
-app.use(protect.express.headers());
-// Protect against XSS attacks
-app.use(protect.express.xss());
+app.use(helmet());
+
 // Validation/sanitization
 app.use(expressValidator());
+
 // Request logging
 app.use(expressWinston.logger({
   transports: winstonTransports,
