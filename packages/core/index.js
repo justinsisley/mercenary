@@ -18,6 +18,10 @@ if (argv.e2e) {
   require('./tasks/e2e')(); // eslint-disable-line
 }
 
+if (argv.storybook) {
+  require('./tasks/storybook')(); // eslint-disable-line
+}
+
 if (argv.build) {
   require('./tasks/build')({ static: true }); // eslint-disable-line
 }
