@@ -19,11 +19,12 @@ if (argv.e2e) {
 }
 
 if (argv.storybook) {
-  require('./tasks/storybook')(); // eslint-disable-line
+  require('./tasks/storybook').start(); // eslint-disable-line
 }
 
 if (argv.build) {
   require('./tasks/build')({ static: true }); // eslint-disable-line
+  require('./tasks/storybook').build(); // eslint-disable-line
 }
 
 if (argv.start) {

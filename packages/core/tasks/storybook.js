@@ -17,11 +17,21 @@ const files = glob.sync(`${cwd}/client/**/story.js`).map((file) => {
 const configContent = configTemplateContent.replace('{{STORIES}}', files);
 fs.writeFileSync(configFile, configContent);
 
-const storybook = () => {
+const start = () => {
   execSync(
     `./node_modules/.bin/start-storybook -p 9001 -c ${configDir}`,
     { stdio: 'inherit' },
   );
 };
 
-module.exports = storybook;
+const build = () => {
+  execSync(
+    `./node_modules/.bin/build-storybook -p 9001 -c ${configDir} -o ${cwd}/public/storybook`,
+    { stdio: 'inherit' },
+  );
+};
+
+module.exports = {
+  start,
+  build,
+};
