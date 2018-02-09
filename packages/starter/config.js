@@ -93,5 +93,11 @@ module.exports = {
       username: '', // NETDATA_USERNAME
       password: '', // NETDATA_PASSWORD
     },
+
+    // Configure access to storybook
+    storybook: {
+      username: '', // STORYBOOK_USERNAME
+      password: '', // STORYBOOK_PASSWORD
+    },
   },
 };

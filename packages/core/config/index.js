@@ -7,10 +7,12 @@ const cwd = process.cwd();
 const projectConfigPath = path.join(cwd, './config.js');
 const projectConfig = require(projectConfigPath); // eslint-disable-line
 
-// Create fallback credentials for netdata
+// Create fallback credentials for private routes
 const randomInt = (min, max) => Math.floor(Math.random() * (max - (min + 1))) + min;
 const netdataUsername = generatePassword(randomInt(18, 32), false);
 const netdataPassword = generatePassword(randomInt(18, 32), false);
+const storybookUsername = generatePassword(randomInt(18, 32), false);
+const storybookPassword = generatePassword(randomInt(18, 32), false);
 
 module.exports = {
   env: process.env.NODE_ENV || 'development',
@@ -45,5 +47,11 @@ module.exports = {
   netdata: {
     username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,
     password: process.env.NETDATA_PASSWORD || projectConfig.deploy.netdata.password || netdataPassword,
+  },
+
+  // Configure access to storybook
+  storybook: {
+    username: process.env.STORYBOOK_USERNAME || projectConfig.deploy.storybook.username || storybookUsername,
+    password: process.env.STORYBOOK_PASSWORD || projectConfig.deploy.storybook.password || storybookPassword,
   },
 };

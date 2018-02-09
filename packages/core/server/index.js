@@ -26,6 +26,8 @@ const EXPRESS_PORT = config.expressPort;
 const CLOUDWATCH = config.cloudwatch;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
+const STORYBOOK_USERNAME = config.storybook.username;
+const STORYBOOK_PASSWORD = config.storybook.password;
 
 // Various references to this local server
 const localhost = `http://localhost:${EXPRESS_PORT}`;
@@ -36,6 +38,7 @@ const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 const cwd = process.cwd();
 const staticDir = path.join(cwd, './public/static');
 const staticPaths = require(path.join(cwd, 'config.js')).static;
+const storybookDir = path.join(cwd, './public/storybook');
 
 // Create a lookup for static pages so we don't have to read them from disk
 // on each request
@@ -204,6 +207,15 @@ if (ENV === 'development') {
   );
 
   console.log(`\nnetdata credentials\nusername: ${NETDATA_USERNAME}\npassword: ${NETDATA_PASSWORD}`);
+
+  // Proxy storybook path to static storybook files
+  app.use(
+    '/_storybook',
+    basicAuth(STORYBOOK_USERNAME, STORYBOOK_PASSWORD),
+    express.static(storybookDir)
+  );
+
+  console.log(`\nstorybook credentials\nusername: ${STORYBOOK_USERNAME}\npassword: ${STORYBOOK_PASSWORD}`);
 
   // All unhandled routes are served the static index.html file
   app.get('*', (req, res) => {
