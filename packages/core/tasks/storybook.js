@@ -26,7 +26,7 @@ const start = () => {
 
 const build = () => {
   execSync(
-    `./node_modules/.bin/build-storybook -p 9001 -c ${configDir} -o ${cwd}/public/storybook`,
+    `./node_modules/.bin/build-storybook -c ${configDir} -o ${cwd}/public/storybook`,
     { stdio: 'inherit' },
   );
 };
