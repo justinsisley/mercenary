@@ -68,7 +68,10 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
 
     // Minify JavaScript
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      // Use multi-process parallel running to improve the build speed
+      parallel: true,
+    }),
 
     // Extract CSS into a separate file
     new ExtractTextPlugin({

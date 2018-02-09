@@ -26,7 +26,7 @@ function clean() {
 }
 
 // Add Docker files to host project's root
-function dockerFiles(command = 'npm run prod') {
+function dockerFiles(command = './node_modules/.bin/merc --prod') {
   let dockerFile = readFile(dockerFileSource);
   dockerFile = dockerFile.replace('{{command}}', command);
 

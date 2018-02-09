@@ -18,7 +18,7 @@ RUN cd /home/netdata && ./netdata-installer.sh --dont-wait
 # Copy and install the web app
 RUN mkdir -p /home/app
 WORKDIR /home/app
-ADD . /home/app
+COPY . /home/app
 
 # Install dependencies
 RUN npm install --only=production

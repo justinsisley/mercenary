@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.14.0",
+  "version": "3.14.2",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -14,7 +14,7 @@
   "dependencies": {
     "basic-auth-connect": "1.0.0",
     "body-parser": "1.18.2",
-    "chokidar": "2.0.0",
+    "chokidar": "2.0.1",
     "express": "4.16.2",
     "express-graceful-exit": "0.4.1",
     "express-rate-limit": "2.11.0",
