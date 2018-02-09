@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const WebpackPwaManifest = require('webpack-pwa-manifest');
 // const OfflinePlugin = require('offline-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ShakePlugin = require('webpack-common-shake').Plugin;
 const shared = require('./shared');
 
@@ -68,7 +69,7 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
 
     // Minify JavaScript
-    new webpack.optimize.UglifyJsPlugin({
+    new UglifyJsPlugin({
       // Use multi-process parallel running to improve the build speed
       parallel: true,
     }),
