@@ -150,6 +150,17 @@ function sendSlackMessage({ semver, commitHash }) {
   ${config.slackWebHookUrl}`);
 }
 
+// Update release version for bug tracking in Sentry
+function updateSentryRelease({ semver }) {
+  const payload = {
+    version: `v${semver}`,
+  };
+
+  execSync(`curl --silent -X POST -H 'Content-type: application/json' \
+  --data '${JSON.stringify(payload)}' \
+  ${config.sentryWebHookUrl}`);
+}
+
 // Clean up the workspace
 function clean(bundleName) {
   execSync(`rm "${bundleName}"`);
@@ -213,6 +224,11 @@ module.exports = async () => {
   if (config.slackWebHookUrl) {
     spinner.text = 'Sending Slack notification';
     sendSlackMessage({ semver, commitHash });
+  }
+
+  if (config.sentryWebHookUrl) {
+    spinner.text = 'Updating Sentry release';
+    updateSentryRelease({ semver, commitHash });
   }
 
   spinner.text = 'Cleaning up workspace';

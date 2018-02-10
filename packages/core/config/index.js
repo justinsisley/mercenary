@@ -30,8 +30,6 @@ module.exports = {
     token: process.env.GITHUB_TOKEN || github.token,
   },
 
-  slackWebHookUrl: process.env.SLACK_WEBHOOK_URL || projectConfig.slackWebHookUrl,
-
   netdata: {
     username: process.env.NETDATA_USERNAME || netdata.username || utils.randomPassword(),
     password: process.env.NETDATA_PASSWORD || netdata.password || utils.randomPassword(),
@@ -41,4 +39,7 @@ module.exports = {
     username: process.env.STORYBOOK_USERNAME || storybook.username || utils.randomPassword(),
     password: process.env.STORYBOOK_PASSWORD || storybook.password || utils.randomPassword(),
   },
+
+  slackWebHookUrl: process.env.SLACK_WEBHOOK_URL || projectConfig.slackWebHookUrl,
+  sentryWebHookUrl: process.env.SENTRY_WEBHOOK_URL || projectConfig.sentryWebHookUrl,
 };
