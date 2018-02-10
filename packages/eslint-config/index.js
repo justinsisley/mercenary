@@ -23,7 +23,7 @@ module.exports = {
   },
 
   plugins: [
-    'class-property',
+    'babel',
   ],
 
   rules: {
@@ -31,6 +31,8 @@ module.exports = {
     'max-len': 'off',
     'prefer-destructuring': 'off',
     'no-underscore-dangle': 'off',
+
+    'babel/semi': 'off',
 
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
