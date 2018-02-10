@@ -1,6 +1,6 @@
 {
   "name": "mercenary-dev",
-  "version": "3.16.2",
+  "version": "3.16.3",
   "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -42,11 +42,11 @@
     "react": "16.2.0",
     "react-addons-shallow-compare": "15.6.2",
     "react-dom": "16.2.0",
-    "sinon": "4.2.2",
+    "sinon": "4.2.3",
     "style-loader": "0.20.1",
     "svg-inline-loader": "0.8.0",
     "uglifyjs-webpack-plugin": "1.1.8",
-    "webpack": "3.10.0",
+    "webpack": "3.11.0",
     "webpack-common-shake": "1.5.3",
     "webpack-dev-server": "2.11.1",
     "yargs": "11.0.0"
