@@ -13,7 +13,6 @@ const proxy = require('proxy-middleware');
 const getIp = require('ip');
 const basicAuth = require('basic-auth-connect');
 const toobusy = require('toobusy-js');
-const gracefulExit = require('express-graceful-exit');
 const utils = require('../utils');
 const config = require('../config');
 const middleware = require('./middleware');
@@ -70,9 +69,6 @@ const app = express();
 
 // Trust the left-most entry in the X-Forwarded-* header
 app.enable('trust proxy');
-
-// Graceful shutdown
-app.use(gracefulExit.middleware(app));
 
 // Parse JSON in request body
 app.use(bodyParser.json());
@@ -226,11 +222,6 @@ const server = app.listen(EXPRESS_PORT, () => {
 });
 
 // Graceful shutdown
-function handleExit() {
-  toobusy.shutdown();
-
-  gracefulExit.gracefulExitHandler(app, server);
-}
-
-process.on('SIGINT', handleExit);
-process.on('SIGTERM', handleExit);
+process.on('SIGTERM', () => {
+  utils.gracefulShutdown(server, toobusy);
+});

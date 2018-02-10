@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-
 const join = require('path').join;
 const fs = require('fs');
 const puppeteer = require('puppeteer');
@@ -43,9 +42,11 @@ async function renderPage(path) {
     }
 
     if (state && Object.keys(state).length !== 0) {
-      scriptTagText += Object.keys(state)
-        .map(key => `window["${key}"]=${utils.escapeJSON(state[key])};`)
-        .join('');
+      scriptTagText += Object.keys(state).map((key) => {
+        const json = utils.escapeJSON(state[key]);
+
+        return `window["${key}"]=${json};`;
+      }).join('');
     }
 
     if (scriptTagText !== '') {

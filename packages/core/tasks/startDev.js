@@ -1,14 +1,9 @@
-const path = require('path');
-const cp = require('child_process');
-
-const serverIndex = path.join(__dirname, '../server/index');
-
 const start = () => {
-  return cp.execSync(`
-    NODE_ENV=development \
-    BABEL_ENV=development \
-    node --inspect ${serverIndex}
-  `, { stdio: 'inherit' });
+  process.env.NODE_ENV = 'development';
+  process.env.BABEL_ENV = 'development';
+
+  // eslint-disable-next-line global-require
+  require('../server');
 };
 
 module.exports = start;

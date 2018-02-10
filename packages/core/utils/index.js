@@ -59,6 +59,7 @@ function createStaticPageCache() {
   return staticPageCache;
 }
 
+// Stringify and object and escape entities within in
 function escapeJSON(object) {
   const string = JSON.stringify(object);
 
@@ -79,6 +80,49 @@ function escapeJSON(object) {
   return string.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
 }
 
+// Graceful server shutdown
+function gracefulShutdown(server, toobusy) {
+  console.log('Shutting down...');
+
+  // Stop accepting new connections
+  server.close();
+
+  // Stop toobusy
+  toobusy.shutdown();
+
+  // Keep track of existing connection count for logging purposes
+  let connections = 0;
+
+  // Check existing connections and exit as soon as possible
+  function drain() {
+    server.getConnections((error, count) => {
+      connections = count;
+
+      // If something went wrong or there are no connections, exit
+      if (error || !count) {
+        process.exit(0);
+        return;
+      }
+
+      // Try again in 1 second
+      setTimeout(drain, 1000);
+    });
+  }
+
+  // Try to exit as soon as there are no more active connections
+  drain();
+
+  // Wait a maximum of 30 seconds, then exit no matter what
+  setTimeout(() => {
+    if (connections) {
+      const word = `connection${connections > 1 ? 's' : ''}`;
+      console.log(`WARNING: Exiting with ${connections} active ${word}`);
+    }
+
+    process.exit(0);
+  }, 30 * 1000);
+}
+
 module.exports = {
   packageJSON,
   projectConfig,
@@ -88,4 +132,5 @@ module.exports = {
   randomPassword,
   createStaticPageCache,
   escapeJSON,
+  gracefulShutdown,
 };
