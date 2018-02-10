@@ -2,16 +2,11 @@ const path = require('path');
 const cp = require('child_process');
 const fs = require('fs');
 const chalk = require('chalk');
+const utils = require('../utils');
 const install = require('./install');
 
 const cwd = process.cwd();
 const templatesDir = path.join(cwd, '/node_modules/mercenary-starter');
-
-const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
-
-// Host project's package.json
-const packageJson = readFile(`${cwd}/package.json`);
-const parsedPackageJson = JSON.parse(packageJson);
 
 const copyTemplates = () => {
   // Files
@@ -26,13 +21,13 @@ const copyTemplates = () => {
   cp.execSync(`cp -R "${templatesDir}/email" "${cwd}/email"`);
 
   // Write customized readme.md
-  const readme = readFile(`${templatesDir}/readme.md`);
-  const modifiedReadme = readme.replace('{name}', parsedPackageJson.name);
+  const readme = utils.readFileSync(`${templatesDir}/readme.md`);
+  const modifiedReadme = readme.replace('{name}', utils.packageJSON.name);
   fs.writeFileSync(`${cwd}/readme.md`, modifiedReadme);
 };
 
 const copyNpmScripts = () => {
-  const packageJsonScripts = Object.assign({}, parsedPackageJson.scripts, {
+  const packageJsonScripts = Object.assign({}, utils.packageJSON.scripts, {
     start: 'merc --start',
     test: 'merc --test',
     'test:watch': 'merc --testWatch',
@@ -50,21 +45,21 @@ const copyNpmScripts = () => {
     predeploy: 'merc --test',
   });
 
-  parsedPackageJson.scripts = packageJsonScripts;
+  utils.packageJSON.scripts = packageJsonScripts;
 
   fs.writeFileSync(
     `${cwd}/package.json`,
-    JSON.stringify(parsedPackageJson, null, 2)
+    JSON.stringify(utils.packageJSON, null, 2)
   );
 };
 
 const copyBoilerplateDeps = () => {
-  const templatesPackageJson = readFile(`${templatesDir}/package.json`);
+  const templatesPackageJson = utils.readFileSync(`${templatesDir}/package.json`);
   const parsedTemplatesPackageJson = JSON.parse(templatesPackageJson);
 
   const deps = Object.assign(
     {},
-    parsedPackageJson.dependencies,
+    utils.packageJSON.dependencies,
     parsedTemplatesPackageJson.dependencies
   );
 
@@ -73,11 +68,11 @@ const copyBoilerplateDeps = () => {
     orderedDeps[key] = deps[key];
   });
 
-  parsedPackageJson.dependencies = orderedDeps;
+  utils.packageJSON.dependencies = orderedDeps;
 
   fs.writeFileSync(
     `${cwd}/package.json`,
-    JSON.stringify(parsedPackageJson, null, 2)
+    JSON.stringify(utils.packageJSON, null, 2)
   );
 
   console.log('Installing starter kit dependencies...');

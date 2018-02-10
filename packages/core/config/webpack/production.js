@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const WebpackPwaManifest = require('webpack-pwa-manifest');
-// const OfflinePlugin = require('offline-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ShakePlugin = require('webpack-common-shake').Plugin;
 const shared = require('./shared');
@@ -27,13 +25,6 @@ module.exports = {
         include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
-      // Append the service worker runtime to the JavaScript entry point for
-      // OfflinePlugin to work
-      // {
-        // test: /client\/index\.js$/,
-        // loader: 'webpack-append',
-        // query: 'require("offline-plugin/runtime").install();',
-      // },
       // CSS modules, including CSS from node_modules
       {
         test: shared.regex.css,
@@ -90,27 +81,7 @@ module.exports = {
     }),
 
     // Generate and inject favicon
-    new FaviconsWebpackPlugin({
-      logo: shared.manifestIcon,
-      // The prefix for all image files
-      prefix: 'static/icons/',
-      // Inject the html into the html-webpack-plugin
-      inject: true,
-      // Which icons should be generated
-      // (see https://github.com/haydenbleasel/favicons#usage)
-      icons: {
-        android: false,
-        appleIcon: false,
-        appleStartup: false,
-        coast: false,
-        favicons: true,
-        firefox: false,
-        opengraph: false,
-        twitter: false,
-        yandex: false,
-        windows: false,
-      },
-    }),
+    new FaviconsWebpackPlugin(shared.faviconsWebpackPlugin),
 
     // Copy HTML file and inject generated assets
     new HtmlWebpackPlugin({
@@ -121,16 +92,6 @@ module.exports = {
 
     // Inline any CSS modules within the HTML file
     new HtmlWebpackInlineSourcePlugin(),
-
-    // Generates a 'manifest.json'
-    // new WebpackPwaManifest(shared.manifest),
-
-    // Cache webpack assets for offline capabilities
-    // new OfflinePlugin({
-      // autoUpdate: true,
-      // updateStrategy: 'all',
-      // version: shared.semver,
-    // }),
 
   // Filter out boolean values, which prevents an error if no JS globals are
   // defined, meaning `shared.javaScriptGlobals` is falsey.

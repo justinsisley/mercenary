@@ -1,7 +1,8 @@
 /* eslint-disable import/no-unresolved */
-const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const config = require('../index');
+const utils = require('../../utils');
 
 // Directories of interest
 const cwd = process.cwd();
@@ -9,32 +10,18 @@ const clientDir = path.join(cwd, './client');
 const publicDir = path.join(cwd, './public');
 
 // Get the version from the host projects's package.json
-const packageJson = fs.readFileSync(`${cwd}/package.json`, { encoding: 'utf8' });
-const semver = JSON.parse(packageJson).version;
+const semver = utils.packageJSON.version;
 
 // Files of interest
 const jsEntryPoint = path.join(clientDir, '/index');
 const htmlSource = path.join(clientDir, '/index.html');
 const htmlCompiled = path.join(publicDir, '/index.html');
-const manifestIcon = path.join(clientDir, '/icon.png');
-
-// Host project's config.js
-const projectConfigPath = path.join(cwd, './config.js');
-const projectConfig = require(projectConfigPath); // eslint-disable-line
-
-// Get the manifest settings from the host project's config.js
-const { manifest } = projectConfig;
-// Add the icon from the host project's client directory to the manifest
-manifest.icons = [{
-  src: manifestIcon,
-  sizes: [48, 72, 96, 144, 168, 192, 512],
-  destination: 'static/icons',
-}];
+const favicon = path.join(clientDir, '/icon.png');
 
 // Globals for webpack
-var javaScriptGlobals = null; // eslint-disable-line
-if (projectConfig.webpack && projectConfig.webpack.globals) {
-  javaScriptGlobals = new webpack.ProvidePlugin(projectConfig.webpack.globals);
+let javaScriptGlobals = null;
+if (config.webpack && config.webpack.ProvidePlugin) {
+  javaScriptGlobals = new webpack.ProvidePlugin(config.webpack.ProvidePlugin);
 }
 
 // Regexes we'll use for loaders
@@ -89,6 +76,28 @@ const loaders = {
   },
 };
 
+const faviconsWebpackPlugin = {
+  logo: favicon,
+  // The prefix for all image files
+  prefix: 'static/icons/',
+  // Inject the html into the html-webpack-plugin
+  inject: true,
+  // Which icons should be generated
+  // (see https://github.com/haydenbleasel/favicons#usage)
+  icons: {
+    android: false,
+    appleIcon: false,
+    appleStartup: false,
+    coast: false,
+    favicons: true,
+    firefox: false,
+    opengraph: false,
+    twitter: false,
+    yandex: false,
+    windows: false,
+  },
+};
+
 module.exports = {
   cwd,
   clientDir,
@@ -97,10 +106,9 @@ module.exports = {
   jsEntryPoint,
   htmlSource,
   htmlCompiled,
-  manifestIcon,
   javaScriptGlobals,
-  manifest,
   regex,
   output,
   loaders,
+  faviconsWebpackPlugin,
 };

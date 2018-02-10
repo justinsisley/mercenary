@@ -8,9 +8,10 @@ const chokidar = require('chokidar');
 const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
-const WEBPACK_DEV_SERVER_PORT = config.webpackDevServerPort;
-const devServerHost = `http://localhost:${WEBPACK_DEV_SERVER_PORT}/`;
 const cwd = process.cwd();
+
+const webpackDevServerPort = config.webpackDevServerPort;
+const devServerHost = `http://localhost:${webpackDevServerPort}/`;
 
 module.exports = (app) => {
   // Proxy static assets to webpack-dev-server
@@ -44,11 +45,11 @@ module.exports = (app) => {
   });
 
   // Start the webpack dev server
-  webpackDevServer.listen(WEBPACK_DEV_SERVER_PORT);
+  webpackDevServer.listen(webpackDevServerPort);
 
-  // Do "hot-reloading" of express stuff on the server
-  // Throw away cached modules and re-require next time
-  // Ensure there's no important state in there!
+  // Do "hot-reloading" of Express files on the server by throwing away
+  // cached modules and re-require next time.
+  // NOTE: Ensure there's no important state in them
   const watcher = chokidar.watch(path.join(cwd, './server'));
 
   watcher.on('ready', () => {

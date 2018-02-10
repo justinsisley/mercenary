@@ -1,9 +1,9 @@
 /* eslint-disable import/no-unresolved */
-
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 const minify = require('html-minifier').minify;
+const utils = require('../utils');
 const startProd = require('./startProd');
 const buildStatic = require('./buildStatic');
 
@@ -31,7 +31,7 @@ const build = (config = { silent: false, static: false }) => {
     `, { stdio: 'inherit' });
 
     // Minify the index.html file
-    const indexFile = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
+    const indexFile = utils.readFileSync(`${cwd}/public/index.html`);
     const minifiedIndexFile = minify(indexFile, {
       minifyCSS: true,
       minifyJS: true,
@@ -51,7 +51,7 @@ const build = (config = { silent: false, static: false }) => {
       // Add STATIC_RENDER boolean to window as a UI helper. This allows the UI to
       // make decisions based on whether or not this is a static render. This is
       // especially useful for animations that shouldn't be pre-rendered.
-      let content = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
+      let content = utils.readFileSync(`${cwd}/public/index.html`);
       content = content.replace('</head>', '<script>window.STATIC_RENDER = true;</script></head>');
       fs.writeFileSync(`${cwd}/public/index.html`, content);
 
@@ -70,7 +70,7 @@ const build = (config = { silent: false, static: false }) => {
           prod.kill('SIGINT');
 
           // Remove STATIC_RENDER boolean from the final code
-          content = fs.readFileSync(`${cwd}/public/index.html`, { encoding: 'utf8' });
+          content = utils.readFileSync(`${cwd}/public/index.html`);
           content = content.replace('<script>window.STATIC_RENDER = true;</script>', '');
           fs.writeFileSync(`${cwd}/public/index.html`, content);
 
@@ -82,6 +82,7 @@ const build = (config = { silent: false, static: false }) => {
 
   // If not using the static build task, just synchronously run the build
   runBuild();
+
   return null;
 };
 

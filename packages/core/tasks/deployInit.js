@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const ora = require('ora');
 const AWS = require('aws-sdk');
 

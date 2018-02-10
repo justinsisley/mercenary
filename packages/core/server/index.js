@@ -1,6 +1,4 @@
 /* eslint-disable import/no-unresolved */
-
-const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const express = require('express');
@@ -16,14 +14,13 @@ const getIp = require('ip');
 const basicAuth = require('basic-auth-connect');
 const toobusy = require('toobusy-js');
 const gracefulExit = require('express-graceful-exit');
+const utils = require('../utils');
 const config = require('../config');
 const middleware = require('./middleware');
-const utils = require('./utils');
 
 // Configurable values
 const ENV = config.env;
 const EXPRESS_PORT = config.expressPort;
-const CLOUDWATCH = config.cloudwatch;
 const NETDATA_USERNAME = config.netdata.username;
 const NETDATA_PASSWORD = config.netdata.password;
 const STORYBOOK_USERNAME = config.storybook.username;
@@ -36,31 +33,14 @@ const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 
 // References to important files and directories
 const cwd = process.cwd();
+const staticPaths = config.static;
 const staticDir = path.join(cwd, './public/static');
-const staticPaths = require(path.join(cwd, 'config.js')).static;
 const storybookDir = path.join(cwd, './public/storybook');
 
-// Create a lookup for static pages so we don't have to read them from disk
-// on each request
-const staticPageLookup = {};
-if (
-  (ENV === 'production' || ENV === 'local') &&
-  staticPaths
-) {
-  staticPaths.forEach((staticPath) => {
-    let pathName = staticPath;
-    let fileName = staticPath.replace('/', '');
-
-    if (staticPath === '/') {
-      pathName = 'index';
-      fileName = 'index';
-    }
-
-    staticPageLookup[pathName] = fs.readFileSync(
-      path.join(cwd, `./public/pages/${fileName}.html`),
-      { encoding: 'utf8' }
-    );
-  });
+// Pre-read and cache static pages
+let staticPageCache = {};
+if (ENV === 'production' || ENV === 'local') {
+  staticPageCache = utils.createStaticPageCache();
 }
 
 // Configure logging transports
@@ -69,23 +49,17 @@ const winstonTransports = [
 ];
 
 // Add CloudWatch transport in production if configured
-if (
-  ENV === 'production' &&
-  CLOUDWATCH.region &&
-  CLOUDWATCH.accessKeyId &&
-  CLOUDWATCH.secretAccessKey &&
-  CLOUDWATCH.logGroupName
-) {
+if (ENV === 'production') {
   winstonTransports.push(
     new WinstonCloudwatch({
-      logGroupName: CLOUDWATCH.logGroupName,
+      logGroupName: `${config.aws.applicationName}_${config.aws.environmentName}`,
       logStreamName() {
         // Spread log streams across dates as the server stays up
         return new Date().toISOString().split('T')[0];
       },
-      awsRegion: CLOUDWATCH.region,
-      awsAccessKeyId: CLOUDWATCH.accessKeyId,
-      awsSecretKey: CLOUDWATCH.secretAccessKey,
+      awsRegion: config.aws.region,
+      awsAccessKeyId: config.aws.accessKeyId,
+      awsSecretKey: config.aws.secretAccessKey,
       jsonMessage: true,
     }),
   );
@@ -146,7 +120,8 @@ if (process.env.MAINTENANCE) {
 // so we can maintain standard error behavior.
 const middlewarePath = './server/middleware.js';
 if (utils.fileExists(middlewarePath)) {
-  const runMiddleware = require(path.join(cwd, middlewarePath)); // eslint-disable-line
+  // eslint-disable-next-line global-require
+  const runMiddleware = require(path.join(cwd, middlewarePath));
 
   if (typeof runMiddleware === 'function') {
     runMiddleware(app);
@@ -161,7 +136,8 @@ if (utils.fileExists(middlewarePath)) {
 const localServerPath = './server/index.js';
 if (utils.fileExists(localServerPath)) {
   const apiHandler = (req, res, next) => {
-    require(path.join(cwd, localServerPath))(req, res, next); // eslint-disable-line
+    // eslint-disable-next-line global-require
+    require(path.join(cwd, localServerPath))(req, res, next);
   };
 
   app.use('/api', apiHandler);
@@ -182,10 +158,7 @@ if (ENV === 'development') {
 
   // Keep the public index page in memory to prevent re-reading it from disk
   // on each request
-  const publicIndexFile = fs.readFileSync(
-    path.join(cwd, './public/index.html'),
-    { encoding: 'utf8' }
-  );
+  const publicIndexFile = utils.readFileSync(path.join(cwd, './public/index.html'));
 
   // If in production or local mode, and the index page is a static path,
   // send the static version
@@ -195,7 +168,7 @@ if (ENV === 'development') {
     staticPaths.indexOf('/') > -1
   ) {
     app.get('/', (req, res) => {
-      res.send(staticPageLookup.index);
+      res.send(staticPageCache.index);
     });
   }
 
@@ -222,9 +195,9 @@ if (ENV === 'development') {
     // If in production or local mode, and the page is a static path, send the static version
     if (
       (ENV === 'production' || ENV === 'local') &&
-      staticPageLookup[req.originalUrl]
+      staticPageCache[req.originalUrl]
     ) {
-      res.send(staticPageLookup[req.originalUrl]);
+      res.send(staticPageCache[req.originalUrl]);
     } else {
       res.send(publicIndexFile);
     }
@@ -237,7 +210,8 @@ app.use(expressWinston.errorLogger({ transports: winstonTransports }));
 // Pass the Express app to the user's custom error handler function.
 const errorHandlerPath = './server/errorHandler.js';
 if (utils.fileExists(errorHandlerPath)) {
-  const errorHandler = require(path.join(cwd, errorHandlerPath)); // eslint-disable-line
+  // eslint-disable-next-line global-require
+  const errorHandler = require(path.join(cwd, errorHandlerPath));
 
   if (typeof errorHandler === 'function') {
     app.use(errorHandler);

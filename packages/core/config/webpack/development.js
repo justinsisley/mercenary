@@ -82,27 +82,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
 
     // Generate and inject favicon
-    new FaviconsWebpackPlugin({
-      logo: shared.manifestIcon,
-      // The prefix for all image files
-      prefix: 'icons/',
-      // Inject the html into the html-webpack-plugin
-      inject: true,
-      // Which icons should be generated
-      // (see https://github.com/haydenbleasel/favicons#usage)
-      icons: {
-        android: false,
-        appleIcon: false,
-        appleStartup: false,
-        coast: false,
-        favicons: true,
-        firefox: false,
-        opengraph: false,
-        twitter: false,
-        yandex: false,
-        windows: false,
-      },
-    }),
+    new FaviconsWebpackPlugin(shared.faviconsWebpackPlugin),
 
     // Inject generated assets into HTML file
     new HtmlWebpackPlugin({

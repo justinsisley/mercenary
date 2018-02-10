@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 const glob = require('glob');
+const utils = require('../utils');
 const build = require('./build');
 const startProd = require('./startProd');
 
@@ -35,7 +36,7 @@ const e2e = () => {
 
     // Write each test to the test file
     files.forEach((filePath) => {
-      const content = fs.readFileSync(filePath, { encoding: 'utf8' });
+      const content = utils.readFileSync(filePath);
 
       testContent += `\n\n${content}`;
     });

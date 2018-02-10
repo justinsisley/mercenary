@@ -4,10 +4,12 @@ const join = require('path').join;
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 const minify = require('html-minifier').minify;
+const config = require('../config');
+const utils = require('../utils');
 
 const cwd = process.cwd();
 
-const staticPaths = require(join(cwd, 'config.js')).static;
+const staticPaths = config.static;
 const destination = join(cwd, '/public/pages');
 
 const host = 'http://localhost:3325';
@@ -33,23 +35,6 @@ async function renderPage(path) {
       document.body.appendChild(removedScript);
     }
 
-    const staticEscape = (() => {
-      const UNSAFE_CHARS_REGEXP = /[<>\/\u2028\u2029]/g; // eslint-disable-line
-      // Mapping of unsafe HTML and invalid JavaScript line terminator chars to their
-      // Unicode char counterparts which are safe to use in JavaScript strings.
-      const ESCAPED_CHARS = {
-        '<': '\\u003C',
-        '>': '\\u003E',
-        '/': '\\u002F',
-        '\u2028': '\\u2028',
-        '\u2029': '\\u2029'
-      };
-      const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
-      return str => str.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
-    })();
-
-    const stringify = obj => staticEscape(JSON.stringify(obj));
-
     let scriptTagText = '';
     let state;
 
@@ -59,7 +44,7 @@ async function renderPage(path) {
 
     if (state && Object.keys(state).length !== 0) {
       scriptTagText += Object.keys(state)
-        .map(key => `window["${key}"]=${stringify(state[key])};`)
+        .map(key => `window["${key}"]=${utils.escapeJSON(state[key])};`)
         .join('');
     }
 
@@ -67,6 +52,7 @@ async function renderPage(path) {
       const scriptTag = document.createElement('script');
       scriptTag.type = 'text/javascript';
       scriptTag.text = scriptTagText;
+
       const firstScript = Array.from(document.scripts)[0];
       firstScript.parentNode.insertBefore(scriptTag, firstScript);
     }

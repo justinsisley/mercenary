@@ -7,7 +7,6 @@ const configDir = path.join(__dirname, '../config');
 const npmBin = path.join(cwd, './node_modules/.bin');
 
 // Run Mocha tests on every code change
-// TODO: configurable test file glob
 const testWatch = () => {
   // Check for existence of test files before attempting to execute
   glob(`${cwd}/?(client|server)/**/unit.js`, (error, files) => {

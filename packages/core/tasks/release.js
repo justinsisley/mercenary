@@ -3,16 +3,15 @@ const fs = require('fs');
 const join = require('path').join;
 const execSync = require('child_process').execSync;
 const inquirer = require('inquirer');
+const config = require('../config');
+const utils = require('../utils');
 
 const cwd = process.cwd();
 
 // Get the values from the host project's package.json
 const packagePath = join(cwd, 'package.json');
-const packageData = fs.readFileSync(packagePath, { encoding: 'utf8' });
-const packageJson = JSON.parse(packageData);
 
 // Get the values from the host project's config file
-const config = require(join(cwd, 'config.js'));
 const github = config.github;
 
 // Display all commit messages since the last release
@@ -28,7 +27,7 @@ function getReleaseNotes() {
 // Bump the package.json version
 async function bumpVersion() {
   return new Promise((resolve) => {
-    const [major, minor, patch] = packageJson.version.split('.').map(str => +str);
+    const [major, minor, patch] = utils.packageJSON.version.split('.').map(str => +str);
 
     inquirer.prompt([
       {
@@ -52,9 +51,9 @@ async function bumpVersion() {
         ],
       },
     ]).then(({ version }) => {
-      packageJson.version = `${version}`;
+      utils.packageJSON.version = `${version}`;
 
-      fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2));
+      fs.writeFileSync(packagePath, JSON.stringify(utils.packageJSON, null, 2));
 
       resolve(version);
     });

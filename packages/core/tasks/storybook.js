@@ -2,13 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const execSync = require('child_process').execSync;
 const glob = require('glob');
+const utils = require('../utils');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config/storybook');
 const configTemplateFile = path.join(configDir, 'config.template.js');
 const configFile = path.join(configDir, 'config.js');
 
-const configTemplateContent = fs.readFileSync(configTemplateFile, { encoding: 'utf8' });
+const configTemplateContent = utils.readFileSync(configTemplateFile);
 
 const files = glob.sync(`${cwd}/client/**/story.js`).map((file) => {
   return `require('${file}');`;

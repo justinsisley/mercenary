@@ -1,47 +1,39 @@
 const path = require('path');
 const toobusy = require('toobusy-js');
 const config = require('../config');
-const utils = require('./utils');
+const utils = require('../utils');
 
 const cwd = process.cwd();
 
 const HOSTNAME = config.hostname;
-const WWW = config.www;
-const FAILOVER = config.failover;
+const FORCE_WWW = /^www\./.test(HOSTNAME);
 
-toobusy.maxLag(FAILOVER.maxLag);
-toobusy.interval(FAILOVER.interval);
+toobusy.maxLag(70);
+toobusy.interval(500);
 
 const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');
 const default503Response = 'Service Unavailable';
 
 function enforceHTTPS(req, res, next) {
-  let hostname = HOSTNAME;
-
   // Prevent hostname spoofing
-  if (req.hostname.indexOf(hostname) === -1) {
+  if (req.hostname.indexOf(HOSTNAME) === -1) {
     res.sendStatus(403);
     return;
   }
 
-  // Configure hostname if forcing www subdomain
-  if (WWW.force) {
-    hostname = `www.${hostname}`;
-  }
-
   // Construct the "true" request URL
-  const finalUrl = `https://${hostname}${req.originalUrl}`;
+  const finalUrl = `https://${HOSTNAME}${req.originalUrl}`;
   const hasWWW = req.hostname.indexOf('www.') === 0;
 
   // Force www subdomain
-  if (WWW.force && !hasWWW) {
+  if (FORCE_WWW && !hasWWW) {
     res.redirect(301, finalUrl);
     return;
   }
 
   // Strip www subdomain
-  if (!WWW.force && hasWWW) {
+  if (!FORCE_WWW && hasWWW) {
     res.redirect(301, finalUrl);
     return;
   }

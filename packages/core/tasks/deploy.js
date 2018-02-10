@@ -1,6 +1,4 @@
 /* eslint-disable import/no-unresolved */
-// http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/top-level-namespace.html
-// http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html
 const fs = require('fs');
 const join = require('path').join;
 const execSync = require('child_process').execSync;
@@ -8,27 +6,20 @@ const ora = require('ora');
 const AWS = require('aws-sdk');
 const build = require('./build');
 const docker = require('./docker').dockerFiles;
+const config = require('../config');
+const utils = require('../utils');
 
 const cwd = process.cwd();
 
 // Get the values from the host project's config file
-const config = require(join(cwd, 'config.js'));
-const deploy = config.deploy;
 const staticPaths = config.static;
-
-// Get the values from the host project's package.json
-const packagePath = join(cwd, 'package.json');
-const packageData = fs.readFileSync(packagePath, { encoding: 'utf8' });
-const packageJson = JSON.parse(packageData);
-
-// AWS constants
-const accessKeyId = deploy.aws.iam.accessKeyId;
-const secretAccessKey = deploy.aws.iam.secretAccessKey;
-const region = deploy.aws.elasticBeanstalk.region;
-const ebApplicationName = deploy.aws.elasticBeanstalk.applicationName;
-const ebEnvironmentName = deploy.aws.elasticBeanstalk.environmentName;
-const s3Bucket = deploy.aws.s3.bucket;
-const containerPort = 3325;
+const containerPort = config.expressPort;
+const accessKeyId = config.aws.accessKeyId;
+const secretAccessKey = config.aws.secretAccessKey;
+const region = config.aws.region;
+const applicationName = config.aws.applicationName;
+const environmentName = config.aws.environmentName;
+const s3Bucket = config.aws.s3Bucket;
 
 // File paths
 const publicDir = join(cwd, './public');
@@ -107,7 +98,7 @@ async function uploadToS3({ bucket, key, data }) {
 async function createAppVersion({ bucket, key, versionLabel }) {
   return new Promise((resolve, reject) => {
     elasticbeanstalk.createApplicationVersion({
-      ApplicationName: ebApplicationName,
+      ApplicationName: applicationName,
       Process: true,
       SourceBundle: {
         S3Bucket: bucket,
@@ -129,7 +120,7 @@ async function createAppVersion({ bucket, key, versionLabel }) {
 async function updateEBEnv(versionLabel) {
   return new Promise((resolve, reject) => {
     elasticbeanstalk.updateEnvironment({
-      EnvironmentName: ebEnvironmentName,
+      EnvironmentName: environmentName,
       VersionLabel: `${versionLabel}`, // must be a string
     }, (deployError) => {
       if (deployError) {
@@ -147,8 +138,8 @@ function sendSlackMessage({ semver, commitHash }) {
   const payload = {
     text: `
       A new deployment has been initiated.
-      Application: ${ebApplicationName}
-      Environment: ${ebEnvironmentName}
+      Application: ${applicationName}
+      Environment: ${environmentName}
       Version: ${semver}
       Commit: ${commitHash}
     `,
@@ -156,7 +147,7 @@ function sendSlackMessage({ semver, commitHash }) {
 
   execSync(`curl --silent -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
-  ${deploy.slackWebHookUrl}`);
+  ${config.slackWebHookUrl}`);
 }
 
 // Clean up the workspace
@@ -169,7 +160,7 @@ function clean(bundleName) {
 }
 
 module.exports = async () => {
-  const semver = packageJson.version;
+  const semver = utils.packageJSON.version;
   const commitHash = getCommitHash();
   const versionLabel = getVersionLabel(semver, commitHash);
 
@@ -219,7 +210,7 @@ module.exports = async () => {
     return;
   }
 
-  if (deploy.slackWebHookUrl) {
+  if (config.slackWebHookUrl) {
     spinner.text = 'Sending Slack notification';
     sendSlackMessage({ semver, commitHash });
   }
@@ -227,6 +218,6 @@ module.exports = async () => {
   spinner.text = 'Cleaning up workspace';
   clean(bundleName);
 
-  spinner.succeed(`Version ${versionLabel} deployed to ${ebApplicationName} / ${ebEnvironmentName}`);
+  spinner.succeed(`Version ${versionLabel} deployed to ${applicationName} / ${environmentName}`);
   console.log('');
 };

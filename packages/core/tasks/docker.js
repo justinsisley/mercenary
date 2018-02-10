@@ -1,6 +1,7 @@
-const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const cp = require('child_process');
+const utils = require('../utils');
 
 const cwd = process.cwd();
 
@@ -10,13 +11,8 @@ const dockerIgnoreSource = path.join(__dirname, '../dockerignore');
 const dockerFileDest = `${cwd}/Dockerfile`;
 const dockerIgnoreDest = `${cwd}/.dockerignore`;
 
-const readFile = filepath => fs.readFileSync(filepath, { encoding: 'utf8' });
-
-// Host project's package.json
-const packageJson = readFile(`${cwd}/package.json`);
-const parsedPackageJson = JSON.parse(packageJson);
-const appName = parsedPackageJson.name;
-const appVersion = parsedPackageJson.version;
+const appName = utils.packageJSON.name;
+const appVersion = utils.packageJSON.version;
 const buildTag = `${appName}_${appVersion}`;
 
 // Clean up the workspace
@@ -27,7 +23,7 @@ function clean() {
 
 // Add Docker files to host project's root
 function dockerFiles(command = './node_modules/.bin/merc --prod') {
-  let dockerFile = readFile(dockerFileSource);
+  let dockerFile = utils.readFileSync(dockerFileSource);
   dockerFile = dockerFile.replace('{{command}}', command);
 
   fs.writeFileSync(dockerFileDest, dockerFile);

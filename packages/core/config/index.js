@@ -1,57 +1,44 @@
-/* eslint-disable import/no-unresolved */
-const path = require('path');
-const generatePassword = require('password-generator');
+const utils = require('../utils');
 
-// Handle config.js overrides
-const cwd = process.cwd();
-const projectConfigPath = path.join(cwd, './config.js');
-const projectConfig = require(projectConfigPath); // eslint-disable-line
-
-// Create fallback credentials for private routes
-const randomInt = (min, max) => Math.floor(Math.random() * (max - (min + 1))) + min;
-const netdataUsername = generatePassword(randomInt(18, 32), false);
-const netdataPassword = generatePassword(randomInt(18, 32), false);
-const storybookUsername = generatePassword(randomInt(18, 32), false);
-const storybookPassword = generatePassword(randomInt(18, 32), false);
+const projectConfig = utils.projectConfig;
+const { aws, github, netdata, storybook } = projectConfig;
 
 module.exports = {
   env: process.env.NODE_ENV || 'development',
 
-  // The Express server's port
-  expressPort: process.env.EXPRESS_PORT || 3325,
+  expressPort: 3325,
+  webpackDevServerPort: 3326,
 
-  // The webpack dev server's port
-  webpackDevServerPort: process.env.WEBPACK_DEV_SERVER_PORT || 3326,
+  webpack: projectConfig.webpack,
 
-  // The hostname to use when deployed
-  hostname: process.env.APP_HOSTNAME || projectConfig.deploy.hostname,
+  static: projectConfig.static,
 
-  // Settings for the www subdomain
-  www: process.env.WWW || projectConfig.deploy.www,
+  hostname: process.env.APP_HOSTNAME || projectConfig.hostname,
 
-  // Configure node-toobusy values for graceful server failover
-  failover: {
-    maxLag: process.env.FAILOVER_MAX_LAG || projectConfig.deploy.failover.maxLag,
-    interval: process.env.FAILOVER_INTERVAL || projectConfig.deploy.failover.interval,
+  aws: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || aws.accessKeyId,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || aws.secretAccessKey,
+    region: process.env.AWS_REGION || aws.region,
+    applicationName: process.env.AWS_APP_NAME || aws.applicationName,
+    environmentName: process.env.AWS_ENV_NAME || aws.environmentName,
+    s3Bucket: process.env.AWS_S3_BUCKET || aws.s3Bucket,
   },
 
-  // Configure Loggly for production server logs
-  cloudwatch: {
-    region: process.env.CLOUDWATCH_REGION || projectConfig.deploy.aws.cloudwatch.region,
-    accessKeyId: process.env.CLOUDWATCH_ACCESS_KEY_ID || projectConfig.deploy.aws.cloudwatch.accessKeyId,
-    secretAccessKey: process.env.CLOUDWATCH_SECRET_ACCESS_KEY || projectConfig.deploy.aws.cloudwatch.secretAccessKey,
-    logGroupName: process.env.CLOUDWATCH_LOG_GROUP_NAME || projectConfig.deploy.aws.cloudwatch.logGroupName,
+  github: {
+    owner: process.env.GITHUB_OWNER || github.owner,
+    repo: process.env.GITHUB_REPO || github.repo,
+    token: process.env.GITHUB_TOKEN || github.token,
   },
 
-  // Configure access to netdata dashboard
+  slackWebHookUrl: process.env.SLACK_WEBHOOK_URL || projectConfig.slackWebHookUrl,
+
   netdata: {
-    username: process.env.NETDATA_USERNAME || projectConfig.deploy.netdata.username || netdataUsername,
-    password: process.env.NETDATA_PASSWORD || projectConfig.deploy.netdata.password || netdataPassword,
+    username: process.env.NETDATA_USERNAME || netdata.username || utils.randomPassword(),
+    password: process.env.NETDATA_PASSWORD || netdata.password || utils.randomPassword(),
   },
 
-  // Configure access to storybook
   storybook: {
-    username: process.env.STORYBOOK_USERNAME || projectConfig.deploy.storybook.username || storybookUsername,
-    password: process.env.STORYBOOK_PASSWORD || projectConfig.deploy.storybook.password || storybookPassword,
+    username: process.env.STORYBOOK_USERNAME || storybook.username || utils.randomPassword(),
+    password: process.env.STORYBOOK_PASSWORD || storybook.password || utils.randomPassword(),
   },
 };
