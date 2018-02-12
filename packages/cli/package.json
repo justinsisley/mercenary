@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "3.14.2",
+  "version": "3.17.1",
   "description": "CLI for mercenary",
   "bin": {
     "mercenary": "./index.js"
@@ -15,7 +15,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "chalk": "2.3.0",
+    "chalk": "2.3.1",
     "cross-spawn": "6.0.4",
     "extfs": "0.0.7",
     "fs-extra": "5.0.0",

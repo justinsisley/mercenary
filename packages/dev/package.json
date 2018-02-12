@@ -1,6 +1,6 @@
 {
   "name": "mercenary-dev",
-  "version": "3.16.3",
+  "version": "3.17.1",
   "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -9,13 +9,13 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@storybook/react": "3.3.12",
+    "@storybook/react": "3.3.13",
     "aws-sdk": "2.192.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-preset-mercenary": "3.14.2",
     "chai": "4.1.2",
-    "chalk": "2.3.0",
+    "chalk": "2.3.1",
     "css-loader": "0.28.9",
     "css.escape": "1.5.1",
     "dom-storage": "2.0.2",
@@ -42,7 +42,7 @@
     "react": "16.2.0",
     "react-addons-shallow-compare": "15.6.2",
     "react-dom": "16.2.0",
-    "sinon": "4.2.3",
+    "sinon": "4.3.0",
     "style-loader": "0.20.1",
     "svg-inline-loader": "0.8.0",
     "uglifyjs-webpack-plugin": "1.1.8",
