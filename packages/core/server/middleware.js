@@ -5,8 +5,8 @@ const utils = require('../utils');
 
 const cwd = process.cwd();
 
-const HOSTNAME = config.hostname;
-const FORCE_WWW = /^www\./.test(HOSTNAME);
+const { APP_HOSTNAME } = config;
+const FORCE_WWW = /^www\./.test(APP_HOSTNAME);
 
 toobusy.maxLag(70);
 toobusy.interval(500);
@@ -17,13 +17,13 @@ const default503Response = 'Service Unavailable';
 
 function enforceHTTPS(req, res, next) {
   // Prevent hostname spoofing
-  if (req.hostname.indexOf(HOSTNAME) === -1) {
+  if (req.hostname.indexOf(APP_HOSTNAME) === -1) {
     res.sendStatus(403);
     return;
   }
 
   // Construct the "true" request URL
-  const finalUrl = `https://${HOSTNAME}${req.originalUrl}`;
+  const finalUrl = `https://${APP_HOSTNAME}${req.originalUrl}`;
   const hasWWW = req.hostname.indexOf('www.') === 0;
 
   // Force www subdomain

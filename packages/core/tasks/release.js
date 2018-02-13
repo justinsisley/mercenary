@@ -12,7 +12,7 @@ const cwd = process.cwd();
 const packagePath = join(cwd, 'package.json');
 
 // Get the values from the host project's config file
-const github = config.github;
+const { GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN } = config;
 
 // Display all commit messages since the last release
 function getReleaseNotes() {
@@ -72,12 +72,7 @@ function pushGitTag(version) {
 
 // Create the release in Github
 function createRelease({ semver, releaseNotes }) {
-  if (
-    !github ||
-    !github.owner ||
-    !github.repo ||
-    !github.token
-  ) {
+  if (!GITHUB_OWNER || !GITHUB_REPO || !GITHUB_TOKEN) {
     console.log('Commits since last release:\n');
     console.log(releaseNotes);
     return;
@@ -92,9 +87,9 @@ function createRelease({ semver, releaseNotes }) {
   execSync(`
     curl --silent -X POST \
     -H 'Content-type: application/json' \
-    -H 'Authorization: token ${github.token}' \
+    -H 'Authorization: token ${GITHUB_TOKEN}' \
     --data '${JSON.stringify(payload)}' \
-    https://api.github.com/repos/${github.owner}/${github.repo}/releases
+    https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases
   `);
 }
 

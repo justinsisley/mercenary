@@ -14,12 +14,12 @@ const cwd = process.cwd();
 // Get the values from the host project's config file
 const staticPaths = config.static;
 const containerPort = config.expressPort;
-const accessKeyId = config.aws.accessKeyId;
-const secretAccessKey = config.aws.secretAccessKey;
-const region = config.aws.region;
-const applicationName = config.aws.applicationName;
-const environmentName = config.aws.environmentName;
-const s3Bucket = config.aws.s3Bucket;
+const accessKeyId = config.AWS_ACCESS_KEY_ID;
+const secretAccessKey = config.AWS_SECRET_ACCESS_KEY;
+const region = config.AWS_REGION;
+const applicationName = config.AWS_APP_NAME;
+const environmentName = config.AWS_ENV_NAME;
+const s3Bucket = config.AWS_S3_BUCKET;
 
 // File paths
 const publicDir = join(cwd, './public');
@@ -147,7 +147,7 @@ function sendSlackMessage({ semver, commitHash }) {
 
   execSync(`curl --silent -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
-  ${config.slackWebHookUrl}`);
+  ${config.SLACK_WEBHOOK_URL}`);
 }
 
 // Update release version for bug tracking in Sentry
@@ -158,7 +158,7 @@ function updateSentryRelease({ semver }) {
 
   execSync(`curl --silent -X POST -H 'Content-type: application/json' \
   --data '${JSON.stringify(payload)}' \
-  ${config.sentryWebHookUrl}`);
+  ${config.SENTRY_WEBHOOK_URL}`);
 }
 
 // Clean up the workspace
@@ -221,12 +221,12 @@ module.exports = async () => {
     return;
   }
 
-  if (config.slackWebHookUrl) {
+  if (config.SLACK_WEBHOOK_URL) {
     spinner.text = 'Sending Slack notification';
     sendSlackMessage({ semver, commitHash });
   }
 
-  if (config.sentryWebHookUrl) {
+  if (config.SENTRY_WEBHOOK_URL) {
     spinner.text = 'Updating Sentry release';
     updateSentryRelease({ semver, commitHash });
   }

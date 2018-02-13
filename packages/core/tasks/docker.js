@@ -3,10 +3,16 @@ const path = require('path');
 const cp = require('child_process');
 const utils = require('../utils');
 
-const cwd = process.cwd();
+const pm2 = require.resolve('.bin/pm2-docker');
+const serverIndex = path.join(__dirname, '../server/index.js');
+
+// Default production command
+const prodCmd = `NODE_ENV=production ${pm2} "${serverIndex}" -i 0 --env="production"`;
 
 const dockerFileSource = path.join(__dirname, '../Dockerfile');
 const dockerIgnoreSource = path.join(__dirname, '../dockerignore');
+
+const cwd = process.cwd();
 
 const dockerFileDest = `${cwd}/Dockerfile`;
 const dockerIgnoreDest = `${cwd}/.dockerignore`;
@@ -22,7 +28,7 @@ function clean() {
 }
 
 // Add Docker files to host project's root
-function dockerFiles(command = './node_modules/.bin/merc --prod') {
+function dockerFiles(command = prodCmd) {
   let dockerFile = utils.readFileSync(dockerFileSource);
   dockerFile = dockerFile.replace('{{command}}', command);
 

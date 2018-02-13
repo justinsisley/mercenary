@@ -17,13 +17,14 @@ const utils = require('../utils');
 const config = require('../config');
 const middleware = require('./middleware');
 
-// Configurable values
-const ENV = config.env;
-const EXPRESS_PORT = config.expressPort;
-const NETDATA_USERNAME = config.netdata.username;
-const NETDATA_PASSWORD = config.netdata.password;
-const STORYBOOK_USERNAME = config.storybook.username;
-const STORYBOOK_PASSWORD = config.storybook.password;
+const {
+  env: ENV,
+  expressPort: EXPRESS_PORT,
+  NETDATA_USERNAME,
+  NETDATA_PASSWORD,
+  STORYBOOK_USERNAME,
+  STORYBOOK_PASSWORD,
+} = config;
 
 // Various references to this local server
 const localhost = `http://localhost:${EXPRESS_PORT}`;
@@ -51,14 +52,14 @@ const winstonTransports = [
 if (ENV === 'production') {
   winstonTransports.push(
     new WinstonCloudwatch({
-      logGroupName: `${config.aws.applicationName}_${config.aws.environmentName}`,
+      logGroupName: `${config.AWS_APP_NAME}_${config.AWS_ENV_NAME}`,
       logStreamName() {
         // Spread log streams across dates as the server stays up
         return new Date().toISOString().split('T')[0];
       },
-      awsRegion: config.aws.region,
-      awsAccessKeyId: config.aws.accessKeyId,
-      awsSecretKey: config.aws.secretAccessKey,
+      awsRegion: config.AWS_REGION,
+      awsAccessKeyId: config.AWS_ACCESS_KEY_ID,
+      awsSecretKey: config.AWS_SECRET_ACCESS_KEY,
       jsonMessage: true,
     }),
   );

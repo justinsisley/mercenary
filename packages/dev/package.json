@@ -1,6 +1,6 @@
 {
   "name": "mercenary-dev",
-  "version": "3.17.1",
+  "version": "3.18.0",
   "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@storybook/react": "3.3.13",
-    "aws-sdk": "2.192.0",
+    "aws-sdk": "2.193.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-preset-mercenary": "3.14.2",

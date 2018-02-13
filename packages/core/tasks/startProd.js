@@ -4,6 +4,9 @@ const cp = require('child_process');
 const pm2 = require.resolve('.bin/pm2-docker');
 const serverIndex = path.join(__dirname, '../server/index.js');
 
+// FIXME: since the true prod via docker doesn't use this, this function should
+// be cleaned up. In the true prod via docker task, we don't want to have the
+// extra overhead of running the task with NPM. We want to run it directly.
 const prod = (options = { async: false, mode: 'production' }) => {
   let exec = cp.execSync;
 
