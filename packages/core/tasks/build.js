@@ -6,6 +6,7 @@ const minify = require('html-minifier').minify;
 const utils = require('../utils');
 const startProd = require('./startProd');
 const buildStatic = require('./buildStatic');
+const storybook = require('./storybook');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
@@ -39,6 +40,10 @@ const build = (config = { silent: false, static: false }) => {
     });
 
     fs.writeFileSync(`${cwd}/public/index.html`, minifiedIndexFile);
+
+    // Build storybook
+    // FIXME: this is a side effect... no good
+    storybook.build();
   };
 
   if (config.static) {

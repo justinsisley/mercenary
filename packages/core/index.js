@@ -24,7 +24,6 @@ if (argv.storybook) {
 
 if (argv.build) {
   require('./tasks/build')({ static: true }); // eslint-disable-line
-  require('./tasks/storybook').build(); // eslint-disable-line
 }
 
 if (argv.start) {
