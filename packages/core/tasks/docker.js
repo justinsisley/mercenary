@@ -3,10 +3,9 @@ const path = require('path');
 const cp = require('child_process');
 const utils = require('../utils');
 
-const pm2 = require.resolve('.bin/pm2-docker');
-const serverIndex = path.join(__dirname, '../server/index.js');
-
 // Default production command
+const pm2 = './node_modules/pm2/bin/pm2-docker';
+const serverIndex = './node_modules/mercenary-core/server/index.js';
 const prodCmd = `NODE_ENV=production ${pm2} start "${serverIndex}" -i 0 --env="production"`;
 
 const dockerFileSource = path.join(__dirname, '../Dockerfile');
