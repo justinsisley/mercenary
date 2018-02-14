@@ -7,7 +7,7 @@ const pm2 = require.resolve('.bin/pm2-docker');
 const serverIndex = path.join(__dirname, '../server/index.js');
 
 // Default production command
-const prodCmd = `NODE_ENV=production ${pm2} "${serverIndex}" -i 0 --env="production"`;
+const prodCmd = `NODE_ENV=production ${pm2} start "${serverIndex}" -i 0 --env="production"`;
 
 const dockerFileSource = path.join(__dirname, '../Dockerfile');
 const dockerIgnoreSource = path.join(__dirname, '../dockerignore');
