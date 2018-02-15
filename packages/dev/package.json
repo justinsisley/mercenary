@@ -1,6 +1,6 @@
 {
   "name": "mercenary-dev",
-  "version": "3.18.1",
+  "version": "3.18.4",
   "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@storybook/react": "3.3.13",
-    "aws-sdk": "2.194.0",
+    "aws-sdk": "2.195.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-preset-mercenary": "3.14.2",
@@ -20,7 +20,7 @@
     "css.escape": "1.5.1",
     "dom-storage": "2.0.2",
     "eslint": "4.17.0",
-    "eslint-config-mercenary": "^3.16.2",
+    "eslint-config-mercenary": "3.16.2",
     "eslint-loader": "1.9.0",
     "extract-text-webpack-plugin": "3.0.2",
     "favicons-webpack-plugin": "0.0.7",
@@ -32,6 +32,7 @@
     "html-webpack-inline-source-plugin": "0.0.9",
     "html-webpack-plugin": "2.30.1",
     "husky": "0.14.3",
+    "image-webpack-loader": "4.1.0",
     "inquirer": "5.1.0",
     "jsdom": "11.6.2",
     "mocha": "5.0.1",

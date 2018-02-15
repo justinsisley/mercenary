@@ -13,7 +13,7 @@ const publicDir = path.join(cwd, './public');
 const semver = utils.packageJSON.version;
 
 // Files of interest
-const jsEntryPoint = path.join(clientDir, '/index');
+const jsEntryPoint = path.join(clientDir, '/index.js');
 const htmlSource = path.join(clientDir, '/index.html');
 const htmlCompiled = path.join(publicDir, '/index.html');
 const favicon = path.join(clientDir, '/icon.png');
@@ -30,6 +30,7 @@ const regex = {
   css: /\.css$/,
   bitmaps: /\.(jpe?g|png|gif)(\?v=[a-z0-9.]+)?$/,
   svg: /\.svg$/,
+  images: /\.(jpe?g|png|gif|svg)$/,
   fonts: /\.(ttf|eot|svg|woff(2)?)(\?v=[a-z0-9.]+)?$/,
   client: /client/,
   server: /server/,
@@ -43,10 +44,10 @@ const output = {
   // The output.path from the view of the Javascript / HTML page
   publicPath: '/',
   // The filename of the entry chunk as relative path inside the output.path directory
-  filename: 'static/js/[hash].js',
+  filename: 'static/js/[name].[chunkhash].js',
   // Determines the name of on-demand loaded chunk files.
   // This works in conjunction with the bundle-splitting pattern used in the client.
-  chunkFilename: 'static/js/[chunkhash].js',
+  chunkFilename: 'static/js/chunk.[chunkhash].js',
 };
 
 const loaders = {

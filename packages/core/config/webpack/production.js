@@ -11,7 +11,9 @@ const shared = require('./shared');
 
 module.exports = {
   // The entry point for the bundle
-  entry: shared.jsEntryPoint,
+  entry: {
+    main: shared.jsEntryPoint,
+  },
 
   // Options affecting the output
   output: shared.output,
@@ -19,6 +21,12 @@ module.exports = {
   // Options affecting the normal modules
   module: {
     rules: [
+      // Minify images
+      {
+        test: shared.regex.images,
+        loader: 'image-webpack-loader',
+        enforce: 'pre',
+      },
       // JavaScript and JSX
       {
         test: shared.regex.javascript,
@@ -51,6 +59,34 @@ module.exports = {
       __VERSION__: JSON.stringify(shared.semver),
       // Useful to reduce the size of client-side libraries, e.g. react
       'process.env.NODE_ENV': '"production"',
+    }),
+
+    // Create a vendor.js file
+    new webpack.optimize.CommonsChunkPlugin({
+      // A name of the chunk that will include the dependencies
+      name: 'vendor',
+      // A function that determines which modules to include into this chunk
+      minChunks: module => module.context && module.context.includes('node_modules'),
+    }),
+
+    // This plugin must come after the vendor one (because webpack includes
+    // runtime into the last chunk)
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+      // minChunks: Infinity means that no app modules
+      // will be included into this chunk
+      minChunks: Infinity,
+    }),
+
+    // Create a common.js file for any custom modules that are used in two or
+    // more chunks
+    new webpack.optimize.CommonsChunkPlugin({
+      // A name of the chunk that will include the common dependencies
+      name: 'common',
+      // The plugin will move a module into a common file
+      // only if it’s included into `minChunks` chunks
+      // (Note that the plugin analyzes all chunks, not only entries)
+      minChunks: 2, // 2 is the default value
     }),
 
     // Remove unused assignments to exports property
