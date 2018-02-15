@@ -34,6 +34,7 @@ const copyNpmScripts = () => {
     e2e: 'merc --e2e',
     storybook: 'merc --storybook',
     build: 'merc --build',
+    analyze: 'merc --analyze',
     prod: 'merc --prod',
     'prod:local': 'merc --prodLocal',
     release: 'merc --release',

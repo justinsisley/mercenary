@@ -26,6 +26,10 @@ if (argv.build) {
   require('./tasks/build')({ static: true }); // eslint-disable-line
 }
 
+if (argv.analyze) {
+  require('./tasks/analyze')(); // eslint-disable-line
+}
+
 if (argv.start) {
   require('./tasks/startDev')(); // eslint-disable-line
 }
