@@ -69,15 +69,6 @@ module.exports = {
       minChunks: module => module.context && module.context.includes('node_modules'),
     }),
 
-    // This plugin must come after the vendor one (because webpack includes
-    // runtime into the last chunk)
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime',
-      // minChunks: Infinity means that no app modules
-      // will be included into this chunk
-      minChunks: Infinity,
-    }),
-
     // Create a common.js file for any custom modules that are used in two or
     // more chunks
     new webpack.optimize.CommonsChunkPlugin({
@@ -89,11 +80,22 @@ module.exports = {
       minChunks: 2, // 2 is the default value
     }),
 
+    // Extract the webpack runtime into runtime.js
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+      // minChunks: Infinity means that no app modules
+      // will be included into this chunk
+      minChunks: Infinity,
+    }),
+
     // Remove unused assignments to exports property
     new ShakePlugin(),
 
     // Enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
+
+    // Consistent chunk naming
+    new webpack.HashedModuleIdsPlugin(),
 
     // Minify JavaScript
     new UglifyJsPlugin({

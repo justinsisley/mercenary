@@ -151,7 +151,9 @@ if (ENV === 'development') {
 // Non-development environment configuration
 } else {
   // Proxy static assets to the public/static directory
-  app.use('/static', express.static(staticDir));
+  app.use('/static', express.static(staticDir, {
+    maxAge: '365 days',
+  }));
 
   // Keep the public index page in memory to prevent re-reading it from disk
   // on each request
