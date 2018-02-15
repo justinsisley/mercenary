@@ -18,7 +18,7 @@ const analyze = () => {
     "${webpack}" \
       --display-error-details \
       --config \
-      "${configDir}/webpack/analyze.js" >/dev/null
+      "${configDir}/webpack/analyze.js"
   `, { stdio: 'inherit' });
 
   // Minify the index.html file

@@ -61,31 +61,12 @@ module.exports = {
       'process.env.NODE_ENV': '"production"',
     }),
 
-    // Create a vendor.js file
+    // Extract all node_modules into main chunk
     new webpack.optimize.CommonsChunkPlugin({
-      // A name of the chunk that will include the dependencies
-      name: 'vendor',
-      // A function that determines which modules to include into this chunk
+      name: 'main',
+      children: true,
+      deepChildren: true,
       minChunks: module => module.context && module.context.includes('node_modules'),
-    }),
-
-    // Create a common.js file for any custom modules that are used in two or
-    // more chunks
-    new webpack.optimize.CommonsChunkPlugin({
-      // A name of the chunk that will include the common dependencies
-      name: 'common',
-      // The plugin will move a module into a common file
-      // only if it’s included into `minChunks` chunks
-      // (Note that the plugin analyzes all chunks, not only entries)
-      minChunks: 2, // 2 is the default value
-    }),
-
-    // Extract the webpack runtime into runtime.js
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime',
-      // minChunks: Infinity means that no app modules
-      // will be included into this chunk
-      minChunks: Infinity,
     }),
 
     // Remove unused assignments to exports property
