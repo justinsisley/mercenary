@@ -106,24 +106,21 @@ function runSetup() {
   spinner.text = 'Installing mercenary core dependencies';
   const coreExitCode = await installCorePackage();
   if (coreExitCode !== 0) {
-    console.log(chalk.red(`Failed to install ${corePackage}.`));
-    console.log();
+    spinner.fail(`Failed to install ${corePackage}.`);
     process.exit(1);
   }
 
   spinner.text = 'Installing mercenary dev dependencies';
   const devExitCode = await installDevPackage();
   if (devExitCode !== 0) {
-    console.log(chalk.red(`Failed to install ${devPackage}.`));
-    console.log();
+    spinner.fail(`Failed to install ${devPackage}.`);
     process.exit(1);
   }
 
   spinner.text = 'Installing mercenary starter kit';
   const starterExitCode = await installStarterPackage();
   if (starterExitCode !== 0) {
-    console.log(chalk.red(`Failed to install ${starterPackage}.`));
-    console.log();
+    spinner.fail(`Failed to install ${starterPackage}.`);
     process.exit(1);
   }
 
