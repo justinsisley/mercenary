@@ -9,10 +9,6 @@ const cwd = process.cwd();
 const packageJSONRaw = fs.readFileSync(`${cwd}/package.json`, { encoding: 'utf8' });
 const packageJSON = JSON.parse(packageJSONRaw);
 
-// Host project's config.js file
-const projectConfigPath = path.join(cwd, './config.js');
-const projectConfig = require(projectConfigPath); // eslint-disable-line
-
 const readFileSync = filePath => fs.readFileSync(filePath, { encoding: 'utf8' });
 
 // Determines if a file relative to the host project's path exists
@@ -23,6 +19,13 @@ function fileExists(pathname) {
   } catch (err) {
     return false;
   }
+}
+
+// Host project's config.js file
+const projectConfigPath = path.join(cwd, './config.js');
+let projectConfig;
+if (fileExists(projectConfigPath)) {
+  projectConfig = require(projectConfigPath); // eslint-disable-line
 }
 
 // Generate a random integer

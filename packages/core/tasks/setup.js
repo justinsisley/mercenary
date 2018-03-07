@@ -12,6 +12,7 @@ const copyTemplates = () => {
   // Files
   cp.execSync(`cp "${templatesDir}/.babelrc" "${cwd}/.babelrc"`);
   cp.execSync(`cp "${templatesDir}/.eslintrc" "${cwd}/.eslintrc"`);
+  cp.execSync(`cp "${templatesDir}/.flowconfig" "${cwd}/.flowconfig"`);
   cp.execSync(`cp "${templatesDir}/gitignore" "${cwd}/.gitignore"`);
   cp.execSync(`cp "${templatesDir}/config.js" "${cwd}/config.js"`);
 
