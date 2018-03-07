@@ -26,8 +26,7 @@ import 'semantic-ui-css/components/transition.css';
 
 import React from 'react';
 import { hydrate, render } from 'react-dom';
-import { loadComponents } from 'loadable-components';
-import { getState } from 'loadable-components';
+import { getState, loadComponents } from 'loadable-components';
 import App from './components/App';
 
 // Global custom styles

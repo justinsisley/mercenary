@@ -10,6 +10,8 @@ const shared = require('./shared');
 const webpackDevServerPort = config.webpackDevServerPort;
 
 module.exports = {
+  mode: 'development',
+
   // The entry point for the bundle
   entry: [
     `webpack-dev-server/client?http://localhost:${webpackDevServerPort}`,

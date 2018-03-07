@@ -10,6 +10,8 @@ const ShakePlugin = require('webpack-common-shake').Plugin;
 const shared = require('./shared');
 
 module.exports = {
+  mode: 'production',
+
   // The entry point for the bundle
   entry: {
     main: shared.jsEntryPoint,

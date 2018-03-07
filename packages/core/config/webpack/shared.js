@@ -44,10 +44,10 @@ const output = {
   // The output.path from the view of the Javascript / HTML page
   publicPath: '/',
   // The filename of the entry chunk as relative path inside the output.path directory
-  filename: 'static/js/[name].[chunkhash].js',
+  filename: 'static/js/[name].[hash].js',
   // Determines the name of on-demand loaded chunk files.
   // This works in conjunction with the bundle-splitting pattern used in the client.
-  chunkFilename: 'static/js/chunk.[chunkhash].js',
+  chunkFilename: 'static/js/[id].[hash].js',
 };
 
 const loaders = {
