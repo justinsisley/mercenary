@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 const webpack = require('webpack');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint/lib/formatters/stylish');
 const FlowStatusWebpackPlugin = require('flow-status-webpack-plugin');
@@ -82,7 +82,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
 
     // Generate and inject favicon
-    new FaviconsWebpackPlugin(shared.faviconsWebpackPlugin),
+    new WebappWebpackPlugin(shared.faviconsWebpackPlugin),
 
     // Inject generated assets into HTML file
     new HtmlWebpackPlugin({
