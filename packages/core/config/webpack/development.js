@@ -40,6 +40,9 @@ module.exports = {
         test: shared.regex.javascript,
         include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+        },
       },
       // CSS modules, including CSS from node_modules
       {
