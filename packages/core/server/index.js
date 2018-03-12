@@ -221,7 +221,7 @@ if (utils.fileExists(errorHandlerPath)) {
 
 // Start the Express server
 const server = app.listen(EXPRESS_PORT, () => {
-  console.log(`\nApplication running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
+  console.log(`\nServer running at:\n${localhost}\n${localhostIP}\n${localhostNetworkIP}\n`);
 });
 
 // Graceful shutdown

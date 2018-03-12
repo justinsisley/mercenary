@@ -69,13 +69,13 @@ module.exports = {
     }),
 
     // Log flow errors
-    new FlowStatusWebpackPlugin({
-      onError(stdout) {
-        console.log(stdout);
-      },
-      // eslint-disable-next-line
-      binaryPath: require('flow-bin'),
-    }),
+    // new FlowStatusWebpackPlugin({
+    //   onError(stdout) {
+    //     console.log(stdout);
+    //   },
+    //   // eslint-disable-next-line
+    //   binaryPath: require('flow-bin'),
+    // }),
 
     // Enables Hot Module Replacement
     new webpack.HotModuleReplacementPlugin(),
