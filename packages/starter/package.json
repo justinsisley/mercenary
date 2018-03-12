@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.20.4",
+  "version": "3.20.6",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -30,7 +30,7 @@
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
-    "redux-actions": "2.2.1",
+    "redux-actions": "2.3.0",
     "redux-thunk": "2.2.0",
     "reselect": "3.0.1",
     "semantic-ui-css": "2.3.0",
