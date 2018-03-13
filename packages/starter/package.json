@@ -1,6 +1,6 @@
 {
   "name": "mercenary-starter",
-  "version": "3.20.6",
+  "version": "3.20.9",
   "description": "starter project files for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -18,7 +18,7 @@
     "loadable-components": "1.1.1",
     "loglevel": "1.6.1",
     "mjml-utils": "2.2.1",
-    "mongoose": "5.0.9",
+    "mongoose": "5.0.10",
     "nodemailer": "4.6.2",
     "nodemailer-ses-transport": "1.5.1",
     "prop-types": "15.6.1",
