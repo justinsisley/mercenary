@@ -1,7 +1,5 @@
 /* eslint-disable import/no-unresolved */
 const path = require('path');
-const webpack = require('webpack');
-const config = require('../index');
 const utils = require('../../utils');
 
 // Directories of interest
@@ -17,12 +15,6 @@ const jsEntryPoint = path.join(clientDir, '/index.js');
 const htmlSource = path.join(clientDir, '/index.html');
 const htmlCompiled = path.join(publicDir, '/index.html');
 const favicon = path.join(clientDir, '/icon.png');
-
-// Globals for webpack
-let javaScriptGlobals = null;
-if (config.webpack && config.webpack.ProvidePlugin) {
-  javaScriptGlobals = new webpack.ProvidePlugin(config.webpack.ProvidePlugin);
-}
 
 // Regexes we'll use for loaders
 const regex = {
@@ -107,7 +99,6 @@ module.exports = {
   jsEntryPoint,
   htmlSource,
   htmlCompiled,
-  javaScriptGlobals,
   regex,
   output,
   loaders,

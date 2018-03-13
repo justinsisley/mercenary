@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const eslintFormatter = require('eslint/lib/formatters/stylish');
-const FlowStatusWebpackPlugin = require('flow-status-webpack-plugin');
+// const FlowStatusWebpackPlugin = require('flow-status-webpack-plugin');
 const config = require('../index');
 const shared = require('./shared');
 
@@ -58,9 +58,6 @@ module.exports = {
 
   // Additional plugins for the compiler
   plugins: [
-    // JavaScript runtime globals
-    shared.javaScriptGlobals,
-
     // Define globals for compilation
     new webpack.DefinePlugin({
       // Version from the host projects's package.json
@@ -93,10 +90,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: shared.htmlSource,
     }),
-
-  // Filter out boolean values, which prevents an error if no JS globals are
-  // defined, meaning `shared.javaScriptGlobals` is falsey.
-  ].filter(Boolean),
+  ],
 
   // Make web variables accessible to webpack, e.g. window
   target: 'web',

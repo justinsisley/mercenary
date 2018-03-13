@@ -52,9 +52,6 @@ module.exports = {
 
   // Additional plugins for the compiler
   plugins: [
-    // JavaScript runtime globals
-    shared.javaScriptGlobals,
-
     // Define globals for compilation
     new webpack.DefinePlugin({
       // Version from the host projects's package.json
@@ -113,10 +110,7 @@ module.exports = {
 
     // Inline any CSS modules within the HTML file
     new HtmlWebpackInlineSourcePlugin(),
-
-  // Filter out boolean values, which prevents an error if no JS globals are
-  // defined, meaning `shared.javaScriptGlobals` is falsey.
-  ].filter(Boolean),
+  ],
 
   // Modify logging
   stats: {

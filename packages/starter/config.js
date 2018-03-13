@@ -1,10 +1,4 @@
 module.exports = {
-  // Webpack configuration
-  webpack: {
-    // https://webpack.js.org/plugins/provide-plugin/
-    ProvidePlugin: {},
-  },
-
   // Paths to be rendered as static HTML.
   // These must be non-authenticated paths.
   static: [
