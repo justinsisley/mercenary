@@ -14,8 +14,7 @@ const presets = [
   // eslint-disable-next-line
   [require('babel-preset-env').default, {
     targets: {
-      // Support browsers that have more than 1% market share.
-      browsers: '> 1%',
+      browsers: 'last 2 versions',
     },
     // Test environment needs Babel to compile modules
     modules: env === 'test' ? 'commonjs' : false,
@@ -35,7 +34,6 @@ const plugins = [
   [require.resolve('babel-plugin-transform-runtime'), {
     helpers: false,
     polyfill: false,
-    regenerator: true,
   }],
   [require.resolve('babel-plugin-transform-regenerator'), {
     // Async functions are converted to generators by babel-preset-env

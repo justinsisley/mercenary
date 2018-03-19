@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-mercenary",
-  "version": "3.14.2",
+  "version": "3.21.2",
   "description": "Babel preset used by mercenary",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",

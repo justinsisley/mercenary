@@ -25,12 +25,12 @@ const test = () => {
   }
 
   // Keep the output pure by catching errors thrown by execSync
-  console.log('Running flow...\n');
-  try {
-    cp.execSync(`"${flowPath}" check`, { stdio: 'inherit' });
-  } catch (err) { // eslint-disable-line
-    process.exit(1);
-  }
+  // console.log('Running flow...\n');
+  // try {
+  //   cp.execSync(`"${flowPath}" check`, { stdio: 'inherit' });
+  // } catch (err) { // eslint-disable-line
+  //   process.exit(1);
+  // }
 
   // Check for existence of test files before attempting to execute
   glob(`${cwd}/?(client|server)/**/unit.js`, (error, files) => {
