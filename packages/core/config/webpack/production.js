@@ -82,7 +82,7 @@ module.exports = {
 
     // Extract CSS into a separate file
     new MiniCssExtractPlugin({
-      filename: 'static/css/[contenthash].css',
+      filename: 'static/css/[hash].css',
     }),
 
     // Minify CSS
