@@ -10,7 +10,7 @@ const storybook = require('./storybook');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
-const webpack = require.resolve('.bin/webpack');
+const webpack = require.resolve('.bin/webpack-cli');
 
 // Production build
 const build = (config = { silent: false, static: false }) => {

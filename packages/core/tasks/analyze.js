@@ -7,7 +7,7 @@ const utils = require('../utils');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
-const webpack = require.resolve('.bin/webpack');
+const webpack = require.resolve('.bin/webpack-cli');
 
 // Production build analysis
 const analyze = () => {
