@@ -3,8 +3,7 @@
   "author": "Justin Sisley",
   "scripts": {
     "ncu": "./scripts/ncu.sh",
-    "ncu-u": "./scripts/ncu-u.sh",
-    "nsp": "./scripts/nsp.sh"
+    "ncu-u": "./scripts/ncu-u.sh"
   },
   "devDependencies": {
     "eslint": "4.19.1",
