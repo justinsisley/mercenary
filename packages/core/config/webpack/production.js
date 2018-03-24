@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ShakePlugin = require('webpack-common-shake').Plugin;
@@ -19,18 +19,6 @@ module.exports = {
 
   // Options affecting the output
   output: shared.output,
-
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-      },
-    },
-  },
 
   // Options affecting the normal modules
   module: {
@@ -51,10 +39,7 @@ module.exports = {
       {
         test: shared.regex.css,
         include: [shared.regex.client, shared.regex.node_modules],
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       shared.loaders.bitmapImages,
       shared.loaders.svgImages,
@@ -72,8 +57,16 @@ module.exports = {
       'process.env.NODE_ENV': '"production"',
     }),
 
+    // Extract all node_modules into main chunk
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'main',
+    //   children: true,
+    //   deepChildren: true,
+    //   minChunks: module => module.context && module.context.includes('node_modules'),
+    // }),
+
     // Remove unused assignments to exports property
-    new ShakePlugin(),
+    // new ShakePlugin(),
 
     // Enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
@@ -88,7 +81,7 @@ module.exports = {
     }),
 
     // Extract CSS into a separate file
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'static/css/[contenthash].css',
     }),
 
