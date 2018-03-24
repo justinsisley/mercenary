@@ -20,6 +20,18 @@ module.exports = {
   // Options affecting the output
   output: shared.output,
 
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+
   // Options affecting the normal modules
   module: {
     rules: [
@@ -58,14 +70,6 @@ module.exports = {
       __VERSION__: JSON.stringify(shared.semver),
       // Useful to reduce the size of client-side libraries, e.g. react
       'process.env.NODE_ENV': '"production"',
-    }),
-
-    // Extract all node_modules into main chunk
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'main',
-      children: true,
-      deepChildren: true,
-      minChunks: module => module.context && module.context.includes('node_modules'),
     }),
 
     // Remove unused assignments to exports property
