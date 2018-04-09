@@ -23,10 +23,7 @@ function fileExists(pathname) {
 
 // Host project's config.js file
 const projectConfigPath = path.join(cwd, './config.js');
-let projectConfig;
-if (fileExists(projectConfigPath)) {
-  projectConfig = require(projectConfigPath); // eslint-disable-line
-}
+const projectConfig = require(projectConfigPath); // eslint-disable-line
 
 // Generate a random integer
 function randomInt(min, max) {
