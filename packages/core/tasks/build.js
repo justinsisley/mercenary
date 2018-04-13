@@ -6,7 +6,7 @@ const minify = require('html-minifier').minify;
 const utils = require('../utils');
 const startProd = require('./startProd');
 const buildStatic = require('./buildStatic');
-const storybook = require('./storybook');
+// const storybook = require('./storybook');
 
 const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
@@ -43,7 +43,7 @@ const build = (config = { silent: false, static: false }) => {
 
     // Build storybook
     // FIXME: this is a side effect... no good
-    storybook.build();
+    // storybook.build();
   };
 
   if (config.static) {
