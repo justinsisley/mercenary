@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.25.1",
+  "version": "3.25.2",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -25,7 +25,7 @@
     "pm2": "2.10.2",
     "proxy-middleware": "0.15.0",
     "toobusy-js": "0.5.1",
-    "winston": "2.4.1",
+    "winston": "2.4.2",
     "winston-cloudwatch": "1.13.1"
   }
 }
