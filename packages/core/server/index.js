@@ -50,19 +50,17 @@ const winstonTransports = [
 
 // Add CloudWatch transport in production if configured
 if (ENV === 'production') {
-  winstonTransports.push(
-    new WinstonCloudwatch({
-      logGroupName: `${config.AWS_APP_NAME}_${config.AWS_ENV_NAME}`,
-      logStreamName() {
-        // Spread log streams across dates as the server stays up
-        return new Date().toISOString().split('T')[0];
-      },
-      awsRegion: config.AWS_REGION,
-      awsAccessKeyId: config.AWS_ACCESS_KEY_ID,
-      awsSecretKey: config.AWS_SECRET_ACCESS_KEY,
-      jsonMessage: true,
-    }),
-  );
+  winstonTransports.push(new WinstonCloudwatch({
+    logGroupName: `${config.AWS_APP_NAME}_${config.AWS_ENV_NAME}`,
+    logStreamName() {
+      // Spread log streams across dates as the server stays up
+      return new Date().toISOString().split('T')[0];
+    },
+    awsRegion: config.AWS_REGION,
+    awsAccessKeyId: config.AWS_ACCESS_KEY_ID,
+    awsSecretKey: config.AWS_SECRET_ACCESS_KEY,
+    jsonMessage: true,
+  }));
 }
 
 // Create the Express server
