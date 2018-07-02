@@ -2,7 +2,6 @@
 const webpack = require('webpack');
 // const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const eslintFormatter = require('eslint/lib/formatters/stylish');
 const config = require('../index');
 const shared = require('./shared');
 
@@ -24,16 +23,6 @@ module.exports = {
   // Options affecting the normal modules
   module: {
     rules: [
-      // ESLint
-      {
-        test: shared.regex.javascript,
-        enforce: 'pre',
-        include: shared.regex.client,
-        loader: 'eslint-loader',
-        options: {
-          formatter: eslintFormatter,
-        },
-      },
       // JavaScript and JSX
       {
         test: shared.regex.javascript,

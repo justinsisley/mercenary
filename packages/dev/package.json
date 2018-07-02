@@ -1,6 +1,6 @@
 {
   "name": "mercenary-dev",
-  "version": "3.28.0",
+  "version": "3.28.1",
   "description": "dev/test/build dependencies for mercenary",
   "author": "Justin Sisley",
   "repository": "https://github.com/justinsisley/mercenary",
@@ -20,7 +20,6 @@
     "dom-storage": "2.1.0",
     "eslint": "4.19.1",
     "eslint-config-mercenary": "^3.28.0",
-    "eslint-loader": "2.0.0",
     "favicons-webpack-plugin": "0.0.9",
     "file-loader": "1.1.11",
     "glob": "7.1.2",
