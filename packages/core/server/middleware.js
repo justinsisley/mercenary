@@ -38,6 +38,7 @@ function enforceHTTPS(req, res, next) {
     return;
   }
 
+  // Determine if the request was done over HTTPS
   const isSecure = req.secure && req.headers['x-forwarded-proto'] === 'https';
 
   // Redirect HTTP to HTTPS
@@ -46,6 +47,7 @@ function enforceHTTPS(req, res, next) {
     return;
   }
 
+  // If everything looks good, move on
   next();
 }
 
@@ -70,11 +72,12 @@ function checkIfTooBusy(req, res, next) {
     return;
   }
 
+  // If everything looks good, move on
   next();
 }
 
 function maintenanceApiResponse(req, res) {
-  res.status(503).json({ message: 'maintenance' });
+  res.status(503).json({});
 }
 
 function maintenancePageResponse(req, res) {

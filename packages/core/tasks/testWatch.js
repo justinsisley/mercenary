@@ -24,7 +24,6 @@ const testWatch = () => {
           --require "${configDir}/tests/unit/setup.js" \
           "${cwd}/?(client|server)/**/unit.js"
       `, { stdio: 'inherit' });
-    // eslint-disable-next-line
     } catch (err) {
       process.exit(1);
     }

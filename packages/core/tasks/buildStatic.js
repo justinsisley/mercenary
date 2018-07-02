@@ -24,9 +24,7 @@ async function renderPage(path) {
     // are injected into the head of the document dynamically. When the page
     // is statically rendered, this means the async route is loaded before the
     // main JavaScript bundle.
-    const headScripts = Array.prototype.slice.call(
-      document.head.getElementsByTagName('script')
-    );
+    const headScripts = Array.prototype.slice.call(document.head.getElementsByTagName('script'));
 
     for (let i = 0; i < headScripts.length; i += 1) {
       const removedScript = headScripts[i].parentNode.removeChild(headScripts[i]);

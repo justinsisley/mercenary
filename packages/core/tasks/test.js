@@ -19,7 +19,7 @@ const test = () => {
         "${cwd}/client/**/*.js" \
         "${cwd}/server/**/*.js"
     `, { stdio: 'inherit' });
-  } catch (err) { // eslint-disable-line
+  } catch (err) {
     process.exit(1);
   }
 
@@ -40,7 +40,7 @@ const test = () => {
         --require "${configDir}/tests/unit/setup.js" \
           "${cwd}/?(client|server)/**/unit.js"
       `, { stdio: 'inherit' });
-    } catch (err) { // eslint-disable-line
+    } catch (err) {
       process.exit(1);
     }
   });

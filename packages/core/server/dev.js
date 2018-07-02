@@ -9,7 +9,6 @@ const config = require('../config');
 const webpackConfig = require('../config/webpack/development');
 
 const cwd = process.cwd();
-
 const webpackDevServerPort = config.webpackDevServerPort;
 const devServerHost = `http://localhost:${webpackDevServerPort}/`;
 

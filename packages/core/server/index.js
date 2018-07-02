@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved,global-require */
 const path = require('path');
 const url = require('url');
 const express = require('express');
@@ -33,6 +33,7 @@ const localhostNetworkIP = `http://${getIp.address()}:${EXPRESS_PORT}`;
 const cwd = process.cwd();
 const staticPaths = config.static;
 const staticDir = path.join(cwd, './public/static');
+const serverEntryPoint = path.join(cwd, './server/index.js');
 
 // Pre-read and cache static pages
 let staticPageCache = {};
@@ -65,13 +66,10 @@ const app = express();
 
 // Trust the left-most entry in the X-Forwarded-* header
 app.enable('trust proxy');
-
 // Parse JSON in request body
 app.use(bodyParser.json());
-
 // Helmet middleware gives us some basic best-practice security
 app.use(helmet());
-
 // Validation/sanitization
 app.use(expressValidator());
 
@@ -108,11 +106,9 @@ if (process.env.MAINTENANCE) {
 
 // Pass the Express app to the user's custom middleware function. This allows
 // the user to apply any middleware they like without having to modify the
-// server entry point. Again, we're keeping this out of the try/catch (above)
-// so we can maintain standard error behavior.
+// server entry point.
 const middlewarePath = './server/middleware.js';
 if (utils.fileExists(middlewarePath)) {
-  // eslint-disable-next-line global-require
   const runMiddleware = require(path.join(cwd, middlewarePath));
 
   if (typeof runMiddleware === 'function') {
@@ -122,29 +118,24 @@ if (utils.fileExists(middlewarePath)) {
   }
 }
 
-// Proxy requests to the local API if one exists. We're intentionally keeping
-// our routes out of the try/catch, above, because we want developers' server
-// code to throw errors as expected.
-const localServerPath = './server/index.js';
-if (utils.fileExists(localServerPath)) {
-  const apiHandler = (req, res, next) => {
-    // eslint-disable-next-line global-require
-    require(path.join(cwd, localServerPath))(req, res, next);
-  };
-
-  app.use('/api', apiHandler);
-}
-
 if (ENV === 'development') {
+  // In development environments, handle API endpoints in a "hot-reloading"
+  // friendly way by requiring a fresh `server/index.js` module on every API request.
+  app.use('/api', (req, res, next) => {
+    require(serverEntryPoint)(req, res, next);
+  });
+
   // requiring this only if it's a dev environment means production environments
   // do not need to depend on webpack at all.
-  // eslint-disable-next-line
   const devServer = require('./dev');
 
   // Initialize development server
   devServer(app);
 // Non-development environment configuration
 } else {
+  // Handle all "/api" paths
+  app.use('/api', require(serverEntryPoint));
+
   // Proxy static assets to the public/static directory
   app.use('/static', express.static(staticDir, {
     maxAge: '365 days',
@@ -195,7 +186,6 @@ app.use(expressWinston.errorLogger({ transports: winstonTransports }));
 // Pass the Express app to the user's custom error handler function.
 const errorHandlerPath = './server/errorHandler.js';
 if (utils.fileExists(errorHandlerPath)) {
-  // eslint-disable-next-line global-require
   const errorHandler = require(path.join(cwd, errorHandlerPath));
 
   if (typeof errorHandler === 'function') {
