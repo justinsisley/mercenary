@@ -134,15 +134,11 @@ async function updateEBEnv(versionLabel) {
 }
 
 // Send deployment message to Slack
-function sendSlackMessage({ semver, commitHash }) {
+function sendSlackMessage(semver) {
+  const releaseUrl = `https://github.com/${config.GITHUB_OWNER}/${config.GITHUB_REPO}/releases/tag/v${semver}`;
+
   const payload = {
-    text: `
-      A new deployment has been initiated.
-      Application: ${applicationName}
-      Environment: ${environmentName}
-      Version: ${semver}
-      Commit: ${commitHash}
-    `,
+    text: `${applicationName} v<${releaseUrl}|${semver}> is deploying.`,
   };
 
   execSync(`curl --silent -X POST -H 'Content-type: application/json' \
@@ -223,7 +219,7 @@ module.exports = async () => {
 
   if (config.SLACK_WEBHOOK_URL) {
     spinner.text = 'Sending Slack notification';
-    sendSlackMessage({ semver, commitHash });
+    sendSlackMessage(semver);
   }
 
   if (config.SENTRY_WEBHOOK_URL) {
