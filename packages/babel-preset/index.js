@@ -20,8 +20,8 @@ const presets = [
     modules: env === 'test' ? 'commonjs' : false,
     useBuiltIns: true,
   }],
-  require.resolve('babel-preset-stage-0'),
   require.resolve('babel-preset-react'),
+  require.resolve('babel-preset-stage-0'),
 ];
 
 if (env === 'development') {

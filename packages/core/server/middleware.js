@@ -16,6 +16,13 @@ const custom503Path = path.join(cwd, './server/503.html');
 const default503Response = 'Service Unavailable';
 
 function enforceHTTPS(req, res, next) {
+  console.log(req.hostname);
+  console.log(req.hostname);
+  console.log(req.hostname);
+  console.log(req.hostname);
+  console.log(req.hostname);
+  console.log(req.hostname);
+
   // Prevent hostname spoofing
   if (req.hostname.indexOf(APP_HOSTNAME) === -1) {
     res.sendStatus(403);
