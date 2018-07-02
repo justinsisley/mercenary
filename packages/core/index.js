@@ -1,67 +1,18 @@
 #!/usr/bin/env node
-
+/* eslint-disable global-require */
 const argv = require('yargs').argv;
 
-if (argv.setup) {
-  require('./tasks/setup')(); // eslint-disable-line
-}
-
-if (argv.test) {
-  require('./tasks/test')(); // eslint-disable-line
-}
-
-if (argv.testWatch) {
-  require('./tasks/testWatch')(); // eslint-disable-line
-}
-
-if (argv.e2e) {
-  require('./tasks/e2e')(); // eslint-disable-line
-}
-
-if (argv.storybook) {
-  require('./tasks/storybook').start(); // eslint-disable-line
-}
-
-if (argv.build) {
-  require('./tasks/build')({ static: true }); // eslint-disable-line
-}
-
-if (argv.analyze) {
-  require('./tasks/analyze')(); // eslint-disable-line
-}
-
-if (argv.start) {
-  require('./tasks/startDev')(); // eslint-disable-line
-}
-
-if (argv.prod) {
-  require('./tasks/startProd')(); // eslint-disable-line
-}
-
-if (argv.prodLocal) {
-  require('./tasks/startProd')({ mode: 'local' }); // eslint-disable-line
-}
-
-if (argv.release) {
-  require('./tasks/release')(); // eslint-disable-line
-}
-
-if (argv.deploy) {
-  require('./tasks/deploy')(); // eslint-disable-line
-}
-
-if (argv.deployInit) {
-  require('./tasks/deployInit')(); // eslint-disable-line
-}
-
-if (argv.dockerBuild) {
-  require('./tasks/docker').dockerBuild(); // eslint-disable-line
-}
-
-if (argv.dockerRun) {
-  require('./tasks/docker').dockerRun(); // eslint-disable-line
-}
-
-if (argv.clean) {
-  require('./tasks/clean')(); // eslint-disable-line
-}
+if (argv.setup) require('./tasks/setup')();
+if (argv.test) require('./tasks/test')();
+if (argv.testWatch) require('./tasks/testWatch')();
+if (argv.e2e) require('./tasks/e2e')();
+if (argv.build) require('./tasks/build')({ static: true });
+if (argv.analyze) require('./tasks/analyze')();
+if (argv.start) require('./tasks/startDev')();
+if (argv.prod) require('./tasks/startProd')();
+if (argv.prodLocal) require('./tasks/startProd')({ mode: 'local' });
+if (argv.release) require('./tasks/release')();
+if (argv.deploy) require('./tasks/deploy')();
+if (argv.dockerBuild) require('./tasks/docker').dockerBuild();
+if (argv.dockerRun) require('./tasks/docker').dockerRun();
+if (argv.clean) require('./tasks/clean')();

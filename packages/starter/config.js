@@ -47,10 +47,4 @@ module.exports = {
     username: '',
     password: '',
   },
-
-  // Configure access to storybook located at /_storybook
-  storybook: {
-    username: '',
-    password: '',
-  },
 };

@@ -7,10 +7,9 @@ const configDir = path.join(__dirname, '../config');
 
 const nodeModulesPath = path.join(cwd, './node_modules/');
 const eslintPath = path.join(nodeModulesPath, './eslint/bin/eslint.js');
-const flowPath = path.join(nodeModulesPath, './flow-bin/cli.js');
 const mochaPath = path.join(nodeModulesPath, './mocha/bin/mocha');
 
-// Run eslint, flow, and unit tests
+// Run eslint and unit tests
 const test = () => {
   // Keep the output pure by catching errors thrown by execSync
   console.log('Running ESLint...');
@@ -23,14 +22,6 @@ const test = () => {
   } catch (err) { // eslint-disable-line
     process.exit(1);
   }
-
-  // Keep the output pure by catching errors thrown by execSync
-  // console.log('Running flow...\n');
-  // try {
-  //   cp.execSync(`"${flowPath}" check`, { stdio: 'inherit' });
-  // } catch (err) { // eslint-disable-line
-  //   process.exit(1);
-  // }
 
   // Check for existence of test files before attempting to execute
   glob(`${cwd}/?(client|server)/**/unit.js`, (error, files) => {
