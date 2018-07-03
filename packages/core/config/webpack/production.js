@@ -35,11 +35,33 @@ module.exports = {
         include: [shared.regex.client, shared.regex.server],
         loader: 'babel-loader',
       },
-      // CSS modules, including CSS from node_modules
+      // Load global CSS files from node_modules
       {
         test: shared.regex.css,
-        include: [shared.regex.client, shared.regex.node_modules],
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        include: shared.regex.node_modules,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              paths: [shared.regex.node_modules],
+            },
+          },
+        ],
+      },
+      // Load local CSS modules from /client
+      {
+        test: shared.regex.css,
+        exclude: shared.regex.node_modules,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
       shared.loaders.bitmapImages,
       shared.loaders.svgImages,
