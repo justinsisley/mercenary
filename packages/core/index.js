@@ -3,6 +3,7 @@
 const argv = require('yargs').argv;
 
 if (argv.setup) require('./tasks/setup')();
+if (argv.lint) require('./tasks/lint')();
 if (argv.test) require('./tasks/test')();
 if (argv.testWatch) require('./tasks/testWatch')();
 if (argv.e2e) require('./tasks/e2e')();

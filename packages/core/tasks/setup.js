@@ -29,6 +29,7 @@ const copyTemplates = () => {
 const copyNpmScripts = () => {
   const packageJsonScripts = Object.assign({}, utils.packageJSON.scripts, {
     start: 'merc --start',
+    lint: 'merc --lint',
     test: 'merc --test',
     'test:watch': 'merc --testWatch',
     e2e: 'merc --e2e',

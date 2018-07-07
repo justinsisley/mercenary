@@ -6,23 +6,10 @@ const cwd = process.cwd();
 const configDir = path.join(__dirname, '../config');
 
 const nodeModulesPath = path.join(cwd, './node_modules/');
-const eslintPath = path.join(nodeModulesPath, './eslint/bin/eslint.js');
 const mochaPath = path.join(nodeModulesPath, './mocha/bin/mocha');
 
-// Run eslint and unit tests
+// Run unit tests
 const test = () => {
-  // Keep the output pure by catching errors thrown by execSync
-  console.log('Running ESLint...');
-  try {
-    cp.execSync(`
-      "${eslintPath}" \
-        "${cwd}/client/**/*.js" \
-        "${cwd}/server/**/*.js"
-    `, { stdio: 'inherit' });
-  } catch (err) {
-    process.exit(1);
-  }
-
   // Check for existence of test files before attempting to execute
   glob(`${cwd}/?(client|server)/**/unit.js`, (error, files) => {
     // No tests exist, we're done
