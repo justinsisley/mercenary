@@ -94,8 +94,8 @@ if (ENV === 'production') {
   // Gracefully handle server overload
   app.use(middleware.checkIfTooBusy);
 
-  // Force HTTPS, and optionally force www
-  app.use(middleware.enforceHTTPS);
+  // Prevent hostname spoofing
+  app.use(middleware.preventHostnameSpoofing);
 }
 
 // Maintenance mode

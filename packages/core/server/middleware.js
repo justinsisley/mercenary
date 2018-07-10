@@ -6,7 +6,6 @@ const utils = require('../utils');
 const cwd = process.cwd();
 
 const { APP_HOSTNAME } = config;
-const FORCE_WWW = /^www\./.test(APP_HOSTNAME);
 
 toobusy.maxLag(70);
 toobusy.interval(500);
@@ -15,42 +14,10 @@ const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');
 const default503Response = 'Service Unavailable';
 
-function enforceHTTPS(req, res, next) {
-  console.log(req.hostname);
-  console.log(req.hostname);
-  console.log(req.hostname);
-  console.log(req.hostname);
-  console.log(req.hostname);
-  console.log(req.hostname);
-
-  // Prevent hostname spoofing
+// The hostname in the request must match the hostname we're using
+function preventHostnameSpoofing(req, res, next) {
   if (req.hostname.indexOf(APP_HOSTNAME) === -1) {
     res.sendStatus(403);
-    return;
-  }
-
-  // Construct the "true" request URL
-  const finalUrl = `https://${APP_HOSTNAME}${req.originalUrl}`;
-  const hasWWW = req.hostname.indexOf('www.') === 0;
-
-  // Force www subdomain
-  if (FORCE_WWW && !hasWWW) {
-    res.redirect(301, finalUrl);
-    return;
-  }
-
-  // Strip www subdomain
-  if (!FORCE_WWW && hasWWW) {
-    res.redirect(301, finalUrl);
-    return;
-  }
-
-  // Determine if the request was done over HTTPS
-  const isSecure = req.secure && req.headers['x-forwarded-proto'] === 'https';
-
-  // Redirect HTTP to HTTPS
-  if (!isSecure) {
-    res.redirect(301, finalUrl);
     return;
   }
 
@@ -99,7 +66,7 @@ function maintenancePageResponse(req, res) {
 }
 
 module.exports = {
-  enforceHTTPS,
+  preventHostnameSpoofing,
   checkIfTooBusy,
   maintenanceApiResponse,
   maintenancePageResponse,
