@@ -10,9 +10,6 @@ module.exports = {
     '/signup',
   ],
 
-  // The hostname to use when deployed
-  hostname: '',
-
   // AWS settings
   aws: {
     // Credentials from IAM.
