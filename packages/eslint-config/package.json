@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-mercenary",
-  "version": "3.32.5",
+  "version": "3.32.6",
   "description": "ESLint configuration used by mercenary",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
