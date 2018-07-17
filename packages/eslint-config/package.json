@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-mercenary",
-  "version": "3.29.1",
+  "version": "3.32.0",
   "description": "ESLint configuration used by mercenary",
   "repository": "https://github.com/justinsisley/mercenary",
   "license": "ISC",
@@ -8,11 +8,11 @@
     "index.js"
   ],
   "dependencies": {
-    "babel-eslint": "8.2.5",
+    "babel-eslint": "8.2.6",
     "eslint-config-airbnb": "17.0.0",
     "eslint-plugin-babel": "5.1.0",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-jsx-a11y": "6.1.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-react": "7.10.0"
   }
 }

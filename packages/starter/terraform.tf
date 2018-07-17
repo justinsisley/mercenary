@@ -219,8 +219,14 @@ resource "aws_elastic_beanstalk_environment" "env" {
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "EMAIL_FROM_ADDRESS"
-    value     = "Mercenary <noreply@${var.domain}>"
+    value     = "Hello <hello@${var.domain}>"
   }
+}
+
+# Set up S3 bucket to upload new builds into
+resource "aws_s3_bucket" "app" {
+  bucket = "${var.app_name}-builds"
+  acl    = "private"
 }
 
 # Get information about the load balancer created by Elastic Beanstalk
@@ -230,41 +236,56 @@ data "aws_elb" "env" {
 
 # Add www record to the domain
 resource "cloudflare_record" "www" {
-  domain = "${var.domain}"
-  name   = "www"
-  value  = "${data.aws_elb.env.dns_name}"
-  type   = "CNAME"
-  ttl    = "${var.dns_ttl}"
+  domain  = "${var.domain}"
+  name    = "www"
+  value   = "${data.aws_elb.env.dns_name}"
+  type    = "CNAME"
+  ttl     = "${var.dns_ttl}"
+  proxied = true
 }
 
 # Add non-www record to the domain
 resource "cloudflare_record" "non_www" {
-  domain = "${var.domain}"
-  name   = "@"
-  value  = "${data.aws_elb.env.dns_name}"
-  type   = "CNAME"
-  ttl    = "${var.dns_ttl}"
+  domain  = "${var.domain}"
+  name    = "@"
+  value   = "${data.aws_elb.env.dns_name}"
+  type    = "CNAME"
+  ttl     = "${var.dns_ttl}"
+  proxied = true
 }
 
-# Add rule to redirect from non-www to www
+# Add rule to force HTTPS for non-www
+resource "cloudflare_page_rule" "https_non_www" {
+  zone     = "${var.domain}"
+  target   = "http://${var.domain}/*"
+  priority = 1
+
+  actions = {
+    always_use_https = true
+  }
+}
+
+# Add rule to force HTTPS for www
+resource "cloudflare_page_rule" "https_www" {
+  zone     = "${var.domain}"
+  target   = "http://www.${var.domain}/*"
+  priority = 2
+
+  actions = {
+    always_use_https = true
+  }
+}
+
+# Add rule to redirect from non-www to www (all HTTPS)
 resource "cloudflare_page_rule" "www" {
-  zone   = "${var.domain}"
-  target = "${var.domain}/*"
+  zone     = "${var.domain}"
+  target   = "https://${var.domain}/*"
+  priority = 3
 
   actions = {
     forwarding_url = {
       url         = "https://www.${var.domain}/$1"
       status_code = "301"
     }
-  }
-}
-
-# Add rule to force HTTPS
-resource "cloudflare_page_rule" "www" {
-  zone   = "${var.domain}"
-  target = "http://www.${var.domain}/*"
-
-  actions = {
-    always_use_https = true
   }
 }
