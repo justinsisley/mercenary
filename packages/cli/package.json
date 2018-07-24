@@ -1,6 +1,6 @@
 {
   "name": "mercenary",
-  "version": "3.32.8",
+  "version": "3.32.9",
   "description": "CLI for mercenary",
   "bin": {
     "mercenary": "./index.js"
@@ -19,7 +19,7 @@
     "cross-spawn": "6.0.5",
     "extfs": "0.0.7",
     "fs-extra": "7.0.0",
-    "ora": "2.1.0",
+    "ora": "3.0.0",
     "update-notifier": "2.5.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "mercenary-core",
-  "version": "3.32.8",
+  "version": "3.32.9",
   "description": "core/production dependencies for mercenary",
   "bin": {
     "merc": "./index.js"
@@ -17,12 +17,12 @@
     "chokidar": "2.0.4",
     "express": "4.16.3",
     "express-rate-limit": "2.11.0",
-    "express-validator": "5.2.0",
-    "express-winston": "2.5.1",
-    "helmet": "3.12.1",
+    "express-validator": "5.3.0",
+    "express-winston": "2.6.0",
+    "helmet": "3.13.0",
     "ip": "1.1.5",
     "password-generator": "2.2.0",
-    "pm2": "3.0.0",
+    "pm2": "3.0.1",
     "proxy-middleware": "0.15.0",
     "toobusy-js": "0.5.1",
     "winston": "2.4.3",
