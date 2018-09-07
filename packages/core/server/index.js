@@ -82,13 +82,15 @@ app.use(expressWinston.logger({
   expressFormat: ENV === 'production',
 }));
 
-// FOR DEV ONLY
-app.use(middleware.validateHostname);
+console.log('ENV', ENV);
+console.log('ENV', ENV);
+console.log('ENV', ENV);
+console.log('ENV', ENV);
 
 // Production middleware
 if (ENV === 'production') {
   // Make sure the hostname is valid
-  // app.use(middleware.validateHostname);
+  app.use(middleware.validateHostname);
 
   // Rate limiting
   app.use(new RateLimit({
