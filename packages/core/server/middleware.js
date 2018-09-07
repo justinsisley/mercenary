@@ -12,10 +12,14 @@ const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');
 const default503Response = 'Service Unavailable';
 
-function validateHostname(req, res, next) {
+function validateHostname(req, res) {
   console.log(req);
   console.log(req.hostname);
-  next();
+
+  res.json({
+    hostname: req.hostname,
+  });
+  // next();
 }
 
 function checkIfTooBusy(req, res, next) {
