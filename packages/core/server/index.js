@@ -82,17 +82,20 @@ app.use(expressWinston.logger({
   expressFormat: ENV === 'production',
 }));
 
+// FOR DEV ONLY
+app.use(middleware.validateHostname);
+
 // Production middleware
 if (ENV === 'production') {
+  // Make sure the hostname is valid
+  // app.use(middleware.validateHostname);
+
   // Rate limiting
   app.use(new RateLimit({
     delayMs: 0, // disable delay
     max: 1000, // requests per `windowMs`
     windowMs: 60 * 1000, // 1 minute
   }));
-
-  // Make sure the hostname is valid
-  app.use(middleware.validateHostname);
 
   // Gracefully handle server overload
   app.use(middleware.checkIfTooBusy);
