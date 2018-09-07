@@ -82,11 +82,6 @@ app.use(expressWinston.logger({
   expressFormat: ENV === 'production',
 }));
 
-console.log('ENV', ENV);
-console.log('ENV', ENV);
-console.log('ENV', ENV);
-console.log('ENV', ENV);
-
 // Production middleware
 if (ENV === 'production') {
   // Make sure the hostname is valid

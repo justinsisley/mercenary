@@ -8,18 +8,18 @@ const cwd = process.cwd();
 toobusy.maxLag(70);
 toobusy.interval(500);
 
+const allowedHostnames = (process.env.HOSTNAMES || '').split(',');
 const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');
 const default503Response = 'Service Unavailable';
 
-function validateHostname(req, res) {
-  console.log(req);
-  console.log(req.hostname);
+function validateHostname(req, res, next) {
+  if (allowedHostnames.indexOf(req.hostname) === -1) {
+    res.status(500).send('');
+    return;
+  }
 
-  res.json({
-    hostname: req.hostname,
-  });
-  // next();
+  next();
 }
 
 function checkIfTooBusy(req, res, next) {
