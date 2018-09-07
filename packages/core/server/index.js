@@ -82,10 +82,10 @@ app.use(expressWinston.logger({
   expressFormat: ENV === 'production',
 }));
 
-console.log('ENV', JSON.stringify(ENV, null, 2));
-console.log('ENV', JSON.stringify(ENV, null, 2));
-console.log('ENV', JSON.stringify(ENV, null, 2));
-console.log('ENV', JSON.stringify(ENV, null, 2));
+console.log('ENV', ENV);
+console.log('ENV', ENV);
+console.log('ENV', ENV);
+console.log('ENV', ENV);
 
 // Production middleware
 if (ENV === 'production') {

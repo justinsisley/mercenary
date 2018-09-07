@@ -1,8 +1,6 @@
 const utils = require('../utils');
 
 module.exports = {
-  env: process.env.NODE_ENV || 'development',
-
   // Not configurable
   expressPort: 3325,
   webpackDevServerPort: 3326,
@@ -11,4 +9,6 @@ module.exports = {
   ...utils.projectConfig,
   // Bring in environment variables
   ...process.env,
+
+  env: process.env.NODE_ENV || 'development',
 };
