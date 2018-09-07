@@ -91,6 +91,9 @@ if (ENV === 'production') {
     windowMs: 60 * 1000, // 1 minute
   }));
 
+  // Make sure the hostname is valid
+  app.use(middleware.validateHostname);
+
   // Gracefully handle server overload
   app.use(middleware.checkIfTooBusy);
 }

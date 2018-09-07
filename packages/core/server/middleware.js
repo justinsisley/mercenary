@@ -12,6 +12,12 @@ const custom503Exists = utils.fileExists('./server/503.html');
 const custom503Path = path.join(cwd, './server/503.html');
 const default503Response = 'Service Unavailable';
 
+function validateHostname(req, res, next) {
+  console.log(req);
+  console.log(req.hostname);
+  next();
+}
+
 function checkIfTooBusy(req, res, next) {
   // If the server is getting more traffic than it can handle, refuse some
   // requests to prevent taking down the entire server
@@ -53,6 +59,7 @@ function maintenancePageResponse(req, res) {
 }
 
 module.exports = {
+  validateHostname,
   checkIfTooBusy,
   maintenanceApiResponse,
   maintenancePageResponse,
