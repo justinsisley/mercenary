@@ -1,5 +1,9 @@
 const utils = require('../utils');
 
+console.log({
+  ...process.env,
+});
+
 module.exports = {
   // Not configurable
   expressPort: 3325,
